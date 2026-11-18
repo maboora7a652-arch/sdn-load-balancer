@@ -21,19 +21,36 @@ def ping_summary(text):
             "largest_reply_gap_seconds": round(max(gaps), 6) if gaps else None}
 
 
-def run_link_failure_demo(network):
+def first_post_cut_reply_ms(text, requested, confirmed, restored):
+    # ping -D timestamps replies. Subtract the reported RTT to exclude
+    # requests already in flight at the end of configLinkStatus().
+    pattern = r"^\[([\d.]+)\].*bytes from .*icmp_seq=\d+.*time=([\d.]+) ms"
+    replies = [(float(t), float(rtt)) for t, rtt in re.findall(pattern, text, re.MULTILINE)]
+    if not any(t < requested for t, _ in replies):
+        return None
+    for received, rtt in replies:
+        if received - rtt / 1000 > confirmed and received < restored:
+            return round(1000 * (received - requested), 3)
+    return None
+
+
+def run_link_failure_demo(network, source_name="h1", output_path=None):
     helpers = runpy.run_path("/media/sf_sdn_transfer/experiments/grid_demo.py")
     api = helpers["api"]
     tables = helpers["flow_tables"]
     trace = helpers["forwarding_path"]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    output = Path("/media/sf_sdn_transfer/experiments/results") / ("link-failure-" + stamp + ".json")
+    output = output_path or Path("/media/sf_sdn_transfer/experiments/results") / ("link-failure-" + stamp + ".json")
+    managed = source_name == "h1"
+    expected = [1, 4, 5, 6] if managed else [4, 5, 6]
+    interval, count = (0.2, 80) if managed else (0.05, 260)
     result = {"started_utc": stamp, "failed_link": [5, 6],
-              "ping_interval_seconds": 0.2, "requested_ping_count": 80}
+              "source": source_name, "destination": "h6",
+              "ping_interval_seconds": interval, "requested_ping_count": count}
     link_down, process = False, None
     stream = tempfile.TemporaryFile(mode="w+t")
     try:
-        source, target = network["h1"], network["h6"]
+        source, target = network[source_name], network["h6"]
         src, dst = source.MAC().lower(), target.MAC().lower()
         hosts = {h["mac"].lower(): h for h in api("sdn/hosts")["hosts"]}
 
@@ -47,15 +64,15 @@ def run_link_failure_demo(network):
         result["before"] = snapshot()
         before = result["before"]["forwarding"]
         print("Before failure:", before, flush=True)
-        if (not before["complete"] or before["path"] != [1, 4, 5, 6]
-                or not all(priority > 20 for priority in before["priorities"])):
-            print("Stopped: this trial must start on the managed P3 route.", flush=True)
+        if (not before["complete"] or before["path"] != expected
+                or (managed and not all(priority > 20 for priority in before["priorities"]))):
+            print("Stopped: unexpected initial forwarding path.", flush=True)
             return
         if not any({link["source"], link["destination"]} == {5, 6}
                    for link in result["before"]["topology"]["links"]):
             print("Stopped: S5-S6 is not in the current topology.", flush=True)
             return
-        process = source.popen(["ping", "-n", "-D", "-c", "80", "-i", "0.2", target.IP()],
+        process = source.popen(["ping", "-n", "-D", "-c", str(count), "-i", str(interval), target.IP()],
                                stdout=stream, stderr=subprocess.STDOUT)
         time.sleep(2)
         print("Taking S5-S6 down; ping continues.", flush=True)
@@ -100,6 +117,10 @@ def run_link_failure_demo(network):
             text = stream.read()
             result["ping_output"] = text
             result["ping_measurements"] = ping_summary(text)
+            if "link_up_requested_unix" in result:
+                result["ping_measurements"]["first_post_cut_reply_ms"] = first_post_cut_reply_ms(
+                    text, result["link_down_requested_unix"],
+                    result["link_down_command_returned_unix"], result["link_up_requested_unix"])
             print("\n" + "\n".join(text.splitlines()[-5:]), flush=True)
             print("Largest observed reply gap (not exact recovery time):",
                   result["ping_measurements"]["largest_reply_gap_seconds"], flush=True)

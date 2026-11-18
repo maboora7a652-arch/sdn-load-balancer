@@ -45,7 +45,7 @@ def wait_status(controller, mode, grid=False):
     raise RuntimeError("Timed out waiting for controller or grid discovery")
 
 
-def trial(mode, account, manager, output, workload=None):
+def trial(mode, account, manager, output, workload=None, recovery=False):
     from mininet.link import TCLink
     from mininet.net import Mininet
     from mininet.node import OVSSwitch, RemoteController
@@ -72,6 +72,32 @@ def trial(mode, account, manager, output, workload=None):
             net.build()
             net.start()
             wait_status(controller, mode, grid=True)
+            if recovery:
+                from link_failure_demo import run_link_failure_demo
+                pair = [net["h2"], net["h6"]]
+                if net.ping(pair, timeout="2") and net.ping(pair, timeout="2"):
+                    raise RuntimeError("Warm-up failed before link failure")
+                run_link_failure_demo(net, source_name="h2", output_path=output)
+                data = json.loads(output.read_text())
+                if data.get("interrupted"):
+                    raise KeyboardInterrupt
+                alternate = data.get("while_down", {}).get("forwarding", {})
+                path = alternate.get("path", [])
+                def link_present(stage):
+                    links = data.get(stage, {}).get("topology", {}).get("links", [])
+                    return any({link["source"], link["destination"]} == {5, 6} for link in links)
+
+                if (data.get("error") or not alternate.get("complete")
+                        or link_present("while_down") or not link_present("after")
+                        or any({a, b} == {5, 6} for a, b in zip(path, path[1:]))):
+                    raise RuntimeError(data.get("error") or "Alternate route or restoration not confirmed")
+                metrics = data["ping_measurements"]
+                if metrics["first_post_cut_reply_ms"] is None or not metrics["summary"]:
+                    raise RuntimeError("No valid timing window or ping summary")
+                summary = metrics["summary"]
+                return dict(file=output.name, mode=mode, path=path,
+                            first_post_cut_reply_ms=metrics["first_post_cut_reply_ms"],
+                            lost=summary["transmitted"] - summary["received"])
             if workload is not None:
                 from ten_flows import measure
                 return measure(net, mode, output, workload, demo, receiver_report)
@@ -111,7 +137,9 @@ def main():
     import pwd
     parser = argparse.ArgumentParser()
     parser.add_argument("--resume", metavar="BATCH", help="existing compare-grid results directory name")
-    parser.add_argument("--ten-flows", action="store_true", help="compare three modes with ten UDP pairs")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--ten-flows", action="store_true", help="compare three modes with ten UDP pairs")
+    group.add_argument("--recovery", action="store_true", help="measure five S5-S6 link failures")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -128,6 +156,8 @@ def main():
                 raise SystemExit("Stop the existing controller before launching.")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     prefix = "ten-flows-" if args.ten_flows else "compare-grid-"
+    if args.recovery:
+        prefix = "recovery-"
     if args.resume and not re.fullmatch(prefix + r"\d{8}T\d{6}Z", args.resume):
         parser.error("Expected a compare-grid timestamp directory name")
     folder = HERE / "results" / (args.resume or prefix + stamp)
@@ -146,6 +176,8 @@ def main():
     for pair in range(1, 6):
         modes = ("shortest", "balanced") if pair % 2 else ("balanced", "shortest")
         workload = None
+        if args.recovery:
+            modes = ("balanced",)
         if args.ten_flows:
             from ten_flows import make_workload
             workload = make_workload(pair)
@@ -162,11 +194,18 @@ def main():
                 output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
                 if output.exists():
                     raise FileExistsError(output)
-            result = trial(mode, account, manager, output, workload)
+            result = trial(mode, account, manager, output, workload, args.recovery)
             trials.append(dict(pair=pair, **result))
             pending = summary.with_suffix(".tmp")
             pending.write_text(json.dumps(trials, indent=2))
             pending.replace(summary)
+    if args.recovery:
+        for metric in ("first_post_cut_reply_ms", "lost"):
+            values = [r[metric] for r in trials]
+            print("%s: mean %.3f, sample SD %.3f" %
+                  (metric, statistics.mean(values), statistics.stdev(values)))
+        print("Saved:", folder)
+        return
     if args.ten_flows:
         for mode in ("shortest", "ecmp", "balanced"):
             for metric in ("peak_tx_percent", "received_mbps", "loss_percent"):
