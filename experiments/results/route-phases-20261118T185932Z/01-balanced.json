@@ -1,0 +1,2200 @@
+{
+  "mode": "balanced",
+  "duration_seconds": 60,
+  "workload": [
+    {
+      "src": "h3",
+      "dst": "h6",
+      "mbps": 16,
+      "port": 5821
+    },
+    {
+      "src": "h4",
+      "dst": "h5",
+      "mbps": 18,
+      "port": 5822
+    },
+    {
+      "src": "h1",
+      "dst": "h6",
+      "mbps": 28,
+      "port": 5823
+    },
+    {
+      "src": "h3",
+      "dst": "h5",
+      "mbps": 28,
+      "port": 5824
+    }
+  ],
+  "samples": [
+    {
+      "elapsed": 10.014550538006006,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.003494,
+          "tx_mbps": 28.742217,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.287422,
+          "utilization_percent": 28.742,
+          "ewma_utilization_percent": 27.372,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 0.000758,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 8e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 28.925199,
+          "tx_mbps": 0.003513,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 3.5e-05,
+          "utilization_percent": 0.004,
+          "ewma_utilization_percent": 0.004,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.010306,
+          "tx_mbps": 81.214922,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.812149,
+          "utilization_percent": 81.215,
+          "ewma_utilization_percent": 77.132,
+          "congested_periods": 2,
+          "congested": true
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.599634,
+          "tx_mbps": 0.002839,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 2.8e-05,
+          "utilization_percent": 0.003,
+          "ewma_utilization_percent": 0.003,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 81.201672,
+          "tx_mbps": 0.010306,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.000103,
+          "utilization_percent": 0.01,
+          "ewma_utilization_percent": 0.011,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.005871,
+          "tx_mbps": 40.047308,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.400473,
+          "utilization_percent": 40.047,
+          "ewma_utilization_percent": 37.988,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000241,
+          "tx_mbps": 0.000481,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000762,
+          "tx_mbps": 0.000481,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 0.000481,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 0.002839,
+          "tx_mbps": 18.598343,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185983,
+          "utilization_percent": 18.598,
+          "ewma_utilization_percent": 17.632,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 0.000241,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 2e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 40.120429,
+          "tx_mbps": 0.005886,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 5.9e-05,
+          "utilization_percent": 0.006,
+          "ewma_utilization_percent": 0.006,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 0.000482,
+          "tx_mbps": 0.000482,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 15.009376377005538,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.003602,
+          "tx_mbps": 0.000478,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 7.082,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 28.689182,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.286892,
+          "utilization_percent": 28.689,
+          "ewma_utilization_percent": 21.491,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 0.003598,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 3.6e-05,
+          "utilization_percent": 0.004,
+          "ewma_utilization_percent": 0.004,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.012958,
+          "tx_mbps": 35.219932,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.352199,
+          "utilization_percent": 35.22,
+          "ewma_utilization_percent": 54.87,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.411368,
+          "tx_mbps": 28.294961,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.28295,
+          "utilization_percent": 28.295,
+          "ewma_utilization_percent": 14.149,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 35.242471,
+          "tx_mbps": 0.012966,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.00013,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 28.249607,
+          "tx_mbps": 16.399522,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.163995,
+          "utilization_percent": 16.4,
+          "ewma_utilization_percent": 22.867,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 28.679439,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.286794,
+          "utilization_percent": 28.679,
+          "ewma_utilization_percent": 21.477,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 28.679537,
+          "tx_mbps": 0.000478,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 56.98145,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.569815,
+          "utilization_percent": 56.981,
+          "ewma_utilization_percent": 35.616,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.319054,
+          "tx_mbps": 18.427046,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.18427,
+          "utilization_percent": 18.427,
+          "ewma_utilization_percent": 18.364,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 28.683701,
+          "tx_mbps": 0.000478,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 16.363207,
+          "tx_mbps": 28.166368,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.281664,
+          "utilization_percent": 28.166,
+          "ewma_utilization_percent": 14.087,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 56.845102,
+          "tx_mbps": 0.000477,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 20.01137551500142,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.493808,
+          "tx_mbps": 0.00024,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 2e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 1.771,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 45.320572,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.453206,
+          "utilization_percent": 45.321,
+          "ewma_utilization_percent": 39.305,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 0.00024,
+          "tx_mbps": 16.526517,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.165265,
+          "utilization_percent": 16.527,
+          "ewma_utilization_percent": 12.331,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.01185,
+          "tx_mbps": 18.586336,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.185863,
+          "utilization_percent": 18.586,
+          "ewma_utilization_percent": 27.704,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.604118,
+          "tx_mbps": 28.920703,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.289207,
+          "utilization_percent": 28.921,
+          "ewma_utilization_percent": 25.215,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 18.599832,
+          "tx_mbps": 0.011474,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.000115,
+          "utilization_percent": 0.011,
+          "ewma_utilization_percent": 0.012,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 28.23619,
+          "tx_mbps": 0.000481,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 5.779,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 45.450584,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.454506,
+          "utilization_percent": 45.451,
+          "ewma_utilization_percent": 39.355,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 45.450488,
+          "tx_mbps": 0.000481,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 72.416086,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.724161,
+          "utilization_percent": 72.416,
+          "ewma_utilization_percent": 63.55,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.896848,
+          "tx_mbps": 18.578412,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185784,
+          "utilization_percent": 18.578,
+          "ewma_utilization_percent": 18.515,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 45.415433,
+          "tx_mbps": 0.00048,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 28.224329,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.282243,
+          "utilization_percent": 28.224,
+          "ewma_utilization_percent": 24.847,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 72.453638,
+          "tx_mbps": 0.000481,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 25.008488300001773,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.510695,
+          "tx_mbps": 0.000481,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.222,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 45.358022,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.45358,
+          "utilization_percent": 45.358,
+          "ewma_utilization_percent": 44.557,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 16.481175,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164812,
+          "utilization_percent": 16.481,
+          "ewma_utilization_percent": 15.953,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.013029,
+          "tx_mbps": 18.536144,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.185361,
+          "utilization_percent": 18.536,
+          "ewma_utilization_percent": 19.673,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.542675,
+          "tx_mbps": 28.813255,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.288133,
+          "utilization_percent": 28.813,
+          "ewma_utilization_percent": 28.36,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 18.501651,
+          "tx_mbps": 0.012626,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.000126,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 28.294418,
+          "tx_mbps": 0.00048,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.723,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 45.32155,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.453215,
+          "utilization_percent": 45.322,
+          "ewma_utilization_percent": 44.537,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 45.346828,
+          "tx_mbps": 0.000481,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.00024,
+          "tx_mbps": 72.584157,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.725842,
+          "utilization_percent": 72.584,
+          "ewma_utilization_percent": 72.264,
+          "congested_periods": 2,
+          "congested": true
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.830814,
+          "tx_mbps": 18.547496,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185475,
+          "utilization_percent": 18.547,
+          "ewma_utilization_percent": 18.528,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 45.302064,
+          "tx_mbps": 0.000481,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 28.36942,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.283694,
+          "utilization_percent": 28.369,
+          "ewma_utilization_percent": 28.178,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 72.641137,
+          "tx_mbps": 0.000241,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 2e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 30.0100554150049,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.515162,
+          "tx_mbps": 0.001575,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.056,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.001574,
+          "tx_mbps": 45.389781,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.453898,
+          "utilization_percent": 45.39,
+          "ewma_utilization_percent": 45.121,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 0.00157,
+          "tx_mbps": 16.468528,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164685,
+          "utilization_percent": 16.469,
+          "ewma_utilization_percent": 16.331,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.014094,
+          "tx_mbps": 18.518243,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.185182,
+          "utilization_percent": 18.518,
+          "ewma_utilization_percent": 18.801,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.518071,
+          "tx_mbps": 28.80483,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.288048,
+          "utilization_percent": 28.805,
+          "ewma_utilization_percent": 28.688,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 18.496409,
+          "tx_mbps": 0.014082,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.000141,
+          "utilization_percent": 0.014,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 29.012468,
+          "tx_mbps": 0.001568,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.182,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.00129,
+          "tx_mbps": 45.257895,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.452579,
+          "utilization_percent": 45.258,
+          "ewma_utilization_percent": 45.07,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 45.266222,
+          "tx_mbps": 0.001569,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.001568,
+          "tx_mbps": 74.621154,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.746212,
+          "utilization_percent": 74.621,
+          "ewma_utilization_percent": 74.111,
+          "congested_periods": 4,
+          "congested": true
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.770982,
+          "tx_mbps": 18.496311,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.184963,
+          "utilization_percent": 18.496,
+          "ewma_utilization_percent": 18.503,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 45.217354,
+          "tx_mbps": 0.001288,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 1.3e-05,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 0.001568,
+          "tx_mbps": 29.024832,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.290248,
+          "utilization_percent": 29.025,
+          "ewma_utilization_percent": 28.817,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 74.657211,
+          "tx_mbps": 0.001568,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 35.00897759200598,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.451305,
+          "tx_mbps": 0.000479,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.007,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000239,
+          "tx_mbps": 45.197467,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.451975,
+          "utilization_percent": 45.197,
+          "ewma_utilization_percent": 45.232,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 16.462051,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164621,
+          "utilization_percent": 16.462,
+          "ewma_utilization_percent": 16.429,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.013008,
+          "tx_mbps": 18.51748,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.185175,
+          "utilization_percent": 18.517,
+          "ewma_utilization_percent": 18.533,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.511439,
+          "tx_mbps": 28.813476,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.288135,
+          "utilization_percent": 28.813,
+          "ewma_utilization_percent": 28.763,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 18.517045,
+          "tx_mbps": 0.013012,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.00013,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 29.006708,
+          "tx_mbps": 0.00048,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.023,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 45.224626,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.452246,
+          "utilization_percent": 45.225,
+          "ewma_utilization_percent": 45.192,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 45.22495,
+          "tx_mbps": 0.00024,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 2e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 74.491926,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.744919,
+          "utilization_percent": 74.492,
+          "ewma_utilization_percent": 74.125,
+          "congested_periods": 7,
+          "congested": true
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.793051,
+          "tx_mbps": 18.498316,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.184983,
+          "utilization_percent": 18.498,
+          "ewma_utilization_percent": 18.497,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 45.237346,
+          "tx_mbps": 0.000479,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 29.007634,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.290076,
+          "utilization_percent": 29.008,
+          "ewma_utilization_percent": 28.834,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 74.593532,
+          "tx_mbps": 0.000479,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 40.01037469500443,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.403298,
+          "tx_mbps": 0.000476,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.002,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000476,
+          "tx_mbps": 45.098338,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.450983,
+          "utilization_percent": 45.098,
+          "ewma_utilization_percent": 45.196,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 0.000477,
+          "tx_mbps": 16.446319,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164463,
+          "utilization_percent": 16.446,
+          "ewma_utilization_percent": 16.462,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.012706,
+          "tx_mbps": 18.493273,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.184933,
+          "utilization_percent": 18.493,
+          "ewma_utilization_percent": 18.526,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.493527,
+          "tx_mbps": 28.775507,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.287755,
+          "utilization_percent": 28.776,
+          "ewma_utilization_percent": 28.806,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 18.564978,
+          "tx_mbps": 0.012759,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.000128,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 29.156031,
+          "tx_mbps": 0.000479,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.006,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000477,
+          "tx_mbps": 45.198378,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.451984,
+          "utilization_percent": 45.198,
+          "ewma_utilization_percent": 45.253,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 45.21691,
+          "tx_mbps": 0.000477,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000477,
+          "tx_mbps": 74.73315,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.747331,
+          "utilization_percent": 74.733,
+          "ewma_utilization_percent": 74.272,
+          "congested_periods": 9,
+          "congested": true
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.798896,
+          "tx_mbps": 18.502542,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185025,
+          "utilization_percent": 18.503,
+          "ewma_utilization_percent": 18.516,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 45.228615,
+          "tx_mbps": 0.000477,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 0.000477,
+          "tx_mbps": 29.073088,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.290731,
+          "utilization_percent": 29.073,
+          "ewma_utilization_percent": 28.899,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 74.753598,
+          "tx_mbps": 0.000477,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 45.004544221003016,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.549412,
+          "tx_mbps": 28.948707,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.289487,
+          "utilization_percent": 28.949,
+          "ewma_utilization_percent": 21.608,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 16.545794,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.165458,
+          "utilization_percent": 16.546,
+          "ewma_utilization_percent": 23.756,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 28.86847,
+          "tx_mbps": 16.506131,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.165061,
+          "utilization_percent": 16.506,
+          "ewma_utilization_percent": 16.486,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.013015,
+          "tx_mbps": 47.425041,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.47425,
+          "utilization_percent": 47.425,
+          "ewma_utilization_percent": 40.108,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.563158,
+          "tx_mbps": 28.870435,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.288704,
+          "utilization_percent": 28.87,
+          "ewma_utilization_percent": 28.845,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 47.487654,
+          "tx_mbps": 0.013032,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.00013,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 28.910706,
+          "tx_mbps": 28.904429,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.289044,
+          "utilization_percent": 28.904,
+          "ewma_utilization_percent": 21.574,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 16.537141,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.165371,
+          "utilization_percent": 16.537,
+          "ewma_utilization_percent": 23.775,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 16.524853,
+          "tx_mbps": 0.00048,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 45.399871,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.453999,
+          "utilization_percent": 45.4,
+          "ewma_utilization_percent": 52.653,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.889846,
+          "tx_mbps": 18.575639,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185756,
+          "utilization_percent": 18.576,
+          "ewma_utilization_percent": 18.547,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 16.519537,
+          "tx_mbps": 0.00048,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 28.880404,
+          "tx_mbps": 28.886675,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.288867,
+          "utilization_percent": 28.887,
+          "ewma_utilization_percent": 28.854,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 45.39917,
+          "tx_mbps": 0.00048,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 50.01161204100208,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.496572,
+          "tx_mbps": 28.845711,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.288457,
+          "utilization_percent": 28.846,
+          "ewma_utilization_percent": 26.991,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 16.496055,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.164961,
+          "utilization_percent": 16.496,
+          "ewma_utilization_percent": 18.281,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 28.793683,
+          "tx_mbps": 16.461653,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164617,
+          "utilization_percent": 16.462,
+          "ewma_utilization_percent": 16.459,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.012989,
+          "tx_mbps": 47.314511,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.473145,
+          "utilization_percent": 47.315,
+          "ewma_utilization_percent": 45.49,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.509262,
+          "tx_mbps": 28.802692,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.288027,
+          "utilization_percent": 28.803,
+          "ewma_utilization_percent": 28.799,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 47.443448,
+          "tx_mbps": 0.013021,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.00013,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 28.882958,
+          "tx_mbps": 28.858787,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.288588,
+          "utilization_percent": 28.859,
+          "ewma_utilization_percent": 26.995,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 16.481212,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.164812,
+          "utilization_percent": 16.481,
+          "ewma_utilization_percent": 18.285,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 16.481237,
+          "tx_mbps": 0.000479,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 45.313016,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.45313,
+          "utilization_percent": 45.313,
+          "ewma_utilization_percent": 47.116,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.83465,
+          "tx_mbps": 18.534113,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185341,
+          "utilization_percent": 18.534,
+          "ewma_utilization_percent": 18.525,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 16.481704,
+          "tx_mbps": 0.000479,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 28.750188,
+          "tx_mbps": 28.762215,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.287622,
+          "utilization_percent": 28.762,
+          "ewma_utilization_percent": 28.806,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 45.210444,
+          "tx_mbps": 0.000478,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 55.009382283002196,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 16.510194,
+          "tx_mbps": 28.861918,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.288619,
+          "utilization_percent": 28.862,
+          "ewma_utilization_percent": 28.59,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 16.519381,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.165194,
+          "utilization_percent": 16.519,
+          "ewma_utilization_percent": 16.705,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 28.769244,
+          "tx_mbps": 16.468465,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164685,
+          "utilization_percent": 16.468,
+          "ewma_utilization_percent": 16.464,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 0.013029,
+          "tx_mbps": 47.294888,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.472949,
+          "utilization_percent": 47.295,
+          "ewma_utilization_percent": 47.08,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 18.491302,
+          "tx_mbps": 28.772333,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.287723,
+          "utilization_percent": 28.772,
+          "ewma_utilization_percent": 28.79,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 47.390981,
+          "tx_mbps": 0.013022,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.00013,
+          "utilization_percent": 0.013,
+          "ewma_utilization_percent": 0.013,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 28.854289,
+          "tx_mbps": 28.854065,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.288541,
+          "utilization_percent": 28.854,
+          "ewma_utilization_percent": 28.591,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 16.475581,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.164756,
+          "utilization_percent": 16.476,
+          "ewma_utilization_percent": 16.695,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 16.47638,
+          "tx_mbps": 0.00048,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 45.331353,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.453314,
+          "utilization_percent": 45.331,
+          "ewma_utilization_percent": 45.51,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 28.830138,
+          "tx_mbps": 18.52283,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.185228,
+          "utilization_percent": 18.523,
+          "ewma_utilization_percent": 18.515,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 16.486937,
+          "tx_mbps": 0.000481,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 28.687626,
+          "tx_mbps": 28.687849,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.286878,
+          "utilization_percent": 28.688,
+          "ewma_utilization_percent": 28.762,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 45.074948,
+          "tx_mbps": 0.000477,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    }
+  ],
+  "logs": {
+    "tx5824": "------------------------------------------------------------\nClient connecting to 10.0.0.5, UDP port 5824\nSending 1470 byte datagrams, IPG target: 420.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 60784 connected with 10.0.0.5 port 5824\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0005 sec   200 MBytes  28.0 Mbits/sec\n[  1] Sent 142861 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0037 sec   195 MBytes  27.3 Mbits/sec   0.325 ms 3592/142860 (2.5%)\n[  1] 0.0000-60.0037 sec  4046 datagrams received out-of-order\n",
+    "tx5823": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5823\nSending 1470 byte datagrams, IPG target: 420.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 32843 connected with 10.0.0.6 port 5823\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0023 sec   200 MBytes  28.0 Mbits/sec\n[  1] Sent 142862 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0026 sec   197 MBytes  27.6 Mbits/sec   0.375 ms 2258/142861 (1.6%)\n[  1] 0.0000-60.0026 sec  6037 datagrams received out-of-order\n",
+    "tx5822": "------------------------------------------------------------\nClient connecting to 10.0.0.5, UDP port 5822\nSending 1470 byte datagrams, IPG target: 653.33 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.4 port 38522 connected with 10.0.0.5 port 5822\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0010 sec   129 MBytes  18.0 Mbits/sec\n[  1] Sent 91841 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0009 sec   127 MBytes  17.7 Mbits/sec   0.336 ms 1536/91840 (1.7%)\n[  1] 0.0000-60.0009 sec  988 datagrams received out-of-order\n",
+    "tx5821": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5821\nSending 1470 byte datagrams, IPG target: 735.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 44860 connected with 10.0.0.6 port 5821\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0015 sec   114 MBytes  16.0 Mbits/sec\n[  1] Sent 81637 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0068 sec   112 MBytes  15.6 Mbits/sec   0.380 ms 2082/81636 (2.6%)\n[  1] 0.0000-60.0068 sec  1846 datagrams received out-of-order\n",
+    "ping5824": "PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.\n[1795028377.475638] 64 bytes from 10.0.0.5: icmp_seq=1 ttl=64 time=4.19 ms\n[1795028377.726879] 64 bytes from 10.0.0.5: icmp_seq=2 ttl=64 time=5.34 ms\n[1795028377.978575] 64 bytes from 10.0.0.5: icmp_seq=3 ttl=64 time=5.13 ms\n[1795028378.263201] 64 bytes from 10.0.0.5: icmp_seq=4 ttl=64 time=34.4 ms\n[1795028378.536541] 64 bytes from 10.0.0.5: icmp_seq=5 ttl=64 time=56.9 ms\n[1795028378.828143] 64 bytes from 10.0.0.5: icmp_seq=6 ttl=64 time=97.6 ms\n[1795028379.101422] 64 bytes from 10.0.0.5: icmp_seq=7 ttl=64 time=121 ms\n[1795028379.371976] 64 bytes from 10.0.0.5: icmp_seq=8 ttl=64 time=141 ms\n[1795028379.626411] 64 bytes from 10.0.0.5: icmp_seq=9 ttl=64 time=145 ms\n[1795028379.880252] 64 bytes from 10.0.0.5: icmp_seq=10 ttl=64 time=148 ms\n[1795028380.154955] 64 bytes from 10.0.0.5: icmp_seq=11 ttl=64 time=173 ms\n[1795028380.710006] 64 bytes from 10.0.0.5: icmp_seq=13 ttl=64 time=223 ms\n[1795028381.190040] 64 bytes from 10.0.0.5: icmp_seq=15 ttl=64 time=199 ms\n[1795028381.641542] 64 bytes from 10.0.0.5: icmp_seq=17 ttl=64 time=146 ms\n[1795028382.151449] 64 bytes from 10.0.0.5: icmp_seq=19 ttl=64 time=152 ms\n[1795028382.396713] 64 bytes from 10.0.0.5: icmp_seq=20 ttl=64 time=145 ms\n[1795028382.643314] 64 bytes from 10.0.0.5: icmp_seq=21 ttl=64 time=141 ms\n[1795028382.902726] 64 bytes from 10.0.0.5: icmp_seq=22 ttl=64 time=150 ms\n[1795028383.149036] 64 bytes from 10.0.0.5: icmp_seq=23 ttl=64 time=145 ms\n[1795028383.403158] 64 bytes from 10.0.0.5: icmp_seq=24 ttl=64 time=148 ms\n[1795028383.669123] 64 bytes from 10.0.0.5: icmp_seq=25 ttl=64 time=163 ms\n[1795028383.905471] 64 bytes from 10.0.0.5: icmp_seq=26 ttl=64 time=149 ms\n[1795028384.155112] 64 bytes from 10.0.0.5: icmp_seq=27 ttl=64 time=149 ms\n[1795028384.411114] 64 bytes from 10.0.0.5: icmp_seq=28 ttl=64 time=154 ms\n[1795028384.659653] 64 bytes from 10.0.0.5: icmp_seq=29 ttl=64 time=152 ms\n[1795028384.908010] 64 bytes from 10.0.0.5: icmp_seq=30 ttl=64 time=150 ms\n[1795028385.415857] 64 bytes from 10.0.0.5: icmp_seq=32 ttl=64 time=153 ms\n[1795028385.916336] 64 bytes from 10.0.0.5: icmp_seq=34 ttl=64 time=149 ms\n[1795028386.166911] 64 bytes from 10.0.0.5: icmp_seq=35 ttl=64 time=149 ms\n[1795028386.422577] 64 bytes from 10.0.0.5: icmp_seq=36 ttl=64 time=155 ms\n[1795028386.665274] 64 bytes from 10.0.0.5: icmp_seq=37 ttl=64 time=146 ms\n[1795028386.916935] 64 bytes from 10.0.0.5: icmp_seq=38 ttl=64 time=148 ms\n[1795028387.172959] 64 bytes from 10.0.0.5: icmp_seq=39 ttl=64 time=154 ms\n[1795028387.423109] 64 bytes from 10.0.0.5: icmp_seq=40 ttl=64 time=153 ms\n[1795028387.664976] 64 bytes from 10.0.0.5: icmp_seq=41 ttl=64 time=143 ms\n[1795028387.928667] 64 bytes from 10.0.0.5: icmp_seq=42 ttl=64 time=156 ms\n[1795028388.170339] 64 bytes from 10.0.0.5: icmp_seq=43 ttl=64 time=148 ms\n[1795028388.422874] 64 bytes from 10.0.0.5: icmp_seq=44 ttl=64 time=148 ms\n[1795028388.671959] 64 bytes from 10.0.0.5: icmp_seq=45 ttl=64 time=147 ms\n[1795028388.924222] 64 bytes from 10.0.0.5: icmp_seq=46 ttl=64 time=149 ms\n[1795028389.127704] 64 bytes from 10.0.0.5: icmp_seq=47 ttl=64 time=101 ms\n[1795028389.333491] 64 bytes from 10.0.0.5: icmp_seq=48 ttl=64 time=54.7 ms\n[1795028389.537896] 64 bytes from 10.0.0.5: icmp_seq=49 ttl=64 time=7.52 ms\n[1795028389.787760] 64 bytes from 10.0.0.5: icmp_seq=50 ttl=64 time=4.72 ms\n[1795028390.037613] 64 bytes from 10.0.0.5: icmp_seq=51 ttl=64 time=5.12 ms\n[1795028390.290902] 64 bytes from 10.0.0.5: icmp_seq=52 ttl=64 time=6.95 ms\n[1795028390.553621] 64 bytes from 10.0.0.5: icmp_seq=53 ttl=64 time=19.3 ms\n[1795028390.790075] 64 bytes from 10.0.0.5: icmp_seq=54 ttl=64 time=4.75 ms\n[1795028391.046571] 64 bytes from 10.0.0.5: icmp_seq=55 ttl=64 time=10.9 ms\n[1795028391.297391] 64 bytes from 10.0.0.5: icmp_seq=56 ttl=64 time=11.4 ms\n[1795028391.546569] 64 bytes from 10.0.0.5: icmp_seq=57 ttl=64 time=9.02 ms\n[1795028391.799916] 64 bytes from 10.0.0.5: icmp_seq=58 ttl=64 time=10.0 ms\n[1795028392.049828] 64 bytes from 10.0.0.5: icmp_seq=59 ttl=64 time=10.1 ms\n[1795028392.301294] 64 bytes from 10.0.0.5: icmp_seq=60 ttl=64 time=10.3 ms\n[1795028392.551521] 64 bytes from 10.0.0.5: icmp_seq=61 ttl=64 time=9.46 ms\n[1795028392.802690] 64 bytes from 10.0.0.5: icmp_seq=62 ttl=64 time=9.25 ms\n[1795028393.054759] 64 bytes from 10.0.0.5: icmp_seq=63 ttl=64 time=9.02 ms\n[1795028393.307220] 64 bytes from 10.0.0.5: icmp_seq=64 ttl=64 time=10.4 ms\n[1795028393.557454] 64 bytes from 10.0.0.5: icmp_seq=65 ttl=64 time=10.2 ms\n[1795028393.842297] 64 bytes from 10.0.0.5: icmp_seq=66 ttl=64 time=42.7 ms\n[1795028394.071160] 64 bytes from 10.0.0.5: icmp_seq=67 ttl=64 time=19.6 ms\n[1795028394.312693] 64 bytes from 10.0.0.5: icmp_seq=68 ttl=64 time=9.71 ms\n[1795028394.563143] 64 bytes from 10.0.0.5: icmp_seq=69 ttl=64 time=9.75 ms\n[1795028394.814947] 64 bytes from 10.0.0.5: icmp_seq=70 ttl=64 time=10.1 ms\n[1795028395.079193] 64 bytes from 10.0.0.5: icmp_seq=71 ttl=64 time=24.3 ms\n[1795028395.318705] 64 bytes from 10.0.0.5: icmp_seq=72 ttl=64 time=13.4 ms\n[1795028395.592683] 64 bytes from 10.0.0.5: icmp_seq=73 ttl=64 time=19.1 ms\n[1795028395.853120] 64 bytes from 10.0.0.5: icmp_seq=74 ttl=64 time=27.6 ms\n[1795028396.084066] 64 bytes from 10.0.0.5: icmp_seq=75 ttl=64 time=8.89 ms\n[1795028396.369451] 64 bytes from 10.0.0.5: icmp_seq=76 ttl=64 time=42.7 ms\n[1795028396.630928] 64 bytes from 10.0.0.5: icmp_seq=77 ttl=64 time=54.0 ms\n[1795028396.884926] 64 bytes from 10.0.0.5: icmp_seq=78 ttl=64 time=57.5 ms\n[1795028397.138415] 64 bytes from 10.0.0.5: icmp_seq=79 ttl=64 time=59.5 ms\n[1795028397.371773] 64 bytes from 10.0.0.5: icmp_seq=80 ttl=64 time=42.3 ms\n[1795028397.644424] 64 bytes from 10.0.0.5: icmp_seq=81 ttl=64 time=63.8 ms\n[1795028397.879728] 64 bytes from 10.0.0.5: icmp_seq=82 ttl=64 time=47.4 ms\n[1795028398.111001] 64 bytes from 10.0.0.5: icmp_seq=83 ttl=64 time=28.6 ms\n[1795028398.347246] 64 bytes from 10.0.0.5: icmp_seq=84 ttl=64 time=14.0 ms\n[1795028398.594507] 64 bytes from 10.0.0.5: icmp_seq=85 ttl=64 time=9.85 ms\n[1795028398.861337] 64 bytes from 10.0.0.5: icmp_seq=86 ttl=64 time=24.4 ms\n[1795028399.096695] 64 bytes from 10.0.0.5: icmp_seq=87 ttl=64 time=9.85 ms\n[1795028399.348539] 64 bytes from 10.0.0.5: icmp_seq=88 ttl=64 time=9.97 ms\n[1795028399.609298] 64 bytes from 10.0.0.5: icmp_seq=89 ttl=64 time=20.1 ms\n[1795028399.883791] 64 bytes from 10.0.0.5: icmp_seq=90 ttl=64 time=43.3 ms\n[1795028400.119685] 64 bytes from 10.0.0.5: icmp_seq=91 ttl=64 time=29.9 ms\n[1795028400.350399] 64 bytes from 10.0.0.5: icmp_seq=92 ttl=64 time=9.28 ms\n[1795028400.600936] 64 bytes from 10.0.0.5: icmp_seq=93 ttl=64 time=8.91 ms\n[1795028400.853204] 64 bytes from 10.0.0.5: icmp_seq=94 ttl=64 time=9.77 ms\n[1795028401.102086] 64 bytes from 10.0.0.5: icmp_seq=95 ttl=64 time=9.19 ms\n[1795028401.361516] 64 bytes from 10.0.0.5: icmp_seq=96 ttl=64 time=18.6 ms\n[1795028401.605566] 64 bytes from 10.0.0.5: icmp_seq=97 ttl=64 time=10.2 ms\n[1795028401.896273] 64 bytes from 10.0.0.5: icmp_seq=98 ttl=64 time=49.9 ms\n[1795028402.140683] 64 bytes from 10.0.0.5: icmp_seq=99 ttl=64 time=44.3 ms\n[1795028402.379152] 64 bytes from 10.0.0.5: icmp_seq=100 ttl=64 time=32.3 ms\n[1795028402.637381] 64 bytes from 10.0.0.5: icmp_seq=101 ttl=64 time=39.5 ms\n[1795028402.905341] 64 bytes from 10.0.0.5: icmp_seq=102 ttl=64 time=55.5 ms\n[1795028403.170160] 64 bytes from 10.0.0.5: icmp_seq=103 ttl=64 time=69.5 ms\n[1795028403.399251] 64 bytes from 10.0.0.5: icmp_seq=104 ttl=64 time=47.2 ms\n[1795028403.630566] 64 bytes from 10.0.0.5: icmp_seq=105 ttl=64 time=26.9 ms\n[1795028403.867233] 64 bytes from 10.0.0.5: icmp_seq=106 ttl=64 time=13.0 ms\n[1795028404.117379] 64 bytes from 10.0.0.5: icmp_seq=107 ttl=64 time=12.0 ms\n[1795028404.365394] 64 bytes from 10.0.0.5: icmp_seq=108 ttl=64 time=9.99 ms\n[1795028404.615420] 64 bytes from 10.0.0.5: icmp_seq=109 ttl=64 time=9.23 ms\n[1795028404.888717] 64 bytes from 10.0.0.5: icmp_seq=110 ttl=64 time=31.3 ms\n[1795028405.130663] 64 bytes from 10.0.0.5: icmp_seq=111 ttl=64 time=22.2 ms\n[1795028405.381517] 64 bytes from 10.0.0.5: icmp_seq=112 ttl=64 time=21.5 ms\n[1795028405.619857] 64 bytes from 10.0.0.5: icmp_seq=113 ttl=64 time=9.61 ms\n[1795028405.873082] 64 bytes from 10.0.0.5: icmp_seq=114 ttl=64 time=10.4 ms\n[1795028406.125115] 64 bytes from 10.0.0.5: icmp_seq=115 ttl=64 time=11.8 ms\n[1795028406.374751] 64 bytes from 10.0.0.5: icmp_seq=116 ttl=64 time=10.8 ms\n[1795028406.624970] 64 bytes from 10.0.0.5: icmp_seq=117 ttl=64 time=10.3 ms\n[1795028406.877029] 64 bytes from 10.0.0.5: icmp_seq=118 ttl=64 time=11.2 ms\n[1795028407.126252] 64 bytes from 10.0.0.5: icmp_seq=119 ttl=64 time=9.91 ms\n[1795028407.395119] 64 bytes from 10.0.0.5: icmp_seq=120 ttl=64 time=28.4 ms\n[1795028407.674396] 64 bytes from 10.0.0.5: icmp_seq=121 ttl=64 time=56.7 ms\n[1795028407.918839] 64 bytes from 10.0.0.5: icmp_seq=122 ttl=64 time=50.0 ms\n[1795028408.158341] 64 bytes from 10.0.0.5: icmp_seq=123 ttl=64 time=39.0 ms\n[1795028408.397987] 64 bytes from 10.0.0.5: icmp_seq=124 ttl=64 time=27.6 ms\n[1795028408.631525] 64 bytes from 10.0.0.5: icmp_seq=125 ttl=64 time=9.99 ms\n[1795028408.888670] 64 bytes from 10.0.0.5: icmp_seq=126 ttl=64 time=16.3 ms\n[1795028409.131937] 64 bytes from 10.0.0.5: icmp_seq=127 ttl=64 time=8.79 ms\n[1795028409.385498] 64 bytes from 10.0.0.5: icmp_seq=128 ttl=64 time=11.3 ms\n[1795028409.645600] 64 bytes from 10.0.0.5: icmp_seq=129 ttl=64 time=20.5 ms\n[1795028409.885184] 64 bytes from 10.0.0.5: icmp_seq=130 ttl=64 time=10.4 ms\n[1795028410.153292] 64 bytes from 10.0.0.5: icmp_seq=131 ttl=64 time=25.4 ms\n[1795028410.394656] 64 bytes from 10.0.0.5: icmp_seq=132 ttl=64 time=15.4 ms\n[1795028410.654682] 64 bytes from 10.0.0.5: icmp_seq=133 ttl=64 time=24.4 ms\n[1795028410.904087] 64 bytes from 10.0.0.5: icmp_seq=134 ttl=64 time=21.7 ms\n[1795028411.143078] 64 bytes from 10.0.0.5: icmp_seq=135 ttl=64 time=10.9 ms\n[1795028411.397297] 64 bytes from 10.0.0.5: icmp_seq=136 ttl=64 time=14.3 ms\n[1795028411.650899] 64 bytes from 10.0.0.5: icmp_seq=137 ttl=64 time=16.6 ms\n[1795028411.897280] 64 bytes from 10.0.0.5: icmp_seq=138 ttl=64 time=12.7 ms\n[1795028412.145618] 64 bytes from 10.0.0.5: icmp_seq=139 ttl=64 time=10.4 ms\n[1795028412.403897] 64 bytes from 10.0.0.5: icmp_seq=140 ttl=64 time=17.1 ms\n[1795028412.647124] 64 bytes from 10.0.0.5: icmp_seq=141 ttl=64 time=9.71 ms\n[1795028412.898925] 64 bytes from 10.0.0.5: icmp_seq=142 ttl=64 time=9.94 ms\n[1795028413.160123] 64 bytes from 10.0.0.5: icmp_seq=143 ttl=64 time=20.2 ms\n[1795028413.406254] 64 bytes from 10.0.0.5: icmp_seq=144 ttl=64 time=15.0 ms\n[1795028413.658153] 64 bytes from 10.0.0.5: icmp_seq=145 ttl=64 time=16.2 ms\n[1795028413.903701] 64 bytes from 10.0.0.5: icmp_seq=146 ttl=64 time=10.7 ms\n[1795028414.205236] 64 bytes from 10.0.0.5: icmp_seq=147 ttl=64 time=62.0 ms\n[1795028414.446905] 64 bytes from 10.0.0.5: icmp_seq=148 ttl=64 time=51.2 ms\n[1795028414.684124] 64 bytes from 10.0.0.5: icmp_seq=149 ttl=64 time=38.5 ms\n[1795028414.924527] 64 bytes from 10.0.0.5: icmp_seq=150 ttl=64 time=25.7 ms\n[1795028415.160611] 64 bytes from 10.0.0.5: icmp_seq=151 ttl=64 time=12.2 ms\n[1795028415.407593] 64 bytes from 10.0.0.5: icmp_seq=152 ttl=64 time=9.18 ms\n[1795028415.660280] 64 bytes from 10.0.0.5: icmp_seq=153 ttl=64 time=10.7 ms\n[1795028415.910743] 64 bytes from 10.0.0.5: icmp_seq=154 ttl=64 time=11.0 ms\n[1795028416.165365] 64 bytes from 10.0.0.5: icmp_seq=155 ttl=64 time=13.5 ms\n[1795028416.412683] 64 bytes from 10.0.0.5: icmp_seq=156 ttl=64 time=11.5 ms\n[1795028416.668078] 64 bytes from 10.0.0.5: icmp_seq=157 ttl=64 time=16.1 ms\n[1795028416.915935] 64 bytes from 10.0.0.5: icmp_seq=158 ttl=64 time=12.6 ms\n[1795028417.165485] 64 bytes from 10.0.0.5: icmp_seq=159 ttl=64 time=10.9 ms\n[1795028417.417268] 64 bytes from 10.0.0.5: icmp_seq=160 ttl=64 time=11.7 ms\n[1795028417.667664] 64 bytes from 10.0.0.5: icmp_seq=161 ttl=64 time=11.3 ms\n[1795028417.936669] 64 bytes from 10.0.0.5: icmp_seq=162 ttl=64 time=29.3 ms\n[1795028418.180430] 64 bytes from 10.0.0.5: icmp_seq=163 ttl=64 time=21.9 ms\n[1795028418.425110] 64 bytes from 10.0.0.5: icmp_seq=164 ttl=64 time=15.6 ms\n[1795028418.669396] 64 bytes from 10.0.0.5: icmp_seq=165 ttl=64 time=8.93 ms\n[1795028418.920262] 64 bytes from 10.0.0.5: icmp_seq=166 ttl=64 time=8.69 ms\n[1795028419.171530] 64 bytes from 10.0.0.5: icmp_seq=167 ttl=64 time=9.15 ms\n[1795028419.423491] 64 bytes from 10.0.0.5: icmp_seq=168 ttl=64 time=10.4 ms\n[1795028419.674673] 64 bytes from 10.0.0.5: icmp_seq=169 ttl=64 time=10.5 ms\n[1795028419.927378] 64 bytes from 10.0.0.5: icmp_seq=170 ttl=64 time=11.1 ms\n[1795028420.176461] 64 bytes from 10.0.0.5: icmp_seq=171 ttl=64 time=10.7 ms\n[1795028420.429047] 64 bytes from 10.0.0.5: icmp_seq=172 ttl=64 time=12.1 ms\n[1795028420.678939] 64 bytes from 10.0.0.5: icmp_seq=173 ttl=64 time=11.5 ms\n[1795028420.929964] 64 bytes from 10.0.0.5: icmp_seq=174 ttl=64 time=10.7 ms\n[1795028421.179327] 64 bytes from 10.0.0.5: icmp_seq=175 ttl=64 time=9.35 ms\n[1795028421.441503] 64 bytes from 10.0.0.5: icmp_seq=176 ttl=64 time=19.9 ms\n[1795028421.686629] 64 bytes from 10.0.0.5: icmp_seq=177 ttl=64 time=11.1 ms\n[1795028421.938757] 64 bytes from 10.0.0.5: icmp_seq=178 ttl=64 time=11.5 ms\n[1795028422.188444] 64 bytes from 10.0.0.5: icmp_seq=179 ttl=64 time=10.3 ms\n[1795028422.438340] 64 bytes from 10.0.0.5: icmp_seq=180 ttl=64 time=10.1 ms\n[1795028422.690385] 64 bytes from 10.0.0.5: icmp_seq=181 ttl=64 time=10.6 ms\n[1795028422.941074] 64 bytes from 10.0.0.5: icmp_seq=182 ttl=64 time=11.0 ms\n[1795028423.190035] 64 bytes from 10.0.0.5: icmp_seq=183 ttl=64 time=9.03 ms\n[1795028423.442466] 64 bytes from 10.0.0.5: icmp_seq=184 ttl=64 time=10.0 ms\n[1795028423.693308] 64 bytes from 10.0.0.5: icmp_seq=185 ttl=64 time=10.2 ms\n[1795028423.943631] 64 bytes from 10.0.0.5: icmp_seq=186 ttl=64 time=9.31 ms\n[1795028424.194965] 64 bytes from 10.0.0.5: icmp_seq=187 ttl=64 time=9.96 ms\n[1795028424.444469] 64 bytes from 10.0.0.5: icmp_seq=188 ttl=64 time=9.07 ms\n[1795028424.696908] 64 bytes from 10.0.0.5: icmp_seq=189 ttl=64 time=11.0 ms\n[1795028424.945395] 64 bytes from 10.0.0.5: icmp_seq=190 ttl=64 time=8.88 ms\n[1795028425.198772] 64 bytes from 10.0.0.5: icmp_seq=191 ttl=64 time=10.1 ms\n[1795028425.448526] 64 bytes from 10.0.0.5: icmp_seq=192 ttl=64 time=10.6 ms\n[1795028425.698411] 64 bytes from 10.0.0.5: icmp_seq=193 ttl=64 time=9.37 ms\n[1795028425.949302] 64 bytes from 10.0.0.5: icmp_seq=194 ttl=64 time=9.18 ms\n[1795028426.203685] 64 bytes from 10.0.0.5: icmp_seq=195 ttl=64 time=11.4 ms\n[1795028426.454944] 64 bytes from 10.0.0.5: icmp_seq=196 ttl=64 time=11.7 ms\n[1795028426.704237] 64 bytes from 10.0.0.5: icmp_seq=197 ttl=64 time=10.1 ms\n[1795028426.954178] 64 bytes from 10.0.0.5: icmp_seq=198 ttl=64 time=8.97 ms\n[1795028427.205105] 64 bytes from 10.0.0.5: icmp_seq=199 ttl=64 time=9.38 ms\n[1795028427.461976] 64 bytes from 10.0.0.5: icmp_seq=200 ttl=64 time=12.7 ms\n[1795028427.711566] 64 bytes from 10.0.0.5: icmp_seq=201 ttl=64 time=11.9 ms\n[1795028427.960040] 64 bytes from 10.0.0.5: icmp_seq=202 ttl=64 time=9.76 ms\n[1795028428.209953] 64 bytes from 10.0.0.5: icmp_seq=203 ttl=64 time=9.39 ms\n[1795028428.463932] 64 bytes from 10.0.0.5: icmp_seq=204 ttl=64 time=11.5 ms\n[1795028428.726887] 64 bytes from 10.0.0.5: icmp_seq=205 ttl=64 time=23.2 ms\n[1795028428.965973] 64 bytes from 10.0.0.5: icmp_seq=206 ttl=64 time=11.1 ms\n[1795028429.215525] 64 bytes from 10.0.0.5: icmp_seq=207 ttl=64 time=10.1 ms\n[1795028429.465604] 64 bytes from 10.0.0.5: icmp_seq=208 ttl=64 time=9.04 ms\n[1795028429.717043] 64 bytes from 10.0.0.5: icmp_seq=209 ttl=64 time=9.67 ms\n[1795028429.968913] 64 bytes from 10.0.0.5: icmp_seq=210 ttl=64 time=9.57 ms\n[1795028430.217737] 64 bytes from 10.0.0.5: icmp_seq=211 ttl=64 time=9.42 ms\n[1795028430.469038] 64 bytes from 10.0.0.5: icmp_seq=212 ttl=64 time=9.29 ms\n[1795028430.720326] 64 bytes from 10.0.0.5: icmp_seq=213 ttl=64 time=10.5 ms\n[1795028430.970973] 64 bytes from 10.0.0.5: icmp_seq=214 ttl=64 time=9.86 ms\n[1795028431.221372] 64 bytes from 10.0.0.5: icmp_seq=215 ttl=64 time=9.58 ms\n[1795028431.474318] 64 bytes from 10.0.0.5: icmp_seq=216 ttl=64 time=10.1 ms\n[1795028431.725566] 64 bytes from 10.0.0.5: icmp_seq=217 ttl=64 time=9.73 ms\n[1795028431.976854] 64 bytes from 10.0.0.5: icmp_seq=218 ttl=64 time=9.91 ms\n[1795028432.227058] 64 bytes from 10.0.0.5: icmp_seq=219 ttl=64 time=9.32 ms\n[1795028432.479130] 64 bytes from 10.0.0.5: icmp_seq=220 ttl=64 time=10.1 ms\n[1795028432.733553] 64 bytes from 10.0.0.5: icmp_seq=221 ttl=64 time=9.92 ms\n[1795028432.983576] 64 bytes from 10.0.0.5: icmp_seq=222 ttl=64 time=9.36 ms\n[1795028433.235945] 64 bytes from 10.0.0.5: icmp_seq=223 ttl=64 time=9.96 ms\n[1795028433.486787] 64 bytes from 10.0.0.5: icmp_seq=224 ttl=64 time=10.8 ms\n[1795028433.737244] 64 bytes from 10.0.0.5: icmp_seq=225 ttl=64 time=10.7 ms\n[1795028433.986315] 64 bytes from 10.0.0.5: icmp_seq=226 ttl=64 time=8.99 ms\n[1795028434.237192] 64 bytes from 10.0.0.5: icmp_seq=227 ttl=64 time=8.75 ms\n[1795028434.489363] 64 bytes from 10.0.0.5: icmp_seq=228 ttl=64 time=10.1 ms\n[1795028434.739169] 64 bytes from 10.0.0.5: icmp_seq=229 ttl=64 time=9.35 ms\n[1795028434.991054] 64 bytes from 10.0.0.5: icmp_seq=230 ttl=64 time=9.74 ms\n[1795028435.242936] 64 bytes from 10.0.0.5: icmp_seq=231 ttl=64 time=10.3 ms\n[1795028435.493113] 64 bytes from 10.0.0.5: icmp_seq=232 ttl=64 time=9.78 ms\n[1795028435.745592] 64 bytes from 10.0.0.5: icmp_seq=233 ttl=64 time=10.3 ms\n[1795028435.997680] 64 bytes from 10.0.0.5: icmp_seq=234 ttl=64 time=11.3 ms\n[1795028436.250383] 64 bytes from 10.0.0.5: icmp_seq=235 ttl=64 time=12.2 ms\n[1795028436.499025] 64 bytes from 10.0.0.5: icmp_seq=236 ttl=64 time=10.6 ms\n[1795028436.752852] 64 bytes from 10.0.0.5: icmp_seq=237 ttl=64 time=11.8 ms\n[1795028437.009668] 64 bytes from 10.0.0.5: icmp_seq=238 ttl=64 time=17.6 ms\n[1795028437.252022] 64 bytes from 10.0.0.5: icmp_seq=239 ttl=64 time=10.0 ms\n[1795028437.502660] 64 bytes from 10.0.0.5: icmp_seq=240 ttl=64 time=9.95 ms\n[1795028437.754061] 64 bytes from 10.0.0.5: icmp_seq=241 ttl=64 time=9.77 ms\n[1795028438.005105] 64 bytes from 10.0.0.5: icmp_seq=242 ttl=64 time=10.6 ms\n",
+    "rx5824": "------------------------------------------------------------\nServer listening on UDP port 5824\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 5824 connected with 10.0.0.3 port 60784\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-1.0000 sec  2.99 MBytes  25.1 Mbits/sec   0.266 ms 0/2136 (0%)\n[  1] 0.0000-1.0000 sec  47 datagrams received out-of-order\n[  1] 1.0000-2.0000 sec  3.03 MBytes  25.4 Mbits/sec   0.269 ms 143/2304 (6.2%)\n[  1] 1.0000-2.0000 sec  67 datagrams received out-of-order\n[  1] 2.0000-3.0000 sec  2.56 MBytes  21.5 Mbits/sec   0.266 ms 537/2366 (23%)\n[  1] 2.0000-3.0000 sec  47 datagrams received out-of-order\n[  1] 3.0000-4.0000 sec  2.50 MBytes  21.0 Mbits/sec   0.283 ms 603/2387 (25%)\n[  1] 3.0000-4.0000 sec  55 datagrams received out-of-order\n[  1] 4.0000-5.0000 sec  2.99 MBytes  25.1 Mbits/sec   0.226 ms 243/2378 (10%)\n[  1] 4.0000-5.0000 sec  56 datagrams received out-of-order\n[  1] 5.0000-6.0000 sec  2.91 MBytes  24.4 Mbits/sec   0.183 ms 302/2378 (13%)\n[  1] 5.0000-6.0000 sec  48 datagrams received out-of-order\n[  1] 6.0000-7.0000 sec  2.91 MBytes  24.4 Mbits/sec   0.258 ms 315/2392 (13%)\n[  1] 6.0000-7.0000 sec  37 datagrams received out-of-order\n[  1] 7.0000-8.0000 sec  2.86 MBytes  24.0 Mbits/sec   0.380 ms 309/2349 (13%)\n[  1] 7.0000-8.0000 sec  43 datagrams received out-of-order\n[  1] 8.0000-9.0000 sec  2.81 MBytes  23.6 Mbits/sec   0.307 ms 398/2405 (17%)\n[  1] 8.0000-9.0000 sec  33 datagrams received out-of-order\n[  1] 9.0000-10.0000 sec  2.77 MBytes  23.3 Mbits/sec   0.314 ms 386/2364 (16%)\n[  1] 9.0000-10.0000 sec  32 datagrams received out-of-order\n[  1] 10.0000-11.0000 sec  2.90 MBytes  24.3 Mbits/sec   0.252 ms 338/2407 (14%)\n[  1] 10.0000-11.0000 sec  18 datagrams received out-of-order\n[  1] 11.0000-12.0000 sec  3.80 MBytes  31.9 Mbits/sec   0.212 ms 0/2711 (0%)\n[  1] 11.0000-12.0000 sec  58 datagrams received out-of-order\n[  1] 12.0000-13.0000 sec  3.30 MBytes  27.6 Mbits/sec   0.273 ms 18/2369 (0.76%)\n[  1] 12.0000-13.0000 sec  43 datagrams received out-of-order\n[  1] 13.0000-14.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.317 ms 0/2381 (0%)\n[  1] 13.0000-14.0000 sec  62 datagrams received out-of-order\n[  1] 14.0000-15.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.187 ms 0/2380 (0%)\n[  1] 14.0000-15.0000 sec  62 datagrams received out-of-order\n[  1] 15.0000-16.0000 sec  3.28 MBytes  27.5 Mbits/sec   0.344 ms 0/2337 (0%)\n[  1] 15.0000-16.0000 sec  70 datagrams received out-of-order\n[  1] 16.0000-17.0000 sec  3.35 MBytes  28.1 Mbits/sec   0.328 ms 0/2391 (0%)\n[  1] 16.0000-17.0000 sec  78 datagrams received out-of-order\n[  1] 17.0000-18.0000 sec  3.36 MBytes  28.2 Mbits/sec   0.441 ms 0/2396 (0%)\n[  1] 17.0000-18.0000 sec  83 datagrams received out-of-order\n[  1] 18.0000-19.0000 sec  3.25 MBytes  27.2 Mbits/sec   0.315 ms 0/2316 (0%)\n[  1] 18.0000-19.0000 sec  76 datagrams received out-of-order\n[  1] 19.0000-20.0000 sec  3.37 MBytes  28.3 Mbits/sec   0.349 ms 0/2403 (0%)\n[  1] 19.0000-20.0000 sec  80 datagrams received out-of-order\n[  1] 20.0000-21.0000 sec  3.41 MBytes  28.6 Mbits/sec   0.265 ms 0/2431 (0%)\n[  1] 20.0000-21.0000 sec  68 datagrams received out-of-order\n[  1] 21.0000-22.0000 sec  3.26 MBytes  27.3 Mbits/sec   0.344 ms 0/2323 (0%)\n[  1] 21.0000-22.0000 sec  74 datagrams received out-of-order\n[  1] 22.0000-23.0000 sec  3.43 MBytes  28.8 Mbits/sec   0.322 ms 0/2449 (0%)\n[  1] 22.0000-23.0000 sec  71 datagrams received out-of-order\n[  1] 23.0000-24.0000 sec  3.20 MBytes  26.8 Mbits/sec   0.336 ms 0/2283 (0%)\n[  1] 23.0000-24.0000 sec  87 datagrams received out-of-order\n[  1] 24.0000-25.0000 sec  3.27 MBytes  27.4 Mbits/sec   0.616 ms 0/2330 (0%)\n[  1] 24.0000-25.0000 sec  79 datagrams received out-of-order\n[  1] 25.0000-26.0000 sec  3.55 MBytes  29.8 Mbits/sec   0.245 ms 0/2532 (0%)\n[  1] 25.0000-26.0000 sec  69 datagrams received out-of-order\n[  1] 26.0000-27.0000 sec  3.28 MBytes  27.5 Mbits/sec   0.314 ms 0/2341 (0%)\n[  1] 26.0000-27.0000 sec  56 datagrams received out-of-order\n[  1] 27.0000-28.0000 sec  3.38 MBytes  28.3 Mbits/sec   0.527 ms 0/2408 (0%)\n[  1] 27.0000-28.0000 sec  85 datagrams received out-of-order\n[  1] 28.0000-29.0000 sec  3.35 MBytes  28.1 Mbits/sec   0.312 ms 0/2392 (0%)\n[  1] 28.0000-29.0000 sec  73 datagrams received out-of-order\n[  1] 29.0000-30.0000 sec  3.22 MBytes  27.0 Mbits/sec   0.362 ms 0/2299 (0%)\n[  1] 29.0000-30.0000 sec  87 datagrams received out-of-order\n[  1] 30.0000-31.0000 sec  3.43 MBytes  28.8 Mbits/sec   0.443 ms 0/2446 (0%)\n[  1] 30.0000-31.0000 sec  85 datagrams received out-of-order\n[  1] 31.0000-32.0000 sec  3.37 MBytes  28.2 Mbits/sec   0.243 ms 0/2401 (0%)\n[  1] 31.0000-32.0000 sec  75 datagrams received out-of-order\n[  1] 32.0000-33.0000 sec  3.31 MBytes  27.8 Mbits/sec   0.346 ms 0/2360 (0%)\n[  1] 32.0000-33.0000 sec  71 datagrams received out-of-order\n[  1] 33.0000-34.0000 sec  3.37 MBytes  28.2 Mbits/sec   0.284 ms 0/2401 (0%)\n[  1] 33.0000-34.0000 sec  64 datagrams received out-of-order\n[  1] 34.0000-35.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.391 ms 0/2380 (0%)\n[  1] 34.0000-35.0000 sec  72 datagrams received out-of-order\n[  1] 35.0000-36.0000 sec  3.18 MBytes  26.6 Mbits/sec   2.156 ms 0/2266 (0%)\n[  1] 35.0000-36.0000 sec  75 datagrams received out-of-order\n[  1] 36.0000-37.0000 sec  3.46 MBytes  29.0 Mbits/sec   0.447 ms 0/2465 (0%)\n[  1] 36.0000-37.0000 sec  96 datagrams received out-of-order\n[  1] 37.0000-38.0000 sec  3.38 MBytes  28.4 Mbits/sec   0.370 ms 0/2412 (0%)\n[  1] 37.0000-38.0000 sec  65 datagrams received out-of-order\n[  1] 38.0000-39.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.336 ms 0/2379 (0%)\n[  1] 38.0000-39.0000 sec  100 datagrams received out-of-order\n[  1] 39.0000-40.0000 sec  3.29 MBytes  27.6 Mbits/sec   0.414 ms 0/2350 (0%)\n[  1] 39.0000-40.0000 sec  56 datagrams received out-of-order\n[  1] 40.0000-41.0000 sec  3.38 MBytes  28.4 Mbits/sec   0.333 ms 0/2411 (0%)\n[  1] 40.0000-41.0000 sec  71 datagrams received out-of-order\n[  1] 41.0000-42.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.409 ms 0/2381 (0%)\n[  1] 41.0000-42.0000 sec  76 datagrams received out-of-order\n[  1] 42.0000-43.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.140 ms 0/2385 (0%)\n[  1] 42.0000-43.0000 sec  70 datagrams received out-of-order\n[  1] 43.0000-44.0000 sec  3.30 MBytes  27.7 Mbits/sec   0.645 ms 0/2357 (0%)\n[  1] 43.0000-44.0000 sec  86 datagrams received out-of-order\n[  1] 44.0000-45.0000 sec  3.37 MBytes  28.3 Mbits/sec   0.312 ms 0/2403 (0%)\n[  1] 44.0000-45.0000 sec  77 datagrams received out-of-order\n[  1] 45.0000-46.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.192 ms 0/2384 (0%)\n[  1] 45.0000-46.0000 sec  67 datagrams received out-of-order\n[  1] 46.0000-47.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.361 ms 0/2381 (0%)\n[  1] 46.0000-47.0000 sec  72 datagrams received out-of-order\n[  1] 47.0000-48.0000 sec  3.33 MBytes  28.0 Mbits/sec   0.465 ms 0/2378 (0%)\n[  1] 47.0000-48.0000 sec  98 datagrams received out-of-order\n[  1] 48.0000-49.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.389 ms 0/2383 (0%)\n[  1] 48.0000-49.0000 sec  66 datagrams received out-of-order\n[  1] 49.0000-50.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.290 ms 0/2381 (0%)\n[  1] 49.0000-50.0000 sec  62 datagrams received out-of-order\n[  1] 50.0000-51.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.381 ms 0/2383 (0%)\n[  1] 50.0000-51.0000 sec  92 datagrams received out-of-order\n[  1] 51.0000-52.0000 sec  3.33 MBytes  28.0 Mbits/sec   0.318 ms 0/2377 (0%)\n[  1] 51.0000-52.0000 sec  66 datagrams received out-of-order\n[  1] 52.0000-53.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.356 ms 0/2382 (0%)\n[  1] 52.0000-53.0000 sec  63 datagrams received out-of-order\n[  1] 53.0000-54.0000 sec  3.32 MBytes  27.8 Mbits/sec   0.598 ms 0/2365 (0%)\n[  1] 53.0000-54.0000 sec  71 datagrams received out-of-order\n[  1] 54.0000-55.0000 sec  3.36 MBytes  28.2 Mbits/sec   0.282 ms 0/2395 (0%)\n[  1] 54.0000-55.0000 sec  61 datagrams received out-of-order\n[  1] 55.0000-56.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.282 ms 0/2382 (0%)\n[  1] 55.0000-56.0000 sec  73 datagrams received out-of-order\n[  1] 56.0000-57.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.429 ms 0/2379 (0%)\n[  1] 56.0000-57.0000 sec  68 datagrams received out-of-order\n[  1] 57.0000-58.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.433 ms 0/2382 (0%)\n[  1] 57.0000-58.0000 sec  56 datagrams received out-of-order\n[  1] 58.0000-59.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.331 ms 0/2379 (0%)\n[  1] 58.0000-59.0000 sec  73 datagrams received out-of-order\n[  1] 59.0000-60.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.292 ms 0/2385 (0%)\n[  1] 59.0000-60.0000 sec  75 datagrams received out-of-order\n[  1] 0.0000-60.0037 sec   195 MBytes  27.3 Mbits/sec   0.325 ms 3592/142860 (2.5%)\n[  1] 0.0000-60.0037 sec  4046 datagrams received out-of-order\nWaiting for server threads to complete. Interrupt again to force quit.\n",
+    "ping5823": "PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.\n[1795028377.480486] 64 bytes from 10.0.0.6: icmp_seq=1 ttl=64 time=14.2 ms\n[1795028377.731292] 64 bytes from 10.0.0.6: icmp_seq=2 ttl=64 time=13.8 ms\n[1795028377.983307] 64 bytes from 10.0.0.6: icmp_seq=3 ttl=64 time=14.0 ms\n[1795028378.263318] 64 bytes from 10.0.0.6: icmp_seq=4 ttl=64 time=42.6 ms\n[1795028378.536628] 64 bytes from 10.0.0.6: icmp_seq=5 ttl=64 time=65.6 ms\n[1795028378.829952] 64 bytes from 10.0.0.6: icmp_seq=6 ttl=64 time=107 ms\n[1795028379.103594] 64 bytes from 10.0.0.6: icmp_seq=7 ttl=64 time=130 ms\n[1795028379.376719] 64 bytes from 10.0.0.6: icmp_seq=8 ttl=64 time=150 ms\n[1795028379.630610] 64 bytes from 10.0.0.6: icmp_seq=9 ttl=64 time=154 ms\n[1795028379.886398] 64 bytes from 10.0.0.6: icmp_seq=10 ttl=64 time=159 ms\n[1795028380.157688] 64 bytes from 10.0.0.6: icmp_seq=11 ttl=64 time=180 ms\n[1795028380.383643] 64 bytes from 10.0.0.6: icmp_seq=12 ttl=64 time=155 ms\n[1795028380.711603] 64 bytes from 10.0.0.6: icmp_seq=13 ttl=64 time=231 ms\n[1795028380.892728] 64 bytes from 10.0.0.6: icmp_seq=14 ttl=64 time=161 ms\n[1795028381.189296] 64 bytes from 10.0.0.6: icmp_seq=15 ttl=64 time=208 ms\n[1795028381.388388] 64 bytes from 10.0.0.6: icmp_seq=16 ttl=64 time=156 ms\n[1795028381.637905] 64 bytes from 10.0.0.6: icmp_seq=17 ttl=64 time=154 ms\n[1795028381.927882] 64 bytes from 10.0.0.6: icmp_seq=18 ttl=64 time=188 ms\n[1795028382.151950] 64 bytes from 10.0.0.6: icmp_seq=19 ttl=64 time=162 ms\n[1795028382.394632] 64 bytes from 10.0.0.6: icmp_seq=20 ttl=64 time=154 ms\n[1795028382.641602] 64 bytes from 10.0.0.6: icmp_seq=21 ttl=64 time=150 ms\n[1795028382.900478] 64 bytes from 10.0.0.6: icmp_seq=22 ttl=64 time=158 ms\n[1795028383.146108] 64 bytes from 10.0.0.6: icmp_seq=23 ttl=64 time=153 ms\n[1795028383.674320] 64 bytes from 10.0.0.6: icmp_seq=25 ttl=64 time=172 ms\n[1795028383.912309] 64 bytes from 10.0.0.6: icmp_seq=26 ttl=64 time=159 ms\n[1795028384.162340] 64 bytes from 10.0.0.6: icmp_seq=27 ttl=64 time=158 ms\n[1795028384.417581] 64 bytes from 10.0.0.6: icmp_seq=28 ttl=64 time=162 ms\n[1795028384.667581] 64 bytes from 10.0.0.6: icmp_seq=29 ttl=64 time=161 ms\n[1795028384.916466] 64 bytes from 10.0.0.6: icmp_seq=30 ttl=64 time=159 ms\n[1795028385.425343] 64 bytes from 10.0.0.6: icmp_seq=32 ttl=64 time=162 ms\n[1795028385.676480] 64 bytes from 10.0.0.6: icmp_seq=33 ttl=64 time=162 ms\n[1795028385.922590] 64 bytes from 10.0.0.6: icmp_seq=34 ttl=64 time=158 ms\n[1795028386.174714] 64 bytes from 10.0.0.6: icmp_seq=35 ttl=64 time=158 ms\n[1795028386.430877] 64 bytes from 10.0.0.6: icmp_seq=36 ttl=64 time=164 ms\n[1795028386.674157] 64 bytes from 10.0.0.6: icmp_seq=37 ttl=64 time=155 ms\n[1795028386.928109] 64 bytes from 10.0.0.6: icmp_seq=38 ttl=64 time=159 ms\n[1795028387.182339] 64 bytes from 10.0.0.6: icmp_seq=39 ttl=64 time=162 ms\n[1795028387.433303] 64 bytes from 10.0.0.6: icmp_seq=40 ttl=64 time=162 ms\n[1795028387.675019] 64 bytes from 10.0.0.6: icmp_seq=41 ttl=64 time=153 ms\n[1795028387.936677] 64 bytes from 10.0.0.6: icmp_seq=42 ttl=64 time=164 ms\n[1795028388.178893] 64 bytes from 10.0.0.6: icmp_seq=43 ttl=64 time=156 ms\n[1795028388.432182] 64 bytes from 10.0.0.6: icmp_seq=44 ttl=64 time=158 ms\n[1795028388.681195] 64 bytes from 10.0.0.6: icmp_seq=45 ttl=64 time=156 ms\n[1795028388.933165] 64 bytes from 10.0.0.6: icmp_seq=46 ttl=64 time=157 ms\n[1795028389.038774] 64 bytes from 10.0.0.6: icmp_seq=47 ttl=64 time=13.4 ms\n[1795028389.291480] 64 bytes from 10.0.0.6: icmp_seq=48 ttl=64 time=14.5 ms\n[1795028389.542692] 64 bytes from 10.0.0.6: icmp_seq=49 ttl=64 time=14.9 ms\n[1795028389.793875] 64 bytes from 10.0.0.6: icmp_seq=50 ttl=64 time=15.6 ms\n[1795028390.044601] 64 bytes from 10.0.0.6: icmp_seq=51 ttl=64 time=15.4 ms\n[1795028390.294910] 64 bytes from 10.0.0.6: icmp_seq=52 ttl=64 time=14.8 ms\n[1795028390.544941] 64 bytes from 10.0.0.6: icmp_seq=53 ttl=64 time=13.4 ms\n[1795028390.795842] 64 bytes from 10.0.0.6: icmp_seq=54 ttl=64 time=13.2 ms\n[1795028391.049018] 64 bytes from 10.0.0.6: icmp_seq=55 ttl=64 time=15.3 ms\n[1795028391.300705] 64 bytes from 10.0.0.6: icmp_seq=56 ttl=64 time=16.6 ms\n[1795028391.548279] 64 bytes from 10.0.0.6: icmp_seq=57 ttl=64 time=12.9 ms\n[1795028391.800182] 64 bytes from 10.0.0.6: icmp_seq=58 ttl=64 time=14.2 ms\n[1795028392.051230] 64 bytes from 10.0.0.6: icmp_seq=59 ttl=64 time=14.4 ms\n[1795028392.303680] 64 bytes from 10.0.0.6: icmp_seq=60 ttl=64 time=15.8 ms\n[1795028392.554037] 64 bytes from 10.0.0.6: icmp_seq=61 ttl=64 time=14.6 ms\n[1795028392.807032] 64 bytes from 10.0.0.6: icmp_seq=62 ttl=64 time=15.7 ms\n[1795028393.058512] 64 bytes from 10.0.0.6: icmp_seq=63 ttl=64 time=15.4 ms\n[1795028393.308070] 64 bytes from 10.0.0.6: icmp_seq=64 ttl=64 time=14.0 ms\n[1795028393.559574] 64 bytes from 10.0.0.6: icmp_seq=65 ttl=64 time=15.2 ms\n[1795028393.847459] 64 bytes from 10.0.0.6: icmp_seq=66 ttl=64 time=51.2 ms\n[1795028394.072076] 64 bytes from 10.0.0.6: icmp_seq=67 ttl=64 time=26.2 ms\n[1795028394.312846] 64 bytes from 10.0.0.6: icmp_seq=68 ttl=64 time=15.2 ms\n[1795028394.563713] 64 bytes from 10.0.0.6: icmp_seq=69 ttl=64 time=14.5 ms\n[1795028394.819015] 64 bytes from 10.0.0.6: icmp_seq=70 ttl=64 time=17.6 ms\n[1795028395.079565] 64 bytes from 10.0.0.6: icmp_seq=71 ttl=64 time=28.3 ms\n[1795028395.319949] 64 bytes from 10.0.0.6: icmp_seq=72 ttl=64 time=18.7 ms\n[1795028395.588528] 64 bytes from 10.0.0.6: icmp_seq=73 ttl=64 time=29.9 ms\n[1795028395.848981] 64 bytes from 10.0.0.6: icmp_seq=74 ttl=64 time=41.6 ms\n[1795028396.072883] 64 bytes from 10.0.0.6: icmp_seq=75 ttl=64 time=14.8 ms\n[1795028396.383456] 64 bytes from 10.0.0.6: icmp_seq=76 ttl=64 time=70.2 ms\n[1795028396.625311] 64 bytes from 10.0.0.6: icmp_seq=77 ttl=64 time=60.7 ms\n[1795028396.878328] 64 bytes from 10.0.0.6: icmp_seq=78 ttl=64 time=62.5 ms\n[1795028397.130031] 64 bytes from 10.0.0.6: icmp_seq=79 ttl=64 time=63.8 ms\n[1795028397.361180] 64 bytes from 10.0.0.6: icmp_seq=80 ttl=64 time=44.5 ms\n[1795028397.639978] 64 bytes from 10.0.0.6: icmp_seq=81 ttl=64 time=71.8 ms\n[1795028397.872850] 64 bytes from 10.0.0.6: icmp_seq=82 ttl=64 time=53.2 ms\n[1795028398.105343] 64 bytes from 10.0.0.6: icmp_seq=83 ttl=64 time=34.4 ms\n[1795028398.341972] 64 bytes from 10.0.0.6: icmp_seq=84 ttl=64 time=19.6 ms\n[1795028398.588174] 64 bytes from 10.0.0.6: icmp_seq=85 ttl=64 time=15.2 ms\n[1795028398.855919] 64 bytes from 10.0.0.6: icmp_seq=86 ttl=64 time=31.0 ms\n[1795028399.089411] 64 bytes from 10.0.0.6: icmp_seq=87 ttl=64 time=14.7 ms\n[1795028399.340299] 64 bytes from 10.0.0.6: icmp_seq=88 ttl=64 time=15.4 ms\n[1795028399.601054] 64 bytes from 10.0.0.6: icmp_seq=89 ttl=64 time=25.5 ms\n[1795028399.887727] 64 bytes from 10.0.0.6: icmp_seq=90 ttl=64 time=60.9 ms\n[1795028400.113043] 64 bytes from 10.0.0.6: icmp_seq=91 ttl=64 time=35.0 ms\n[1795028400.344827] 64 bytes from 10.0.0.6: icmp_seq=92 ttl=64 time=15.7 ms\n[1795028400.596389] 64 bytes from 10.0.0.6: icmp_seq=93 ttl=64 time=16.5 ms\n[1795028400.845366] 64 bytes from 10.0.0.6: icmp_seq=94 ttl=64 time=14.7 ms\n[1795028401.096000] 64 bytes from 10.0.0.6: icmp_seq=95 ttl=64 time=14.7 ms\n[1795028401.356933] 64 bytes from 10.0.0.6: icmp_seq=96 ttl=64 time=24.0 ms\n[1795028401.600402] 64 bytes from 10.0.0.6: icmp_seq=97 ttl=64 time=16.6 ms\n[1795028401.905101] 64 bytes from 10.0.0.6: icmp_seq=98 ttl=64 time=69.4 ms\n[1795028402.135297] 64 bytes from 10.0.0.6: icmp_seq=99 ttl=64 time=50.2 ms\n[1795028402.375342] 64 bytes from 10.0.0.6: icmp_seq=100 ttl=64 time=38.2 ms\n[1795028402.634117] 64 bytes from 10.0.0.6: icmp_seq=101 ttl=64 time=46.1 ms\n[1795028402.900647] 64 bytes from 10.0.0.6: icmp_seq=102 ttl=64 time=60.2 ms\n[1795028403.162427] 64 bytes from 10.0.0.6: icmp_seq=103 ttl=64 time=72.4 ms\n[1795028403.394392] 64 bytes from 10.0.0.6: icmp_seq=104 ttl=64 time=53.4 ms\n[1795028403.622550] 64 bytes from 10.0.0.6: icmp_seq=105 ttl=64 time=31.5 ms\n[1795028403.860455] 64 bytes from 10.0.0.6: icmp_seq=106 ttl=64 time=18.5 ms\n[1795028404.107397] 64 bytes from 10.0.0.6: icmp_seq=107 ttl=64 time=15.0 ms\n[1795028404.357914] 64 bytes from 10.0.0.6: icmp_seq=108 ttl=64 time=14.6 ms\n[1795028404.607867] 64 bytes from 10.0.0.6: icmp_seq=109 ttl=64 time=14.2 ms\n[1795028404.885957] 64 bytes from 10.0.0.6: icmp_seq=110 ttl=64 time=37.0 ms\n[1795028405.126796] 64 bytes from 10.0.0.6: icmp_seq=111 ttl=64 time=27.9 ms\n[1795028405.375567] 64 bytes from 10.0.0.6: icmp_seq=112 ttl=64 time=25.6 ms\n[1795028405.614794] 64 bytes from 10.0.0.6: icmp_seq=113 ttl=64 time=14.5 ms\n[1795028405.866607] 64 bytes from 10.0.0.6: icmp_seq=114 ttl=64 time=15.6 ms\n[1795028406.116747] 64 bytes from 10.0.0.6: icmp_seq=115 ttl=64 time=15.5 ms\n[1795028406.366250] 64 bytes from 10.0.0.6: icmp_seq=116 ttl=64 time=14.2 ms\n[1795028406.619192] 64 bytes from 10.0.0.6: icmp_seq=117 ttl=64 time=15.1 ms\n[1795028406.870019] 64 bytes from 10.0.0.6: icmp_seq=118 ttl=64 time=15.6 ms\n[1795028407.120979] 64 bytes from 10.0.0.6: icmp_seq=119 ttl=64 time=15.3 ms\n[1795028407.389185] 64 bytes from 10.0.0.6: icmp_seq=120 ttl=64 time=32.0 ms\n[1795028407.671941] 64 bytes from 10.0.0.6: icmp_seq=121 ttl=64 time=61.6 ms\n[1795028407.912671] 64 bytes from 10.0.0.6: icmp_seq=122 ttl=64 time=54.0 ms\n[1795028408.154890] 64 bytes from 10.0.0.6: icmp_seq=123 ttl=64 time=44.3 ms\n[1795028408.390366] 64 bytes from 10.0.0.6: icmp_seq=124 ttl=64 time=29.6 ms\n[1795028408.625768] 64 bytes from 10.0.0.6: icmp_seq=125 ttl=64 time=14.8 ms\n[1795028408.887225] 64 bytes from 10.0.0.6: icmp_seq=126 ttl=64 time=24.9 ms\n[1795028409.127683] 64 bytes from 10.0.0.6: icmp_seq=127 ttl=64 time=14.8 ms\n[1795028409.382439] 64 bytes from 10.0.0.6: icmp_seq=128 ttl=64 time=17.5 ms\n[1795028409.640218] 64 bytes from 10.0.0.6: icmp_seq=129 ttl=64 time=24.9 ms\n[1795028409.879057] 64 bytes from 10.0.0.6: icmp_seq=130 ttl=64 time=13.3 ms\n[1795028410.134238] 64 bytes from 10.0.0.6: icmp_seq=131 ttl=64 time=16.7 ms\n[1795028410.393214] 64 bytes from 10.0.0.6: icmp_seq=132 ttl=64 time=21.6 ms\n[1795028410.652196] 64 bytes from 10.0.0.6: icmp_seq=133 ttl=64 time=29.6 ms\n[1795028410.900979] 64 bytes from 10.0.0.6: icmp_seq=134 ttl=64 time=27.3 ms\n[1795028411.138760] 64 bytes from 10.0.0.6: icmp_seq=135 ttl=64 time=14.6 ms\n[1795028411.394304] 64 bytes from 10.0.0.6: icmp_seq=136 ttl=64 time=19.4 ms\n[1795028411.647198] 64 bytes from 10.0.0.6: icmp_seq=137 ttl=64 time=21.1 ms\n[1795028411.896523] 64 bytes from 10.0.0.6: icmp_seq=138 ttl=64 time=18.2 ms\n[1795028412.143168] 64 bytes from 10.0.0.6: icmp_seq=139 ttl=64 time=15.0 ms\n[1795028412.401532] 64 bytes from 10.0.0.6: icmp_seq=140 ttl=64 time=22.2 ms\n[1795028412.644536] 64 bytes from 10.0.0.6: icmp_seq=141 ttl=64 time=14.5 ms\n[1795028412.895756] 64 bytes from 10.0.0.6: icmp_seq=142 ttl=64 time=14.8 ms\n[1795028413.157484] 64 bytes from 10.0.0.6: icmp_seq=143 ttl=64 time=26.1 ms\n[1795028413.404536] 64 bytes from 10.0.0.6: icmp_seq=144 ttl=64 time=21.0 ms\n[1795028413.653077] 64 bytes from 10.0.0.6: icmp_seq=145 ttl=64 time=19.7 ms\n[1795028413.899598] 64 bytes from 10.0.0.6: icmp_seq=146 ttl=64 time=14.5 ms\n[1795028414.202075] 64 bytes from 10.0.0.6: icmp_seq=147 ttl=64 time=66.8 ms\n[1795028414.443335] 64 bytes from 10.0.0.6: icmp_seq=148 ttl=64 time=57.0 ms\n[1795028414.679139] 64 bytes from 10.0.0.6: icmp_seq=149 ttl=64 time=42.3 ms\n[1795028414.922058] 64 bytes from 10.0.0.6: icmp_seq=150 ttl=64 time=32.5 ms\n[1795028415.158388] 64 bytes from 10.0.0.6: icmp_seq=151 ttl=64 time=16.9 ms\n[1795028415.406110] 64 bytes from 10.0.0.6: icmp_seq=152 ttl=64 time=15.4 ms\n[1795028415.658226] 64 bytes from 10.0.0.6: icmp_seq=153 ttl=64 time=16.3 ms\n[1795028415.909022] 64 bytes from 10.0.0.6: icmp_seq=154 ttl=64 time=15.0 ms\n[1795028416.166196] 64 bytes from 10.0.0.6: icmp_seq=155 ttl=64 time=18.9 ms\n[1795028416.412247] 64 bytes from 10.0.0.6: icmp_seq=156 ttl=64 time=16.0 ms\n[1795028416.667747] 64 bytes from 10.0.0.6: icmp_seq=157 ttl=64 time=21.1 ms\n[1795028416.914608] 64 bytes from 10.0.0.6: icmp_seq=158 ttl=64 time=16.3 ms\n[1795028417.165294] 64 bytes from 10.0.0.6: icmp_seq=159 ttl=64 time=17.1 ms\n[1795028417.417277] 64 bytes from 10.0.0.6: icmp_seq=160 ttl=64 time=18.0 ms\n[1795028417.666103] 64 bytes from 10.0.0.6: icmp_seq=161 ttl=64 time=16.1 ms\n[1795028417.938687] 64 bytes from 10.0.0.6: icmp_seq=162 ttl=64 time=37.0 ms\n[1795028418.182354] 64 bytes from 10.0.0.6: icmp_seq=163 ttl=64 time=29.8 ms\n[1795028418.422812] 64 bytes from 10.0.0.6: icmp_seq=164 ttl=64 time=19.3 ms\n[1795028418.670738] 64 bytes from 10.0.0.6: icmp_seq=165 ttl=64 time=15.1 ms\n[1795028418.918919] 64 bytes from 10.0.0.6: icmp_seq=166 ttl=64 time=13.7 ms\n[1795028419.168851] 64 bytes from 10.0.0.6: icmp_seq=167 ttl=64 time=13.0 ms\n[1795028419.423938] 64 bytes from 10.0.0.6: icmp_seq=168 ttl=64 time=17.0 ms\n[1795028419.672399] 64 bytes from 10.0.0.6: icmp_seq=169 ttl=64 time=13.5 ms\n[1795028419.924412] 64 bytes from 10.0.0.6: icmp_seq=170 ttl=64 time=14.6 ms\n[1795028420.174174] 64 bytes from 10.0.0.6: icmp_seq=171 ttl=64 time=13.6 ms\n[1795028420.428188] 64 bytes from 10.0.0.6: icmp_seq=172 ttl=64 time=16.3 ms\n[1795028420.681068] 64 bytes from 10.0.0.6: icmp_seq=173 ttl=64 time=18.0 ms\n[1795028420.927606] 64 bytes from 10.0.0.6: icmp_seq=174 ttl=64 time=14.3 ms\n[1795028421.179933] 64 bytes from 10.0.0.6: icmp_seq=175 ttl=64 time=15.1 ms\n[1795028421.439294] 64 bytes from 10.0.0.6: icmp_seq=176 ttl=64 time=20.9 ms\n[1795028421.689432] 64 bytes from 10.0.0.6: icmp_seq=177 ttl=64 time=19.1 ms\n[1795028421.936469] 64 bytes from 10.0.0.6: icmp_seq=178 ttl=64 time=14.5 ms\n[1795028422.187947] 64 bytes from 10.0.0.6: icmp_seq=179 ttl=64 time=14.3 ms\n[1795028422.437430] 64 bytes from 10.0.0.6: icmp_seq=180 ttl=64 time=13.0 ms\n[1795028422.690951] 64 bytes from 10.0.0.6: icmp_seq=181 ttl=64 time=15.3 ms\n[1795028422.940501] 64 bytes from 10.0.0.6: icmp_seq=182 ttl=64 time=14.3 ms\n[1795028423.190321] 64 bytes from 10.0.0.6: icmp_seq=183 ttl=64 time=13.8 ms\n[1795028423.439688] 64 bytes from 10.0.0.6: icmp_seq=184 ttl=64 time=13.0 ms\n[1795028423.693215] 64 bytes from 10.0.0.6: icmp_seq=185 ttl=64 time=14.8 ms\n[1795028423.945538] 64 bytes from 10.0.0.6: icmp_seq=186 ttl=64 time=17.5 ms\n[1795028424.194487] 64 bytes from 10.0.0.6: icmp_seq=187 ttl=64 time=15.4 ms\n[1795028424.445441] 64 bytes from 10.0.0.6: icmp_seq=188 ttl=64 time=14.0 ms\n[1795028424.697004] 64 bytes from 10.0.0.6: icmp_seq=189 ttl=64 time=14.2 ms\n[1795028424.946992] 64 bytes from 10.0.0.6: icmp_seq=190 ttl=64 time=13.3 ms\n[1795028425.199928] 64 bytes from 10.0.0.6: icmp_seq=191 ttl=64 time=14.1 ms\n[1795028425.451034] 64 bytes from 10.0.0.6: icmp_seq=192 ttl=64 time=14.9 ms\n[1795028425.700189] 64 bytes from 10.0.0.6: icmp_seq=193 ttl=64 time=13.7 ms\n[1795028425.954983] 64 bytes from 10.0.0.6: icmp_seq=194 ttl=64 time=17.2 ms\n[1795028426.206014] 64 bytes from 10.0.0.6: icmp_seq=195 ttl=64 time=16.6 ms\n[1795028426.457711] 64 bytes from 10.0.0.6: icmp_seq=196 ttl=64 time=16.5 ms\n[1795028426.706676] 64 bytes from 10.0.0.6: icmp_seq=197 ttl=64 time=15.8 ms\n[1795028426.955632] 64 bytes from 10.0.0.6: icmp_seq=198 ttl=64 time=14.4 ms\n[1795028427.205974] 64 bytes from 10.0.0.6: icmp_seq=199 ttl=64 time=13.5 ms\n[1795028427.458876] 64 bytes from 10.0.0.6: icmp_seq=200 ttl=64 time=15.4 ms\n[1795028427.711886] 64 bytes from 10.0.0.6: icmp_seq=201 ttl=64 time=17.5 ms\n[1795028427.959438] 64 bytes from 10.0.0.6: icmp_seq=202 ttl=64 time=14.0 ms\n[1795028428.211467] 64 bytes from 10.0.0.6: icmp_seq=203 ttl=64 time=15.7 ms\n[1795028428.462534] 64 bytes from 10.0.0.6: icmp_seq=204 ttl=64 time=15.1 ms\n[1795028428.727295] 64 bytes from 10.0.0.6: icmp_seq=205 ttl=64 time=28.9 ms\n[1795028428.963474] 64 bytes from 10.0.0.6: icmp_seq=206 ttl=64 time=14.8 ms\n[1795028429.213890] 64 bytes from 10.0.0.6: icmp_seq=207 ttl=64 time=14.0 ms\n[1795028429.464942] 64 bytes from 10.0.0.6: icmp_seq=208 ttl=64 time=13.6 ms\n[1795028429.717922] 64 bytes from 10.0.0.6: icmp_seq=209 ttl=64 time=15.0 ms\n[1795028429.969341] 64 bytes from 10.0.0.6: icmp_seq=210 ttl=64 time=15.1 ms\n[1795028430.217799] 64 bytes from 10.0.0.6: icmp_seq=211 ttl=64 time=13.5 ms\n[1795028430.469044] 64 bytes from 10.0.0.6: icmp_seq=212 ttl=64 time=14.3 ms\n[1795028430.720400] 64 bytes from 10.0.0.6: icmp_seq=213 ttl=64 time=14.3 ms\n[1795028430.972463] 64 bytes from 10.0.0.6: icmp_seq=214 ttl=64 time=14.3 ms\n[1795028431.224977] 64 bytes from 10.0.0.6: icmp_seq=215 ttl=64 time=16.1 ms\n[1795028431.473661] 64 bytes from 10.0.0.6: icmp_seq=216 ttl=64 time=14.2 ms\n[1795028431.726027] 64 bytes from 10.0.0.6: icmp_seq=217 ttl=64 time=14.6 ms\n[1795028431.977043] 64 bytes from 10.0.0.6: icmp_seq=218 ttl=64 time=15.9 ms\n[1795028432.226521] 64 bytes from 10.0.0.6: icmp_seq=219 ttl=64 time=14.8 ms\n[1795028432.479198] 64 bytes from 10.0.0.6: icmp_seq=220 ttl=64 time=15.9 ms\n[1795028432.728595] 64 bytes from 10.0.0.6: icmp_seq=221 ttl=64 time=15.1 ms\n[1795028432.980046] 64 bytes from 10.0.0.6: icmp_seq=222 ttl=64 time=15.7 ms\n[1795028433.230998] 64 bytes from 10.0.0.6: icmp_seq=223 ttl=64 time=15.5 ms\n[1795028433.482150] 64 bytes from 10.0.0.6: icmp_seq=224 ttl=64 time=15.3 ms\n[1795028433.733937] 64 bytes from 10.0.0.6: icmp_seq=225 ttl=64 time=16.8 ms\n[1795028433.983049] 64 bytes from 10.0.0.6: icmp_seq=226 ttl=64 time=14.7 ms\n[1795028434.232659] 64 bytes from 10.0.0.6: icmp_seq=227 ttl=64 time=13.8 ms\n[1795028434.485143] 64 bytes from 10.0.0.6: icmp_seq=228 ttl=64 time=15.1 ms\n[1795028434.735661] 64 bytes from 10.0.0.6: icmp_seq=229 ttl=64 time=14.2 ms\n[1795028434.987289] 64 bytes from 10.0.0.6: icmp_seq=230 ttl=64 time=14.6 ms\n[1795028435.238757] 64 bytes from 10.0.0.6: icmp_seq=231 ttl=64 time=14.8 ms\n[1795028435.489085] 64 bytes from 10.0.0.6: icmp_seq=232 ttl=64 time=14.9 ms\n[1795028435.739023] 64 bytes from 10.0.0.6: icmp_seq=233 ttl=64 time=14.2 ms\n[1795028435.990395] 64 bytes from 10.0.0.6: icmp_seq=234 ttl=64 time=14.6 ms\n[1795028436.242576] 64 bytes from 10.0.0.6: icmp_seq=235 ttl=64 time=16.3 ms\n[1795028436.492967] 64 bytes from 10.0.0.6: icmp_seq=236 ttl=64 time=15.3 ms\n[1795028436.743505] 64 bytes from 10.0.0.6: icmp_seq=237 ttl=64 time=15.3 ms\n[1795028437.002909] 64 bytes from 10.0.0.6: icmp_seq=238 ttl=64 time=23.9 ms\n[1795028437.243158] 64 bytes from 10.0.0.6: icmp_seq=239 ttl=64 time=13.1 ms\n[1795028437.496979] 64 bytes from 10.0.0.6: icmp_seq=240 ttl=64 time=15.5 ms\n[1795028437.747582] 64 bytes from 10.0.0.6: icmp_seq=241 ttl=64 time=15.4 ms\n[1795028437.997726] 64 bytes from 10.0.0.6: icmp_seq=242 ttl=64 time=14.9 ms\n[1795028438.252028] 64 bytes from 10.0.0.6: icmp_seq=243 ttl=64 time=18.2 ms\n",
+    "rx5823": "------------------------------------------------------------\nServer listening on UDP port 5823\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5823 connected with 10.0.0.1 port 32843\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-1.0000 sec  2.99 MBytes  25.1 Mbits/sec   0.363 ms 0/2133 (0%)\n[  1] 0.0000-1.0000 sec  74 datagrams received out-of-order\n[  1] 1.0000-2.0000 sec  3.10 MBytes  26.0 Mbits/sec   0.365 ms 93/2303 (4%)\n[  1] 1.0000-2.0000 sec  57 datagrams received out-of-order\n[  1] 2.0000-3.0000 sec  2.88 MBytes  24.2 Mbits/sec   0.399 ms 308/2363 (13%)\n[  1] 2.0000-3.0000 sec  77 datagrams received out-of-order\n[  1] 3.0000-4.0000 sec  2.87 MBytes  24.1 Mbits/sec   0.472 ms 333/2383 (14%)\n[  1] 3.0000-4.0000 sec  88 datagrams received out-of-order\n[  1] 4.0000-5.0000 sec  3.10 MBytes  26.0 Mbits/sec   0.387 ms 177/2385 (7.4%)\n[  1] 4.0000-5.0000 sec  64 datagrams received out-of-order\n[  1] 5.0000-6.0000 sec  3.04 MBytes  25.5 Mbits/sec   0.308 ms 212/2377 (8.9%)\n[  1] 5.0000-6.0000 sec  64 datagrams received out-of-order\n[  1] 6.0000-7.0000 sec  3.04 MBytes  25.5 Mbits/sec   0.330 ms 232/2397 (9.7%)\n[  1] 6.0000-7.0000 sec  49 datagrams received out-of-order\n[  1] 7.0000-8.0000 sec  2.99 MBytes  25.1 Mbits/sec   0.460 ms 213/2346 (9.1%)\n[  1] 7.0000-8.0000 sec  51 datagrams received out-of-order\n[  1] 8.0000-9.0000 sec  3.04 MBytes  25.5 Mbits/sec   0.237 ms 229/2401 (9.5%)\n[  1] 8.0000-9.0000 sec  76 datagrams received out-of-order\n[  1] 9.0000-10.0000 sec  2.97 MBytes  24.9 Mbits/sec   0.396 ms 247/2365 (10%)\n[  1] 9.0000-10.0000 sec  59 datagrams received out-of-order\n[  1] 10.0000-11.0000 sec  3.55 MBytes  29.8 Mbits/sec   6.857 ms 204/2739 (7.4%)\n[  1] 10.0000-11.0000 sec  339 datagrams received out-of-order\n[  1] 11.0000-12.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.320 ms 0/2380 (0%)\n[  1] 11.0000-12.0000 sec  20 datagrams received out-of-order\n[  1] 12.0000-13.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.302 ms 0/2382 (0%)\n[  1] 12.0000-13.0000 sec  31 datagrams received out-of-order\n[  1] 13.0000-14.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.219 ms 0/2380 (0%)\n[  1] 13.0000-14.0000 sec  71 datagrams received out-of-order\n[  1] 14.0000-15.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.239 ms 0/2379 (0%)\n[  1] 14.0000-15.0000 sec  79 datagrams received out-of-order\n[  1] 15.0000-16.0000 sec  3.28 MBytes  27.5 Mbits/sec   0.242 ms 0/2341 (0%)\n[  1] 15.0000-16.0000 sec  129 datagrams received out-of-order\n[  1] 16.0000-17.0000 sec  3.34 MBytes  28.1 Mbits/sec   0.361 ms 0/2386 (0%)\n[  1] 16.0000-17.0000 sec  95 datagrams received out-of-order\n[  1] 17.0000-18.0000 sec  3.36 MBytes  28.2 Mbits/sec   0.333 ms 0/2397 (0%)\n[  1] 17.0000-18.0000 sec  136 datagrams received out-of-order\n[  1] 18.0000-19.0000 sec  3.25 MBytes  27.3 Mbits/sec   0.254 ms 0/2318 (0%)\n[  1] 18.0000-19.0000 sec  160 datagrams received out-of-order\n[  1] 19.0000-20.0000 sec  3.37 MBytes  28.2 Mbits/sec   0.291 ms 0/2402 (0%)\n[  1] 19.0000-20.0000 sec  147 datagrams received out-of-order\n[  1] 20.0000-21.0000 sec  3.41 MBytes  28.6 Mbits/sec   0.375 ms 0/2430 (0%)\n[  1] 20.0000-21.0000 sec  143 datagrams received out-of-order\n[  1] 21.0000-22.0000 sec  3.26 MBytes  27.3 Mbits/sec   0.326 ms 0/2322 (0%)\n[  1] 21.0000-22.0000 sec  122 datagrams received out-of-order\n[  1] 22.0000-23.0000 sec  3.44 MBytes  28.9 Mbits/sec   0.337 ms 0/2455 (0%)\n[  1] 22.0000-23.0000 sec  111 datagrams received out-of-order\n[  1] 23.0000-24.0000 sec  3.20 MBytes  26.8 Mbits/sec   0.315 ms 0/2282 (0%)\n[  1] 23.0000-24.0000 sec  145 datagrams received out-of-order\n[  1] 24.0000-25.0000 sec  3.24 MBytes  27.2 Mbits/sec   0.390 ms 0/2314 (0%)\n[  1] 24.0000-25.0000 sec  131 datagrams received out-of-order\n[  1] 25.0000-26.0000 sec  3.57 MBytes  29.9 Mbits/sec   0.310 ms 0/2544 (0%)\n[  1] 25.0000-26.0000 sec  129 datagrams received out-of-order\n[  1] 26.0000-27.0000 sec  3.28 MBytes  27.5 Mbits/sec   0.255 ms 0/2342 (0%)\n[  1] 26.0000-27.0000 sec  136 datagrams received out-of-order\n[  1] 27.0000-28.0000 sec  3.37 MBytes  28.3 Mbits/sec   0.403 ms 0/2407 (0%)\n[  1] 27.0000-28.0000 sec  123 datagrams received out-of-order\n[  1] 28.0000-29.0000 sec  3.36 MBytes  28.2 Mbits/sec   0.363 ms 0/2394 (0%)\n[  1] 28.0000-29.0000 sec  104 datagrams received out-of-order\n[  1] 29.0000-30.0000 sec  3.22 MBytes  27.0 Mbits/sec   0.348 ms 0/2296 (0%)\n[  1] 29.0000-30.0000 sec  133 datagrams received out-of-order\n[  1] 30.0000-31.0000 sec  3.43 MBytes  28.8 Mbits/sec   0.401 ms 0/2450 (0%)\n[  1] 30.0000-31.0000 sec  127 datagrams received out-of-order\n[  1] 31.0000-32.0000 sec  3.36 MBytes  28.2 Mbits/sec   0.202 ms 0/2399 (0%)\n[  1] 31.0000-32.0000 sec  104 datagrams received out-of-order\n[  1] 32.0000-33.0000 sec  3.31 MBytes  27.8 Mbits/sec   0.364 ms 1/2362 (0.042%)\n[  1] 32.0000-33.0000 sec  145 datagrams received out-of-order\n[  1] 33.0000-34.0000 sec  3.37 MBytes  28.2 Mbits/sec   0.338 ms 0/2400 (0%)\n[  1] 33.0000-34.0000 sec  138 datagrams received out-of-order\n[  1] 34.0000-35.0000 sec  3.33 MBytes  28.0 Mbits/sec   0.312 ms 0/2378 (0%)\n[  1] 34.0000-35.0000 sec  108 datagrams received out-of-order\n[  1] 35.0000-36.0000 sec  3.18 MBytes  26.7 Mbits/sec   2.532 ms 0/2270 (0%)\n[  1] 35.0000-36.0000 sec  136 datagrams received out-of-order\n[  1] 36.0000-37.0000 sec  3.45 MBytes  29.0 Mbits/sec   0.321 ms 0/2462 (0%)\n[  1] 36.0000-37.0000 sec  157 datagrams received out-of-order\n[  1] 37.0000-38.0000 sec  3.38 MBytes  28.3 Mbits/sec   0.477 ms 0/2409 (0%)\n[  1] 37.0000-38.0000 sec  113 datagrams received out-of-order\n[  1] 38.0000-39.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.201 ms 0/2382 (0%)\n[  1] 38.0000-39.0000 sec  127 datagrams received out-of-order\n[  1] 39.0000-40.0000 sec  3.29 MBytes  27.6 Mbits/sec   0.390 ms 0/2349 (0%)\n[  1] 39.0000-40.0000 sec  146 datagrams received out-of-order\n[  1] 40.0000-41.0000 sec  3.37 MBytes  28.3 Mbits/sec   0.237 ms 10/2414 (0.41%)\n[  1] 40.0000-41.0000 sec  150 datagrams received out-of-order\n[  1] 41.0000-42.0000 sec  3.33 MBytes  28.0 Mbits/sec   0.616 ms 0/2378 (0%)\n[  1] 41.0000-42.0000 sec  70 datagrams received out-of-order\n[  1] 42.0000-43.0000 sec  3.34 MBytes  28.1 Mbits/sec   0.331 ms 0/2386 (0%)\n[  1] 42.0000-43.0000 sec  63 datagrams received out-of-order\n[  1] 43.0000-44.0000 sec  3.31 MBytes  27.7 Mbits/sec   0.629 ms 0/2358 (0%)\n[  1] 43.0000-44.0000 sec  68 datagrams received out-of-order\n[  1] 44.0000-45.0000 sec  3.37 MBytes  28.3 Mbits/sec   0.387 ms 0/2403 (0%)\n[  1] 44.0000-45.0000 sec  101 datagrams received out-of-order\n[  1] 45.0000-46.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.283 ms 0/2383 (0%)\n[  1] 45.0000-46.0000 sec  49 datagrams received out-of-order\n[  1] 46.0000-47.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.308 ms 0/2381 (0%)\n[  1] 46.0000-47.0000 sec  81 datagrams received out-of-order\n[  1] 47.0000-48.0000 sec  3.33 MBytes  28.0 Mbits/sec   0.448 ms 0/2378 (0%)\n[  1] 47.0000-48.0000 sec  77 datagrams received out-of-order\n[  1] 48.0000-49.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.397 ms 0/2380 (0%)\n[  1] 48.0000-49.0000 sec  97 datagrams received out-of-order\n[  1] 49.0000-50.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.365 ms 0/2381 (0%)\n[  1] 49.0000-50.0000 sec  72 datagrams received out-of-order\n[  1] 50.0000-51.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.252 ms 0/2384 (0%)\n[  1] 50.0000-51.0000 sec  82 datagrams received out-of-order\n[  1] 51.0000-52.0000 sec  3.33 MBytes  28.0 Mbits/sec   0.449 ms 0/2378 (0%)\n[  1] 51.0000-52.0000 sec  80 datagrams received out-of-order\n[  1] 52.0000-53.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.568 ms 0/2384 (0%)\n[  1] 52.0000-53.0000 sec  66 datagrams received out-of-order\n[  1] 53.0000-54.0000 sec  3.32 MBytes  27.8 Mbits/sec   0.643 ms 0/2368 (0%)\n[  1] 53.0000-54.0000 sec  68 datagrams received out-of-order\n[  1] 54.0000-55.0000 sec  3.35 MBytes  28.1 Mbits/sec   0.311 ms 0/2392 (0%)\n[  1] 54.0000-55.0000 sec  51 datagrams received out-of-order\n[  1] 55.0000-56.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.331 ms 0/2382 (0%)\n[  1] 55.0000-56.0000 sec  99 datagrams received out-of-order\n[  1] 56.0000-57.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.351 ms 0/2379 (0%)\n[  1] 56.0000-57.0000 sec  73 datagrams received out-of-order\n[  1] 57.0000-58.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.327 ms 0/2385 (0%)\n[  1] 57.0000-58.0000 sec  70 datagrams received out-of-order\n[  1] 58.0000-59.0000 sec  3.33 MBytes  27.9 Mbits/sec   0.326 ms 0/2374 (0%)\n[  1] 58.0000-59.0000 sec  105 datagrams received out-of-order\n[  1] 59.0000-60.0000 sec  3.34 MBytes  28.0 Mbits/sec   0.337 ms 0/2384 (0%)\n[  1] 59.0000-60.0000 sec  71 datagrams received out-of-order\n[  1] 0.0000-60.0026 sec   197 MBytes  27.6 Mbits/sec   0.376 ms 2258/142861 (1.6%)\n[  1] 0.0000-60.0026 sec  6037 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "ping5822": "PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.\n[1795028377.470496] 64 bytes from 10.0.0.5: icmp_seq=1 ttl=64 time=8.78 ms\n[1795028377.741633] 64 bytes from 10.0.0.5: icmp_seq=2 ttl=64 time=14.9 ms\n[1795028377.987179] 64 bytes from 10.0.0.5: icmp_seq=3 ttl=64 time=8.99 ms\n[1795028378.269487] 64 bytes from 10.0.0.5: icmp_seq=4 ttl=64 time=40.2 ms\n[1795028378.542058] 64 bytes from 10.0.0.5: icmp_seq=5 ttl=64 time=62.0 ms\n[1795028378.833078] 64 bytes from 10.0.0.5: icmp_seq=6 ttl=64 time=103 ms\n[1795028379.107902] 64 bytes from 10.0.0.5: icmp_seq=7 ttl=64 time=126 ms\n[1795028379.378409] 64 bytes from 10.0.0.5: icmp_seq=8 ttl=64 time=145 ms\n[1795028380.166982] 64 bytes from 10.0.0.5: icmp_seq=11 ttl=64 time=176 ms\n[1795028380.391016] 64 bytes from 10.0.0.5: icmp_seq=12 ttl=64 time=148 ms\n[1795028380.721389] 64 bytes from 10.0.0.5: icmp_seq=13 ttl=64 time=228 ms\n[1795028380.895523] 64 bytes from 10.0.0.5: icmp_seq=14 ttl=64 time=150 ms\n[1795028381.198975] 64 bytes from 10.0.0.5: icmp_seq=15 ttl=64 time=203 ms\n[1795028381.394117] 64 bytes from 10.0.0.5: icmp_seq=16 ttl=64 time=148 ms\n[1795028381.648194] 64 bytes from 10.0.0.5: icmp_seq=17 ttl=64 time=152 ms\n[1795028381.925606] 64 bytes from 10.0.0.5: icmp_seq=18 ttl=64 time=179 ms\n[1795028382.153570] 64 bytes from 10.0.0.5: icmp_seq=19 ttl=64 time=156 ms\n[1795028382.398045] 64 bytes from 10.0.0.5: icmp_seq=20 ttl=64 time=149 ms\n[1795028382.642875] 64 bytes from 10.0.0.5: icmp_seq=21 ttl=64 time=144 ms\n[1795028382.903767] 64 bytes from 10.0.0.5: icmp_seq=22 ttl=64 time=154 ms\n[1795028383.150550] 64 bytes from 10.0.0.5: icmp_seq=23 ttl=64 time=150 ms\n[1795028383.403221] 64 bytes from 10.0.0.5: icmp_seq=24 ttl=64 time=152 ms\n[1795028383.669232] 64 bytes from 10.0.0.5: icmp_seq=25 ttl=64 time=168 ms\n[1795028384.161700] 64 bytes from 10.0.0.5: icmp_seq=27 ttl=64 time=154 ms\n[1795028384.416008] 64 bytes from 10.0.0.5: icmp_seq=28 ttl=64 time=157 ms\n[1795028384.665297] 64 bytes from 10.0.0.5: icmp_seq=29 ttl=64 time=156 ms\n[1795028384.912821] 64 bytes from 10.0.0.5: icmp_seq=30 ttl=64 time=153 ms\n[1795028385.420898] 64 bytes from 10.0.0.5: icmp_seq=32 ttl=64 time=158 ms\n[1795028385.671359] 64 bytes from 10.0.0.5: icmp_seq=33 ttl=64 time=158 ms\n[1795028385.916461] 64 bytes from 10.0.0.5: icmp_seq=34 ttl=64 time=153 ms\n[1795028386.168474] 64 bytes from 10.0.0.5: icmp_seq=35 ttl=64 time=154 ms\n[1795028386.425206] 64 bytes from 10.0.0.5: icmp_seq=36 ttl=64 time=159 ms\n[1795028386.928544] 64 bytes from 10.0.0.5: icmp_seq=38 ttl=64 time=153 ms\n[1795028387.183109] 64 bytes from 10.0.0.5: icmp_seq=39 ttl=64 time=156 ms\n[1795028387.435034] 64 bytes from 10.0.0.5: icmp_seq=40 ttl=64 time=158 ms\n[1795028387.677542] 64 bytes from 10.0.0.5: icmp_seq=41 ttl=64 time=149 ms\n[1795028387.939573] 64 bytes from 10.0.0.5: icmp_seq=42 ttl=64 time=160 ms\n[1795028388.438766] 64 bytes from 10.0.0.5: icmp_seq=44 ttl=64 time=152 ms\n[1795028388.689976] 64 bytes from 10.0.0.5: icmp_seq=45 ttl=64 time=151 ms\n[1795028389.150309] 64 bytes from 10.0.0.5: icmp_seq=47 ttl=64 time=103 ms\n[1795028389.352405] 64 bytes from 10.0.0.5: icmp_seq=48 ttl=64 time=52.7 ms\n[1795028389.562009] 64 bytes from 10.0.0.5: icmp_seq=49 ttl=64 time=11.1 ms\n[1795028389.811945] 64 bytes from 10.0.0.5: icmp_seq=50 ttl=64 time=10.2 ms\n[1795028390.073324] 64 bytes from 10.0.0.5: icmp_seq=51 ttl=64 time=20.4 ms\n[1795028390.312649] 64 bytes from 10.0.0.5: icmp_seq=52 ttl=64 time=8.82 ms\n[1795028390.573324] 64 bytes from 10.0.0.5: icmp_seq=53 ttl=64 time=18.7 ms\n[1795028390.817587] 64 bytes from 10.0.0.5: icmp_seq=54 ttl=64 time=10.8 ms\n[1795028391.065670] 64 bytes from 10.0.0.5: icmp_seq=55 ttl=64 time=8.69 ms\n[1795028391.316654] 64 bytes from 10.0.0.5: icmp_seq=56 ttl=64 time=8.60 ms\n[1795028391.568807] 64 bytes from 10.0.0.5: icmp_seq=57 ttl=64 time=10.4 ms\n[1795028391.819170] 64 bytes from 10.0.0.5: icmp_seq=58 ttl=64 time=9.98 ms\n[1795028392.069630] 64 bytes from 10.0.0.5: icmp_seq=59 ttl=64 time=9.98 ms\n[1795028392.320755] 64 bytes from 10.0.0.5: icmp_seq=60 ttl=64 time=10.7 ms\n[1795028392.569900] 64 bytes from 10.0.0.5: icmp_seq=61 ttl=64 time=9.22 ms\n[1795028392.821258] 64 bytes from 10.0.0.5: icmp_seq=62 ttl=64 time=9.03 ms\n[1795028393.072231] 64 bytes from 10.0.0.5: icmp_seq=63 ttl=64 time=8.99 ms\n[1795028393.321948] 64 bytes from 10.0.0.5: icmp_seq=64 ttl=64 time=8.50 ms\n[1795028393.574538] 64 bytes from 10.0.0.5: icmp_seq=65 ttl=64 time=9.45 ms\n[1795028393.855028] 64 bytes from 10.0.0.5: icmp_seq=66 ttl=64 time=32.5 ms\n[1795028394.084236] 64 bytes from 10.0.0.5: icmp_seq=67 ttl=64 time=11.6 ms\n[1795028394.331655] 64 bytes from 10.0.0.5: icmp_seq=68 ttl=64 time=8.55 ms\n[1795028394.582484] 64 bytes from 10.0.0.5: icmp_seq=69 ttl=64 time=9.01 ms\n[1795028394.833476] 64 bytes from 10.0.0.5: icmp_seq=70 ttl=64 time=9.56 ms\n[1795028395.085714] 64 bytes from 10.0.0.5: icmp_seq=71 ttl=64 time=10.2 ms\n[1795028395.335620] 64 bytes from 10.0.0.5: icmp_seq=72 ttl=64 time=10.1 ms\n[1795028395.586476] 64 bytes from 10.0.0.5: icmp_seq=73 ttl=64 time=9.90 ms\n[1795028395.837551] 64 bytes from 10.0.0.5: icmp_seq=74 ttl=64 time=9.48 ms\n[1795028396.086997] 64 bytes from 10.0.0.5: icmp_seq=75 ttl=64 time=8.52 ms\n[1795028396.348973] 64 bytes from 10.0.0.5: icmp_seq=76 ttl=64 time=18.6 ms\n[1795028396.590631] 64 bytes from 10.0.0.5: icmp_seq=77 ttl=64 time=9.47 ms\n[1795028396.842327] 64 bytes from 10.0.0.5: icmp_seq=78 ttl=64 time=9.13 ms\n[1795028397.095350] 64 bytes from 10.0.0.5: icmp_seq=79 ttl=64 time=10.1 ms\n[1795028397.344955] 64 bytes from 10.0.0.5: icmp_seq=80 ttl=64 time=9.30 ms\n[1795028397.595474] 64 bytes from 10.0.0.5: icmp_seq=81 ttl=64 time=8.78 ms\n[1795028397.846679] 64 bytes from 10.0.0.5: icmp_seq=82 ttl=64 time=9.18 ms\n[1795028398.098046] 64 bytes from 10.0.0.5: icmp_seq=83 ttl=64 time=9.63 ms\n[1795028398.349212] 64 bytes from 10.0.0.5: icmp_seq=84 ttl=64 time=9.86 ms\n[1795028398.599737] 64 bytes from 10.0.0.5: icmp_seq=85 ttl=64 time=9.38 ms\n[1795028398.857920] 64 bytes from 10.0.0.5: icmp_seq=86 ttl=64 time=10.8 ms\n[1795028399.105501] 64 bytes from 10.0.0.5: icmp_seq=87 ttl=64 time=9.13 ms\n[1795028399.356445] 64 bytes from 10.0.0.5: icmp_seq=88 ttl=64 time=8.92 ms\n[1795028399.608406] 64 bytes from 10.0.0.5: icmp_seq=89 ttl=64 time=9.31 ms\n[1795028399.859353] 64 bytes from 10.0.0.5: icmp_seq=90 ttl=64 time=9.73 ms\n[1795028400.113006] 64 bytes from 10.0.0.5: icmp_seq=91 ttl=64 time=11.7 ms\n[1795028400.360618] 64 bytes from 10.0.0.5: icmp_seq=92 ttl=64 time=8.43 ms\n[1795028400.613900] 64 bytes from 10.0.0.5: icmp_seq=93 ttl=64 time=10.0 ms\n[1795028400.864354] 64 bytes from 10.0.0.5: icmp_seq=94 ttl=64 time=10.1 ms\n[1795028401.116102] 64 bytes from 10.0.0.5: icmp_seq=95 ttl=64 time=9.97 ms\n[1795028401.366579] 64 bytes from 10.0.0.5: icmp_seq=96 ttl=64 time=9.65 ms\n[1795028401.617971] 64 bytes from 10.0.0.5: icmp_seq=97 ttl=64 time=9.29 ms\n[1795028401.869314] 64 bytes from 10.0.0.5: icmp_seq=98 ttl=64 time=9.76 ms\n[1795028402.118293] 64 bytes from 10.0.0.5: icmp_seq=99 ttl=64 time=9.32 ms\n[1795028402.369869] 64 bytes from 10.0.0.5: icmp_seq=100 ttl=64 time=9.57 ms\n[1795028402.621523] 64 bytes from 10.0.0.5: icmp_seq=101 ttl=64 time=9.08 ms\n[1795028402.874905] 64 bytes from 10.0.0.5: icmp_seq=102 ttl=64 time=11.2 ms\n[1795028403.125847] 64 bytes from 10.0.0.5: icmp_seq=103 ttl=64 time=10.8 ms\n[1795028403.376067] 64 bytes from 10.0.0.5: icmp_seq=104 ttl=64 time=9.28 ms\n[1795028403.626664] 64 bytes from 10.0.0.5: icmp_seq=105 ttl=64 time=9.24 ms\n[1795028403.878127] 64 bytes from 10.0.0.5: icmp_seq=106 ttl=64 time=9.40 ms\n[1795028404.130087] 64 bytes from 10.0.0.5: icmp_seq=107 ttl=64 time=10.3 ms\n[1795028404.379606] 64 bytes from 10.0.0.5: icmp_seq=108 ttl=64 time=8.76 ms\n[1795028404.630694] 64 bytes from 10.0.0.5: icmp_seq=109 ttl=64 time=8.87 ms\n[1795028404.882039] 64 bytes from 10.0.0.5: icmp_seq=110 ttl=64 time=9.09 ms\n[1795028405.134138] 64 bytes from 10.0.0.5: icmp_seq=111 ttl=64 time=9.98 ms\n[1795028405.386121] 64 bytes from 10.0.0.5: icmp_seq=112 ttl=64 time=10.8 ms\n[1795028405.635645] 64 bytes from 10.0.0.5: icmp_seq=113 ttl=64 time=10.1 ms\n[1795028405.886325] 64 bytes from 10.0.0.5: icmp_seq=114 ttl=64 time=9.60 ms\n[1795028406.136432] 64 bytes from 10.0.0.5: icmp_seq=115 ttl=64 time=8.89 ms\n[1795028406.389879] 64 bytes from 10.0.0.5: icmp_seq=116 ttl=64 time=10.9 ms\n[1795028406.639543] 64 bytes from 10.0.0.5: icmp_seq=117 ttl=64 time=9.72 ms\n[1795028406.891385] 64 bytes from 10.0.0.5: icmp_seq=118 ttl=64 time=11.2 ms\n[1795028407.142747] 64 bytes from 10.0.0.5: icmp_seq=119 ttl=64 time=10.4 ms\n[1795028407.395536] 64 bytes from 10.0.0.5: icmp_seq=120 ttl=64 time=9.74 ms\n[1795028407.659014] 64 bytes from 10.0.0.5: icmp_seq=121 ttl=64 time=22.6 ms\n[1795028407.897214] 64 bytes from 10.0.0.5: icmp_seq=122 ttl=64 time=10.5 ms\n[1795028408.146399] 64 bytes from 10.0.0.5: icmp_seq=123 ttl=64 time=9.15 ms\n[1795028408.398483] 64 bytes from 10.0.0.5: icmp_seq=124 ttl=64 time=9.77 ms\n[1795028408.648649] 64 bytes from 10.0.0.5: icmp_seq=125 ttl=64 time=8.85 ms\n[1795028408.900991] 64 bytes from 10.0.0.5: icmp_seq=126 ttl=64 time=10.4 ms\n[1795028409.152160] 64 bytes from 10.0.0.5: icmp_seq=127 ttl=64 time=8.96 ms\n[1795028409.403416] 64 bytes from 10.0.0.5: icmp_seq=128 ttl=64 time=9.09 ms\n[1795028409.655257] 64 bytes from 10.0.0.5: icmp_seq=129 ttl=64 time=9.66 ms\n[1795028409.907007] 64 bytes from 10.0.0.5: icmp_seq=130 ttl=64 time=10.5 ms\n[1795028410.165214] 64 bytes from 10.0.0.5: icmp_seq=131 ttl=64 time=12.3 ms\n[1795028410.414209] 64 bytes from 10.0.0.5: icmp_seq=132 ttl=64 time=9.67 ms\n[1795028410.665465] 64 bytes from 10.0.0.5: icmp_seq=133 ttl=64 time=9.54 ms\n[1795028410.917590] 64 bytes from 10.0.0.5: icmp_seq=134 ttl=64 time=10.3 ms\n[1795028411.167233] 64 bytes from 10.0.0.5: icmp_seq=135 ttl=64 time=9.06 ms\n[1795028411.418026] 64 bytes from 10.0.0.5: icmp_seq=136 ttl=64 time=9.39 ms\n[1795028411.668662] 64 bytes from 10.0.0.5: icmp_seq=137 ttl=64 time=8.98 ms\n[1795028411.920194] 64 bytes from 10.0.0.5: icmp_seq=138 ttl=64 time=9.65 ms\n[1795028412.172496] 64 bytes from 10.0.0.5: icmp_seq=139 ttl=64 time=9.43 ms\n[1795028412.423589] 64 bytes from 10.0.0.5: icmp_seq=140 ttl=64 time=8.69 ms\n[1795028412.675333] 64 bytes from 10.0.0.5: icmp_seq=141 ttl=64 time=9.59 ms\n[1795028412.926289] 64 bytes from 10.0.0.5: icmp_seq=142 ttl=64 time=9.35 ms\n[1795028413.176668] 64 bytes from 10.0.0.5: icmp_seq=143 ttl=64 time=9.89 ms\n[1795028413.426947] 64 bytes from 10.0.0.5: icmp_seq=144 ttl=64 time=9.14 ms\n[1795028413.677284] 64 bytes from 10.0.0.5: icmp_seq=145 ttl=64 time=8.97 ms\n[1795028413.928509] 64 bytes from 10.0.0.5: icmp_seq=146 ttl=64 time=9.40 ms\n[1795028414.180628] 64 bytes from 10.0.0.5: icmp_seq=147 ttl=64 time=9.12 ms\n[1795028414.431225] 64 bytes from 10.0.0.5: icmp_seq=148 ttl=64 time=9.92 ms\n[1795028414.682977] 64 bytes from 10.0.0.5: icmp_seq=149 ttl=64 time=11.1 ms\n[1795028414.932183] 64 bytes from 10.0.0.5: icmp_seq=150 ttl=64 time=8.69 ms\n[1795028415.183095] 64 bytes from 10.0.0.5: icmp_seq=151 ttl=64 time=9.35 ms\n[1795028415.435460] 64 bytes from 10.0.0.5: icmp_seq=152 ttl=64 time=11.0 ms\n[1795028415.687981] 64 bytes from 10.0.0.5: icmp_seq=153 ttl=64 time=11.7 ms\n[1795028415.936673] 64 bytes from 10.0.0.5: icmp_seq=154 ttl=64 time=8.66 ms\n[1795028416.198620] 64 bytes from 10.0.0.5: icmp_seq=155 ttl=64 time=11.9 ms\n[1795028416.445248] 64 bytes from 10.0.0.5: icmp_seq=156 ttl=64 time=8.89 ms\n[1795028416.696368] 64 bytes from 10.0.0.5: icmp_seq=157 ttl=64 time=8.76 ms\n[1795028416.948536] 64 bytes from 10.0.0.5: icmp_seq=158 ttl=64 time=9.02 ms\n[1795028417.198162] 64 bytes from 10.0.0.5: icmp_seq=159 ttl=64 time=8.92 ms\n[1795028417.449400] 64 bytes from 10.0.0.5: icmp_seq=160 ttl=64 time=9.66 ms\n[1795028417.700089] 64 bytes from 10.0.0.5: icmp_seq=161 ttl=64 time=9.58 ms\n[1795028417.949996] 64 bytes from 10.0.0.5: icmp_seq=162 ttl=64 time=8.74 ms\n[1795028418.203217] 64 bytes from 10.0.0.5: icmp_seq=163 ttl=64 time=9.07 ms\n[1795028418.455240] 64 bytes from 10.0.0.5: icmp_seq=164 ttl=64 time=9.76 ms\n[1795028418.705331] 64 bytes from 10.0.0.5: icmp_seq=165 ttl=64 time=9.78 ms\n[1795028418.958131] 64 bytes from 10.0.0.5: icmp_seq=166 ttl=64 time=10.9 ms\n[1795028419.207367] 64 bytes from 10.0.0.5: icmp_seq=167 ttl=64 time=9.47 ms\n[1795028419.459469] 64 bytes from 10.0.0.5: icmp_seq=168 ttl=64 time=10.3 ms\n[1795028419.709357] 64 bytes from 10.0.0.5: icmp_seq=169 ttl=64 time=9.72 ms\n[1795028419.959696] 64 bytes from 10.0.0.5: icmp_seq=170 ttl=64 time=9.25 ms\n[1795028420.210526] 64 bytes from 10.0.0.5: icmp_seq=171 ttl=64 time=9.21 ms\n[1795028420.462099] 64 bytes from 10.0.0.5: icmp_seq=172 ttl=64 time=9.52 ms\n[1795028420.712273] 64 bytes from 10.0.0.5: icmp_seq=173 ttl=64 time=9.51 ms\n[1795028420.964851] 64 bytes from 10.0.0.5: icmp_seq=174 ttl=64 time=9.29 ms\n[1795028421.216745] 64 bytes from 10.0.0.5: icmp_seq=175 ttl=64 time=9.37 ms\n[1795028421.467668] 64 bytes from 10.0.0.5: icmp_seq=176 ttl=64 time=9.20 ms\n[1795028421.717794] 64 bytes from 10.0.0.5: icmp_seq=177 ttl=64 time=8.79 ms\n[1795028421.971763] 64 bytes from 10.0.0.5: icmp_seq=178 ttl=64 time=10.4 ms\n[1795028422.224397] 64 bytes from 10.0.0.5: icmp_seq=179 ttl=64 time=10.3 ms\n[1795028422.481272] 64 bytes from 10.0.0.5: icmp_seq=180 ttl=64 time=15.0 ms\n[1795028422.725271] 64 bytes from 10.0.0.5: icmp_seq=181 ttl=64 time=9.86 ms\n[1795028422.974659] 64 bytes from 10.0.0.5: icmp_seq=182 ttl=64 time=8.86 ms\n[1795028423.226342] 64 bytes from 10.0.0.5: icmp_seq=183 ttl=64 time=9.98 ms\n[1795028423.476504] 64 bytes from 10.0.0.5: icmp_seq=184 ttl=64 time=9.73 ms\n[1795028423.730464] 64 bytes from 10.0.0.5: icmp_seq=185 ttl=64 time=11.3 ms\n[1795028423.979334] 64 bytes from 10.0.0.5: icmp_seq=186 ttl=64 time=9.13 ms\n[1795028424.231943] 64 bytes from 10.0.0.5: icmp_seq=187 ttl=64 time=10.4 ms\n[1795028424.481876] 64 bytes from 10.0.0.5: icmp_seq=188 ttl=64 time=9.19 ms\n[1795028424.734336] 64 bytes from 10.0.0.5: icmp_seq=189 ttl=64 time=10.3 ms\n[1795028424.984255] 64 bytes from 10.0.0.5: icmp_seq=190 ttl=64 time=9.24 ms\n[1795028425.237309] 64 bytes from 10.0.0.5: icmp_seq=191 ttl=64 time=11.3 ms\n[1795028425.488612] 64 bytes from 10.0.0.5: icmp_seq=192 ttl=64 time=11.6 ms\n[1795028425.737450] 64 bytes from 10.0.0.5: icmp_seq=193 ttl=64 time=9.81 ms\n[1795028425.988600] 64 bytes from 10.0.0.5: icmp_seq=194 ttl=64 time=10.4 ms\n[1795028426.240571] 64 bytes from 10.0.0.5: icmp_seq=195 ttl=64 time=11.6 ms\n[1795028426.490771] 64 bytes from 10.0.0.5: icmp_seq=196 ttl=64 time=10.7 ms\n[1795028426.740031] 64 bytes from 10.0.0.5: icmp_seq=197 ttl=64 time=9.28 ms\n[1795028426.992906] 64 bytes from 10.0.0.5: icmp_seq=198 ttl=64 time=11.0 ms\n[1795028427.241381] 64 bytes from 10.0.0.5: icmp_seq=199 ttl=64 time=8.60 ms\n[1795028427.493280] 64 bytes from 10.0.0.5: icmp_seq=200 ttl=64 time=9.94 ms\n[1795028427.745424] 64 bytes from 10.0.0.5: icmp_seq=201 ttl=64 time=10.2 ms\n[1795028427.996571] 64 bytes from 10.0.0.5: icmp_seq=202 ttl=64 time=10.2 ms\n[1795028428.249527] 64 bytes from 10.0.0.5: icmp_seq=203 ttl=64 time=11.4 ms\n[1795028428.498101] 64 bytes from 10.0.0.5: icmp_seq=204 ttl=64 time=10.1 ms\n[1795028428.750040] 64 bytes from 10.0.0.5: icmp_seq=205 ttl=64 time=10.9 ms\n[1795028429.000334] 64 bytes from 10.0.0.5: icmp_seq=206 ttl=64 time=10.5 ms\n[1795028429.345604] 64 bytes from 10.0.0.5: icmp_seq=207 ttl=64 time=42.1 ms\n[1795028429.565552] 64 bytes from 10.0.0.5: icmp_seq=208 ttl=64 time=10.5 ms\n[1795028429.814865] 64 bytes from 10.0.0.5: icmp_seq=209 ttl=64 time=9.52 ms\n[1795028430.065360] 64 bytes from 10.0.0.5: icmp_seq=210 ttl=64 time=9.17 ms\n[1795028430.315620] 64 bytes from 10.0.0.5: icmp_seq=211 ttl=64 time=9.42 ms\n[1795028430.568469] 64 bytes from 10.0.0.5: icmp_seq=212 ttl=64 time=11.4 ms\n[1795028430.821185] 64 bytes from 10.0.0.5: icmp_seq=213 ttl=64 time=11.9 ms\n[1795028431.070952] 64 bytes from 10.0.0.5: icmp_seq=214 ttl=64 time=11.3 ms\n[1795028431.320987] 64 bytes from 10.0.0.5: icmp_seq=215 ttl=64 time=9.58 ms\n[1795028431.572928] 64 bytes from 10.0.0.5: icmp_seq=216 ttl=64 time=11.8 ms\n[1795028431.821459] 64 bytes from 10.0.0.5: icmp_seq=217 ttl=64 time=9.23 ms\n[1795028432.073638] 64 bytes from 10.0.0.5: icmp_seq=218 ttl=64 time=11.0 ms\n[1795028432.324692] 64 bytes from 10.0.0.5: icmp_seq=219 ttl=64 time=9.65 ms\n[1795028432.600206] 64 bytes from 10.0.0.5: icmp_seq=220 ttl=64 time=33.6 ms\n[1795028432.827260] 64 bytes from 10.0.0.5: icmp_seq=221 ttl=64 time=9.39 ms\n[1795028433.079016] 64 bytes from 10.0.0.5: icmp_seq=222 ttl=64 time=9.65 ms\n[1795028433.328981] 64 bytes from 10.0.0.5: icmp_seq=223 ttl=64 time=9.05 ms\n[1795028433.579370] 64 bytes from 10.0.0.5: icmp_seq=224 ttl=64 time=8.88 ms\n[1795028433.829819] 64 bytes from 10.0.0.5: icmp_seq=225 ttl=64 time=8.67 ms\n[1795028434.081200] 64 bytes from 10.0.0.5: icmp_seq=226 ttl=64 time=9.32 ms\n[1795028434.331957] 64 bytes from 10.0.0.5: icmp_seq=227 ttl=64 time=9.58 ms\n[1795028434.587746] 64 bytes from 10.0.0.5: icmp_seq=228 ttl=64 time=14.4 ms\n[1795028434.835217] 64 bytes from 10.0.0.5: icmp_seq=229 ttl=64 time=10.4 ms\n[1795028435.084483] 64 bytes from 10.0.0.5: icmp_seq=230 ttl=64 time=9.42 ms\n[1795028435.337189] 64 bytes from 10.0.0.5: icmp_seq=231 ttl=64 time=10.7 ms\n[1795028435.589411] 64 bytes from 10.0.0.5: icmp_seq=232 ttl=64 time=10.6 ms\n[1795028435.839168] 64 bytes from 10.0.0.5: icmp_seq=233 ttl=64 time=10.3 ms\n[1795028436.090179] 64 bytes from 10.0.0.5: icmp_seq=234 ttl=64 time=11.0 ms\n[1795028436.341148] 64 bytes from 10.0.0.5: icmp_seq=235 ttl=64 time=11.1 ms\n[1795028436.590080] 64 bytes from 10.0.0.5: icmp_seq=236 ttl=64 time=9.32 ms\n[1795028436.842121] 64 bytes from 10.0.0.5: icmp_seq=237 ttl=64 time=10.1 ms\n[1795028437.091796] 64 bytes from 10.0.0.5: icmp_seq=238 ttl=64 time=8.87 ms\n[1795028437.344127] 64 bytes from 10.0.0.5: icmp_seq=239 ttl=64 time=9.34 ms\n[1795028437.596214] 64 bytes from 10.0.0.5: icmp_seq=240 ttl=64 time=10.1 ms\n[1795028437.846767] 64 bytes from 10.0.0.5: icmp_seq=241 ttl=64 time=9.18 ms\n[1795028438.102397] 64 bytes from 10.0.0.5: icmp_seq=242 ttl=64 time=14.2 ms\n[1795028438.352199] 64 bytes from 10.0.0.5: icmp_seq=243 ttl=64 time=12.5 ms\n[1795028438.618968] 64 bytes from 10.0.0.5: icmp_seq=244 ttl=64 time=14.4 ms\n[1795028438.877921] 64 bytes from 10.0.0.5: icmp_seq=245 ttl=64 time=20.0 ms\n",
+    "rx5822": "------------------------------------------------------------\nServer listening on UDP port 5822\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 5822 connected with 10.0.0.4 port 38522\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-1.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.266 ms 0/1373 (0%)\n[  1] 0.0000-1.0000 sec  27 datagrams received out-of-order\n[  1] 1.0000-2.0000 sec  1.99 MBytes  16.7 Mbits/sec   0.407 ms 56/1479 (3.8%)\n[  1] 1.0000-2.0000 sec  16 datagrams received out-of-order\n[  1] 2.0000-3.0000 sec  1.78 MBytes  14.9 Mbits/sec   0.539 ms 252/1519 (17%)\n[  1] 2.0000-3.0000 sec  30 datagrams received out-of-order\n[  1] 3.0000-4.0000 sec  1.85 MBytes  15.5 Mbits/sec   0.584 ms 213/1535 (14%)\n[  1] 3.0000-4.0000 sec  26 datagrams received out-of-order\n[  1] 4.0000-5.0000 sec  1.97 MBytes  16.5 Mbits/sec   0.389 ms 124/1529 (8.1%)\n[  1] 4.0000-5.0000 sec  15 datagrams received out-of-order\n[  1] 5.0000-6.0000 sec  1.95 MBytes  16.3 Mbits/sec   0.269 ms 142/1530 (9.3%)\n[  1] 5.0000-6.0000 sec  21 datagrams received out-of-order\n[  1] 6.0000-7.0000 sec  1.96 MBytes  16.4 Mbits/sec   0.317 ms 143/1540 (9.3%)\n[  1] 6.0000-7.0000 sec  15 datagrams received out-of-order\n[  1] 7.0000-8.0000 sec  1.88 MBytes  15.8 Mbits/sec   0.398 ms 168/1510 (11%)\n[  1] 7.0000-8.0000 sec  13 datagrams received out-of-order\n[  1] 8.0000-9.0000 sec  1.94 MBytes  16.3 Mbits/sec   0.295 ms 155/1542 (10%)\n[  1] 8.0000-9.0000 sec  14 datagrams received out-of-order\n[  1] 9.0000-10.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.432 ms 151/1524 (9.9%)\n[  1] 9.0000-10.0000 sec  22 datagrams received out-of-order\n[  1] 10.0000-11.0000 sec  1.98 MBytes  16.6 Mbits/sec   0.279 ms 132/1541 (8.6%)\n[  1] 10.0000-11.0000 sec  14 datagrams received out-of-order\n[  1] 11.0000-12.0000 sec  2.44 MBytes  20.5 Mbits/sec   0.187 ms 0/1744 (0%)\n[  1] 11.0000-12.0000 sec  20 datagrams received out-of-order\n[  1] 12.0000-13.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.223 ms 0/1533 (0%)\n[  1] 12.0000-13.0000 sec  19 datagrams received out-of-order\n[  1] 13.0000-14.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.303 ms 0/1532 (0%)\n[  1] 13.0000-14.0000 sec  19 datagrams received out-of-order\n[  1] 14.0000-15.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.233 ms 0/1530 (0%)\n[  1] 14.0000-15.0000 sec  11 datagrams received out-of-order\n[  1] 15.0000-16.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.300 ms 0/1529 (0%)\n[  1] 15.0000-16.0000 sec  9 datagrams received out-of-order\n[  1] 16.0000-17.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.310 ms 0/1532 (0%)\n[  1] 16.0000-17.0000 sec  18 datagrams received out-of-order\n[  1] 17.0000-18.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.341 ms 0/1529 (0%)\n[  1] 17.0000-18.0000 sec  18 datagrams received out-of-order\n[  1] 18.0000-19.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.322 ms 0/1530 (0%)\n[  1] 18.0000-19.0000 sec  13 datagrams received out-of-order\n[  1] 19.0000-20.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.294 ms 0/1531 (0%)\n[  1] 19.0000-20.0000 sec  19 datagrams received out-of-order\n[  1] 20.0000-21.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.319 ms 0/1533 (0%)\n[  1] 20.0000-21.0000 sec  13 datagrams received out-of-order\n[  1] 21.0000-22.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.332 ms 0/1530 (0%)\n[  1] 21.0000-22.0000 sec  15 datagrams received out-of-order\n[  1] 22.0000-23.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.297 ms 0/1530 (0%)\n[  1] 22.0000-23.0000 sec  7 datagrams received out-of-order\n[  1] 23.0000-24.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.195 ms 0/1531 (0%)\n[  1] 23.0000-24.0000 sec  23 datagrams received out-of-order\n[  1] 24.0000-25.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.259 ms 0/1531 (0%)\n[  1] 24.0000-25.0000 sec  12 datagrams received out-of-order\n[  1] 25.0000-26.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.206 ms 0/1531 (0%)\n[  1] 25.0000-26.0000 sec  7 datagrams received out-of-order\n[  1] 26.0000-27.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.233 ms 0/1530 (0%)\n[  1] 26.0000-27.0000 sec  2 datagrams received out-of-order\n[  1] 27.0000-28.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.309 ms 0/1530 (0%)\n[  1] 27.0000-28.0000 sec  9 datagrams received out-of-order\n[  1] 28.0000-29.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.264 ms 0/1532 (0%)\n[  1] 28.0000-29.0000 sec  7 datagrams received out-of-order\n[  1] 29.0000-30.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.255 ms 0/1530 (0%)\n[  1] 29.0000-30.0000 sec  15 datagrams received out-of-order\n[  1] 30.0000-31.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.243 ms 0/1530 (0%)\n[  1] 30.0000-31.0000 sec  14 datagrams received out-of-order\n[  1] 31.0000-32.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.199 ms 0/1531 (0%)\n[  1] 31.0000-32.0000 sec  7 datagrams received out-of-order\n[  1] 32.0000-33.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.255 ms 0/1530 (0%)\n[  1] 32.0000-33.0000 sec  19 datagrams received out-of-order\n[  1] 33.0000-34.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.314 ms 0/1532 (0%)\n[  1] 33.0000-34.0000 sec  23 datagrams received out-of-order\n[  1] 34.0000-35.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.214 ms 0/1528 (0%)\n[  1] 34.0000-35.0000 sec  7 datagrams received out-of-order\n[  1] 35.0000-36.0000 sec  2.07 MBytes  17.3 Mbits/sec   1.758 ms 0/1473 (0%)\n[  1] 35.0000-36.0000 sec  11 datagrams received out-of-order\n[  1] 36.0000-37.0000 sec  2.22 MBytes  18.7 Mbits/sec   0.248 ms 0/1587 (0%)\n[  1] 36.0000-37.0000 sec  5 datagrams received out-of-order\n[  1] 37.0000-38.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.402 ms 0/1534 (0%)\n[  1] 37.0000-38.0000 sec  2 datagrams received out-of-order\n[  1] 38.0000-39.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.271 ms 0/1531 (0%)\n[  1] 38.0000-39.0000 sec  13 datagrams received out-of-order\n[  1] 39.0000-40.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.258 ms 0/1529 (0%)\n[  1] 39.0000-40.0000 sec  17 datagrams received out-of-order\n[  1] 40.0000-41.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.237 ms 0/1530 (0%)\n[  1] 40.0000-41.0000 sec  14 datagrams received out-of-order\n[  1] 41.0000-42.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.382 ms 0/1532 (0%)\n[  1] 41.0000-42.0000 sec  20 datagrams received out-of-order\n[  1] 42.0000-43.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.231 ms 0/1530 (0%)\n[  1] 42.0000-43.0000 sec  20 datagrams received out-of-order\n[  1] 43.0000-44.0000 sec  2.14 MBytes  17.9 Mbits/sec   0.255 ms 0/1524 (0%)\n[  1] 43.0000-44.0000 sec  17 datagrams received out-of-order\n[  1] 44.0000-45.0000 sec  2.15 MBytes  18.1 Mbits/sec   0.383 ms 0/1536 (0%)\n[  1] 44.0000-45.0000 sec  31 datagrams received out-of-order\n[  1] 45.0000-46.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.289 ms 0/1533 (0%)\n[  1] 45.0000-46.0000 sec  15 datagrams received out-of-order\n[  1] 46.0000-47.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.247 ms 0/1531 (0%)\n[  1] 46.0000-47.0000 sec  19 datagrams received out-of-order\n[  1] 47.0000-48.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.309 ms 0/1528 (0%)\n[  1] 47.0000-48.0000 sec  15 datagrams received out-of-order\n[  1] 48.0000-49.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.301 ms 0/1533 (0%)\n[  1] 48.0000-49.0000 sec  44 datagrams received out-of-order\n[  1] 49.0000-50.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.295 ms 0/1529 (0%)\n[  1] 49.0000-50.0000 sec  14 datagrams received out-of-order\n[  1] 50.0000-51.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.170 ms 0/1532 (0%)\n[  1] 50.0000-51.0000 sec  19 datagrams received out-of-order\n[  1] 51.0000-52.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.285 ms 0/1531 (0%)\n[  1] 51.0000-52.0000 sec  22 datagrams received out-of-order\n[  1] 52.0000-53.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.363 ms 0/1528 (0%)\n[  1] 52.0000-53.0000 sec  20 datagrams received out-of-order\n[  1] 53.0000-54.0000 sec  2.14 MBytes  17.9 Mbits/sec   0.420 ms 0/1526 (0%)\n[  1] 53.0000-54.0000 sec  26 datagrams received out-of-order\n[  1] 54.0000-55.0000 sec  2.16 MBytes  18.1 Mbits/sec   0.335 ms 0/1538 (0%)\n[  1] 54.0000-55.0000 sec  9 datagrams received out-of-order\n[  1] 55.0000-56.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.276 ms 0/1529 (0%)\n[  1] 55.0000-56.0000 sec  22 datagrams received out-of-order\n[  1] 56.0000-57.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.220 ms 0/1528 (0%)\n[  1] 56.0000-57.0000 sec  18 datagrams received out-of-order\n[  1] 57.0000-58.0000 sec  2.15 MBytes  18.0 Mbits/sec   0.251 ms 0/1534 (0%)\n[  1] 57.0000-58.0000 sec  16 datagrams received out-of-order\n[  1] 58.0000-59.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.296 ms 0/1530 (0%)\n[  1] 58.0000-59.0000 sec  23 datagrams received out-of-order\n[  1] 59.0000-60.0000 sec  2.14 MBytes  18.0 Mbits/sec   0.292 ms 0/1530 (0%)\n[  1] 59.0000-60.0000 sec  17 datagrams received out-of-order\n[  1] 0.0000-60.0009 sec   127 MBytes  17.7 Mbits/sec   0.337 ms 1536/91840 (1.7%)\n[  1] 0.0000-60.0009 sec  988 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "ping5821": "PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.\n[1795028377.466329] 64 bytes from 10.0.0.6: icmp_seq=1 ttl=64 time=8.91 ms\n[1795028377.721177] 64 bytes from 10.0.0.6: icmp_seq=2 ttl=64 time=10.1 ms\n[1795028377.972078] 64 bytes from 10.0.0.6: icmp_seq=3 ttl=64 time=9.43 ms\n[1795028378.249923] 64 bytes from 10.0.0.6: icmp_seq=4 ttl=64 time=36.7 ms\n[1795028378.522968] 64 bytes from 10.0.0.6: icmp_seq=5 ttl=64 time=59.3 ms\n[1795028378.816062] 64 bytes from 10.0.0.6: icmp_seq=6 ttl=64 time=101 ms\n[1795028379.091942] 64 bytes from 10.0.0.6: icmp_seq=7 ttl=64 time=125 ms\n[1795028379.362413] 64 bytes from 10.0.0.6: icmp_seq=8 ttl=64 time=144 ms\n[1795028380.152853] 64 bytes from 10.0.0.6: icmp_seq=11 ttl=64 time=177 ms\n[1795028380.375477] 64 bytes from 10.0.0.6: icmp_seq=12 ttl=64 time=150 ms\n[1795028380.698183] 64 bytes from 10.0.0.6: icmp_seq=13 ttl=64 time=217 ms\n[1795028381.187260] 64 bytes from 10.0.0.6: icmp_seq=15 ttl=64 time=204 ms\n[1795028381.384467] 64 bytes from 10.0.0.6: icmp_seq=16 ttl=64 time=150 ms\n[1795028381.636625] 64 bytes from 10.0.0.6: icmp_seq=17 ttl=64 time=150 ms\n[1795028381.922441] 64 bytes from 10.0.0.6: icmp_seq=18 ttl=64 time=183 ms\n[1795028382.145427] 64 bytes from 10.0.0.6: icmp_seq=19 ttl=64 time=156 ms\n[1795028382.389904] 64 bytes from 10.0.0.6: icmp_seq=20 ttl=64 time=150 ms\n[1795028382.637036] 64 bytes from 10.0.0.6: icmp_seq=21 ttl=64 time=145 ms\n[1795028382.897013] 64 bytes from 10.0.0.6: icmp_seq=22 ttl=64 time=154 ms\n[1795028383.141505] 64 bytes from 10.0.0.6: icmp_seq=23 ttl=64 time=148 ms\n[1795028383.396419] 64 bytes from 10.0.0.6: icmp_seq=24 ttl=64 time=153 ms\n[1795028383.652163] 64 bytes from 10.0.0.6: icmp_seq=25 ttl=64 time=155 ms\n[1795028383.901454] 64 bytes from 10.0.0.6: icmp_seq=26 ttl=64 time=155 ms\n[1795028384.149852] 64 bytes from 10.0.0.6: icmp_seq=27 ttl=64 time=154 ms\n[1795028384.404432] 64 bytes from 10.0.0.6: icmp_seq=28 ttl=64 time=157 ms\n[1795028384.654658] 64 bytes from 10.0.0.6: icmp_seq=29 ttl=64 time=156 ms\n[1795028384.905850] 64 bytes from 10.0.0.6: icmp_seq=30 ttl=64 time=156 ms\n[1795028385.159939] 64 bytes from 10.0.0.6: icmp_seq=31 ttl=64 time=160 ms\n[1795028385.408941] 64 bytes from 10.0.0.6: icmp_seq=32 ttl=64 time=157 ms\n[1795028385.661030] 64 bytes from 10.0.0.6: icmp_seq=33 ttl=64 time=159 ms\n[1795028385.905478] 64 bytes from 10.0.0.6: icmp_seq=34 ttl=64 time=153 ms\n[1795028386.670559] 64 bytes from 10.0.0.6: icmp_seq=37 ttl=64 time=151 ms\n[1795028386.922748] 64 bytes from 10.0.0.6: icmp_seq=38 ttl=64 time=152 ms\n[1795028387.177695] 64 bytes from 10.0.0.6: icmp_seq=39 ttl=64 time=158 ms\n[1795028387.427515] 64 bytes from 10.0.0.6: icmp_seq=40 ttl=64 time=157 ms\n[1795028387.669007] 64 bytes from 10.0.0.6: icmp_seq=41 ttl=64 time=148 ms\n[1795028387.930537] 64 bytes from 10.0.0.6: icmp_seq=42 ttl=64 time=159 ms\n[1795028388.432090] 64 bytes from 10.0.0.6: icmp_seq=44 ttl=64 time=152 ms\n[1795028388.681239] 64 bytes from 10.0.0.6: icmp_seq=45 ttl=64 time=151 ms\n[1795028388.933083] 64 bytes from 10.0.0.6: icmp_seq=46 ttl=64 time=152 ms\n[1795028389.137870] 64 bytes from 10.0.0.6: icmp_seq=47 ttl=64 time=106 ms\n[1795028389.340038] 64 bytes from 10.0.0.6: icmp_seq=48 ttl=64 time=57.9 ms\n[1795028389.542509] 64 bytes from 10.0.0.6: icmp_seq=49 ttl=64 time=8.99 ms\n[1795028389.795090] 64 bytes from 10.0.0.6: icmp_seq=50 ttl=64 time=10.7 ms\n[1795028390.045307] 64 bytes from 10.0.0.6: icmp_seq=51 ttl=64 time=10.3 ms\n[1795028390.298514] 64 bytes from 10.0.0.6: icmp_seq=52 ttl=64 time=12.2 ms\n[1795028390.560443] 64 bytes from 10.0.0.6: icmp_seq=53 ttl=64 time=23.3 ms\n[1795028390.797146] 64 bytes from 10.0.0.6: icmp_seq=54 ttl=64 time=9.11 ms\n[1795028391.049598] 64 bytes from 10.0.0.6: icmp_seq=55 ttl=64 time=10.4 ms\n[1795028391.299983] 64 bytes from 10.0.0.6: icmp_seq=56 ttl=64 time=9.84 ms\n[1795028391.551429] 64 bytes from 10.0.0.6: icmp_seq=57 ttl=64 time=9.51 ms\n[1795028391.800235] 64 bytes from 10.0.0.6: icmp_seq=58 ttl=64 time=8.90 ms\n[1795028392.054371] 64 bytes from 10.0.0.6: icmp_seq=59 ttl=64 time=12.3 ms\n[1795028392.302957] 64 bytes from 10.0.0.6: icmp_seq=60 ttl=64 time=9.93 ms\n[1795028392.553454] 64 bytes from 10.0.0.6: icmp_seq=61 ttl=64 time=9.30 ms\n[1795028392.803066] 64 bytes from 10.0.0.6: icmp_seq=62 ttl=64 time=8.83 ms\n[1795028393.060264] 64 bytes from 10.0.0.6: icmp_seq=63 ttl=64 time=14.1 ms\n[1795028393.312951] 64 bytes from 10.0.0.6: icmp_seq=64 ttl=64 time=16.3 ms\n[1795028393.565016] 64 bytes from 10.0.0.6: icmp_seq=65 ttl=64 time=15.7 ms\n[1795028393.850930] 64 bytes from 10.0.0.6: icmp_seq=66 ttl=64 time=51.8 ms\n[1795028394.073088] 64 bytes from 10.0.0.6: icmp_seq=67 ttl=64 time=24.3 ms\n[1795028394.315973] 64 bytes from 10.0.0.6: icmp_seq=68 ttl=64 time=16.1 ms\n[1795028394.566002] 64 bytes from 10.0.0.6: icmp_seq=69 ttl=64 time=15.5 ms\n[1795028394.817270] 64 bytes from 10.0.0.6: icmp_seq=70 ttl=64 time=15.3 ms\n[1795028395.082647] 64 bytes from 10.0.0.6: icmp_seq=71 ttl=64 time=28.3 ms\n[1795028395.320942] 64 bytes from 10.0.0.6: icmp_seq=72 ttl=64 time=17.7 ms\n[1795028395.593346] 64 bytes from 10.0.0.6: icmp_seq=73 ttl=64 time=36.3 ms\n[1795028395.852548] 64 bytes from 10.0.0.6: icmp_seq=74 ttl=64 time=43.8 ms\n[1795028396.073930] 64 bytes from 10.0.0.6: icmp_seq=75 ttl=64 time=13.5 ms\n[1795028396.384521] 64 bytes from 10.0.0.6: icmp_seq=76 ttl=64 time=71.8 ms\n[1795028396.623942] 64 bytes from 10.0.0.6: icmp_seq=77 ttl=64 time=59.3 ms\n[1795028396.879475] 64 bytes from 10.0.0.6: icmp_seq=78 ttl=64 time=63.6 ms\n[1795028397.128963] 64 bytes from 10.0.0.6: icmp_seq=79 ttl=64 time=62.9 ms\n[1795028397.364104] 64 bytes from 10.0.0.6: icmp_seq=80 ttl=64 time=46.8 ms\n[1795028397.638693] 64 bytes from 10.0.0.6: icmp_seq=81 ttl=64 time=70.8 ms\n[1795028397.870998] 64 bytes from 10.0.0.6: icmp_seq=82 ttl=64 time=52.5 ms\n[1795028398.105306] 64 bytes from 10.0.0.6: icmp_seq=83 ttl=64 time=35.3 ms\n[1795028398.341306] 64 bytes from 10.0.0.6: icmp_seq=84 ttl=64 time=18.2 ms\n[1795028398.587549] 64 bytes from 10.0.0.6: icmp_seq=85 ttl=64 time=14.4 ms\n[1795028398.855919] 64 bytes from 10.0.0.6: icmp_seq=86 ttl=64 time=30.5 ms\n[1795028399.087031] 64 bytes from 10.0.0.6: icmp_seq=87 ttl=64 time=13.4 ms\n[1795028399.339973] 64 bytes from 10.0.0.6: icmp_seq=88 ttl=64 time=14.9 ms\n[1795028399.602892] 64 bytes from 10.0.0.6: icmp_seq=89 ttl=64 time=27.4 ms\n[1795028399.888628] 64 bytes from 10.0.0.6: icmp_seq=90 ttl=64 time=61.4 ms\n[1795028400.108721] 64 bytes from 10.0.0.6: icmp_seq=91 ttl=64 time=32.4 ms\n[1795028400.343538] 64 bytes from 10.0.0.6: icmp_seq=92 ttl=64 time=15.8 ms\n[1795028400.593959] 64 bytes from 10.0.0.6: icmp_seq=93 ttl=64 time=16.2 ms\n[1795028400.846082] 64 bytes from 10.0.0.6: icmp_seq=94 ttl=64 time=15.6 ms\n[1795028401.094159] 64 bytes from 10.0.0.6: icmp_seq=95 ttl=64 time=14.3 ms\n[1795028401.354891] 64 bytes from 10.0.0.6: icmp_seq=96 ttl=64 time=23.8 ms\n[1795028401.598199] 64 bytes from 10.0.0.6: icmp_seq=97 ttl=64 time=16.3 ms\n[1795028401.899928] 64 bytes from 10.0.0.6: icmp_seq=98 ttl=64 time=67.9 ms\n[1795028402.130660] 64 bytes from 10.0.0.6: icmp_seq=99 ttl=64 time=48.9 ms\n[1795028402.372367] 64 bytes from 10.0.0.6: icmp_seq=100 ttl=64 time=39.8 ms\n[1795028402.628669] 64 bytes from 10.0.0.6: icmp_seq=101 ttl=64 time=44.6 ms\n[1795028402.897250] 64 bytes from 10.0.0.6: icmp_seq=102 ttl=64 time=62.9 ms\n[1795028403.157975] 64 bytes from 10.0.0.6: icmp_seq=103 ttl=64 time=72.6 ms\n[1795028403.388460] 64 bytes from 10.0.0.6: icmp_seq=104 ttl=64 time=52.8 ms\n[1795028403.617713] 64 bytes from 10.0.0.6: icmp_seq=105 ttl=64 time=30.1 ms\n[1795028403.859682] 64 bytes from 10.0.0.6: icmp_seq=106 ttl=64 time=18.6 ms\n[1795028404.108377] 64 bytes from 10.0.0.6: icmp_seq=107 ttl=64 time=16.5 ms\n[1795028404.357164] 64 bytes from 10.0.0.6: icmp_seq=108 ttl=64 time=14.2 ms\n[1795028404.609124] 64 bytes from 10.0.0.6: icmp_seq=109 ttl=64 time=14.9 ms\n[1795028404.885411] 64 bytes from 10.0.0.6: icmp_seq=110 ttl=64 time=38.0 ms\n[1795028405.126014] 64 bytes from 10.0.0.6: icmp_seq=111 ttl=64 time=26.7 ms\n[1795028405.374485] 64 bytes from 10.0.0.6: icmp_seq=112 ttl=64 time=25.0 ms\n[1795028405.615946] 64 bytes from 10.0.0.6: icmp_seq=113 ttl=64 time=15.6 ms\n[1795028405.867633] 64 bytes from 10.0.0.6: icmp_seq=114 ttl=64 time=16.3 ms\n[1795028406.117595] 64 bytes from 10.0.0.6: icmp_seq=115 ttl=64 time=14.8 ms\n[1795028406.368155] 64 bytes from 10.0.0.6: icmp_seq=116 ttl=64 time=14.7 ms\n[1795028406.619213] 64 bytes from 10.0.0.6: icmp_seq=117 ttl=64 time=14.6 ms\n[1795028406.870392] 64 bytes from 10.0.0.6: icmp_seq=118 ttl=64 time=15.4 ms\n[1795028407.122394] 64 bytes from 10.0.0.6: icmp_seq=119 ttl=64 time=15.1 ms\n[1795028407.390885] 64 bytes from 10.0.0.6: icmp_seq=120 ttl=64 time=33.4 ms\n[1795028407.672086] 64 bytes from 10.0.0.6: icmp_seq=121 ttl=64 time=62.0 ms\n[1795028407.913571] 64 bytes from 10.0.0.6: icmp_seq=122 ttl=64 time=52.8 ms\n[1795028408.154538] 64 bytes from 10.0.0.6: icmp_seq=123 ttl=64 time=44.3 ms\n[1795028408.393223] 64 bytes from 10.0.0.6: icmp_seq=124 ttl=64 time=32.0 ms\n[1795028408.627160] 64 bytes from 10.0.0.6: icmp_seq=125 ttl=64 time=15.3 ms\n[1795028408.893365] 64 bytes from 10.0.0.6: icmp_seq=126 ttl=64 time=29.2 ms\n[1795028409.127297] 64 bytes from 10.0.0.6: icmp_seq=127 ttl=64 time=14.3 ms\n[1795028409.381494] 64 bytes from 10.0.0.6: icmp_seq=128 ttl=64 time=17.5 ms\n[1795028409.639398] 64 bytes from 10.0.0.6: icmp_seq=129 ttl=64 time=24.1 ms\n[1795028409.881106] 64 bytes from 10.0.0.6: icmp_seq=130 ttl=64 time=13.6 ms\n[1795028410.134179] 64 bytes from 10.0.0.6: icmp_seq=131 ttl=64 time=16.8 ms\n[1795028410.391054] 64 bytes from 10.0.0.6: icmp_seq=132 ttl=64 time=21.6 ms\n[1795028410.650287] 64 bytes from 10.0.0.6: icmp_seq=133 ttl=64 time=30.2 ms\n[1795028410.899819] 64 bytes from 10.0.0.6: icmp_seq=134 ttl=64 time=27.4 ms\n[1795028411.137017] 64 bytes from 10.0.0.6: icmp_seq=135 ttl=64 time=14.6 ms\n[1795028411.392452] 64 bytes from 10.0.0.6: icmp_seq=136 ttl=64 time=19.2 ms\n[1795028411.647746] 64 bytes from 10.0.0.6: icmp_seq=137 ttl=64 time=22.4 ms\n[1795028411.893075] 64 bytes from 10.0.0.6: icmp_seq=138 ttl=64 time=17.2 ms\n[1795028412.143198] 64 bytes from 10.0.0.6: icmp_seq=139 ttl=64 time=16.2 ms\n[1795028412.399460] 64 bytes from 10.0.0.6: icmp_seq=140 ttl=64 time=21.3 ms\n[1795028412.644759] 64 bytes from 10.0.0.6: icmp_seq=141 ttl=64 time=15.8 ms\n[1795028412.896024] 64 bytes from 10.0.0.6: icmp_seq=142 ttl=64 time=15.3 ms\n[1795028413.157348] 64 bytes from 10.0.0.6: icmp_seq=143 ttl=64 time=26.1 ms\n[1795028413.403564] 64 bytes from 10.0.0.6: icmp_seq=144 ttl=64 time=20.8 ms\n[1795028413.654653] 64 bytes from 10.0.0.6: icmp_seq=145 ttl=64 time=19.4 ms\n[1795028413.897460] 64 bytes from 10.0.0.6: icmp_seq=146 ttl=64 time=12.9 ms\n[1795028414.202412] 64 bytes from 10.0.0.6: icmp_seq=147 ttl=64 time=67.0 ms\n[1795028414.442949] 64 bytes from 10.0.0.6: icmp_seq=148 ttl=64 time=56.8 ms\n[1795028414.681326] 64 bytes from 10.0.0.6: icmp_seq=149 ttl=64 time=44.7 ms\n[1795028414.920708] 64 bytes from 10.0.0.6: icmp_seq=150 ttl=64 time=32.9 ms\n[1795028415.156424] 64 bytes from 10.0.0.6: icmp_seq=151 ttl=64 time=17.0 ms\n[1795028415.405232] 64 bytes from 10.0.0.6: icmp_seq=152 ttl=64 time=14.0 ms\n[1795028415.657518] 64 bytes from 10.0.0.6: icmp_seq=153 ttl=64 time=16.3 ms\n[1795028415.906771] 64 bytes from 10.0.0.6: icmp_seq=154 ttl=64 time=14.5 ms\n[1795028416.159247] 64 bytes from 10.0.0.6: icmp_seq=155 ttl=64 time=15.3 ms\n[1795028416.410183] 64 bytes from 10.0.0.6: icmp_seq=156 ttl=64 time=14.0 ms\n[1795028416.666613] 64 bytes from 10.0.0.6: icmp_seq=157 ttl=64 time=19.7 ms\n[1795028416.917244] 64 bytes from 10.0.0.6: icmp_seq=158 ttl=64 time=17.7 ms\n[1795028417.164934] 64 bytes from 10.0.0.6: icmp_seq=159 ttl=64 time=15.9 ms\n[1795028417.416480] 64 bytes from 10.0.0.6: icmp_seq=160 ttl=64 time=17.2 ms\n[1795028417.667173] 64 bytes from 10.0.0.6: icmp_seq=161 ttl=64 time=16.9 ms\n[1795028417.936565] 64 bytes from 10.0.0.6: icmp_seq=162 ttl=64 time=35.8 ms\n[1795028418.181409] 64 bytes from 10.0.0.6: icmp_seq=163 ttl=64 time=30.5 ms\n[1795028418.421031] 64 bytes from 10.0.0.6: icmp_seq=164 ttl=64 time=18.5 ms\n[1795028418.668061] 64 bytes from 10.0.0.6: icmp_seq=165 ttl=64 time=15.1 ms\n[1795028418.917742] 64 bytes from 10.0.0.6: icmp_seq=166 ttl=64 time=14.0 ms\n[1795028419.168772] 64 bytes from 10.0.0.6: icmp_seq=167 ttl=64 time=13.5 ms\n[1795028419.421159] 64 bytes from 10.0.0.6: icmp_seq=168 ttl=64 time=15.2 ms\n[1795028419.672953] 64 bytes from 10.0.0.6: icmp_seq=169 ttl=64 time=14.3 ms\n[1795028419.926207] 64 bytes from 10.0.0.6: icmp_seq=170 ttl=64 time=16.5 ms\n[1795028420.174513] 64 bytes from 10.0.0.6: icmp_seq=171 ttl=64 time=13.4 ms\n[1795028420.428810] 64 bytes from 10.0.0.6: icmp_seq=172 ttl=64 time=16.6 ms\n[1795028420.682016] 64 bytes from 10.0.0.6: icmp_seq=173 ttl=64 time=18.2 ms\n[1795028420.929285] 64 bytes from 10.0.0.6: icmp_seq=174 ttl=64 time=14.7 ms\n[1795028421.180844] 64 bytes from 10.0.0.6: icmp_seq=175 ttl=64 time=14.9 ms\n[1795028421.435902] 64 bytes from 10.0.0.6: icmp_seq=176 ttl=64 time=18.7 ms\n[1795028421.684302] 64 bytes from 10.0.0.6: icmp_seq=177 ttl=64 time=16.1 ms\n[1795028421.930660] 64 bytes from 10.0.0.6: icmp_seq=178 ttl=64 time=12.7 ms\n[1795028422.182951] 64 bytes from 10.0.0.6: icmp_seq=179 ttl=64 time=14.3 ms\n[1795028422.434232] 64 bytes from 10.0.0.6: icmp_seq=180 ttl=64 time=14.2 ms\n[1795028422.686028] 64 bytes from 10.0.0.6: icmp_seq=181 ttl=64 time=14.3 ms\n[1795028422.937906] 64 bytes from 10.0.0.6: icmp_seq=182 ttl=64 time=15.9 ms\n[1795028423.186625] 64 bytes from 10.0.0.6: icmp_seq=183 ttl=64 time=14.0 ms\n[1795028423.436994] 64 bytes from 10.0.0.6: icmp_seq=184 ttl=64 time=13.8 ms\n[1795028423.689392] 64 bytes from 10.0.0.6: icmp_seq=185 ttl=64 time=14.5 ms\n[1795028423.946769] 64 bytes from 10.0.0.6: icmp_seq=186 ttl=64 time=19.3 ms\n[1795028424.193244] 64 bytes from 10.0.0.6: icmp_seq=187 ttl=64 time=14.7 ms\n[1795028424.443368] 64 bytes from 10.0.0.6: icmp_seq=188 ttl=64 time=14.4 ms\n[1795028424.694558] 64 bytes from 10.0.0.6: icmp_seq=189 ttl=64 time=14.4 ms\n[1795028424.946400] 64 bytes from 10.0.0.6: icmp_seq=190 ttl=64 time=15.3 ms\n[1795028425.198318] 64 bytes from 10.0.0.6: icmp_seq=191 ttl=64 time=16.1 ms\n[1795028425.447454] 64 bytes from 10.0.0.6: icmp_seq=192 ttl=64 time=14.7 ms\n[1795028425.698443] 64 bytes from 10.0.0.6: icmp_seq=193 ttl=64 time=15.1 ms\n[1795028425.952598] 64 bytes from 10.0.0.6: icmp_seq=194 ttl=64 time=18.1 ms\n[1795028426.200143] 64 bytes from 10.0.0.6: icmp_seq=195 ttl=64 time=14.8 ms\n[1795028426.452109] 64 bytes from 10.0.0.6: icmp_seq=196 ttl=64 time=15.7 ms\n[1795028426.703424] 64 bytes from 10.0.0.6: icmp_seq=197 ttl=64 time=16.0 ms\n[1795028426.951904] 64 bytes from 10.0.0.6: icmp_seq=198 ttl=64 time=12.9 ms\n[1795028427.204526] 64 bytes from 10.0.0.6: icmp_seq=199 ttl=64 time=14.5 ms\n[1795028427.457319] 64 bytes from 10.0.0.6: icmp_seq=200 ttl=64 time=15.7 ms\n[1795028427.711513] 64 bytes from 10.0.0.6: icmp_seq=201 ttl=64 time=17.7 ms\n[1795028427.959190] 64 bytes from 10.0.0.6: icmp_seq=202 ttl=64 time=14.4 ms\n[1795028428.211913] 64 bytes from 10.0.0.6: icmp_seq=203 ttl=64 time=15.3 ms\n[1795028428.464430] 64 bytes from 10.0.0.6: icmp_seq=204 ttl=64 time=16.3 ms\n[1795028428.724057] 64 bytes from 10.0.0.6: icmp_seq=205 ttl=64 time=25.6 ms\n[1795028428.962913] 64 bytes from 10.0.0.6: icmp_seq=206 ttl=64 time=13.3 ms\n[1795028429.215576] 64 bytes from 10.0.0.6: icmp_seq=207 ttl=64 time=15.9 ms\n[1795028429.465505] 64 bytes from 10.0.0.6: icmp_seq=208 ttl=64 time=13.9 ms\n[1795028429.717194] 64 bytes from 10.0.0.6: icmp_seq=209 ttl=64 time=13.8 ms\n[1795028429.969060] 64 bytes from 10.0.0.6: icmp_seq=210 ttl=64 time=13.3 ms\n[1795028430.218423] 64 bytes from 10.0.0.6: icmp_seq=211 ttl=64 time=13.5 ms\n[1795028430.471541] 64 bytes from 10.0.0.6: icmp_seq=212 ttl=64 time=15.1 ms\n[1795028430.721152] 64 bytes from 10.0.0.6: icmp_seq=213 ttl=64 time=13.3 ms\n[1795028430.972966] 64 bytes from 10.0.0.6: icmp_seq=214 ttl=64 time=14.1 ms\n[1795028431.223738] 64 bytes from 10.0.0.6: icmp_seq=215 ttl=64 time=14.6 ms\n[1795028431.475249] 64 bytes from 10.0.0.6: icmp_seq=216 ttl=64 time=14.9 ms\n[1795028431.726089] 64 bytes from 10.0.0.6: icmp_seq=217 ttl=64 time=14.0 ms\n[1795028431.977104] 64 bytes from 10.0.0.6: icmp_seq=218 ttl=64 time=13.9 ms\n[1795028432.226997] 64 bytes from 10.0.0.6: icmp_seq=219 ttl=64 time=13.3 ms\n[1795028432.480675] 64 bytes from 10.0.0.6: icmp_seq=220 ttl=64 time=15.2 ms\n[1795028432.730959] 64 bytes from 10.0.0.6: icmp_seq=221 ttl=64 time=14.5 ms\n[1795028432.982039] 64 bytes from 10.0.0.6: icmp_seq=222 ttl=64 time=14.2 ms\n[1795028433.233234] 64 bytes from 10.0.0.6: icmp_seq=223 ttl=64 time=14.3 ms\n[1795028433.485872] 64 bytes from 10.0.0.6: icmp_seq=224 ttl=64 time=16.2 ms\n[1795028433.736788] 64 bytes from 10.0.0.6: icmp_seq=225 ttl=64 time=16.0 ms\n[1795028433.985687] 64 bytes from 10.0.0.6: icmp_seq=226 ttl=64 time=15.1 ms\n[1795028434.236124] 64 bytes from 10.0.0.6: icmp_seq=227 ttl=64 time=14.1 ms\n[1795028434.487509] 64 bytes from 10.0.0.6: icmp_seq=228 ttl=64 time=13.9 ms\n[1795028434.737551] 64 bytes from 10.0.0.6: icmp_seq=229 ttl=64 time=13.2 ms\n[1795028434.989767] 64 bytes from 10.0.0.6: icmp_seq=230 ttl=64 time=14.6 ms\n[1795028435.240539] 64 bytes from 10.0.0.6: icmp_seq=231 ttl=64 time=14.9 ms\n[1795028435.491124] 64 bytes from 10.0.0.6: icmp_seq=232 ttl=64 time=14.3 ms\n[1795028435.742333] 64 bytes from 10.0.0.6: icmp_seq=233 ttl=64 time=15.7 ms\n[1795028435.994091] 64 bytes from 10.0.0.6: icmp_seq=234 ttl=64 time=16.0 ms\n[1795028436.243505] 64 bytes from 10.0.0.6: icmp_seq=235 ttl=64 time=15.0 ms\n[1795028436.493688] 64 bytes from 10.0.0.6: icmp_seq=236 ttl=64 time=14.3 ms\n[1795028436.748024] 64 bytes from 10.0.0.6: icmp_seq=237 ttl=64 time=16.7 ms\n[1795028437.004614] 64 bytes from 10.0.0.6: icmp_seq=238 ttl=64 time=22.6 ms\n[1795028437.246884] 64 bytes from 10.0.0.6: icmp_seq=239 ttl=64 time=13.7 ms\n[1795028437.500617] 64 bytes from 10.0.0.6: icmp_seq=240 ttl=64 time=15.2 ms\n[1795028437.751081] 64 bytes from 10.0.0.6: icmp_seq=241 ttl=64 time=15.1 ms\n[1795028438.001102] 64 bytes from 10.0.0.6: icmp_seq=242 ttl=64 time=14.4 ms\n[1795028438.254805] 64 bytes from 10.0.0.6: icmp_seq=243 ttl=64 time=15.5 ms\n[1795028438.509754] 64 bytes from 10.0.0.6: icmp_seq=244 ttl=64 time=18.0 ms\n[1795028438.759754] 64 bytes from 10.0.0.6: icmp_seq=245 ttl=64 time=16.8 ms\n[1795028439.010698] 64 bytes from 10.0.0.6: icmp_seq=246 ttl=64 time=15.8 ms\n",
+    "rx5821": "------------------------------------------------------------\nServer listening on UDP port 5821\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5821 connected with 10.0.0.3 port 44860\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-1.0000 sec  1.71 MBytes  14.3 Mbits/sec   0.357 ms 0/1220 (0%)\n[  1] 0.0000-1.0000 sec  12 datagrams received out-of-order\n[  1] 1.0000-2.0000 sec  1.73 MBytes  14.5 Mbits/sec   0.357 ms 81/1315 (6.2%)\n[  1] 1.0000-2.0000 sec  15 datagrams received out-of-order\n[  1] 2.0000-3.0000 sec  1.47 MBytes  12.4 Mbits/sec   0.532 ms 301/1352 (22%)\n[  1] 2.0000-3.0000 sec  19 datagrams received out-of-order\n[  1] 3.0000-4.0000 sec  1.47 MBytes  12.4 Mbits/sec   0.530 ms 308/1360 (23%)\n[  1] 3.0000-4.0000 sec  20 datagrams received out-of-order\n[  1] 4.0000-5.0000 sec  1.70 MBytes  14.2 Mbits/sec   0.471 ms 153/1364 (11%)\n[  1] 4.0000-5.0000 sec  13 datagrams received out-of-order\n[  1] 5.0000-6.0000 sec  1.61 MBytes  13.5 Mbits/sec   0.489 ms 207/1357 (15%)\n[  1] 5.0000-6.0000 sec  11 datagrams received out-of-order\n[  1] 6.0000-7.0000 sec  1.65 MBytes  13.8 Mbits/sec   0.314 ms 196/1371 (14%)\n[  1] 6.0000-7.0000 sec  15 datagrams received out-of-order\n[  1] 7.0000-8.0000 sec  1.62 MBytes  13.6 Mbits/sec   0.538 ms 186/1344 (14%)\n[  1] 7.0000-8.0000 sec  8 datagrams received out-of-order\n[  1] 8.0000-9.0000 sec  1.56 MBytes  13.1 Mbits/sec   0.241 ms 252/1368 (18%)\n[  1] 8.0000-9.0000 sec  9 datagrams received out-of-order\n[  1] 9.0000-10.0000 sec  1.59 MBytes  13.4 Mbits/sec   0.357 ms 219/1355 (16%)\n[  1] 9.0000-10.0000 sec  11 datagrams received out-of-order\n[  1] 10.0000-11.0000 sec  1.67 MBytes  14.0 Mbits/sec   0.443 ms 179/1368 (13%)\n[  1] 10.0000-11.0000 sec  8 datagrams received out-of-order\n[  1] 11.0000-12.0000 sec  2.18 MBytes  18.3 Mbits/sec   0.211 ms 0/1554 (0%)\n[  1] 11.0000-12.0000 sec  6 datagrams received out-of-order\n[  1] 12.0000-13.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.206 ms 0/1360 (0%)\n[  1] 12.0000-13.0000 sec  11 datagrams received out-of-order\n[  1] 13.0000-14.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.368 ms 0/1360 (0%)\n[  1] 13.0000-14.0000 sec  11 datagrams received out-of-order\n[  1] 14.0000-15.0000 sec  1.90 MBytes  15.9 Mbits/sec   0.423 ms 0/1354 (0%)\n[  1] 14.0000-15.0000 sec  20 datagrams received out-of-order\n[  1] 15.0000-16.0000 sec  1.87 MBytes  15.7 Mbits/sec   0.352 ms 0/1336 (0%)\n[  1] 15.0000-16.0000 sec  47 datagrams received out-of-order\n[  1] 16.0000-17.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.477 ms 0/1364 (0%)\n[  1] 16.0000-17.0000 sec  31 datagrams received out-of-order\n[  1] 17.0000-18.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.308 ms 0/1369 (0%)\n[  1] 17.0000-18.0000 sec  47 datagrams received out-of-order\n[  1] 18.0000-19.0000 sec  1.86 MBytes  15.6 Mbits/sec   0.301 ms 0/1327 (0%)\n[  1] 18.0000-19.0000 sec  51 datagrams received out-of-order\n[  1] 19.0000-20.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.439 ms 0/1370 (0%)\n[  1] 19.0000-20.0000 sec  52 datagrams received out-of-order\n[  1] 20.0000-21.0000 sec  1.95 MBytes  16.3 Mbits/sec   0.435 ms 0/1388 (0%)\n[  1] 20.0000-21.0000 sec  40 datagrams received out-of-order\n[  1] 21.0000-22.0000 sec  1.86 MBytes  15.6 Mbits/sec   0.431 ms 0/1327 (0%)\n[  1] 21.0000-22.0000 sec  56 datagrams received out-of-order\n[  1] 22.0000-23.0000 sec  1.96 MBytes  16.5 Mbits/sec   0.362 ms 0/1401 (0%)\n[  1] 22.0000-23.0000 sec  44 datagrams received out-of-order\n[  1] 23.0000-24.0000 sec  1.83 MBytes  15.3 Mbits/sec   0.431 ms 0/1305 (0%)\n[  1] 23.0000-24.0000 sec  54 datagrams received out-of-order\n[  1] 24.0000-25.0000 sec  1.86 MBytes  15.6 Mbits/sec   0.490 ms 0/1328 (0%)\n[  1] 24.0000-25.0000 sec  45 datagrams received out-of-order\n[  1] 25.0000-26.0000 sec  2.03 MBytes  17.1 Mbits/sec   0.354 ms 0/1450 (0%)\n[  1] 25.0000-26.0000 sec  49 datagrams received out-of-order\n[  1] 26.0000-27.0000 sec  1.87 MBytes  15.7 Mbits/sec   0.526 ms 0/1337 (0%)\n[  1] 26.0000-27.0000 sec  40 datagrams received out-of-order\n[  1] 27.0000-28.0000 sec  1.93 MBytes  16.2 Mbits/sec   0.339 ms 0/1377 (0%)\n[  1] 27.0000-28.0000 sec  37 datagrams received out-of-order\n[  1] 28.0000-29.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.370 ms 0/1369 (0%)\n[  1] 28.0000-29.0000 sec  32 datagrams received out-of-order\n[  1] 29.0000-30.0000 sec  1.84 MBytes  15.4 Mbits/sec   0.452 ms 2/1312 (0.15%)\n[  1] 29.0000-30.0000 sec  45 datagrams received out-of-order\n[  1] 30.0000-31.0000 sec  1.96 MBytes  16.5 Mbits/sec   0.738 ms 0/1398 (0%)\n[  1] 30.0000-31.0000 sec  34 datagrams received out-of-order\n[  1] 31.0000-32.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.333 ms 0/1373 (0%)\n[  1] 31.0000-32.0000 sec  40 datagrams received out-of-order\n[  1] 32.0000-33.0000 sec  1.89 MBytes  15.9 Mbits/sec   0.537 ms 0/1348 (0%)\n[  1] 32.0000-33.0000 sec  60 datagrams received out-of-order\n[  1] 33.0000-34.0000 sec  1.92 MBytes  16.1 Mbits/sec   0.573 ms 0/1372 (0%)\n[  1] 33.0000-34.0000 sec  44 datagrams received out-of-order\n[  1] 34.0000-35.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.323 ms 0/1360 (0%)\n[  1] 34.0000-35.0000 sec  32 datagrams received out-of-order\n[  1] 35.0000-36.0000 sec  1.83 MBytes  15.3 Mbits/sec   2.244 ms 0/1303 (0%)\n[  1] 35.0000-36.0000 sec  39 datagrams received out-of-order\n[  1] 36.0000-37.0000 sec  1.96 MBytes  16.5 Mbits/sec   0.445 ms 0/1401 (0%)\n[  1] 36.0000-37.0000 sec  63 datagrams received out-of-order\n[  1] 37.0000-38.0000 sec  1.93 MBytes  16.2 Mbits/sec   0.401 ms 0/1376 (0%)\n[  1] 37.0000-38.0000 sec  33 datagrams received out-of-order\n[  1] 38.0000-39.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.425 ms 0/1360 (0%)\n[  1] 38.0000-39.0000 sec  50 datagrams received out-of-order\n[  1] 39.0000-40.0000 sec  1.88 MBytes  15.8 Mbits/sec   0.336 ms 0/1343 (0%)\n[  1] 39.0000-40.0000 sec  46 datagrams received out-of-order\n[  1] 40.0000-41.0000 sec  1.94 MBytes  16.2 Mbits/sec   0.396 ms 0/1381 (0%)\n[  1] 40.0000-41.0000 sec  50 datagrams received out-of-order\n[  1] 41.0000-42.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.507 ms 0/1360 (0%)\n[  1] 41.0000-42.0000 sec  30 datagrams received out-of-order\n[  1] 42.0000-43.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.495 ms 0/1361 (0%)\n[  1] 42.0000-43.0000 sec  27 datagrams received out-of-order\n[  1] 43.0000-44.0000 sec  1.90 MBytes  15.9 Mbits/sec   0.406 ms 0/1356 (0%)\n[  1] 43.0000-44.0000 sec  27 datagrams received out-of-order\n[  1] 44.0000-45.0000 sec  1.91 MBytes  16.1 Mbits/sec   0.409 ms 0/1365 (0%)\n[  1] 44.0000-45.0000 sec  37 datagrams received out-of-order\n[  1] 45.0000-46.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.389 ms 0/1362 (0%)\n[  1] 45.0000-46.0000 sec  20 datagrams received out-of-order\n[  1] 46.0000-47.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.418 ms 0/1360 (0%)\n[  1] 46.0000-47.0000 sec  9 datagrams received out-of-order\n[  1] 47.0000-48.0000 sec  1.90 MBytes  16.0 Mbits/sec   0.550 ms 0/1358 (0%)\n[  1] 47.0000-48.0000 sec  28 datagrams received out-of-order\n[  1] 48.0000-49.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.405 ms 0/1362 (0%)\n[  1] 48.0000-49.0000 sec  39 datagrams received out-of-order\n[  1] 49.0000-50.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.422 ms 0/1360 (0%)\n[  1] 49.0000-50.0000 sec  31 datagrams received out-of-order\n[  1] 50.0000-51.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.346 ms 0/1362 (0%)\n[  1] 50.0000-51.0000 sec  33 datagrams received out-of-order\n[  1] 51.0000-52.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.440 ms 0/1359 (0%)\n[  1] 51.0000-52.0000 sec  22 datagrams received out-of-order\n[  1] 52.0000-53.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.478 ms 0/1359 (0%)\n[  1] 52.0000-53.0000 sec  14 datagrams received out-of-order\n[  1] 53.0000-54.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.578 ms 0/1361 (0%)\n[  1] 53.0000-54.0000 sec  23 datagrams received out-of-order\n[  1] 54.0000-55.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.511 ms 0/1363 (0%)\n[  1] 54.0000-55.0000 sec  22 datagrams received out-of-order\n[  1] 55.0000-56.0000 sec  1.90 MBytes  16.0 Mbits/sec   0.383 ms 0/1358 (0%)\n[  1] 55.0000-56.0000 sec  29 datagrams received out-of-order\n[  1] 56.0000-57.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.338 ms 0/1362 (0%)\n[  1] 56.0000-57.0000 sec  28 datagrams received out-of-order\n[  1] 57.0000-58.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.232 ms 0/1362 (0%)\n[  1] 57.0000-58.0000 sec  19 datagrams received out-of-order\n[  1] 58.0000-59.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.390 ms 0/1359 (0%)\n[  1] 58.0000-59.0000 sec  30 datagrams received out-of-order\n[  1] 59.0000-60.0000 sec  1.91 MBytes  16.0 Mbits/sec   0.352 ms 0/1361 (0%)\n[  1] 59.0000-60.0000 sec  28 datagrams received out-of-order\n[  1] 0.0000-60.0068 sec   112 MBytes  15.6 Mbits/sec   0.380 ms 2082/81636 (2.6%)\n[  1] 0.0000-60.0068 sec  1846 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n"
+  },
+  "initial_paths": {
+    "5821": {
+      "path": [
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5822": {
+      "path": [
+        5,
+        2,
+        3
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5823": {
+      "path": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5824": {
+      "path": [
+        2,
+        3
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    }
+  },
+  "first_sender_launch_monotonic": 45228.775592247,
+  "epoch_minus_monotonic": 1794983149.1917377,
+  "sender_launches": {
+    "5821": 45228.775601088,
+    "5822": 45228.776868301,
+    "5823": 45228.778536801,
+    "5824": 45228.783871781
+  },
+  "final_paths": {
+    "5821": {
+      "path": [
+        2,
+        1,
+        4,
+        5,
+        6
+      ],
+      "priorities": [
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "complete": true
+    },
+    "5822": {
+      "path": [
+        5,
+        2,
+        3
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5823": {
+      "path": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        22,
+        22,
+        22,
+        22
+      ],
+      "complete": true
+    },
+    "5824": {
+      "path": [
+        2,
+        5,
+        6,
+        3
+      ],
+      "priorities": [
+        21,
+        21,
+        21,
+        21
+      ],
+      "complete": true
+    }
+  },
+  "receivers": {
+    "rx5824": {
+      "mbps": 27.3,
+      "jitter_ms": 0.325,
+      "lost": 3592,
+      "total": 142860,
+      "loss_percent": 2.51434971300574
+    },
+    "rx5823": {
+      "mbps": 27.6,
+      "jitter_ms": 0.376,
+      "lost": 2258,
+      "total": 142861,
+      "loss_percent": 1.5805573249522262
+    },
+    "rx5822": {
+      "mbps": 17.7,
+      "jitter_ms": 0.337,
+      "lost": 1536,
+      "total": 91840,
+      "loss_percent": 1.6724738675958188
+    },
+    "rx5821": {
+      "mbps": 15.6,
+      "jitter_ms": 0.38,
+      "lost": 2082,
+      "total": 81636,
+      "loss_percent": 2.5503454358371305
+    }
+  },
+  "result": {
+    "file": "01-balanced.json",
+    "mode": "balanced",
+    "peak_tx_percent": 81.215,
+    "peak_link": [
+      2,
+      3
+    ],
+    "received_mbps": 88.2,
+    "loss_percent": 2.0618601602362383
+  },
+  "path_commits": [
+    [
+      "45239.636207125",
+      "00:00:00:00:00:01",
+      "00:00:00:00:00:06",
+      "[1, 2, 3, 6]",
+      "[1, 4, 5, 6]"
+    ],
+    [
+      "45241.650271049",
+      "00:00:00:00:00:03",
+      "00:00:00:00:00:05",
+      "[2, 3]",
+      "[2, 5, 6, 3]"
+    ],
+    [
+      "45243.650445223",
+      "00:00:00:00:00:03",
+      "00:00:00:00:00:06",
+      "[2, 3, 6]",
+      "[2, 1, 4, 5, 6]"
+    ],
+    [
+      "45269.698212031",
+      "00:00:00:00:00:01",
+      "00:00:00:00:00:06",
+      "[1, 4, 5, 6]",
+      "[1, 2, 3, 6]"
+    ]
+  ],
+  "phase_comparisons": [
+    {
+      "src": "h3",
+      "dst": "h6",
+      "commit_seconds": 14.874844135003514,
+      "phases": {
+        "before": {
+          "window_seconds": [
+            8.0,
+            13.0
+          ],
+          "mbps": 14.959999999999999,
+          "loss_percent": 9.279086366880799,
+          "mean_interval_jitter_ms": 0.29159999999999997,
+          "mean_ping_rtt_ms": 95.20588235294117,
+          "ping_replies": 17
+        },
+        "after": {
+          "window_seconds": [
+            16.0,
+            21.0
+          ],
+          "mbps": 16.020000000000003,
+          "loss_percent": 0.0,
+          "mean_interval_jitter_ms": 0.392,
+          "mean_ping_rtt_ms": 36.845,
+          "ping_replies": 20
+        }
+      }
+    },
+    {
+      "src": "h1",
+      "dst": "h6",
+      "commit_seconds": 10.85767032399599,
+      "phases": {
+        "before": {
+          "window_seconds": [
+            4.0,
+            9.0
+          ],
+          "mbps": 25.52,
+          "loss_percent": 8.928271459768185,
+          "mean_interval_jitter_ms": 0.3444,
+          "mean_ping_rtt_ms": 159.22222222222223,
+          "ping_replies": 18
+        },
+        "after": {
+          "window_seconds": [
+            12.0,
+            17.0
+          ],
+          "mbps": 27.919999999999998,
+          "loss_percent": 0.0,
+          "mean_interval_jitter_ms": 0.2726,
+          "mean_ping_rtt_ms": 17.28,
+          "ping_replies": 20
+        }
+      }
+    },
+    {
+      "src": "h3",
+      "dst": "h5",
+      "commit_seconds": 12.86639926800126,
+      "phases": {
+        "before": {
+          "window_seconds": [
+            6.0,
+            11.0
+          ],
+          "mbps": 23.919999999999998,
+          "loss_percent": 14.651338424100025,
+          "mean_interval_jitter_ms": 0.3022,
+          "mean_ping_rtt_ms": 150.16666666666666,
+          "ping_replies": 18
+        },
+        "after": {
+          "window_seconds": [
+            14.0,
+            19.0
+          ],
+          "mbps": 27.8,
+          "loss_percent": 0.0,
+          "mean_interval_jitter_ms": 0.323,
+          "mean_ping_rtt_ms": 20.404,
+          "ping_replies": 20
+        }
+      }
+    }
+  ]
+}
