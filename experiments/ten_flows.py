@@ -14,14 +14,14 @@ def make_workload(round_number):
             for i, ((a, b), rate) in enumerate(zip(rng.sample(pairs, 10), rates))]
 
 
-def measure(net, mode, output, workload, demo, receiver_report):
+def measure(net, mode, output, workload, demo, receiver_report, phases=False):
     raw = dict(mode=mode, duration_seconds=60, workload=workload, samples=[], logs={})
     processes = {}
 
-    def launch(key, host, args):
+    def launch(key, host, args, program="iperf"):
         stream = tempfile.TemporaryFile(mode="w+t")
         try:
-            proc = net[host].popen(["iperf"] + args, stdout=stream, stderr=subprocess.STDOUT)
+            proc = net[host].popen([program] + args, stdout=stream, stderr=subprocess.STDOUT)
         except BaseException:
             stream.close()
             raise
@@ -54,13 +54,20 @@ def measure(net, mode, output, workload, demo, receiver_report):
         try:
             for flow in workload:
                 port = str(flow["port"])
-                launch("rx"+port, flow["dst"], ["-s", "-u", "-p", port])
+                options = ["-i", "1", "-f", "m"] if phases else []
+                launch("rx"+port, flow["dst"], ["-s", "-u", "-p", port] + options)
+                if phases:
+                    launch("ping"+port, flow["src"], ["-D", "-n", "-i", "0.25",
+                           net[flow["dst"]].IP()], program="ping")
             time.sleep(0.5)
             if any(proc.poll() is not None for proc, _ in processes.values()):
                 raise RuntimeError("Receiver failed to start")
             raw["first_sender_launch_monotonic"] = time.monotonic()
+            raw["epoch_minus_monotonic"] = time.time() - time.monotonic()
+            raw["sender_launches"] = {}
             for flow in workload:
                 port = str(flow["port"])
+                raw["sender_launches"][port] = time.monotonic()
                 launch("tx"+port, flow["src"], ["-u", "-c", net[flow["dst"]].IP(), "-p", port,
                        "-b", str(flow["mbps"] * 1000000), "-t", "60"])
             start = time.monotonic()
@@ -93,7 +100,13 @@ def measure(net, mode, output, workload, demo, receiver_report):
             raise RuntimeError("Incomplete final forwarding path")
         if mode != "balanced" and raw["initial_paths"] != raw["final_paths"]:
             raise RuntimeError("Baseline path changed")
-        reports = {k: receiver_report(log) for k, log in raw["logs"].items() if k.startswith("rx")}
+        def full_report(log):
+            if phases:
+                import re
+                log = "\n".join(line for line in log.splitlines()
+                                if re.search(r"\]\s*0(?:\.0+)?\s*-\s*(?:[5-9]\d|\d{3,})(?:\.\d+)?\s+sec", line))
+            return receiver_report(log)
+        reports = {k: full_report(log) for k, log in raw["logs"].items() if k.startswith("rx")}
         raw["receivers"] = reports
         peak = max((p for s in raw["samples"] for p in s["ports"]),
                    key=lambda p: p["utilization_percent"])

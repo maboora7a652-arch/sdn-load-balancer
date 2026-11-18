@@ -82,7 +82,7 @@ def wait_idle_link(interval):
         time.sleep(0.5)
 
 
-def trial(mode, account, manager, output, workload=None, recovery=False, interval=None, threshold=70):
+def trial(mode, account, manager, output, workload=None, recovery=False, interval=None, threshold=70, phases=False):
     from mininet.link import TCLink
     from mininet.net import Mininet
     from mininet.node import OVSSwitch, RemoteController
@@ -143,7 +143,11 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
                 from ten_flows import measure
                 if interval:
                     wait_idle_link(interval)
-                result = measure(net, mode, output, workload, demo, receiver_report)
+                result = measure(net, mode, output, workload, demo, receiver_report, phases=phases)
+                if phases:
+                    from route_phases import summarize
+                    with open("/proc/self/fd/%d" % log.fileno(), errors="replace") as trace:
+                        return summarize(output, trace.read(), receiver_report)
                 if interval:
                     data = json.loads(output.read_text())
                     for flow in workload:
@@ -216,6 +220,7 @@ def main():
     group.add_argument("--shared-link-detection", action="store_true", help="one trial with four UDP pairs sharing S2 -> S3")
     group.add_argument("--compare-shared-link", action="store_true", help="five matched T=2s and T=5s rounds on S2 -> S3")
     group.add_argument("--compare-thresholds", action="store_true", help="five rounds at 60 and 80 percent with T=2s")
+    group.add_argument("--route-phases", action="store_true", help="receiver intervals before and after managed moves")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -253,6 +258,8 @@ def main():
         prefix = "shared-detection-"
     if args.compare_thresholds:
         prefix = "threshold-"
+    if args.route_phases:
+        prefix = "route-phases-"
     compare_intervals = args.detection or args.compare_shared_link
     if args.resume and not re.fullmatch(prefix + r"\d{8}T\d{6}Z", args.resume):
         parser.error("Expected a compare-grid timestamp directory name")
@@ -272,7 +279,7 @@ def main():
     for pair in range(1, 6):
         modes = ("shortest", "balanced") if pair % 2 else ("balanced", "shortest")
         workload = None
-        if args.recovery:
+        if args.recovery or args.route_phases:
             modes = ("balanced",)
         if args.compare_thresholds:
             modes = ("theta60", "theta80") if pair % 2 else ("theta80", "theta60")
@@ -297,7 +304,10 @@ def main():
                 output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
                 if output.exists():
                     raise FileExistsError(output)
-            if args.compare_thresholds:
+            if args.route_phases:
+                result = trial(mode, account, manager, output, workload=shared_link_workload(),
+                               interval=2, phases=True)
+            elif args.compare_thresholds:
                 result = trial("balanced", account, manager, output, workload=workload,
                                interval=2, threshold=int(mode[5:]))
             elif compare_intervals:
@@ -308,6 +318,10 @@ def main():
             pending = summary.with_suffix(".tmp")
             pending.write_text(json.dumps(trials, indent=2))
             pending.replace(summary)
+    if args.route_phases:
+        print("Paired receiver comparisons:", sum(r["paired_windows"] for r in trials))
+        print("Saved:", folder)
+        return
     if compare_intervals or args.compare_thresholds:
         for setting in (("theta60", "theta80") if args.compare_thresholds else ("T2", "T5")):
             rows = [r for r in trials if r["mode"] == setting]

@@ -1098,6 +1098,9 @@ class HostDiscoveryController(app_manager.OSKenApp):
             self.installed_paths[key] = state["new_path"]
             self.route_priorities[key] = state["priority"]
             self.last_reroute[key] = time.monotonic()
+            if self.trace_detection:
+                self.logger.info("PATH_COMMIT %.9f %s %s %s %s", self.last_reroute[key],
+                                 key[0], key[1], state["old_path"], state["new_path"])
             self.logger.info(
                 "REROUTE %s -> %s: %s => %s; improvement %.3f pp",
                 state["src"], state["dst"], state["old_path"],
