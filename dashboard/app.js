@@ -3,7 +3,16 @@ const el = id => document.getElementById(id);
 const ns = "http://www.w3.org/2000/svg";
 const flowKey = f => f.src_mac + ">" + f.dst_mac;
 const edgeKey = (a,b) => Math.min(a,b) + "-" + Math.max(a,b);
-const rate = value => Number.isFinite(value) ? value.toFixed(2) : "—";
+function rate(value) {
+    if (!Number.isFinite(value)) return "—";
+    if (value === 0) return "0";
+    return value < 0.01 ? value.toLocaleString("en-US", {maximumSignificantDigits: 2}) : value.toFixed(2);
+}
+function usePercent(port) {
+    if (Number.isFinite(port.tx_mbps) && port.capacity_mbps > 0)
+        return port.tx_mbps * 100 / port.capacity_mbps;
+    return port.utilization_percent;
+}
 const route = path => path?.length ? path.map(n => "S" + n).join(" → ") : "Pending";
 let sample, previous, lastSeen, selected = "", history = [];
 function hostName(mac) {
@@ -119,7 +128,7 @@ function render() {
     const ports=sample.bandwidth.ports.filter(p=>p.neighbor && linksPresent.has(edgeKey(p.switch,p.neighbor)))
         .sort((a,b)=>Number(b.congested)-Number(a.congested) || b.utilization_percent-a.utilization_percent);
     table("ports",ports.map(p=>["S"+p.switch+" → S"+p.neighbor,rate(p.tx_mbps),
-        rate(p.utilization_percent)+"%",p.congested?"Congested":"Normal"]),"Waiting for port samples");
+        rate(usePercent(p))+"%",p.congested?"Congested":"Normal"]),"Waiting for port samples");
     table("flows",flows.map(f=>[pair(f),rate(f.rate_mbps),f.elephant?"Elephant":
         Number.isFinite(f.rate_mbps)?"Other":"Sampling"]),"Waiting for flow samples");
     const entries=history.length?history:["No changes observed yet."];
@@ -138,7 +147,7 @@ async function refresh() {
         render();
         previous=sample;
         lastSeen=stamp;
-        el("status").textContent="Live · updated "+stamp;
+        el("status").textContent="Controller connected · last read "+stamp;
     } catch {
         previous=null;
         el("status").textContent=lastSeen?"Disconnected · last update "+lastSeen:"Waiting for controller · retrying";
