@@ -65,11 +65,13 @@ py exec(open("/media/sf_sdn_transfer/experiments/link_failure_demo.py").read(), 
 ## Run the k=4 fat-tree on Ubuntu
 
 Exit the current Mininet CLI with `exit`, then stop its controller with Ctrl+C.
-Use the shared working source for this run. In the controller terminal:
+In the controller terminal, stage the shared source in a fresh user-owned directory. Only reading the VirtualBox share requires sudo. Keep Mininet running if it is already on fattree4:
 
 ```bash
-cd /media/sf_sdn_transfer/vm-source
-SDN_TOPOLOGY=fattree4 "$HOME/sdn-lab/.venv/bin/osken-manager" --observe-links --ofp-tcp-listen-port 6653 rest_api_controller.py
+run_dir=$(mktemp -d "$HOME/sdn-lab/fattree-run.XXXXXX") &&
+cd "$run_dir" &&
+sudo cat /media/sf_sdn_transfer/vm-source/rest_api_controller.py > rest_api_controller.py &&
+SDN_TOPOLOGY=fattree4 "$HOME/sdn-lab/.venv/bin/osken-manager" --observe-links --ofp-tcp-listen-port 6653 "$PWD/rest_api_controller.py"
 ```
 
 In the Mininet terminal:
@@ -78,4 +80,4 @@ In the Mininet terminal:
 sudo mn --custom /media/sf_sdn_transfer/vm-source/custom_topology.py --topo fattree4 --mac --switch ovs,protocols=OpenFlow13 --link tc --controller=remote,ip=127.0.0.1,port=6653
 ```
 
-Once the controller reports 20 switches and 32 links, run `pingall 1` at the Mininet prompt. Sixteen hosts give 240 directed probes. The original grid uses the default controller mode and topology name `mynetwork`.
+Once the controller reports 20 switches and 32 links, run `pingall 2` at the Mininet prompt. Sixteen hosts give 240 directed probes. The original grid uses the default controller mode and topology name `mynetwork`.
