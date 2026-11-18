@@ -193,6 +193,13 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
                     controller.wait()
 
 
+def shared_link_workload():
+    pairs = [("h3", "h6", 16), ("h4", "h5", 18),
+             ("h1", "h6", 28), ("h3", "h5", 28)]
+    return [dict(src=a, dst=b, mbps=rate, port=5821+i)
+            for i, (a, b, rate) in enumerate(pairs)]
+
+
 def main():
     import pwd
     parser = argparse.ArgumentParser()
@@ -203,6 +210,7 @@ def main():
     group.add_argument("--detection", action="store_true", help="compare congestion detection at T=2s and T=5s")
     group.add_argument("--calibrate-detection", action="store_true", help="one direct H3-H5 UDP trial at T=5s")
     group.add_argument("--shared-link-detection", action="store_true", help="one trial with four UDP pairs sharing S2 -> S3")
+    group.add_argument("--compare-shared-link", action="store_true", help="five matched T=2s and T=5s rounds on S2 -> S3")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -223,10 +231,7 @@ def main():
             parser.error("Calibration is a single independent trial.")
         if args.shared_link_detection:
             output = HERE / "results" / ("shared-link-" + stamp + ".json")
-            pairs = [("h3", "h6", 16), ("h4", "h5", 18),
-                     ("h1", "h6", 28), ("h3", "h5", 28)]
-            workload = [dict(src=a, dst=b, mbps=rate, port=5821+i)
-                        for i, (a, b, rate) in enumerate(pairs)]
+            workload = shared_link_workload()
         else:
             output = HERE / "results" / ("calibration-" + stamp + ".json")
             workload = [dict(src="h3", dst="h5", mbps=95, port=5811)]
@@ -239,6 +244,9 @@ def main():
         prefix = "recovery-"
     if args.detection:
         prefix = "detection-"
+    if args.compare_shared_link:
+        prefix = "shared-detection-"
+    compare_intervals = args.detection or args.compare_shared_link
     if args.resume and not re.fullmatch(prefix + r"\d{8}T\d{6}Z", args.resume):
         parser.error("Expected a compare-grid timestamp directory name")
     folder = HERE / "results" / (args.resume or prefix + stamp)
@@ -259,8 +267,10 @@ def main():
         workload = None
         if args.recovery:
             modes = ("balanced",)
-        if args.detection:
+        if compare_intervals:
             modes = ("T2", "T5") if pair % 2 else ("T5", "T2")
+            if args.compare_shared_link:
+                workload = shared_link_workload()
         if args.ten_flows:
             from ten_flows import make_workload
             workload = make_workload(pair)
@@ -277,15 +287,15 @@ def main():
                 output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
                 if output.exists():
                     raise FileExistsError(output)
-            if args.detection:
-                result = trial("balanced", account, manager, output, interval=int(mode[1:]))
+            if compare_intervals:
+                result = trial("balanced", account, manager, output, workload=workload, interval=int(mode[1:]))
             else:
                 result = trial(mode, account, manager, output, workload, args.recovery)
             trials.append(dict(pair=pair, **result))
             pending = summary.with_suffix(".tmp")
             pending.write_text(json.dumps(trials, indent=2))
             pending.replace(summary)
-    if args.detection:
+    if compare_intervals:
         for setting in ("T2", "T5"):
             rows = [r for r in trials if r["mode"] == setting]
             times = [r["first_detection_seconds"] for r in rows if r["status"] == "detected"]
