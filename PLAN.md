@@ -35,7 +35,7 @@
 - [x] تشغيل Fat-tree k=4 على Ubuntu. فيها 20 سويتش و32 وصلة بين السويتشات، ونجح pingall 2 بين الـ16 هوست في كل الاتجاهات (240/240).
 - [x] Dashboard المحلية اتنفذت. تعرض الشبكة واستخدام الوصلات والتدفقات وتغير المسار أو الوصلة بين العينات. أكدت لقطتا Firefox تغيّر معدل H1 إلى H16 وعرض استخدام وصلات المسار على fat-tree.
 - [x] مقارنة Grid بحملي 85 و30 Mbps: خمس تشغيلات مكتملة لكل وضع shortest وbalanced، مع تسجيل الاستقبال والفقد والـjitter. نتائج الدفعة في HANDOFF.
-- [ ] Baselines: shortest path وECMP؛ وضع ECMP وسكربت 10 random flows جاهزان. باقي تشغيل المقارنة على Ubuntu وتقييم max utilization والاستقبال والفقد.
+- [x] مقارنة 10 تدفقات على Grid بخمس جولات متطابقة بين الأوضاع. متوسط أقصى TX utilization: ECMP 48.16% وshortest 56.16% وbalanced 56.20%. النتائج الخام ten-flows-20261118T170441Z.
 - [ ] كل التجارب المطلوبة: دقة المراقبة، زمن الاكتشاف، throughput/delay/jitter/loss قبل وبعد النقل، max utilization، recovery time/lost packets، وتأثير T وtheta. كل تجربة 5 مرات على الأقل، مع mean/std وscripts وraw results ورسوم من البيانات الفعلية.
 - [ ] تقرير إنجليزي 25-35 صفحة A4 بحجم 12pt وIEEE references، وفصل SDN من 10-12 صفحة يغطي موضوعات التكليف، مع 15 مرجعًا على الأقل منها 5 papers تخص Track 1.
 - [ ] توثيق design وimplementation والنتائج، user guide والمساهمات وتقارير التقدم المتاحة؛ من غير اختلاق تاريخ أو قياسات أو مساهمات.

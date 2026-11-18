@@ -1,0 +1,2303 @@
+{
+  "mode": "balanced",
+  "duration_seconds": 60,
+  "workload": [
+    {
+      "src": "h3",
+      "dst": "h6",
+      "mbps": 8,
+      "port": 5801
+    },
+    {
+      "src": "h4",
+      "dst": "h5",
+      "mbps": 8,
+      "port": 5802
+    },
+    {
+      "src": "h4",
+      "dst": "h2",
+      "mbps": 8,
+      "port": 5803
+    },
+    {
+      "src": "h3",
+      "dst": "h4",
+      "mbps": 8,
+      "port": 5804
+    },
+    {
+      "src": "h2",
+      "dst": "h6",
+      "mbps": 12,
+      "port": 5805
+    },
+    {
+      "src": "h5",
+      "dst": "h4",
+      "mbps": 12,
+      "port": 5806
+    },
+    {
+      "src": "h2",
+      "dst": "h3",
+      "mbps": 16,
+      "port": 5807
+    },
+    {
+      "src": "h5",
+      "dst": "h3",
+      "mbps": 20,
+      "port": 5808
+    },
+    {
+      "src": "h1",
+      "dst": "h6",
+      "mbps": 24,
+      "port": 5809
+    },
+    {
+      "src": "h3",
+      "dst": "h5",
+      "mbps": 28,
+      "port": 5810
+    }
+  ],
+  "samples": [
+    {
+      "elapsed": 10.013509814001736,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.001556,
+          "tx_mbps": 41.107481,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.411075,
+          "utilization_percent": 41.107,
+          "ewma_utilization_percent": 41.107,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.445919,
+          "tx_mbps": 0.001556,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.002,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.195395,
+          "tx_mbps": 0.00156,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.002,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.956037,
+          "tx_mbps": 70.027813,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.700278,
+          "utilization_percent": 70.028,
+          "ewma_utilization_percent": 70.028,
+          "congested_periods": 1,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.243199,
+          "tx_mbps": 20.597172,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.205972,
+          "utilization_percent": 20.597,
+          "ewma_utilization_percent": 20.597,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 70.038427,
+          "tx_mbps": 32.961175,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.329612,
+          "utilization_percent": 32.961,
+          "ewma_utilization_percent": 32.961,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.00156,
+          "tx_mbps": 32.956241,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.329562,
+          "utilization_percent": 32.956,
+          "ewma_utilization_percent": 32.956,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.239024,
+          "tx_mbps": 12.3643,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123643,
+          "utilization_percent": 12.364,
+          "ewma_utilization_percent": 12.364,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.00156,
+          "tx_mbps": 16.479435,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164794,
+          "utilization_percent": 16.479,
+          "ewma_utilization_percent": 16.479,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.001552,
+          "tx_mbps": 12.359127,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123591,
+          "utilization_percent": 12.359,
+          "ewma_utilization_percent": 12.359,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.594994,
+          "tx_mbps": 8.239905,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082399,
+          "utilization_percent": 8.24,
+          "ewma_utilization_percent": 8.24,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.361447,
+          "tx_mbps": 8.239545,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082395,
+          "utilization_percent": 8.24,
+          "ewma_utilization_percent": 8.24,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.941464,
+          "tx_mbps": 0.00156,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.002,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.355474,
+          "tx_mbps": 0.001552,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 1.6e-05,
+          "utilization_percent": 0.002,
+          "ewma_utilization_percent": 0.002,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 15.015756004999275,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000383,
+          "tx_mbps": 41.107396,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.411074,
+          "utilization_percent": 41.107,
+          "ewma_utilization_percent": 41.107,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.443189,
+          "tx_mbps": 0.000479,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.077667,
+          "tx_mbps": 0.000383,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 4e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.858813,
+          "tx_mbps": 69.830953,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.69831,
+          "utilization_percent": 69.831,
+          "ewma_utilization_percent": 69.929,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.213927,
+          "tx_mbps": 20.538973,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.20539,
+          "utilization_percent": 20.539,
+          "ewma_utilization_percent": 20.568,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 69.75988,
+          "tx_mbps": 32.828916,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.328289,
+          "utilization_percent": 32.829,
+          "ewma_utilization_percent": 32.895,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.00059,
+          "tx_mbps": 32.83519,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.328352,
+          "utilization_percent": 32.835,
+          "ewma_utilization_percent": 32.896,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.20649,
+          "tx_mbps": 12.310327,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123103,
+          "utilization_percent": 12.31,
+          "ewma_utilization_percent": 12.337,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 16.414418,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164144,
+          "utilization_percent": 16.414,
+          "ewma_utilization_percent": 16.447,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000802,
+          "tx_mbps": 12.313248,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123132,
+          "utilization_percent": 12.313,
+          "ewma_utilization_percent": 12.336,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.533596,
+          "tx_mbps": 8.213708,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082137,
+          "utilization_percent": 8.214,
+          "ewma_utilization_percent": 8.227,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.320267,
+          "tx_mbps": 8.211509,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082115,
+          "utilization_percent": 8.212,
+          "ewma_utilization_percent": 8.226,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.83634,
+          "tx_mbps": 0.00059,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 6e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.311192,
+          "tx_mbps": 0.000802,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 8e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 20.009482061999734,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000916,
+          "tx_mbps": 41.102995,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.41103,
+          "utilization_percent": 41.103,
+          "ewma_utilization_percent": 41.105,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.441613,
+          "tx_mbps": 0.000916,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 9e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.142396,
+          "tx_mbps": 0.000917,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 9e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.912978,
+          "tx_mbps": 69.935242,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.699352,
+          "utilization_percent": 69.935,
+          "ewma_utilization_percent": 69.932,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.230675,
+          "tx_mbps": 20.575593,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.205756,
+          "utilization_percent": 20.576,
+          "ewma_utilization_percent": 20.572,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 70.00889,
+          "tx_mbps": 32.9465,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.329465,
+          "utilization_percent": 32.946,
+          "ewma_utilization_percent": 32.921,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000806,
+          "tx_mbps": 32.944906,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.329449,
+          "utilization_percent": 32.945,
+          "ewma_utilization_percent": 32.92,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.243147,
+          "tx_mbps": 12.359307,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123593,
+          "utilization_percent": 12.359,
+          "ewma_utilization_percent": 12.348,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000918,
+          "tx_mbps": 16.473159,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164732,
+          "utilization_percent": 16.473,
+          "ewma_utilization_percent": 16.46,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000917,
+          "tx_mbps": 12.36526,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123653,
+          "utilization_percent": 12.365,
+          "ewma_utilization_percent": 12.351,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.595416,
+          "tx_mbps": 8.240541,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082405,
+          "utilization_percent": 8.241,
+          "ewma_utilization_percent": 8.234,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.362833,
+          "tx_mbps": 8.243076,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082431,
+          "utilization_percent": 8.243,
+          "ewma_utilization_percent": 8.234,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.94064,
+          "tx_mbps": 0.000806,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 8e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.36176,
+          "tx_mbps": 0.000918,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 9e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 25.00710170000093,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 41.233976,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.41234,
+          "utilization_percent": 41.234,
+          "ewma_utilization_percent": 41.17,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.495259,
+          "tx_mbps": 0.000481,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.212154,
+          "tx_mbps": 0.000481,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.978058,
+          "tx_mbps": 70.050891,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.700509,
+          "utilization_percent": 70.051,
+          "ewma_utilization_percent": 69.992,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.244267,
+          "tx_mbps": 20.602585,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.206026,
+          "utilization_percent": 20.603,
+          "ewma_utilization_percent": 20.587,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 70.029641,
+          "tx_mbps": 32.963212,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.329632,
+          "utilization_percent": 32.963,
+          "ewma_utilization_percent": 32.942,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000384,
+          "tx_mbps": 32.958412,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.329584,
+          "utilization_percent": 32.958,
+          "ewma_utilization_percent": 32.939,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.237726,
+          "tx_mbps": 12.359887,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123599,
+          "utilization_percent": 12.36,
+          "ewma_utilization_percent": 12.354,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000481,
+          "tx_mbps": 16.484666,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164847,
+          "utilization_percent": 16.485,
+          "ewma_utilization_percent": 16.472,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000385,
+          "tx_mbps": 12.355993,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.12356,
+          "utilization_percent": 12.356,
+          "ewma_utilization_percent": 12.353,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.590479,
+          "tx_mbps": 8.237488,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082375,
+          "utilization_percent": 8.237,
+          "ewma_utilization_percent": 8.236,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.353468,
+          "tx_mbps": 8.235062,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082351,
+          "utilization_percent": 8.235,
+          "ewma_utilization_percent": 8.235,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.985259,
+          "tx_mbps": 0.000385,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 4e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.363345,
+          "tx_mbps": 0.000385,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 4e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 30.009661377996963,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 41.1746,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.411746,
+          "utilization_percent": 41.175,
+          "ewma_utilization_percent": 41.172,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.467504,
+          "tx_mbps": 0.00048,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.04567,
+          "tx_mbps": 0.000478,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.831938,
+          "tx_mbps": 69.795449,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.697954,
+          "utilization_percent": 69.795,
+          "ewma_utilization_percent": 69.894,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.208957,
+          "tx_mbps": 20.522841,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.205228,
+          "utilization_percent": 20.523,
+          "ewma_utilization_percent": 20.555,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 69.836787,
+          "tx_mbps": 32.851097,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.328511,
+          "utilization_percent": 32.851,
+          "ewma_utilization_percent": 32.897,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 32.852242,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.328522,
+          "utilization_percent": 32.852,
+          "ewma_utilization_percent": 32.896,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.216062,
+          "tx_mbps": 12.323997,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.12324,
+          "utilization_percent": 12.324,
+          "ewma_utilization_percent": 12.339,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 16.431924,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164319,
+          "utilization_percent": 16.432,
+          "ewma_utilization_percent": 16.452,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000478,
+          "tx_mbps": 12.306528,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123065,
+          "utilization_percent": 12.307,
+          "ewma_utilization_percent": 12.33,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.517788,
+          "tx_mbps": 8.209345,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082093,
+          "utilization_percent": 8.209,
+          "ewma_utilization_percent": 8.222,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.310865,
+          "tx_mbps": 8.208913,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082089,
+          "utilization_percent": 8.209,
+          "ewma_utilization_percent": 8.222,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.82984,
+          "tx_mbps": 0.000478,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.307934,
+          "tx_mbps": 0.000478,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 35.00741302000097,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000805,
+          "tx_mbps": 41.155002,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.41155,
+          "utilization_percent": 41.155,
+          "ewma_utilization_percent": 41.164,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.466142,
+          "tx_mbps": 0.000821,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 8e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.21452,
+          "tx_mbps": 0.000806,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 8e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.975979,
+          "tx_mbps": 70.06191,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.700619,
+          "utilization_percent": 70.062,
+          "ewma_utilization_percent": 69.978,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.244574,
+          "tx_mbps": 20.61155,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.206115,
+          "utilization_percent": 20.612,
+          "ewma_utilization_percent": 20.583,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 70.0945,
+          "tx_mbps": 32.992175,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.329922,
+          "utilization_percent": 32.992,
+          "ewma_utilization_percent": 32.944,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000919,
+          "tx_mbps": 32.99577,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.329958,
+          "utilization_percent": 32.996,
+          "ewma_utilization_percent": 32.946,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.241857,
+          "tx_mbps": 12.361115,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123611,
+          "utilization_percent": 12.361,
+          "ewma_utilization_percent": 12.35,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000822,
+          "tx_mbps": 16.485025,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.16485,
+          "utilization_percent": 16.485,
+          "ewma_utilization_percent": 16.469,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000919,
+          "tx_mbps": 12.384125,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123841,
+          "utilization_percent": 12.384,
+          "ewma_utilization_percent": 12.357,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.634418,
+          "tx_mbps": 8.251782,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082518,
+          "utilization_percent": 8.252,
+          "ewma_utilization_percent": 8.237,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.37659,
+          "tx_mbps": 8.24975,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082497,
+          "utilization_percent": 8.25,
+          "ewma_utilization_percent": 8.236,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.981565,
+          "tx_mbps": 0.000918,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 9e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.372865,
+          "tx_mbps": 0.000918,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 9e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 40.01246477100358,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000591,
+          "tx_mbps": 41.061846,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.410618,
+          "utilization_percent": 41.062,
+          "ewma_utilization_percent": 41.113,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.426584,
+          "tx_mbps": 0.000479,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.13921,
+          "tx_mbps": 0.000592,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 6e-06,
+          "utilization_percent": 0.001,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.911944,
+          "tx_mbps": 69.926261,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.699263,
+          "utilization_percent": 69.926,
+          "ewma_utilization_percent": 69.952,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.227766,
+          "tx_mbps": 20.567486,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.205675,
+          "utilization_percent": 20.567,
+          "ewma_utilization_percent": 20.575,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 69.896574,
+          "tx_mbps": 32.89342,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.328934,
+          "utilization_percent": 32.893,
+          "ewma_utilization_percent": 32.919,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 32.89355,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.328935,
+          "utilization_percent": 32.894,
+          "ewma_utilization_percent": 32.92,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.225344,
+          "tx_mbps": 12.336567,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123366,
+          "utilization_percent": 12.337,
+          "ewma_utilization_percent": 12.343,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 16.452622,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164526,
+          "utilization_percent": 16.453,
+          "ewma_utilization_percent": 16.461,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.00048,
+          "tx_mbps": 12.335791,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123358,
+          "utilization_percent": 12.336,
+          "ewma_utilization_percent": 12.346,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.561265,
+          "tx_mbps": 8.225278,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082253,
+          "utilization_percent": 8.225,
+          "ewma_utilization_percent": 8.231,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.338952,
+          "tx_mbps": 8.22774,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082277,
+          "utilization_percent": 8.228,
+          "ewma_utilization_percent": 8.232,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.899846,
+          "tx_mbps": 0.00048,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.334765,
+          "tx_mbps": 0.00048,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 45.01073273400107,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000378,
+          "tx_mbps": 40.760193,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.407602,
+          "utilization_percent": 40.76,
+          "ewma_utilization_percent": 40.936,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.296059,
+          "tx_mbps": 0.000473,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 40.73085,
+          "tx_mbps": 0.000378,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 4e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.568948,
+          "tx_mbps": 69.21473,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.692147,
+          "utilization_percent": 69.215,
+          "ewma_utilization_percent": 69.583,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.143119,
+          "tx_mbps": 20.35352,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.203535,
+          "utilization_percent": 20.354,
+          "ewma_utilization_percent": 20.464,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 69.222115,
+          "tx_mbps": 32.576624,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.325766,
+          "utilization_percent": 32.577,
+          "ewma_utilization_percent": 32.748,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000472,
+          "tx_mbps": 32.574032,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.32574,
+          "utilization_percent": 32.574,
+          "ewma_utilization_percent": 32.747,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.135523,
+          "tx_mbps": 12.203048,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.12203,
+          "utilization_percent": 12.203,
+          "ewma_utilization_percent": 12.273,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000472,
+          "tx_mbps": 16.25863,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.162586,
+          "utilization_percent": 16.259,
+          "ewma_utilization_percent": 16.36,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000472,
+          "tx_mbps": 12.200217,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.122002,
+          "utilization_percent": 12.2,
+          "ewma_utilization_percent": 12.273,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.333283,
+          "tx_mbps": 8.133596,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.081336,
+          "utilization_percent": 8.134,
+          "ewma_utilization_percent": 8.182,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.200128,
+          "tx_mbps": 8.133576,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.081336,
+          "utilization_percent": 8.134,
+          "ewma_utilization_percent": 8.183,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.850375,
+          "tx_mbps": 0.000477,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.31711,
+          "tx_mbps": 0.000477,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 50.00961824400292,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000486,
+          "tx_mbps": 41.621451,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.416215,
+          "utilization_percent": 41.621,
+          "ewma_utilization_percent": 41.279,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.654439,
+          "tx_mbps": 0.000486,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.001,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.604965,
+          "tx_mbps": 0.000487,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 33.29786,
+          "tx_mbps": 70.771207,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.707712,
+          "utilization_percent": 70.771,
+          "ewma_utilization_percent": 70.177,
+          "congested_periods": 1,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.323057,
+          "tx_mbps": 20.816727,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.208167,
+          "utilization_percent": 20.817,
+          "ewma_utilization_percent": 20.641,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 70.732051,
+          "tx_mbps": 33.281747,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.332817,
+          "utilization_percent": 33.282,
+          "ewma_utilization_percent": 33.015,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000389,
+          "tx_mbps": 33.286795,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.332868,
+          "utilization_percent": 33.287,
+          "ewma_utilization_percent": 33.017,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.334,
+          "tx_mbps": 12.501984,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.12502,
+          "utilization_percent": 12.502,
+          "ewma_utilization_percent": 12.388,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000487,
+          "tx_mbps": 16.674927,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.166749,
+          "utilization_percent": 16.675,
+          "ewma_utilization_percent": 16.517,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.00039,
+          "tx_mbps": 12.497097,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.124971,
+          "utilization_percent": 12.497,
+          "ewma_utilization_percent": 12.385,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.828426,
+          "tx_mbps": 8.329208,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.083292,
+          "utilization_percent": 8.329,
+          "ewma_utilization_percent": 8.256,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.494825,
+          "tx_mbps": 8.329227,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.083292,
+          "utilization_percent": 8.329,
+          "ewma_utilization_percent": 8.256,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 33.021983,
+          "tx_mbps": 0.000385,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 4e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.386467,
+          "tx_mbps": 0.000385,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 4e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    },
+    {
+      "elapsed": 55.01035259100172,
+      "ports": [
+        {
+          "switch": 1,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 41.05572,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.410557,
+          "utilization_percent": 41.056,
+          "ewma_utilization_percent": 41.167,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 1,
+          "port": 2,
+          "rx_mbps": 16.42406,
+          "tx_mbps": 0.000479,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 1,
+          "rx_mbps": 41.092119,
+          "tx_mbps": 0.000479,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 2,
+          "port": 2,
+          "rx_mbps": 32.867053,
+          "tx_mbps": 69.855834,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 0.698558,
+          "utilization_percent": 69.856,
+          "ewma_utilization_percent": 70.017,
+          "congested_periods": 2,
+          "congested": true
+        },
+        {
+          "switch": 2,
+          "port": 3,
+          "rx_mbps": 8.218311,
+          "tx_mbps": 20.54617,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.205462,
+          "utilization_percent": 20.546,
+          "ewma_utilization_percent": 20.593,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 1,
+          "rx_mbps": 69.891806,
+          "tx_mbps": 32.889663,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.328897,
+          "utilization_percent": 32.89,
+          "ewma_utilization_percent": 32.952,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 3,
+          "port": 2,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 32.889694,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.328897,
+          "utilization_percent": 32.89,
+          "ewma_utilization_percent": 32.953,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 1,
+          "rx_mbps": 8.217939,
+          "tx_mbps": 12.326572,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 0.123266,
+          "utilization_percent": 12.327,
+          "ewma_utilization_percent": 12.357,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 4,
+          "port": 2,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 16.442662,
+          "neighbor": 1,
+          "capacity_mbps": 100,
+          "utilization": 0.164427,
+          "utilization_percent": 16.443,
+          "ewma_utilization_percent": 16.48,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 1,
+          "rx_mbps": 0.000479,
+          "tx_mbps": 12.334338,
+          "neighbor": 6,
+          "capacity_mbps": 100,
+          "utilization": 0.123343,
+          "utilization_percent": 12.334,
+          "ewma_utilization_percent": 12.36,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 2,
+          "rx_mbps": 20.556025,
+          "tx_mbps": 8.222253,
+          "neighbor": 2,
+          "capacity_mbps": 100,
+          "utilization": 0.082223,
+          "utilization_percent": 8.222,
+          "ewma_utilization_percent": 8.239,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 5,
+          "port": 3,
+          "rx_mbps": 12.329426,
+          "tx_mbps": 8.222257,
+          "neighbor": 4,
+          "capacity_mbps": 100,
+          "utilization": 0.082223,
+          "utilization_percent": 8.222,
+          "ewma_utilization_percent": 8.239,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 1,
+          "rx_mbps": 32.891995,
+          "tx_mbps": 0.00048,
+          "neighbor": 3,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "switch": 6,
+          "port": 2,
+          "rx_mbps": 12.335408,
+          "tx_mbps": 0.00048,
+          "neighbor": 5,
+          "capacity_mbps": 100,
+          "utilization": 5e-06,
+          "utilization_percent": 0.0,
+          "ewma_utilization_percent": 0.0,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ]
+    }
+  ],
+  "logs": {
+    "tx5810": "------------------------------------------------------------\nClient connecting to 10.0.0.5, UDP port 5810\nSending 1470 byte datagrams, IPG target: 420.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 48411 connected with 10.0.0.5 port 5810\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0006 sec   200 MBytes  28.0 Mbits/sec\n[  1] Sent 142860 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0115 sec   200 MBytes  28.0 Mbits/sec   0.567 ms 5/142859 (0.0035%)\n[  1] 0.0000-60.0115 sec  3958 datagrams received out-of-order\n",
+    "tx5809": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5809\nSending 1470 byte datagrams, IPG target: 490.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 45980 connected with 10.0.0.6 port 5809\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0002 sec   172 MBytes  24.0 Mbits/sec\n[  1] Sent 122452 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0022 sec   172 MBytes  24.0 Mbits/sec   0.469 ms 0/122451 (0%)\n[  1] 0.0000-60.0022 sec  4170 datagrams received out-of-order\n",
+    "tx5808": "------------------------------------------------------------\nClient connecting to 10.0.0.3, UDP port 5808\nSending 1470 byte datagrams, IPG target: 588.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 41408 connected with 10.0.0.3 port 5808\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0004 sec   143 MBytes  20.0 Mbits/sec\n[  1] Sent 102044 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0015 sec   143 MBytes  20.0 Mbits/sec   0.224 ms 0/102043 (0%)\n[  1] 0.0000-60.0015 sec  1252 datagrams received out-of-order\n",
+    "tx5807": "------------------------------------------------------------\nClient connecting to 10.0.0.3, UDP port 5807\nSending 1470 byte datagrams, IPG target: 735.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.2 port 38214 connected with 10.0.0.3 port 5807\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0012 sec   114 MBytes  16.0 Mbits/sec\n[  1] Sent 81637 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0024 sec   114 MBytes  16.0 Mbits/sec   0.451 ms 1/81636 (0.0012%)\n[  1] 0.0000-60.0024 sec  993 datagrams received out-of-order\n",
+    "tx5806": "------------------------------------------------------------\nClient connecting to 10.0.0.4, UDP port 5806\nSending 1470 byte datagrams, IPG target: 980.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 51465 connected with 10.0.0.4 port 5806\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0007 sec  85.8 MBytes  12.0 Mbits/sec\n[  1] Sent 61228 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0004 sec  85.8 MBytes  12.0 Mbits/sec   0.391 ms 0/61227 (0%)\n[  1] 0.0000-60.0004 sec  456 datagrams received out-of-order\n",
+    "tx5805": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5805\nSending 1470 byte datagrams, IPG target: 980.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.2 port 46127 connected with 10.0.0.6 port 5805\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0020 sec  85.8 MBytes  12.0 Mbits/sec\n[  1] Sent 61229 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0020 sec  85.8 MBytes  12.0 Mbits/sec   0.491 ms 0/61228 (0%)\n[  1] 0.0000-60.0020 sec  195 datagrams received out-of-order\n",
+    "tx5804": "------------------------------------------------------------\nClient connecting to 10.0.0.4, UDP port 5804\nSending 1470 byte datagrams, IPG target: 1470.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 54593 connected with 10.0.0.4 port 5804\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0016 sec  57.2 MBytes  8.00 Mbits/sec\n[  1] Sent 40820 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-59.9988 sec  57.2 MBytes  8.00 Mbits/sec   0.198 ms 0/40819 (0%)\n[  1] 0.0000-59.9988 sec  88 datagrams received out-of-order\n",
+    "tx5803": "------------------------------------------------------------\nClient connecting to 10.0.0.2, UDP port 5803\nSending 1470 byte datagrams, IPG target: 1470.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.4 port 35284 connected with 10.0.0.2 port 5803\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0016 sec  57.2 MBytes  8.00 Mbits/sec\n[  1] Sent 40820 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-59.9979 sec  57.2 MBytes  8.00 Mbits/sec   0.172 ms 0/40819 (0%)\n[  1] 0.0000-59.9979 sec  29 datagrams received out-of-order\n",
+    "tx5802": "------------------------------------------------------------\nClient connecting to 10.0.0.5, UDP port 5802\nSending 1470 byte datagrams, IPG target: 1470.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.4 port 46682 connected with 10.0.0.5 port 5802\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0026 sec  57.2 MBytes  8.00 Mbits/sec\n[  1] Sent 40821 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-59.9996 sec  57.2 MBytes  8.00 Mbits/sec   0.278 ms 0/40820 (0%)\n[  1] 0.0000-59.9996 sec  118 datagrams received out-of-order\n",
+    "tx5801": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5801\nSending 1470 byte datagrams, IPG target: 1470.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 40586 connected with 10.0.0.6 port 5801\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0019 sec  57.2 MBytes  8.00 Mbits/sec\n[  1] Sent 40820 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0028 sec  57.2 MBytes  8.00 Mbits/sec   0.367 ms 0/40819 (0%)\n[  1] 0.0000-60.0028 sec  145 datagrams received out-of-order\n",
+    "rx5810": "------------------------------------------------------------\nServer listening on UDP port 5810\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 5810 connected with 10.0.0.3 port 48411\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0115 sec   200 MBytes  28.0 Mbits/sec   0.568 ms 5/142859 (0.0035%)\n[  1] 0.0000-60.0115 sec  3958 datagrams received out-of-order\nWaiting for server threads to complete. Interrupt again to force quit.\n[  5] WARNING: ack of last datagram failed.\n",
+    "rx5809": "------------------------------------------------------------\nServer listening on UDP port 5809\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5809 connected with 10.0.0.1 port 45980\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0022 sec   172 MBytes  24.0 Mbits/sec   0.470 ms 0/122451 (0%)\n[  1] 0.0000-60.0022 sec  4170 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "rx5808": "------------------------------------------------------------\nServer listening on UDP port 5808\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 5808 connected with 10.0.0.5 port 41408\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0015 sec   143 MBytes  20.0 Mbits/sec   0.225 ms 0/102043 (0%)\n[  1] 0.0000-60.0015 sec  1252 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "rx5807": "------------------------------------------------------------\nServer listening on UDP port 5807\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 5807 connected with 10.0.0.2 port 38214\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0024 sec   114 MBytes  16.0 Mbits/sec   0.451 ms 1/81636 (0.0012%)\n[  1] 0.0000-60.0024 sec  993 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "rx5806": "------------------------------------------------------------\nServer listening on UDP port 5806\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.4 port 5806 connected with 10.0.0.5 port 51465\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0004 sec  85.8 MBytes  12.0 Mbits/sec   0.392 ms 0/61227 (0%)\n[  1] 0.0000-60.0004 sec  456 datagrams received out-of-order\n",
+    "rx5805": "------------------------------------------------------------\nServer listening on UDP port 5805\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5805 connected with 10.0.0.2 port 46127\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0020 sec  85.8 MBytes  12.0 Mbits/sec   0.491 ms 0/61228 (0%)\n[  1] 0.0000-60.0020 sec  195 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "rx5804": "------------------------------------------------------------\nServer listening on UDP port 5804\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.4 port 5804 connected with 10.0.0.3 port 54593\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-59.9988 sec  57.2 MBytes  8.00 Mbits/sec   0.199 ms 0/40819 (0%)\n[  1] 0.0000-59.9988 sec  88 datagrams received out-of-order\n",
+    "rx5803": "------------------------------------------------------------\nServer listening on UDP port 5803\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.2 port 5803 connected with 10.0.0.4 port 35284\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-59.9979 sec  57.2 MBytes  8.00 Mbits/sec   0.173 ms 0/40819 (0%)\n[  1] 0.0000-59.9979 sec  29 datagrams received out-of-order\n",
+    "rx5802": "------------------------------------------------------------\nServer listening on UDP port 5802\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 5802 connected with 10.0.0.4 port 46682\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-59.9996 sec  57.2 MBytes  8.00 Mbits/sec   0.278 ms 0/40820 (0%)\n[  1] 0.0000-59.9996 sec  118 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+    "rx5801": "------------------------------------------------------------\nServer listening on UDP port 5801\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5801 connected with 10.0.0.3 port 40586\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.0028 sec  57.2 MBytes  8.00 Mbits/sec   0.367 ms 0/40819 (0%)\n[  1] 0.0000-60.0028 sec  145 datagrams received out-of-order\n"
+  },
+  "initial_paths": {
+    "5801": {
+      "path": [
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5802": {
+      "path": [
+        5,
+        2,
+        3
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5803": {
+      "path": [
+        5,
+        4
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5804": {
+      "path": [
+        2,
+        5
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5805": {
+      "path": [
+        4,
+        5,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5806": {
+      "path": [
+        3,
+        2,
+        5
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5807": {
+      "path": [
+        4,
+        1,
+        2
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5808": {
+      "path": [
+        3,
+        2
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5809": {
+      "path": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5810": {
+      "path": [
+        2,
+        3
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    }
+  },
+  "final_paths": {
+    "5801": {
+      "path": [
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5802": {
+      "path": [
+        5,
+        2,
+        3
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5803": {
+      "path": [
+        5,
+        4
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5804": {
+      "path": [
+        2,
+        5
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5805": {
+      "path": [
+        4,
+        5,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5806": {
+      "path": [
+        3,
+        2,
+        5
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5807": {
+      "path": [
+        4,
+        1,
+        2
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5808": {
+      "path": [
+        3,
+        2
+      ],
+      "priorities": [
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5809": {
+      "path": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    },
+    "5810": {
+      "path": [
+        2,
+        1,
+        4,
+        5,
+        6,
+        3
+      ],
+      "priorities": [
+        21,
+        21,
+        21,
+        21,
+        21,
+        21
+      ],
+      "complete": true
+    }
+  },
+  "receivers": {
+    "rx5810": {
+      "mbps": 28.0,
+      "jitter_ms": 0.568,
+      "lost": 5,
+      "total": 142859,
+      "loss_percent": 0.0034999545005914923
+    },
+    "rx5809": {
+      "mbps": 24.0,
+      "jitter_ms": 0.47,
+      "lost": 0,
+      "total": 122451,
+      "loss_percent": 0.0
+    },
+    "rx5808": {
+      "mbps": 20.0,
+      "jitter_ms": 0.225,
+      "lost": 0,
+      "total": 102043,
+      "loss_percent": 0.0
+    },
+    "rx5807": {
+      "mbps": 16.0,
+      "jitter_ms": 0.451,
+      "lost": 1,
+      "total": 81636,
+      "loss_percent": 0.0012249497770591405
+    },
+    "rx5806": {
+      "mbps": 12.0,
+      "jitter_ms": 0.392,
+      "lost": 0,
+      "total": 61227,
+      "loss_percent": 0.0
+    },
+    "rx5805": {
+      "mbps": 12.0,
+      "jitter_ms": 0.491,
+      "lost": 0,
+      "total": 61228,
+      "loss_percent": 0.0
+    },
+    "rx5804": {
+      "mbps": 8.0,
+      "jitter_ms": 0.199,
+      "lost": 0,
+      "total": 40819,
+      "loss_percent": 0.0
+    },
+    "rx5803": {
+      "mbps": 8.0,
+      "jitter_ms": 0.173,
+      "lost": 0,
+      "total": 40819,
+      "loss_percent": 0.0
+    },
+    "rx5802": {
+      "mbps": 8.0,
+      "jitter_ms": 0.278,
+      "lost": 0,
+      "total": 40820,
+      "loss_percent": 0.0
+    },
+    "rx5801": {
+      "mbps": 8.0,
+      "jitter_ms": 0.367,
+      "lost": 0,
+      "total": 40819,
+      "loss_percent": 0.0
+    }
+  },
+  "result": {
+    "file": "02-balanced.json",
+    "mode": "balanced",
+    "peak_tx_percent": 70.771,
+    "peak_link": [
+      2,
+      3
+    ],
+    "received_mbps": 144.0,
+    "loss_percent": 0.0008166365191685006
+  }
+}
