@@ -45,7 +45,33 @@ def wait_status(controller, mode, grid=False):
     raise RuntimeError("Timed out waiting for controller or grid discovery")
 
 
-def trial(mode, account, manager, output, workload=None, recovery=False):
+def detection_result(output, data, trace, interval):
+    start = data["first_sender_launch_monotonic"]
+    samples = []
+    for line in trace.splitlines():
+        if "DETECTION_SAMPLE " in line:
+            stamp, use, ewma, streak = line.split("DETECTION_SAMPLE ")[1].split()
+            elapsed = float(stamp) - start
+            if 0 <= elapsed <= 60:
+                samples.append(dict(seconds=elapsed, utilization_percent=float(use),
+                                    ewma_percent=float(ewma), streak=int(streak)))
+    events = [s["seconds"] for s in samples if s["streak"] == 2]
+    times = [0] + [s["seconds"] for s in samples] + [60]
+    largest_gap = max(b-a for a, b in zip(times, times[1:]))
+    continuous = largest_gap < 1.8 * interval
+    status = "detected" if events else "not detected"
+    if not continuous:
+        status = "incomplete telemetry"
+    result = dict(file=output.name, mode="T%d" % interval, poll_seconds=interval,
+                  status=status, first_detection_seconds=events[0] if events else None,
+                  largest_sample_gap_seconds=largest_gap)
+    data.update(detection=result, detection_samples=samples)
+    output.write_text(json.dumps(data, indent=2))
+    print(result, flush=True)
+    return result
+
+
+def trial(mode, account, manager, output, workload=None, recovery=False, interval=None):
     from mininet.link import TCLink
     from mininet.net import Mininet
     from mininet.node import OVSSwitch, RemoteController
@@ -58,7 +84,8 @@ def trial(mode, account, manager, output, workload=None, recovery=False):
         directory.chmod(0o755)
         app.chmod(0o644)
         env = dict(os.environ, HOME=account.pw_dir, SDN_TOPOLOGY="mynetwork",
-                   SDN_ROUTING_MODE=mode, SDN_POLL_INTERVAL="5", PYTHONDONTWRITEBYTECODE="1")
+                   SDN_ROUTING_MODE=mode, SDN_POLL_INTERVAL=str(interval or 5),
+                   SDN_TRACE_DETECTION="1" if interval else "0", PYTHONDONTWRITEBYTECODE="1")
         controller = subprocess.Popen([str(manager), "--observe-links", "--ofp-tcp-listen-port",
             "6653", str(app)], cwd=temp, env=env, user=account.pw_uid, group=account.pw_gid,
             extra_groups=[], stdout=log, stderr=subprocess.STDOUT)
@@ -105,10 +132,24 @@ def trial(mode, account, manager, output, workload=None, recovery=False):
                 if net.ping([net[src], net[dst]], timeout="2") and net.ping(
                         [net[src], net[dst]], timeout="2"):
                     raise RuntimeError("Host pair unreachable before traffic")
+            if interval:
+                deadline = time.monotonic() + 4 * interval + 10
+                while not any(p["switch"] == 2 and p.get("neighbor") == 3 and
+                              p.get("ewma_utilization_percent", 100) < 5
+                              for p in demo["api"]("sdn/bandwidth")["ports"]):
+                    if time.monotonic() > deadline:
+                        raise RuntimeError("No idle baseline on S2 -> S3")
+                    time.sleep(0.5)
             demo["run_grid_demo"](net["h1"], net["h3"], net["h5"], net["h6"], output)
             data = json.loads(output.read_text())
             if data.get("interrupted"):
                 raise KeyboardInterrupt
+            if interval and not data.get("error") and "final_path" in data:
+                for host in ("H5", "H6"):
+                    receiver_report(data["process_output"][host + " receiver"])
+                # Read without disturbing the controller's shared write offset.
+                with open("/proc/self/fd/%d" % log.fileno(), errors="replace") as trace:
+                    return detection_result(output, data, trace.read(), interval)
             if data.get("error") or not data.get("final_path", {}).get("complete"):
                 raise RuntimeError(data.get("error") or "Trial did not finish with a complete path")
             if mode == "shortest" and data["final_path"] != data["initial_path"]:
@@ -140,6 +181,7 @@ def main():
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--ten-flows", action="store_true", help="compare three modes with ten UDP pairs")
     group.add_argument("--recovery", action="store_true", help="measure five S5-S6 link failures")
+    group.add_argument("--detection", action="store_true", help="compare congestion detection at T=2s and T=5s")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -158,6 +200,8 @@ def main():
     prefix = "ten-flows-" if args.ten_flows else "compare-grid-"
     if args.recovery:
         prefix = "recovery-"
+    if args.detection:
+        prefix = "detection-"
     if args.resume and not re.fullmatch(prefix + r"\d{8}T\d{6}Z", args.resume):
         parser.error("Expected a compare-grid timestamp directory name")
     folder = HERE / "results" / (args.resume or prefix + stamp)
@@ -178,6 +222,8 @@ def main():
         workload = None
         if args.recovery:
             modes = ("balanced",)
+        if args.detection:
+            modes = ("T2", "T5") if pair % 2 else ("T5", "T2")
         if args.ten_flows:
             from ten_flows import make_workload
             workload = make_workload(pair)
@@ -194,11 +240,27 @@ def main():
                 output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
                 if output.exists():
                     raise FileExistsError(output)
-            result = trial(mode, account, manager, output, workload, args.recovery)
+            if args.detection:
+                result = trial("balanced", account, manager, output, interval=int(mode[1:]))
+            else:
+                result = trial(mode, account, manager, output, workload, args.recovery)
             trials.append(dict(pair=pair, **result))
             pending = summary.with_suffix(".tmp")
             pending.write_text(json.dumps(trials, indent=2))
             pending.replace(summary)
+    if args.detection:
+        for setting in ("T2", "T5"):
+            rows = [r for r in trials if r["mode"] == setting]
+            times = [r["first_detection_seconds"] for r in rows if r["status"] == "detected"]
+            print(setting, "detected:", len(times), "not detected:",
+                  sum(r["status"] == "not detected" for r in rows), "incomplete:",
+                  sum(r["status"] == "incomplete telemetry" for r in rows))
+            if times:
+                print("Mean seconds among detections:", round(statistics.mean(times), 3))
+            if len(times) > 1:
+                print("Sample SD seconds:", round(statistics.stdev(times), 3))
+        print("Saved:", folder)
+        return
     if args.recovery:
         for metric in ("first_post_cut_reply_ms", "lost"):
             values = [r[metric] for r in trials]

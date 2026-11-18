@@ -38,6 +38,7 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
         # Store switches and links
         self.graph = nx.Graph()
+        self.trace_detection = os.environ.get("SDN_TRACE_DETECTION") == "1"
         self.routing_mode = os.environ.get("SDN_ROUTING_MODE", "balanced")
         if self.routing_mode not in ("balanced", "shortest", "ecmp"):
             raise ValueError("SDN_ROUTING_MODE must be balanced, shortest or ecmp")
@@ -1392,6 +1393,9 @@ class HostDiscoveryController(app_manager.OSKenApp):
                 ewma = 0.5 * utilization + 0.5 * old_ewma
                 streak = old_streak + 1 if ewma > 0.70 else 0
                 self.link_load[key] = (ewma, streak)
+                if self.trace_detection and dp.id == 2 and link_ports[stat.port_no] == 3:
+                    self.logger.info("DETECTION_SAMPLE %.9f %.6f %.6f %d",
+                                     time.monotonic(), utilization * 100, ewma * 100, streak)
                 if streak == 2:
                     self.logger.info(
                         "CONGESTION S%s P%s -> S%s: EWMA %.2f%% for 2 periods",

@@ -100,8 +100,10 @@ def run_grid_demo(host1, host3, host5, host6, output_path=None):
         time.sleep(0.5)
         if any(p.poll() is not None for p in processes.values()):
             raise RuntimeError("An iperf receiver did not start; see saved output.")
+        result["first_sender_launch_monotonic"] = time.monotonic()
         start("H3->H5 client", host3,
               ["-c", host5.IP(), "-u", "-b", "30000000", "-t", "60", "-p", "5505"])
+        result["second_sender_launch_monotonic"] = time.monotonic()
         start("H1->H6 client", host1,
               ["-c", host6.IP(), "-u", "-b", "85000000", "-t", "60", "-p", "5506"])
         begin, failures = time.monotonic(), 0
