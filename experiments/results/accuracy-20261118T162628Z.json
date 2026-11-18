@@ -1,0 +1,300 @@
+{
+  "tool": "iperf",
+  "requested_bps": 5000000,
+  "source": "h1",
+  "target": "h16",
+  "trials": [
+    {
+      "path": [
+        1,
+        9,
+        17,
+        15,
+        8
+      ],
+      "samples": [
+        {
+          "elapsed": 12.016070680998382,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.8e-05,
+          "tx_mbps": 5.237681,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.052377,
+          "utilization_percent": 5.238,
+          "ewma_utilization_percent": 3.217,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 17.064218294995953,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.6e-05,
+          "tx_mbps": 5.126867,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051269,
+          "utilization_percent": 5.127,
+          "ewma_utilization_percent": 4.172,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 22.026551039998594,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.6e-05,
+          "tx_mbps": 5.156274,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051563,
+          "utilization_percent": 5.156,
+          "ewma_utilization_percent": 4.664,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ],
+      "sender_output": "------------------------------------------------------------\nClient connecting to 10.0.0.16, UDP port 5710\nSending 1400 byte datagrams, IPG target: 2240.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 35873 connected with 10.0.0.16 port 5710\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-1.0000 sec  0.598 MBytes  5.02 Mbits/sec\n[  1] 1.0000-2.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 2.0000-3.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 3.0000-4.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 4.0000-5.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 5.0000-6.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 6.0000-7.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 7.0000-8.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 8.0000-9.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 9.0000-10.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 10.0000-11.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 11.0000-12.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 12.0000-13.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 13.0000-14.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 14.0000-15.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 15.0000-16.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 16.0000-17.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 17.0000-18.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 18.0000-19.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 19.0000-20.0000 sec  0.594 MBytes  4.98 Mbits/sec\n[  1] 20.0000-21.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 21.0000-22.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 22.0000-23.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 23.0000-24.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 24.0000-25.0000 sec  0.590 MBytes  4.95 Mbits/sec\n[  1] 25.0000-26.0000 sec  0.601 MBytes  5.04 Mbits/sec\n[  1] 26.0000-27.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 27.0000-28.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 28.0000-29.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 29.0000-30.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 0.0000-30.0028 sec  17.9 MBytes  5.00 Mbits/sec\n[  1] Sent 13397 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0025 sec  17.9 MBytes  5.00 Mbits/sec   0.636 ms 0/13396 (0%)\n[  1] 0.0000-30.0025 sec  2 datagrams received out-of-order\n",
+      "receiver_output": "------------------------------------------------------------\nServer listening on UDP port 5710\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.16 port 5710 connected with 10.0.0.1 port 35873\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0025 sec  17.9 MBytes  5.00 Mbits/sec   0.637 ms 0/13396 (0%)\n[  1] 0.0000-30.0025 sec  2 datagrams received out-of-order\nWaiting for server threads to complete. Interrupt again to force quit.\n",
+      "sender_mbps": 5.001500000000002,
+      "controller_tx_mbps": 5.173607333333333,
+      "error_percent": 3.441114332366912
+    },
+    {
+      "path": [
+        1,
+        9,
+        17,
+        15,
+        8
+      ],
+      "samples": [
+        {
+          "elapsed": 12.013754811996478,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 0.000191,
+          "tx_mbps": 5.120117,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051201,
+          "utilization_percent": 5.12,
+          "ewma_utilization_percent": 4.97,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 17.006733645997883,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.7e-05,
+          "tx_mbps": 5.254368,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.052544,
+          "utilization_percent": 5.254,
+          "ewma_utilization_percent": 5.112,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 22.010102980995725,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.5e-05,
+          "tx_mbps": 5.087649,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.050876,
+          "utilization_percent": 5.088,
+          "ewma_utilization_percent": 5.1,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ],
+      "sender_output": "------------------------------------------------------------\nClient connecting to 10.0.0.16, UDP port 5711\nSending 1400 byte datagrams, IPG target: 2240.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 46797 connected with 10.0.0.16 port 5711\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-1.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 1.0000-2.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 2.0000-3.0000 sec  0.585 MBytes  4.91 Mbits/sec\n[  1] 3.0000-4.0000 sec  0.607 MBytes  5.10 Mbits/sec\n[  1] 4.0000-5.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 5.0000-6.0000 sec  0.593 MBytes  4.97 Mbits/sec\n[  1] 6.0000-7.0000 sec  0.599 MBytes  5.03 Mbits/sec\n[  1] 7.0000-8.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 8.0000-9.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 9.0000-10.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 10.0000-11.0000 sec  0.586 MBytes  4.92 Mbits/sec\n[  1] 11.0000-12.0000 sec  0.606 MBytes  5.08 Mbits/sec\n[  1] 12.0000-13.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 13.0000-14.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 14.0000-15.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 15.0000-16.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 16.0000-17.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 17.0000-18.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 18.0000-19.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 19.0000-20.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 20.0000-21.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 21.0000-22.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 22.0000-23.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 23.0000-24.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 24.0000-25.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 25.0000-26.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 26.0000-27.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 27.0000-28.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 28.0000-29.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 29.0000-30.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 0.0000-30.0027 sec  17.9 MBytes  5.00 Mbits/sec\n[  1] Sent 13397 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0028 sec  17.9 MBytes  5.00 Mbits/sec   0.670 ms 0/13396 (0%)\n[  1] 0.0000-30.0028 sec  2 datagrams received out-of-order\n",
+      "receiver_output": "------------------------------------------------------------\nServer listening on UDP port 5711\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.16 port 5711 connected with 10.0.0.1 port 46797\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0028 sec  17.9 MBytes  5.00 Mbits/sec   0.671 ms 0/13396 (0%)\n[  1] 0.0000-30.0028 sec  2 datagrams received out-of-order\nWaiting for server threads to complete. Interrupt again to force quit.\n",
+      "sender_mbps": 5.003500000000001,
+      "controller_tx_mbps": 5.154044666666667,
+      "error_percent": 3.0087871823057033
+    },
+    {
+      "path": [
+        1,
+        9,
+        17,
+        15,
+        8
+      ],
+      "samples": [
+        {
+          "elapsed": 12.007449242999428,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 0.000193,
+          "tx_mbps": 5.187354,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051874,
+          "utilization_percent": 5.187,
+          "ewma_utilization_percent": 4.963,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 17.007264959996974,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.3e-05,
+          "tx_mbps": 4.984602,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.049846,
+          "utilization_percent": 4.985,
+          "ewma_utilization_percent": 4.974,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 22.006337266000628,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.9e-05,
+          "tx_mbps": 5.328785,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.053288,
+          "utilization_percent": 5.329,
+          "ewma_utilization_percent": 5.151,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ],
+      "sender_output": "------------------------------------------------------------\nClient connecting to 10.0.0.16, UDP port 5712\nSending 1400 byte datagrams, IPG target: 2240.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 58664 connected with 10.0.0.16 port 5712\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-1.0000 sec  0.598 MBytes  5.02 Mbits/sec\n[  1] 1.0000-2.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 2.0000-3.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 3.0000-4.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 4.0000-5.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 5.0000-6.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 6.0000-7.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 7.0000-8.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 8.0000-9.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 9.0000-10.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 10.0000-11.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 11.0000-12.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 12.0000-13.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 13.0000-14.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 14.0000-15.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 15.0000-16.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 16.0000-17.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 17.0000-18.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 18.0000-19.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 19.0000-20.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 20.0000-21.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 21.0000-22.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 22.0000-23.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 23.0000-24.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 24.0000-25.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 25.0000-26.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 26.0000-27.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 27.0000-28.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 28.0000-29.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 29.0000-30.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 0.0000-30.0026 sec  17.9 MBytes  5.00 Mbits/sec\n[  1] Sent 13397 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0007 sec  17.9 MBytes  5.00 Mbits/sec   0.215 ms 0/13396 (0%)\n[  1] 0.0000-30.0007 sec  3 datagrams received out-of-order\n",
+      "receiver_output": "------------------------------------------------------------\nServer listening on UDP port 5712\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.16 port 5712 connected with 10.0.0.1 port 58664\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0007 sec  17.9 MBytes  5.00 Mbits/sec   0.215 ms 0/13396 (0%)\n[  1] 0.0000-30.0007 sec  3 datagrams received out-of-order\nWaiting for server threads to complete. Interrupt again to force quit.\n",
+      "sender_mbps": 5.0040000000000004,
+      "controller_tx_mbps": 5.166913666666667,
+      "error_percent": 3.255668798294692
+    },
+    {
+      "path": [
+        1,
+        9,
+        17,
+        15,
+        8
+      ],
+      "samples": [
+        {
+          "elapsed": 12.014925679002772,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 0.000191,
+          "tx_mbps": 5.139541,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051395,
+          "utilization_percent": 5.14,
+          "ewma_utilization_percent": 4.838,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 17.005221291001362,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.6e-05,
+          "tx_mbps": 5.144092,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051441,
+          "utilization_percent": 5.144,
+          "ewma_utilization_percent": 4.991,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 22.00736751400109,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.6e-05,
+          "tx_mbps": 5.163625,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051636,
+          "utilization_percent": 5.164,
+          "ewma_utilization_percent": 5.077,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ],
+      "sender_output": "------------------------------------------------------------\nClient connecting to 10.0.0.16, UDP port 5713\nSending 1400 byte datagrams, IPG target: 2240.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 58812 connected with 10.0.0.16 port 5713\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-1.0000 sec  0.598 MBytes  5.02 Mbits/sec\n[  1] 1.0000-2.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 2.0000-3.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 3.0000-4.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 4.0000-5.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 5.0000-6.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 6.0000-7.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 7.0000-8.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 8.0000-9.0000 sec  0.594 MBytes  4.98 Mbits/sec\n[  1] 9.0000-10.0000 sec  0.598 MBytes  5.02 Mbits/sec\n[  1] 10.0000-11.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 11.0000-12.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 12.0000-13.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 13.0000-14.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 14.0000-15.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 15.0000-16.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 16.0000-17.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 17.0000-18.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 18.0000-19.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 19.0000-20.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 20.0000-21.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 21.0000-22.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 22.0000-23.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 23.0000-24.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 24.0000-25.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 25.0000-26.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 26.0000-27.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 27.0000-28.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 28.0000-29.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 29.0000-30.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 0.0000-30.0028 sec  17.9 MBytes  5.00 Mbits/sec\n[  1] Sent 13397 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0050 sec  17.9 MBytes  5.00 Mbits/sec   1.278 ms 0/13396 (0%)\n[  1] 0.0000-30.0050 sec  8 datagrams received out-of-order\n",
+      "receiver_output": "------------------------------------------------------------\nServer listening on UDP port 5713\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.16 port 5713 connected with 10.0.0.1 port 58812\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0050 sec  17.9 MBytes  5.00 Mbits/sec   1.279 ms 0/13396 (0%)\n[  1] 0.0000-30.0050 sec  8 datagrams received out-of-order\nWaiting for server threads to complete. Interrupt again to force quit.\n[  5] WARNING: ack of last datagram failed.\n",
+      "sender_mbps": 5.004,
+      "controller_tx_mbps": 5.149086,
+      "error_percent": 2.899400479616308
+    },
+    {
+      "path": [
+        1,
+        9,
+        17,
+        15,
+        8
+      ],
+      "samples": [
+        {
+          "elapsed": 12.034771086000546,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 0.000189,
+          "tx_mbps": 5.080388,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.050804,
+          "utilization_percent": 5.08,
+          "ewma_utilization_percent": 4.88,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 17.004165717000433,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.6e-05,
+          "tx_mbps": 5.164489,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.051645,
+          "utilization_percent": 5.164,
+          "ewma_utilization_percent": 5.022,
+          "congested_periods": 0,
+          "congested": false
+        },
+        {
+          "elapsed": 22.005416981999588,
+          "switch": 1,
+          "port": 3,
+          "rx_mbps": 9.5e-05,
+          "tx_mbps": 5.096814,
+          "neighbor": 9,
+          "capacity_mbps": 100,
+          "utilization": 0.050968,
+          "utilization_percent": 5.097,
+          "ewma_utilization_percent": 5.06,
+          "congested_periods": 0,
+          "congested": false
+        }
+      ],
+      "sender_output": "------------------------------------------------------------\nClient connecting to 10.0.0.16, UDP port 5714\nSending 1400 byte datagrams, IPG target: 2240.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 46606 connected with 10.0.0.16 port 5714\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-1.0000 sec  0.598 MBytes  5.02 Mbits/sec\n[  1] 1.0000-2.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 2.0000-3.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 3.0000-4.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 4.0000-5.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 5.0000-6.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 6.0000-7.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 7.0000-8.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 8.0000-9.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 9.0000-10.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 10.0000-11.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 11.0000-12.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 12.0000-13.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 13.0000-14.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 14.0000-15.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 15.0000-16.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 16.0000-17.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 17.0000-18.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 18.0000-19.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 19.0000-20.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 20.0000-21.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 21.0000-22.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 22.0000-23.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 23.0000-24.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 24.0000-25.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 25.0000-26.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 26.0000-27.0000 sec  0.597 MBytes  5.01 Mbits/sec\n[  1] 27.0000-28.0000 sec  0.595 MBytes  5.00 Mbits/sec\n[  1] 28.0000-29.0000 sec  0.594 MBytes  4.98 Mbits/sec\n[  1] 29.0000-30.0000 sec  0.598 MBytes  5.02 Mbits/sec\n[  1] 0.0000-30.0031 sec  17.9 MBytes  5.00 Mbits/sec\n[  1] Sent 13397 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0027 sec  17.9 MBytes  5.00 Mbits/sec   0.466 ms 0/13396 (0%)\n[  1] 0.0000-30.0027 sec  4 datagrams received out-of-order\n",
+      "receiver_output": "------------------------------------------------------------\nServer listening on UDP port 5714\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.16 port 5714 connected with 10.0.0.1 port 46606\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-30.0027 sec  17.9 MBytes  5.00 Mbits/sec   0.466 ms 0/13396 (0%)\n[  1] 0.0000-30.0027 sec  4 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n",
+      "sender_mbps": 5.004500000000001,
+      "controller_tx_mbps": 5.113897,
+      "error_percent": 2.1859726246377984
+    }
+  ],
+  "mean_error_percent": 2.9581886834442828,
+  "sd_error_percent": 0.4806364279769387
+}
