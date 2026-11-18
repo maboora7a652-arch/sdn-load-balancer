@@ -71,6 +71,16 @@ def detection_result(output, data, trace, interval):
     return result
 
 
+def wait_idle_link(interval):
+    deadline = time.monotonic() + 4 * interval + 10
+    while not any(p["switch"] == 2 and p.get("neighbor") == 3 and
+                  p.get("ewma_utilization_percent", 100) < 5
+                  for p in demo["api"]("sdn/bandwidth")["ports"]):
+        if time.monotonic() > deadline:
+            raise RuntimeError("No idle baseline on S2 -> S3")
+        time.sleep(0.5)
+
+
 def trial(mode, account, manager, output, workload=None, recovery=False, interval=None):
     from mininet.link import TCLink
     from mininet.net import Mininet
@@ -127,19 +137,22 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
                             lost=summary["transmitted"] - summary["received"])
             if workload is not None:
                 from ten_flows import measure
-                return measure(net, mode, output, workload, demo, receiver_report)
+                if interval:
+                    wait_idle_link(interval)
+                result = measure(net, mode, output, workload, demo, receiver_report)
+                if interval:
+                    data = json.loads(output.read_text())
+                    if data["initial_paths"][str(workload[0]["port"])]["path"] != [2, 3]:
+                        raise RuntimeError("Calibration did not start on S2 -> S3")
+                    with open("/proc/self/fd/%d" % log.fileno(), errors="replace") as trace:
+                        return detection_result(output, data, trace.read(), interval)
+                return result
             for src, dst in (("h1", "h6"), ("h3", "h5")):
                 if net.ping([net[src], net[dst]], timeout="2") and net.ping(
                         [net[src], net[dst]], timeout="2"):
                     raise RuntimeError("Host pair unreachable before traffic")
             if interval:
-                deadline = time.monotonic() + 4 * interval + 10
-                while not any(p["switch"] == 2 and p.get("neighbor") == 3 and
-                              p.get("ewma_utilization_percent", 100) < 5
-                              for p in demo["api"]("sdn/bandwidth")["ports"]):
-                    if time.monotonic() > deadline:
-                        raise RuntimeError("No idle baseline on S2 -> S3")
-                    time.sleep(0.5)
+                wait_idle_link(interval)
             demo["run_grid_demo"](net["h1"], net["h3"], net["h5"], net["h6"], output)
             data = json.loads(output.read_text())
             if data.get("interrupted"):
@@ -182,6 +195,7 @@ def main():
     group.add_argument("--ten-flows", action="store_true", help="compare three modes with ten UDP pairs")
     group.add_argument("--recovery", action="store_true", help="measure five S5-S6 link failures")
     group.add_argument("--detection", action="store_true", help="compare congestion detection at T=2s and T=5s")
+    group.add_argument("--calibrate-detection", action="store_true", help="one direct H3-H5 UDP trial at T=5s")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -197,6 +211,15 @@ def main():
             if sock.connect_ex(("127.0.0.1", port)) == 0:
                 raise SystemExit("Stop the existing controller before launching.")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    if args.calibrate_detection:
+        if args.resume:
+            parser.error("Calibration is a single independent trial.")
+        output = HERE / "results" / ("calibration-" + stamp + ".json")
+        workload = [dict(src="h3", dst="h5", mbps=95, port=5811)]
+        print("Calibration: H3 -> H5, 95 Mbps UDP for 60 seconds, T=5s", flush=True)
+        trial("balanced", account, manager, output, workload=workload, interval=5)
+        print("Saved:", output)
+        return
     prefix = "ten-flows-" if args.ten_flows else "compare-grid-"
     if args.recovery:
         prefix = "recovery-"

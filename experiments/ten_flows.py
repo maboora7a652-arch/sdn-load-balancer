@@ -58,6 +58,7 @@ def measure(net, mode, output, workload, demo, receiver_report):
             time.sleep(0.5)
             if any(proc.poll() is not None for proc, _ in processes.values()):
                 raise RuntimeError("Receiver failed to start")
+            raw["first_sender_launch_monotonic"] = time.monotonic()
             for flow in workload:
                 port = str(flow["port"])
                 launch("tx"+port, flow["src"], ["-u", "-c", net[flow["dst"]].IP(), "-p", port,
