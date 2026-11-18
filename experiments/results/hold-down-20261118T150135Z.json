@@ -1,0 +1,3402 @@
+{
+  "samples": [
+    {
+      "t": 0.582,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 0.0,
+        "consecutive_periods": 0,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 2.641,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 12.75862,
+        "consecutive_periods": 1,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 4.718,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 12.75862,
+        "consecutive_periods": 1,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 6.779,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 79.075091,
+        "consecutive_periods": 2,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.076,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.076,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 106.982,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 27.90666799999999,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 106.982
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 8.872,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 79.075091,
+        "consecutive_periods": 2,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.076,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.076,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 106.982,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 27.90666799999999,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 106.982
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 10.937,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 79.075091,
+        "consecutive_periods": 2,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.076,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.076,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 106.982,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 27.90666799999999,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 106.982
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 13.004,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 88.039376,
+        "consecutive_periods": 3,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.04,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.04,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 115.947,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 27.90666800000001,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 115.947
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 15.061,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 88.039376,
+        "consecutive_periods": 3,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.04,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.04,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 115.947,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 27.90666800000001,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 115.947
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 17.132,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.728672,
+        "consecutive_periods": 4,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.729,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.729,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.692,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.963149999999985,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.692
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 19.19,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.728672,
+        "consecutive_periods": 4,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.729,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.729,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.692,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.963149999999985,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.692
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 21.264,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.728672,
+        "consecutive_periods": 4,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.729,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.729,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.692,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.963149999999985,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.692
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 23.335,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.542442,
+        "consecutive_periods": 5,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.543,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.543,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.436,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.893521000000014,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.436
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 25.401,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.542442,
+        "consecutive_periods": 5,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.543,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.543,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.436,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.893521000000014,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.436
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 27.46,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.520678,
+        "consecutive_periods": 6,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.521,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.521,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.426,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.904534000000005,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.426
+        }
+      },
+      "congested": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 29.516,
+      "forwarding": {
+        "path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "priorities": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.520678,
+        "consecutive_periods": 6,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.521,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.521,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.426,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.904534000000005,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.426
+        }
+      },
+      "congested": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 31.641,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.614401,
+        "consecutive_periods": 7,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.615,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.615,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.519,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.904533999999995,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.519
+        }
+      },
+      "congested": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 33.775,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.614401,
+        "consecutive_periods": 7,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.615,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.615,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.519,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.904533999999995,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.519
+        }
+      },
+      "congested": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 35.851,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "installed_priority": 20,
+        "rate_mbps": 87.614401,
+        "consecutive_periods": 7,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.615,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.615,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 118.519,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "improvement_pp": 30.904533999999995,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.519
+        }
+      },
+      "congested": [
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 37.901,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": null,
+        "consecutive_periods": 0,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 39.955,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": null,
+        "consecutive_periods": 0,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 42.004,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 89.114293,
+        "consecutive_periods": 1,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 44.05,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 89.114293,
+        "consecutive_periods": 1,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 46.109,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 89.114293,
+        "consecutive_periods": 1,
+        "elephant": false
+      },
+      "congested": []
+    },
+    {
+      "t": 48.156,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 88.469385,
+        "consecutive_periods": 2,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 88.47,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.47,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.684,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.214068000000005,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.684
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 50.202,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 88.469385,
+        "consecutive_periods": 2,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 88.47,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.47,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.684,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.214068000000005,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.684
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 52.256,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.741891,
+        "consecutive_periods": 3,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.742,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.742,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.727,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.9848,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.727
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 54.331,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.741891,
+        "consecutive_periods": 3,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.742,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.742,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.727,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.9848,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.727
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 56.397,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.62649,
+        "consecutive_periods": 4,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.627,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.627,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.541,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.913937999999995,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.541
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 58.451,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.62649,
+        "consecutive_periods": 4,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.627,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.627,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.541,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.913937999999995,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.541
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 60.502,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.62649,
+        "consecutive_periods": 4,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.627,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.627,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.541,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.913937999999995,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.541
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 62.55,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.68572,
+        "consecutive_periods": 5,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.686,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.686,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.573,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.886528000000002,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.573
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 64.63,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.68572,
+        "consecutive_periods": 5,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.686,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.686,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.573,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.886528000000002,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.573
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 66.669,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 89.278733,
+        "consecutive_periods": 6,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 89.279,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 89.279,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 120.166,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.886526999999997,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 120.166
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 68.715,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 89.278733,
+        "consecutive_periods": 6,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 89.279,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 89.279,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 120.166,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.886526999999997,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 120.166
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 70.783,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 89.278733,
+        "consecutive_periods": 6,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 89.279,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 89.279,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 120.166,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 30.886526999999997,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 120.166
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 72.831,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.893427,
+        "consecutive_periods": 7,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.894,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.894,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.916,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.022004000000013,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.916
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 74.877,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.893427,
+        "consecutive_periods": 7,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.894,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.894,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 118.916,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.022004000000013,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 118.916
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 76.932,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.939032,
+        "consecutive_periods": 8,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.94,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.94,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.022,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.082444999999993,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.022
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 78.98,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.939032,
+        "consecutive_periods": 8,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.94,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.94,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.022,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.082444999999993,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.022
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 81.041,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 87.939032,
+        "consecutive_periods": 8,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 87.94,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 87.94,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.022,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.082444999999993,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.022
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 83.217,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 88.283866,
+        "consecutive_periods": 9,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 88.284,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.284,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.393,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.109047999999994,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.393
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 85.26,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 88.283866,
+        "consecutive_periods": 9,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 88.284,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 88.284,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 119.393,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 31.109047999999994,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 119.393
+        }
+      },
+      "congested": []
+    },
+    {
+      "t": 87.331,
+      "forwarding": {
+        "path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "priorities": [
+          21,
+          21,
+          21,
+          21
+        ],
+        "complete": true
+      },
+      "flow": {
+        "switch": 1,
+        "src_mac": "00:00:00:00:00:01",
+        "dst_mac": "00:00:00:00:00:06",
+        "in_port": 3,
+        "installed_path": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "installed_priority": 21,
+        "rate_mbps": 79.899363,
+        "consecutive_periods": 10,
+        "elephant": true,
+        "path_selection": {
+          "current_path": [
+            1,
+            4,
+            5,
+            6
+          ],
+          "candidates": [
+            {
+              "path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "projected_bottleneck_percent": 79.9,
+              "hops": 3,
+              "shared_links": 0
+            },
+            {
+              "path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 79.9,
+              "hops": 3,
+              "shared_links": 1
+            },
+            {
+              "path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "projected_bottleneck_percent": 108.105,
+              "hops": 3,
+              "shared_links": 3
+            }
+          ],
+          "best_path": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "improvement_pp": 28.204984,
+          "ready": true,
+          "load_model": "max(port_tx, ingress_demand)",
+          "current_bottleneck_percent": 108.105
+        }
+      },
+      "congested": []
+    }
+  ],
+  "logs": {
+    "h2": "------------------------------------------------------------\nClient connecting to 10.0.0.4, UDP port 5604\nSending 1470 byte datagrams, IPG target: 392.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.2 port 60736 connected with 10.0.0.4 port 5604\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-55.6382 sec   199 MBytes  30.0 Mbits/sec\n[  1] Sent 141937 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-56.0118 sec  96.4 MBytes  14.4 Mbits/sec   5.305 ms 73186/141937 (52%)\n[  1] 0.0000-56.0118 sec  1014 datagrams received out-of-order\n",
+    "h1": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5606\nSending 1470 byte datagrams, IPG target: 138.35 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 55892 connected with 10.0.0.6 port 5606\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-87.2973 sec   885 MBytes  85.0 Mbits/sec\n[  1] Sent 630973 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-87.9564 sec   531 MBytes  50.7 Mbits/sec   2.255 ms 251989/630972 (40%)\n[  1] 0.0000-87.9564 sec  22654 datagrams received out-of-order\n",
+    "h3": "------------------------------------------------------------\nClient connecting to 10.0.0.5, UDP port 5605\nSending 1470 byte datagrams, IPG target: 392.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 40070 connected with 10.0.0.5 port 5605\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-31.1297 sec   111 MBytes  30.0 Mbits/sec\n[  1] Sent 79414 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-31.1296 sec  63.6 MBytes  17.1 Mbits/sec   0.121 ms 34054/79413 (43%)\n[  1] 0.0000-31.1296 sec  807 datagrams received out-of-order\n",
+    "h4": "------------------------------------------------------------\nServer listening on UDP port 5604\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.4 port 5604 connected with 10.0.0.2 port 60736\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-56.0118 sec  96.4 MBytes  14.4 Mbits/sec   5.306 ms 73186/141937 (52%)\n[  1] 0.0000-56.0118 sec  1014 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n[  2] local 10.0.0.4 port 5604 connected with 10.0.0.2 port 60736\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  2] 0.0000-0.0055 sec  2.87 KBytes  4.26 Mbits/sec   0.345 ms 141947/141949 (1e+02%)\n[  6] WARNING: ack of last datagram failed.\n[  3] local 10.0.0.4 port 5604 connected with 10.0.0.2 port 60736\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  3] 0.0000-0.0046 sec  2.87 KBytes  5.12 Mbits/sec   0.287 ms 141958/141960 (1e+02%)\n[  5] WARNING: ack of last datagram failed.\n[  4] local 10.0.0.4 port 5604 connected with 10.0.0.2 port 60736\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  4] 0.0000-0.0047 sec  2.87 KBytes  5.01 Mbits/sec   0.293 ms 141969/141971 (1e+02%)\nwrite-ackfin failed: Connection refused\n[  6] WARNING: ack of last datagram failed.\n",
+    "h5": "------------------------------------------------------------\nServer listening on UDP port 5605\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 5605 connected with 10.0.0.3 port 40070\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-31.1296 sec  63.6 MBytes  17.1 Mbits/sec   0.121 ms 34054/79413 (43%)\n[  1] 0.0000-31.1296 sec  807 datagrams received out-of-order\n",
+    "h6": "------------------------------------------------------------\nServer listening on UDP port 5606\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5606 connected with 10.0.0.1 port 55892\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-87.9564 sec   531 MBytes  50.7 Mbits/sec   2.256 ms 251989/630972 (40%)\n[  1] 0.0000-87.9564 sec  22654 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n[  2] local 10.0.0.6 port 5606 connected with 10.0.0.1 port 55892\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  2] 0.0000-0.0000 sec  2.87 KBytes  -nan bits/sec   0.009 ms 630982/630984 (1e+02%)\nwrite-ackfin failed: Connection refused\n[  6] WARNING: ack of last datagram failed.\n"
+  },
+  "requested_bps": {
+    "h1": 85000000,
+    "h3": 30000000,
+    "h2": 30000000
+  }
+}
