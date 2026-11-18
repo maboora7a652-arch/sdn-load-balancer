@@ -45,7 +45,7 @@ def wait_status(controller, mode, grid=False):
     raise RuntimeError("Timed out waiting for controller or grid discovery")
 
 
-def trial(mode, account, manager, output):
+def trial(mode, account, manager, output, workload=None):
     from mininet.link import TCLink
     from mininet.net import Mininet
     from mininet.node import OVSSwitch, RemoteController
@@ -72,6 +72,9 @@ def trial(mode, account, manager, output):
             net.build()
             net.start()
             wait_status(controller, mode, grid=True)
+            if workload is not None:
+                from ten_flows import measure
+                return measure(net, mode, output, workload, demo, receiver_report)
             for src, dst in (("h1", "h6"), ("h3", "h5")):
                 if net.ping([net[src], net[dst]], timeout="2") and net.ping(
                         [net[src], net[dst]], timeout="2"):
@@ -108,6 +111,7 @@ def main():
     import pwd
     parser = argparse.ArgumentParser()
     parser.add_argument("--resume", metavar="BATCH", help="existing compare-grid results directory name")
+    parser.add_argument("--ten-flows", action="store_true", help="compare three modes with ten UDP pairs")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -123,12 +127,15 @@ def main():
             if sock.connect_ex(("127.0.0.1", port)) == 0:
                 raise SystemExit("Stop the existing controller before launching.")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    if args.resume and not re.fullmatch(r"compare-grid-\d{8}T\d{6}Z", args.resume):
+    prefix = "ten-flows-" if args.ten_flows else "compare-grid-"
+    if args.resume and not re.fullmatch(prefix + r"\d{8}T\d{6}Z", args.resume):
         parser.error("Expected a compare-grid timestamp directory name")
-    folder = HERE / "results" / (args.resume or "compare-grid-" + stamp)
+    folder = HERE / "results" / (args.resume or prefix + stamp)
     summary = folder / "summary.json"
     if args.resume:
-        trials = json.loads(summary.read_text())
+        if not folder.is_dir():
+            parser.error("Batch directory does not exist")
+        trials = json.loads(summary.read_text()) if summary.exists() else []
         for row in trials:
             if not (folder / row["file"]).is_file():
                 raise ValueError("Missing raw data for " + row["file"])
@@ -138,6 +145,13 @@ def main():
     completed = {(r["pair"], r["mode"]) for r in trials}
     for pair in range(1, 6):
         modes = ("shortest", "balanced") if pair % 2 else ("balanced", "shortest")
+        workload = None
+        if args.ten_flows:
+            from ten_flows import make_workload
+            workload = make_workload(pair)
+            modes = ("shortest", "ecmp", "balanced")
+            offset = (pair - 1) % len(modes)
+            modes = modes[offset:] + modes[:offset]
         for mode in modes:
             if (pair, mode) in completed:
                 continue
@@ -148,11 +162,19 @@ def main():
                 output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
                 if output.exists():
                     raise FileExistsError(output)
-            result = trial(mode, account, manager, output)
+            result = trial(mode, account, manager, output, workload)
             trials.append(dict(pair=pair, **result))
             pending = summary.with_suffix(".tmp")
             pending.write_text(json.dumps(trials, indent=2))
             pending.replace(summary)
+    if args.ten_flows:
+        for mode in ("shortest", "ecmp", "balanced"):
+            for metric in ("peak_tx_percent", "received_mbps", "loss_percent"):
+                values = [r[metric] for r in trials if r["mode"] == mode]
+                print("%s %s: mean %.3f, sample SD %.3f" %
+                      (mode, metric, statistics.mean(values), statistics.stdev(values)))
+        print("Saved:", folder)
+        return
     for mode in ("shortest", "balanced"):
         for host in ("H6", "H5"):
             rows = [r["receivers"][host] for r in trials if r["mode"] == mode]

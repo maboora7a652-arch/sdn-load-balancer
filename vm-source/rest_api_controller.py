@@ -2,6 +2,7 @@
 import networkx as nx
 import time
 import os
+import hashlib
 from itertools import islice
 import json
 
@@ -38,8 +39,8 @@ class HostDiscoveryController(app_manager.OSKenApp):
         # Store switches and links
         self.graph = nx.Graph()
         self.routing_mode = os.environ.get("SDN_ROUTING_MODE", "balanced")
-        if self.routing_mode not in ("balanced", "shortest"):
-            raise ValueError("SDN_ROUTING_MODE must be balanced or shortest")
+        if self.routing_mode not in ("balanced", "shortest", "ecmp"):
+            raise ValueError("SDN_ROUTING_MODE must be balanced, shortest or ecmp")
         self.topology_name = os.environ.get("SDN_TOPOLOGY", "mynetwork")
         if self.topology_name not in ("mynetwork", "fattree4"):
             raise ValueError("SDN_TOPOLOGY must be mynetwork or fattree4")
@@ -857,11 +858,17 @@ class HostDiscoveryController(app_manager.OSKenApp):
             tuple(sorted((a, b))) for a, b in self.graph.edges()))
         # Calculate shortest path using Dijkstra.
         try:
-            path = nx.dijkstra_path(
-                routing_graph,
-                source=src_switch,
-                target=dst_switch
-            )
+            if self.routing_mode == "ecmp":
+                # Both directions share the same hash and canonical path list.
+                start, end = sorted((src_switch, dst_switch))
+                paths = sorted(nx.all_shortest_paths(routing_graph, start, end))
+                key = "|".join(sorted((src_mac, dst_mac))).encode("ascii")
+                bucket = int.from_bytes(hashlib.sha256(key).digest()[:8], "big")
+                path = paths[bucket % len(paths)]
+                if src_switch != start:
+                    path = list(reversed(path))
+            else:
+                path = nx.dijkstra_path(routing_graph, source=src_switch, target=dst_switch)
         except (nx.NetworkXNoPath, nx.NodeNotFound):
             self.logger.info("No path available")
             return False

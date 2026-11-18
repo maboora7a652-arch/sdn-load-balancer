@@ -93,3 +93,15 @@ sudo -u "$(id -un)" -g vboxsf -- python3 /media/sf_sdn_transfer/dashboard/serve.
 Open http://127.0.0.1:8081 in Firefox inside Ubuntu. The process uses your user identity with the VirtualBox shared-folder group for read access. Ctrl+C in this terminal stops the dashboard. No install required.
 
 Select a directed host pair to highlight its controller-reported installed path. Each refresh reads topology, learned hosts, port TX utilization and ingress flow details from the local controller. Changes are detected between samples while the tab is open; brief events between polls can be missed. The most recent view stays on screen with a disconnected status if the controller stops responding.
+
+## Compare ten concurrent flows on the grid
+
+With the previous Mininet and controller processes stopped, run in the Ubuntu terminal:
+
+```bash
+sudo python3 /media/sf_sdn_transfer/experiments/compare_grid.py --ten-flows
+```
+
+Five matched rounds run shortest-path, ECMP and balanced routing on fresh grids in rotating order. Each round draws ten distinct directed host pairs with a fixed seed and reuses their UDP rates across all three modes. Total requested rate is 144 Mbps across all ten pairs. ECMP hashes each host pair onto an equal-hop shortest path and installs the reverse path symmetrically.
+
+Peak utilization is the largest sampled TX utilization over all 14 inter-switch directions and ten snapshots during the common traffic window. The script also sums receiver throughput and computes loss weighted by receiver datagram totals. Raw samples, flow paths, iperf output and the summary are saved under experiments/results/ten-flows-UTC. To continue a stopped batch, pass --ten-flows --resume followed by its directory name.
