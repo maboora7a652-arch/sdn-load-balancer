@@ -1,0 +1,4607 @@
+{
+  "started_utc": "20261118T165433Z",
+  "duration_seconds": 60,
+  "requested_rates": {
+    "H1->H6": "85000000 bit/s",
+    "H3->H5": "30000000 bit/s"
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 0.001,
+      "bandwidth": {
+        "count": 0,
+        "unit": "Mbps",
+        "ports": []
+      },
+      "flows": {
+        "count": 0,
+        "total_flows": 0,
+        "switches": [],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": []
+      }
+    },
+    {
+      "elapsed_seconds": 5.006,
+      "bandwidth": {
+        "count": 0,
+        "unit": "Mbps",
+        "ports": []
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 2859,
+            "total_bytes": 4317152,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 3068,
+            "total_bytes": 4627504,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 2228,
+            "total_bytes": 3357424,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 1448,
+            "total_bytes": 2183720,
+            "new_packets": 0,
+            "new_bytes": 0
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": null,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": null,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": null,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": null,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 10.011,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.001557,
+            "tx_mbps": 60.048789,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.600488,
+            "utilization_percent": 60.049,
+            "ewma_utilization_percent": 60.049,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.001557,
+            "tx_mbps": 0.001557,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 1.6e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.643404,
+            "tx_mbps": 0.001461
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 60.04204,
+            "tx_mbps": 0.001557,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 1.6e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.001232,
+            "tx_mbps": 64.853307,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.648533,
+            "utilization_percent": 64.853,
+            "ewma_utilization_percent": 64.853,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.001557,
+            "tx_mbps": 0.001137,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 1.1e-05,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.850763,
+            "tx_mbps": 0.001557
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 64.840888,
+            "tx_mbps": 0.001232,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 1.2e-05,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.001461,
+            "tx_mbps": 49.387196,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.493872,
+            "utilization_percent": 49.387,
+            "ewma_utilization_percent": 49.387,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 15.465273
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.001557,
+            "tx_mbps": 0.001557,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 1.6e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.001557,
+            "tx_mbps": 0.001557,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 1.6e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 0.001557
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.001453,
+            "tx_mbps": 0.001549,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 1.5e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.001136,
+            "tx_mbps": 0.001557,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 1.6e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.001557,
+            "tx_mbps": 0.001557,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 1.6e-05,
+            "utilization_percent": 0.002,
+            "ewma_utilization_percent": 0.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 0.001557
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 49.397773,
+            "tx_mbps": 0.001461,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 1.5e-05,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.001549,
+            "tx_mbps": 0.001453,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 1.5e-05,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 49.396887
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 39394,
+            "total_bytes": 59558072,
+            "new_packets": 36535,
+            "new_bytes": 55240920
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 41061,
+            "total_bytes": 62072920,
+            "new_packets": 37993,
+            "new_bytes": 57445416
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 29323,
+            "total_bytes": 44325064,
+            "new_packets": 27095,
+            "new_bytes": 40967640
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 22071,
+            "total_bytes": 33365696,
+            "new_packets": 20623,
+            "new_bytes": 31181976
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 88.332473,
+            "consecutive_periods": 1,
+            "elephant": false
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 31.183111,
+            "consecutive_periods": 1,
+            "elephant": false
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 15.016,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000478,
+            "tx_mbps": 54.949835,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.549498,
+            "utilization_percent": 54.95,
+            "ewma_utilization_percent": 57.499,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.000382,
+            "tx_mbps": 0.000494,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.404062,
+            "tx_mbps": 0.000589
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 54.938011,
+            "tx_mbps": 0.000478,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000706,
+            "tx_mbps": 60.059162,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.600592,
+            "utilization_percent": 60.059,
+            "ewma_utilization_percent": 62.456,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000494,
+            "tx_mbps": 0.000913,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.844967,
+            "tx_mbps": 0.000589
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 60.085718,
+            "tx_mbps": 0.000706,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 7e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.000478,
+            "tx_mbps": 45.859399,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.458594,
+            "utilization_percent": 45.859,
+            "ewma_utilization_percent": 47.623,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 14.225101
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.000382,
+            "tx_mbps": 0.000494,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.000494,
+            "tx_mbps": 0.000382,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000382
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.000801,
+            "tx_mbps": 0.000801,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000913,
+            "tx_mbps": 0.000494,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.000494,
+            "tx_mbps": 0.000382,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 0.000382
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 45.840929,
+            "tx_mbps": 0.000478,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000801,
+            "tx_mbps": 0.000801,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 45.841142
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 72761,
+            "total_bytes": 110008976,
+            "new_packets": 33367,
+            "new_bytes": 50450904
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 73637,
+            "total_bytes": 111327832,
+            "new_packets": 32576,
+            "new_bytes": 49254912
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 52097,
+            "total_bytes": 78759352,
+            "new_packets": 22774,
+            "new_bytes": 34434288
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 39401,
+            "total_bytes": 59568656,
+            "new_packets": 17330,
+            "new_bytes": 26202960
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 80.399847,
+            "consecutive_periods": 2,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 80.401,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 80.401,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 111.583,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 31.181554,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 111.583
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 28.369348,
+            "consecutive_periods": 2,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 28.37,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 28.371,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 108.769,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 80.39871000000001,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 108.769
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 20.022,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000818,
+            "tx_mbps": 56.586184,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.565862,
+            "utilization_percent": 56.586,
+            "ewma_utilization_percent": 57.043,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.000914,
+            "tx_mbps": 0.000802,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.088517,
+            "tx_mbps": 0.000706
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 56.681605,
+            "tx_mbps": 0.000819,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000915,
+            "tx_mbps": 61.244264,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.612443,
+            "utilization_percent": 61.244,
+            "ewma_utilization_percent": 61.85,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000803,
+            "tx_mbps": 0.000803,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.799682,
+            "tx_mbps": 0.000707
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 61.206721,
+            "tx_mbps": 0.000914,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.000819,
+            "tx_mbps": 47.275001,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.47275,
+            "utilization_percent": 47.275,
+            "ewma_utilization_percent": 47.449,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 13.925116
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.000914,
+            "tx_mbps": 0.000803,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.000803,
+            "tx_mbps": 0.000914,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 0.000914
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.000819,
+            "tx_mbps": 0.000819,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000803,
+            "tx_mbps": 0.000803,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.000803,
+            "tx_mbps": 0.000915,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000915
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 47.273839,
+            "tx_mbps": 0.000819,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000819,
+            "tx_mbps": 0.000819,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 47.273567
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 109076,
+            "total_bytes": 164917256,
+            "new_packets": 36315,
+            "new_bytes": 54908280
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 110205,
+            "total_bytes": 166618648,
+            "new_packets": 36568,
+            "new_bytes": 55290816
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 77794,
+            "total_bytes": 117613216,
+            "new_packets": 25697,
+            "new_bytes": 38853864
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 59270,
+            "total_bytes": 89610584,
+            "new_packets": 19869,
+            "new_bytes": 30041928
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 87.695396,
+            "consecutive_periods": 3,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.696,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.696,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 118.658,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 30.96136599999999,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.658
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 30.962185,
+            "consecutive_periods": 3,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.963,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.963,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 111.362,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 80.398934,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 111.362
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 25.027,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 55.966636,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.559666,
+            "utilization_percent": 55.967,
+            "ewma_utilization_percent": 56.505,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.652428,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 55.933286,
+            "tx_mbps": 0.00048,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 60.562721,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.605627,
+            "utilization_percent": 60.563,
+            "ewma_utilization_percent": 61.206,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.913606,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 60.608566,
+            "tx_mbps": 0.00048,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 46.600342,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.466003,
+            "utilization_percent": 46.6,
+            "ewma_utilization_percent": 47.025,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 13.99887
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 46.588228,
+            "tx_mbps": 0.00048,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 46.588622
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 145386,
+            "total_bytes": 219817976,
+            "new_packets": 36310,
+            "new_bytes": 54900720
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 146207,
+            "total_bytes": 221053672,
+            "new_packets": 36002,
+            "new_bytes": 54435024
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 102845,
+            "total_bytes": 155490328,
+            "new_packets": 25051,
+            "new_bytes": 37877112
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 78555,
+            "total_bytes": 118769504,
+            "new_packets": 19285,
+            "new_bytes": 29158920
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 87.823587,
+            "consecutive_periods": 4,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.824,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.824,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 118.786,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 30.961366,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.786
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 30.989652,
+            "consecutive_periods": 4,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.99,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.99,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 118.813,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 87.822768,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.813
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 30.038,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 53.499964,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.535,
+            "utilization_percent": 53.5,
+            "ewma_utilization_percent": 55.002,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.55588,
+            "tx_mbps": 0.000593
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 53.467523,
+            "tx_mbps": 0.000384,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 58.317886,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.583179,
+            "utilization_percent": 58.318,
+            "ewma_utilization_percent": 59.762,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000592,
+            "tx_mbps": 0.000592,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 6e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.872489,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 58.297723,
+            "tx_mbps": 0.000384,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 44.377666,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.443777,
+            "utilization_percent": 44.378,
+            "ewma_utilization_percent": 45.701,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 13.935541
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000592,
+            "tx_mbps": 0.000592,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 6e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 44.393132,
+            "tx_mbps": 0.000384,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 44.392867
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 181619,
+            "total_bytes": 274602272,
+            "new_packets": 36233,
+            "new_bytes": 54784296
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 181270,
+            "total_bytes": 274068928,
+            "new_packets": 35063,
+            "new_bytes": 53015256
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 127134,
+            "total_bytes": 192215296,
+            "new_packets": 24289,
+            "new_bytes": 36724968
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 97070,
+            "total_bytes": 146764184,
+            "new_packets": 18515,
+            "new_bytes": 27994680
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 87.619826,
+            "consecutive_periods": 5,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.62,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.62,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 118.609,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 30.989171999999986,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.609
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 30.921942,
+            "consecutive_periods": 5,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.922,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.922,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 118.542,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 87.61934600000001,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.542
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 35.044,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000915,
+            "tx_mbps": 60.773809,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.607738,
+            "utilization_percent": 60.774,
+            "ewma_utilization_percent": 57.888,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.000819,
+            "tx_mbps": 0.000819,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.323191,
+            "tx_mbps": 0.000803
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 60.790369,
+            "tx_mbps": 0.000915,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000915,
+            "tx_mbps": 65.754125,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.657541,
+            "utilization_percent": 65.754,
+            "ewma_utilization_percent": 62.758,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000708,
+            "tx_mbps": 0.000708,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 7e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.845718,
+            "tx_mbps": 0.001011
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 65.788687,
+            "tx_mbps": 0.000916,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.000916,
+            "tx_mbps": 50.803091,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.508031,
+            "utilization_percent": 50.803,
+            "ewma_utilization_percent": 48.252,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 14.982264
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.00082,
+            "tx_mbps": 0.00082,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.00082,
+            "tx_mbps": 0.00082,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 0.00082
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.000915,
+            "tx_mbps": 0.000915,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000708,
+            "tx_mbps": 0.000708,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 7e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.00082,
+            "tx_mbps": 0.00082,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 8e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 0.00082
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 50.842529,
+            "tx_mbps": 0.000917,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000917,
+            "tx_mbps": 0.000917,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 9e-06,
+            "utilization_percent": 0.001,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 50.839625
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 217876,
+            "total_bytes": 329422856,
+            "new_packets": 36257,
+            "new_bytes": 54820584
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 219486,
+            "total_bytes": 331851520,
+            "new_packets": 38216,
+            "new_bytes": 57782592
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 154591,
+            "total_bytes": 233730280,
+            "new_packets": 27457,
+            "new_bytes": 41514984
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 118230,
+            "total_bytes": 178758104,
+            "new_packets": 21160,
+            "new_bytes": 31993920
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 87.64282,
+            "consecutive_periods": 6,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.643,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.644,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 118.565,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                2,
+                5,
+                6
+              ],
+              "improvement_pp": 30.921350000000004,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.565
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 30.943424,
+            "consecutive_periods": 6,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.944,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.944,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 118.586,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 87.641903,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.586
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 40.061,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 57.742812,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.577428,
+            "utilization_percent": 57.743,
+            "ewma_utilization_percent": 57.815,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.437978,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 57.708197,
+            "tx_mbps": 0.000384,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 62.859205,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.628592,
+            "utilization_percent": 62.859,
+            "ewma_utilization_percent": 62.809,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 0.000479,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.831283,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 62.906461,
+            "tx_mbps": 0.000384,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 48.161277,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.481613,
+            "utilization_percent": 48.161,
+            "ewma_utilization_percent": 48.207,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 14.728851
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 48.074989,
+            "tx_mbps": 0.000479,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 0.000479,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.000112,
+            "tx_mbps": 48.078035
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 254323,
+            "total_bytes": 384530720,
+            "new_packets": 36447,
+            "new_bytes": 55107864
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 256046,
+            "total_bytes": 387130240,
+            "new_packets": 36560,
+            "new_bytes": 55278720
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 180425,
+            "total_bytes": 272791288,
+            "new_packets": 25834,
+            "new_bytes": 39061008
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 138031,
+            "total_bytes": 208697216,
+            "new_packets": 19801,
+            "new_bytes": 29939112
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 88.137327,
+            "consecutive_periods": 7,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 88.138,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 88.138,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 119.081,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 30.942508999999994,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 119.081
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 31.098473,
+            "consecutive_periods": 7,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 31.099,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 31.099,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 119.236,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 88.13641000000001,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 119.236
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 45.066,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 58.994979,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.58995,
+            "utilization_percent": 58.995,
+            "ewma_utilization_percent": 58.405,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.540715,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 59.009304,
+            "tx_mbps": 0.000481,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000481,
+            "tx_mbps": 65.050885,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.650509,
+            "utilization_percent": 65.051,
+            "ewma_utilization_percent": 63.93,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000481,
+            "tx_mbps": 0.000385,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.904742,
+            "tx_mbps": 0.000481
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 64.970586,
+            "tx_mbps": 0.00048,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 49.353896,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.493539,
+            "utilization_percent": 49.354,
+            "ewma_utilization_percent": 48.78,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 15.634828
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.000384,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.00048,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.00048,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.001,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 49.407614,
+            "tx_mbps": 0.000385,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000385,
+            "tx_mbps": 0.000385,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 49.407539
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 290581,
+            "total_bytes": 439352816,
+            "new_packets": 36258,
+            "new_bytes": 54822096
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 292802,
+            "total_bytes": 442705312,
+            "new_packets": 36756,
+            "new_bytes": 55575072
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 206845,
+            "total_bytes": 312738328,
+            "new_packets": 26420,
+            "new_bytes": 39947040
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 158159,
+            "total_bytes": 239130752,
+            "new_packets": 20128,
+            "new_bytes": 30433536
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 87.680281,
+            "consecutive_periods": 8,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.681,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.681,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 118.779,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 31.097993000000002,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.779
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 30.948542,
+            "consecutive_periods": 8,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.949,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.949,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 118.629,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 87.679801,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.629
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 50.071,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 55.641516,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.556415,
+            "utilization_percent": 55.642,
+            "ewma_utilization_percent": 57.023,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.394871,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 55.668433,
+            "tx_mbps": 0.000384,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 60.363826,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.603638,
+            "utilization_percent": 60.364,
+            "ewma_utilization_percent": 62.147,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.00048,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.856691,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 60.366778,
+            "tx_mbps": 0.000384,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 46.157307,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.461573,
+            "utilization_percent": 46.157,
+            "ewma_utilization_percent": 47.469,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 14.188567
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.00048,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 0.000384,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000384
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.000384,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.000384,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.00048
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 46.156798,
+            "tx_mbps": 0.00048,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.00048,
+            "tx_mbps": 0.00048,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 46.156765
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 327035,
+            "total_bytes": 494471264,
+            "new_packets": 36454,
+            "new_bytes": 55118448
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 329943,
+            "total_bytes": 498862504,
+            "new_packets": 37141,
+            "new_bytes": 56157192
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 233213,
+            "total_bytes": 352606744,
+            "new_packets": 26368,
+            "new_bytes": 39868416
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 178253,
+            "total_bytes": 269512880,
+            "new_packets": 20094,
+            "new_bytes": 30382128
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 88.171882,
+            "consecutive_periods": 9,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 88.172,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 88.172,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 119.12,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 30.948062,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 119.12
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 31.116785,
+            "consecutive_periods": 9,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 31.117,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 31.117,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 119.289,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 88.17140199999997,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 119.289
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    },
+    {
+      "elapsed_seconds": 55.076,
+      "bandwidth": {
+        "count": 20,
+        "unit": "Mbps",
+        "ports": [
+          {
+            "switch": 1,
+            "port": 1,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 54.99448,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 0.549945,
+            "utilization_percent": 54.994,
+            "ewma_utilization_percent": 56.009,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 2,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 0.000479,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 1,
+            "port": 3,
+            "rx_mbps": 87.415013,
+            "tx_mbps": 0.000383
+          },
+          {
+            "switch": 2,
+            "port": 1,
+            "rx_mbps": 54.9628,
+            "tx_mbps": 0.000479,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 2,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 59.294101,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 0.592941,
+            "utilization_percent": 59.294,
+            "ewma_utilization_percent": 60.72,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 3,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 0.000383,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 2,
+            "port": 4,
+            "rx_mbps": 30.823856,
+            "tx_mbps": 0.000479
+          },
+          {
+            "switch": 3,
+            "port": 1,
+            "rx_mbps": 59.338694,
+            "tx_mbps": 0.000479,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 2,
+            "rx_mbps": 0.000384,
+            "tx_mbps": 45.527956,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 0.45528,
+            "utilization_percent": 45.528,
+            "ewma_utilization_percent": 46.498,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 3,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 13.835365
+          },
+          {
+            "switch": 4,
+            "port": 1,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 0.000383,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 2,
+            "rx_mbps": 0.000479,
+            "tx_mbps": 0.000479,
+            "neighbor": 1,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 4,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000479
+          },
+          {
+            "switch": 5,
+            "port": 1,
+            "rx_mbps": 0.000383,
+            "tx_mbps": 0.000383,
+            "neighbor": 6,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 2,
+            "rx_mbps": 0.000383,
+            "tx_mbps": 0.000479,
+            "neighbor": 2,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 3,
+            "rx_mbps": 0.000383,
+            "tx_mbps": 0.000479,
+            "neighbor": 4,
+            "capacity_mbps": 100,
+            "utilization": 5e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 5,
+            "port": 4,
+            "rx_mbps": 0.0,
+            "tx_mbps": 0.000479
+          },
+          {
+            "switch": 6,
+            "port": 1,
+            "rx_mbps": 45.505319,
+            "tx_mbps": 0.000383,
+            "neighbor": 3,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 2,
+            "rx_mbps": 0.000383,
+            "tx_mbps": 0.000383,
+            "neighbor": 5,
+            "capacity_mbps": 100,
+            "utilization": 4e-06,
+            "utilization_percent": 0.0,
+            "ewma_utilization_percent": 0.0,
+            "congested_periods": 0,
+            "congested": false
+          },
+          {
+            "switch": 6,
+            "port": 3,
+            "rx_mbps": 0.0,
+            "tx_mbps": 45.502745
+          }
+        ]
+      },
+      "flows": {
+        "count": 6,
+        "total_flows": 12,
+        "switches": [
+          {
+            "switch": 1,
+            "flow_count": 2,
+            "total_packets": 363253,
+            "total_bytes": 549232880,
+            "new_packets": 36218,
+            "new_bytes": 54761616
+          },
+          {
+            "switch": 2,
+            "flow_count": 4,
+            "total_packets": 365083,
+            "total_bytes": 551994184,
+            "new_packets": 35140,
+            "new_bytes": 53131680
+          },
+          {
+            "switch": 3,
+            "flow_count": 4,
+            "total_packets": 257302,
+            "total_bytes": 389029312,
+            "new_packets": 24089,
+            "new_bytes": 36422568
+          },
+          {
+            "switch": 4,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 5,
+            "flow_count": 0,
+            "total_packets": 0,
+            "total_bytes": 0,
+            "new_packets": 0,
+            "new_bytes": 0
+          },
+          {
+            "switch": 6,
+            "flow_count": 2,
+            "total_packets": 196713,
+            "total_bytes": 297424400,
+            "new_packets": 18460,
+            "new_bytes": 27911520
+          }
+        ],
+        "flow_scope": "directed_host_pair",
+        "elephant_threshold_mbps": 10,
+        "flows": [
+          {
+            "switch": 1,
+            "src_mac": "00:00:00:00:00:01",
+            "dst_mac": "00:00:00:00:00:06",
+            "in_port": 3,
+            "installed_path": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 87.531055,
+            "consecutive_periods": 10,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                1,
+                2,
+                3,
+                6
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    1,
+                    4,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.532,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    5,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 87.532,
+                  "hops": 3,
+                  "shared_links": 1
+                },
+                {
+                  "path": [
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "projected_bottleneck_percent": 118.648,
+                  "hops": 3,
+                  "shared_links": 3
+                }
+              ],
+              "best_path": [
+                1,
+                4,
+                5,
+                6
+              ],
+              "improvement_pp": 31.11630500000001,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.648
+            }
+          },
+          {
+            "switch": 2,
+            "src_mac": "00:00:00:00:00:03",
+            "dst_mac": "00:00:00:00:00:05",
+            "in_port": 4,
+            "installed_path": [
+              2,
+              3
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 30.922741,
+            "consecutive_periods": 10,
+            "elephant": true,
+            "path_selection": {
+              "current_path": [
+                2,
+                3
+              ],
+              "candidates": [
+                {
+                  "path": [
+                    2,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.923,
+                  "hops": 3,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    1,
+                    4,
+                    5,
+                    6,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 30.923,
+                  "hops": 5,
+                  "shared_links": 0
+                },
+                {
+                  "path": [
+                    2,
+                    3
+                  ],
+                  "projected_bottleneck_percent": 118.454,
+                  "hops": 1,
+                  "shared_links": 1
+                }
+              ],
+              "best_path": [
+                2,
+                5,
+                6,
+                3
+              ],
+              "improvement_pp": 87.530575,
+              "ready": true,
+              "load_model": "max(port_tx, ingress_demand)",
+              "current_bottleneck_percent": 118.454
+            }
+          },
+          {
+            "switch": 3,
+            "src_mac": "00:00:00:00:00:05",
+            "dst_mac": "00:00:00:00:00:03",
+            "in_port": 3,
+            "installed_path": [
+              3,
+              2
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          },
+          {
+            "switch": 6,
+            "src_mac": "00:00:00:00:00:06",
+            "dst_mac": "00:00:00:00:00:01",
+            "in_port": 3,
+            "installed_path": [
+              6,
+              3,
+              2,
+              1
+            ],
+            "installed_priority": 20,
+            "rate_mbps": 0.0,
+            "consecutive_periods": 0,
+            "elephant": false
+          }
+        ]
+      }
+    }
+  ],
+  "process_output": {
+    "H6 receiver": "------------------------------------------------------------\nServer listening on UDP port 5506\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.6 port 5506 connected with 10.0.0.1 port 53943\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.5829 sec   335 MBytes  46.4 Mbits/sec   0.315 ms 194745/433676 (45%)\n[  1] 0.0000-60.5829 sec  14828 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n[  2] local 10.0.0.6 port 5506 connected with 10.0.0.1 port 53943\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  2] 0.0000-0.0000 sec  2.87 KBytes  -nan bits/sec   0.010 ms 433692/433694 (1e+02%)\n[  6] WARNING: ack of last datagram failed.\n",
+    "H5 receiver": "------------------------------------------------------------\nServer listening on UDP port 5505\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.5 port 5505 connected with 10.0.0.3 port 51549\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.3007 sec   102 MBytes  14.2 Mbits/sec   1.599 ms 80376/153063 (53%)\n[  1] 0.0000-60.3007 sec  1256 datagrams received out-of-order\n[  5] WARNING: ack of last datagram failed.\n[  2] local 10.0.0.5 port 5505 connected with 10.0.0.3 port 51549\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  2] 0.0000-0.0140 sec  2.87 KBytes  1.69 Mbits/sec   0.872 ms 153075/153077 (1e+02%)\n[  6] WARNING: ack of last datagram failed.\n[  3] local 10.0.0.5 port 5505 connected with 10.0.0.3 port 51549\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  3] 0.0000-0.0043 sec  2.87 KBytes  5.53 Mbits/sec   0.266 ms 153086/153088 (1e+02%)\n[  5] WARNING: ack of last datagram failed.\n",
+    "H3->H5 client": "------------------------------------------------------------\nClient connecting to 10.0.0.5, UDP port 5505\nSending 1470 byte datagrams, IPG target: 392.00 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.3 port 51549 connected with 10.0.0.5 port 5505\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0005 sec   215 MBytes  30.0 Mbits/sec\n[  1] Sent 153064 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.3007 sec   102 MBytes  14.2 Mbits/sec   1.598 ms 80376/153063 (53%)\n[  1] 0.0000-60.3007 sec  1256 datagrams received out-of-order\n",
+    "H1->H6 client": "------------------------------------------------------------\nClient connecting to 10.0.0.6, UDP port 5506\nSending 1470 byte datagrams, IPG target: 138.35 us (kalman adjust)\nUDP buffer size:  208 KByte (default)\n------------------------------------------------------------\n[  1] local 10.0.0.1 port 53943 connected with 10.0.0.6 port 5506\n[ ID] Interval       Transfer     Bandwidth\n[  1] 0.0000-60.0002 sec   608 MBytes  85.0 Mbits/sec\n[  1] Sent 433677 datagrams\n[  1] Server Report:\n[ ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams\n[  1] 0.0000-60.5829 sec   335 MBytes  46.4 Mbits/sec   0.315 ms 194745/433676 (45%)\n[  1] 0.0000-60.5829 sec  14828 datagrams received out-of-order\n"
+  },
+  "initial_flow_tables": {
+    "1": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=2.058s, table=0, n_packets=4, n_bytes=240, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.135s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=0.135s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:3\n cookie=0x0, duration=1.064s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=3,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=1.064s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:01 actions=output:3\n cookie=0x0, duration=2.060s, table=0, n_packets=27, n_bytes=3653, priority=0 actions=CONTROLLER:65535\n",
+    "2": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=1.917s, table=0, n_packets=6, n_bytes=360, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.143s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=0.143s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=0.054s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=4,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:05 actions=output:2\n cookie=0x0, duration=0.052s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:05,dl_dst=00:00:00:00:00:03 actions=output:4\n cookie=0x0, duration=1.073s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=1.073s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=2,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=1.923s, table=0, n_packets=38, n_bytes=5337, priority=0 actions=CONTROLLER:65535\n",
+    "3": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=1.694s, table=0, n_packets=3, n_bytes=180, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.156s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=0.156s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=0.065s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:05 actions=output:3\n cookie=0x0, duration=0.065s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:05,dl_dst=00:00:00:00:00:03 actions=output:1\n cookie=0x0, duration=1.086s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=1.086s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=2,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=1.696s, table=0, n_packets=27, n_bytes=3702, priority=0 actions=CONTROLLER:65535\n",
+    "4": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=1.540s, table=0, n_packets=4, n_bytes=240, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=1.549s, table=0, n_packets=18, n_bytes=2775, priority=0 actions=CONTROLLER:65535\n",
+    "5": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=1.397s, table=0, n_packets=6, n_bytes=360, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=1.405s, table=0, n_packets=31, n_bytes=4330, priority=0 actions=CONTROLLER:65535\n",
+    "6": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=1.185s, table=0, n_packets=2, n_bytes=120, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.188s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=0.188s, table=0, n_packets=2, n_bytes=196, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=1.121s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=1.121s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=3,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=1.193s, table=0, n_packets=23, n_bytes=3141, priority=0 actions=CONTROLLER:65535\n"
+  },
+  "initial_path": {
+    "path": [
+      1,
+      2,
+      3,
+      6
+    ],
+    "priorities": [
+      20,
+      20,
+      20,
+      20
+    ],
+    "complete": true
+  },
+  "background_path": {
+    "path": [
+      2,
+      3
+    ],
+    "priorities": [
+      20,
+      20
+    ],
+    "complete": true
+  },
+  "final_flow_tables": {
+    "1": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=63.270s, table=0, n_packets=116, n_bytes=6960, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=61.347s, table=0, n_packets=433700, n_bytes=655751572, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=61.347s, table=0, n_packets=11, n_bytes=1726, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:3\n cookie=0x0, duration=62.276s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=3,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=62.276s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:01 actions=output:3\n cookie=0x0, duration=63.272s, table=0, n_packets=54, n_bytes=7216, priority=0 actions=CONTROLLER:65535\n",
+    "2": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=63.126s, table=0, n_packets=161, n_bytes=9660, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=61.352s, table=0, n_packets=286133, n_bytes=432630268, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=61.352s, table=0, n_packets=11, n_bytes=1726, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=61.263s, table=0, n_packets=153090, n_bytes=231469252, priority=20,ip,in_port=4,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:05 actions=output:2\n cookie=0x0, duration=61.261s, table=0, n_packets=3, n_bytes=366, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:05,dl_dst=00:00:00:00:00:03 actions=output:4\n cookie=0x0, duration=62.282s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=62.282s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=2,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=63.132s, table=0, n_packets=69, n_bytes=9727, priority=0 actions=CONTROLLER:65535\n",
+    "3": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=62.895s, table=0, n_packets=86, n_bytes=5160, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=61.357s, table=0, n_packets=237928, n_bytes=359744308, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=61.357s, table=0, n_packets=11, n_bytes=1726, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=61.266s, table=0, n_packets=72684, n_bytes=109895380, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:05 actions=output:3\n cookie=0x0, duration=61.266s, table=0, n_packets=3, n_bytes=366, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:05,dl_dst=00:00:00:00:00:03 actions=output:1\n cookie=0x0, duration=62.287s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=62.287s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=2,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=62.897s, table=0, n_packets=45, n_bytes=6144, priority=0 actions=CONTROLLER:65535\n",
+    "4": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=62.737s, table=0, n_packets=116, n_bytes=6960, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=62.746s, table=0, n_packets=42, n_bytes=6051, priority=0 actions=CONTROLLER:65535\n",
+    "5": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=62.587s, table=0, n_packets=173, n_bytes=10380, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=62.595s, table=0, n_packets=70, n_bytes=10106, priority=0 actions=CONTROLLER:65535\n",
+    "6": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=62.368s, table=0, n_packets=114, n_bytes=6840, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=61.371s, table=0, n_packets=237917, n_bytes=359727676, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=61.371s, table=0, n_packets=11, n_bytes=1726, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=62.304s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=62.304s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=3,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=62.376s, table=0, n_packets=47, n_bytes=6658, priority=0 actions=CONTROLLER:65535\n"
+  },
+  "final_path": {
+    "path": [
+      1,
+      2,
+      3,
+      6
+    ],
+    "priorities": [
+      20,
+      20,
+      20,
+      20
+    ],
+    "complete": true
+  },
+  "return_codes": {
+    "H6 receiver": 0,
+    "H5 receiver": 0,
+    "H3->H5 client": 0,
+    "H1->H6 client": 0
+  }
+}
