@@ -37,6 +37,9 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
         # Store switches and links
         self.graph = nx.Graph()
+        self.routing_mode = os.environ.get("SDN_ROUTING_MODE", "balanced")
+        if self.routing_mode not in ("balanced", "shortest"):
+            raise ValueError("SDN_ROUTING_MODE must be balanced or shortest")
         self.topology_name = os.environ.get("SDN_TOPOLOGY", "mynetwork")
         if self.topology_name not in ("mynetwork", "fattree4"):
             raise ValueError("SDN_TOPOLOGY must be mynetwork or fattree4")
@@ -1148,7 +1151,8 @@ class HostDiscoveryController(app_manager.OSKenApp):
             if (self.reroute_state is not None
                     and time.monotonic() - self.reroute_state["started"] > 10):
                 self.abort_reroute("barrier timeout")
-            self.rebalance_network()
+            if self.routing_mode == "balanced":
+                self.rebalance_network()
 
             for dp in list(self.datapaths.values()):
 
@@ -1503,6 +1507,7 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
             data = {
                 "status": "running",
+                "routing_mode": self.routing_mode,
                 "switches": len(self.datapaths),
                 "links": self.graph.number_of_edges(),
                 "hosts": len(learned_hosts)

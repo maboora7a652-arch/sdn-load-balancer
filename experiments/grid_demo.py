@@ -63,13 +63,13 @@ def flow_tables(switches):
         text=True, stderr=subprocess.STDOUT, timeout=3) for n in switches}
 
 
-def run_grid_demo(host1, host3, host5, host6):
+def run_grid_demo(host1, host3, host5, host6, output_path=None):
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     result = {"started_utc": stamp, "duration_seconds": 60,
               "requested_rates": {"H1->H6": "85000000 bit/s", "H3->H5": "30000000 bit/s"},
               "samples": [], "process_output": {}}
     processes, streams = {}, {}
-    output = Path("/media/sf_sdn_transfer/experiments/results") / ("grid-demo-" + stamp + ".json")
+    output = output_path or Path("/media/sf_sdn_transfer/experiments/results") / ("grid-demo-" + stamp + ".json")
     try:
         topology = api("topology")
         hosts = {h["mac"].lower(): h for h in api("sdn/hosts")["hosts"]}
