@@ -32,7 +32,7 @@
 
 ## التوسعة والتسليم المطلوبان
 
-- [ ] Fat-tree k=4: عدد 20 switches و16 hosts، وإزالة افتراضات العدد 6 من المسارات الفعلية في controller مع الحفاظ على Grid.
+- [ ] Fat-tree k=4 جاهزة في المصدر مع وضع controller مستقل. فحص البناء محليًا أكد 20 switches و16 hosts و32 وصلة؛ باقي تشغيل Ubuntu ونتيجة الاتصال.
 - [ ] Dashboard بسيطة مرتبطة بالـAPI، تعرض topology وutilization والتدفقات وقرارات التحويل والأعطال. لا features إضافية غير لازمة.
 - [ ] Baselines: shortest path وECMP؛ مقارنة max utilization مع 10 random flows، بنفس الإعدادات.
 - [ ] كل التجارب المطلوبة: دقة المراقبة، زمن الاكتشاف، throughput/delay/jitter/loss قبل وبعد النقل، max utilization، recovery time/lost packets، وتأثير T وtheta. كل تجربة 5 مرات على الأقل، مع mean/std وscripts وraw results ورسوم من البيانات الفعلية.

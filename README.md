@@ -13,7 +13,7 @@ Grid فيها 6 switches و7 links و6 hosts، وصلات TCLink بسعة 100 Mb
 
 آخر تجربة فعلية محفوظة في [grid-demo-20261117T193620Z.json](experiments/results/grid-demo-20261117T193620Z.json): انتقل H1->H6 من P1 إلى P3 [1,4,5,6] بأولوية 21 على الأربع switches، واختفت قواعد 20 القديمة لنفس التدفق. تحسن الأداء لم يثبت؛ H1 receiver = 53.2 Mbps وفقد 37%، وH3 receiver = 22.1 Mbps وفقد 26% في نفس التجربة.
 
-المتبقي يشمل معالجة أو تفسير فقد الحمل العالي، معايرة iperf3 و5 runs، وfat-tree من 20 switches و16 hosts، وdashboard وbaselines والتسليم النهائي. التفاصيل في الخطة.
+المتبقي يشمل معالجة أو تفسير فقد الحمل العالي، معايرة iperf3 و5 runs، والتشغيل الحي للـfat-tree، وdashboard وbaselines والتسليم النهائي. التفاصيل في الخطة.
 
 ## أين الكود؟
 
@@ -61,3 +61,21 @@ py exec(open("/media/sf_sdn_transfer/experiments/link_failure_demo.py").read(), 
 الاختبار الثاني يحتاج الحالة الحالية managed P3 بأولوية أعلى من 20، ويتوقف قبل فصل أي وصلة لو الحالة مختلفة. يحتفظ بالمسار أثناءالعطل وraw ping timestamps، ويحاول إعادة الوصلة في finally عند الانقطاع. النتائج فيexperiments/results/ دون إنترنت أو نقل يدوي.
 
 اختبار واحد ليس خمس تجارب أو قياسًا دقيقًا للاستعادة. أكبر فجوة بين ردودPing ليست وحدها زمن convergence.
+
+## Run the k=4 fat-tree on Ubuntu
+
+Exit the current Mininet CLI with `exit`, then stop its controller with Ctrl+C.
+Use the shared working source for this run. In the controller terminal:
+
+```bash
+cd /media/sf_sdn_transfer/vm-source
+SDN_TOPOLOGY=fattree4 "$HOME/sdn-lab/.venv/bin/osken-manager" --observe-links --ofp-tcp-listen-port 6653 rest_api_controller.py
+```
+
+In the Mininet terminal:
+
+```bash
+sudo mn --custom /media/sf_sdn_transfer/vm-source/custom_topology.py --topo fattree4 --mac --switch ovs,protocols=OpenFlow13 --link tc --controller=remote,ip=127.0.0.1,port=6653
+```
+
+Once the controller reports 20 switches and 32 links, run `pingall 1` at the Mininet prompt. Sixteen hosts give 240 directed probes. The original grid uses the default controller mode and topology name `mynetwork`.

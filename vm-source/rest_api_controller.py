@@ -37,6 +37,11 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
         # Store switches and links
         self.graph = nx.Graph()
+        self.topology_name = os.environ.get("SDN_TOPOLOGY", "mynetwork")
+        if self.topology_name not in ("mynetwork", "fattree4"):
+            raise ValueError("SDN_TOPOLOGY must be mynetwork or fattree4")
+        self.expected_switches = 20 if self.topology_name == "fattree4" else 6
+        self.fat_tree_discovered = False
 
         # Store discovered hosts
         self.hosts = {}
@@ -153,7 +158,9 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
         
         # Wait until all switches are discovered
-        if self.graph.number_of_nodes() != 6:
+        if self.graph.number_of_nodes() != self.expected_switches:
+            return
+        if self.topology_name == "fattree4" and not self.fat_tree_discovered:
             return
 
         # Ignore switch-to-switch ports
@@ -537,8 +544,14 @@ class HostDiscoveryController(app_manager.OSKenApp):
             )
             
             # Calculate the shortest path when topology is ready
+            if (self.topology_name == "fattree4"
+                    and self.graph.number_of_nodes() == self.expected_switches
+                    and self.graph.number_of_edges() == 32):
+                self.fat_tree_discovered = True
+
             if (
-                self.graph.number_of_nodes() == 6
+                self.topology_name == "mynetwork"
+                and self.graph.number_of_nodes() == 6
                 and self.graph.number_of_edges() == 7
             ):
 
@@ -709,7 +722,8 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
         
         if (
-            len(self.hosts) == 6
+            self.topology_name == "mynetwork"
+            and len(self.hosts) == 6
             and self.graph.number_of_edges() == 7
             and "00:00:00:00:00:06" in self.hosts
         ):
