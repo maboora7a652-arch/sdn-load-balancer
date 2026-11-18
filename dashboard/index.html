@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SDN Network Monitor</title><link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script></head>
+<body><header><strong>SDN / Network monitor</strong><span id="status" role="status">Connecting…</span></header>
+<main><h1>Network overview</h1><p id="summary">Waiting for controller data</p>
+<section><div class="bar"><h2>Topology</h2><label>Directed flow <select id="pick"><option>Loading…</option></select></label></div>
+<div class="map"><svg id="map" role="img" aria-label="Discovered switches, hosts and links"></svg></div>
+<div class="legend"><span>Link</span><span>Selected path</span><span>Congested</span></div>
+<p id="detail"></p></section>
+<div class="split"><section><h2>Link utilization</h2><div class="scroll"><table><thead><tr><th>Direction</th><th>TX Mbps</th><th>Use</th><th>State</th></tr></thead><tbody id="ports"></tbody></table></div></section>
+<section><h2>Traffic flows</h2><div class="scroll"><table><thead><tr><th>Source → Target</th><th>Mbps</th><th>Class</th></tr></thead><tbody id="flows"></tbody></table></div></section></div>
+<section><h2>Observed changes</h2><p class="note">Changes between successful samples in this tab · local observation time</p><ul id="events"><li>Waiting for the first sample.</li></ul></section></main></body></html>

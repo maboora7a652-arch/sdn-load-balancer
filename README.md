@@ -81,3 +81,15 @@ sudo mn --custom /media/sf_sdn_transfer/vm-source/custom_topology.py --topo fatt
 ```
 
 Once the controller reports 20 switches and 32 links, run `pingall 2` at the Mininet prompt. Sixteen hosts give 240 directed probes. The original grid uses the default controller mode and topology name `mynetwork`.
+
+## Local dashboard
+
+Keep the Ubuntu controller and Mininet running. Open another Ubuntu terminal:
+
+```bash
+sudo -u "$(id -un)" -g vboxsf -- python3 /media/sf_sdn_transfer/dashboard/serve.py
+```
+
+Open http://127.0.0.1:8081 in Firefox inside Ubuntu. The process uses your user identity with the VirtualBox shared-folder group for read access. Ctrl+C in this terminal stops the dashboard. No install required.
+
+Select a directed host pair to highlight its controller-reported installed path. Each refresh reads topology, learned hosts, port TX utilization and ingress flow details from the local controller. Changes are detected between samples while the tab is open; brief events between polls can be missed. The most recent view stays on screen with a disconnected status if the controller stops responding.

@@ -33,7 +33,7 @@
 ## التوسعة والتسليم المطلوبان
 
 - [x] تشغيل Fat-tree k=4 على Ubuntu. فيها 20 سويتش و32 وصلة بين السويتشات، ونجح pingall 2 بين الـ16 هوست في كل الاتجاهات (240/240).
-- [ ] Dashboard بسيطة مرتبطة بالـAPI، تعرض topology وutilization والتدفقات وقرارات التحويل والأعطال. لا features إضافية غير لازمة.
+- [ ] Dashboard المحلية اتنفذت. تعرض الشبكة واستخدام الوصلات والتدفقات وتغير المسار أو الوصلة بين العينات. باقي مشاهدة حية في Firefox على Ubuntu.
 - [ ] Baselines: shortest path وECMP؛ مقارنة max utilization مع 10 random flows، بنفس الإعدادات.
 - [ ] كل التجارب المطلوبة: دقة المراقبة، زمن الاكتشاف، throughput/delay/jitter/loss قبل وبعد النقل، max utilization، recovery time/lost packets، وتأثير T وtheta. كل تجربة 5 مرات على الأقل، مع mean/std وscripts وraw results ورسوم من البيانات الفعلية.
 - [ ] تقرير إنجليزي 25-35 صفحة A4 بحجم 12pt وIEEE references، وفصل SDN من 10-12 صفحة يغطي موضوعات التكليف، مع 15 مرجعًا على الأقل منها 5 papers تخص Track 1.
