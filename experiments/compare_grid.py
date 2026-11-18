@@ -45,7 +45,7 @@ def wait_status(controller, mode, grid=False):
     raise RuntimeError("Timed out waiting for controller or grid discovery")
 
 
-def detection_result(output, data, trace, interval):
+def detection_result(output, data, trace, interval, threshold=70):
     start = data["first_sender_launch_monotonic"]
     samples = []
     for line in trace.splitlines():
@@ -62,7 +62,8 @@ def detection_result(output, data, trace, interval):
     status = "detected" if events else "not detected"
     if not continuous:
         status = "incomplete telemetry"
-    result = dict(file=output.name, mode="T%d" % interval, poll_seconds=interval,
+    setting = "T%d" % interval if threshold == 70 else "theta%d" % threshold
+    result = dict(file=output.name, mode=setting, poll_seconds=interval, threshold_percent=threshold,
                   status=status, first_detection_seconds=events[0] if events else None,
                   largest_sample_gap_seconds=largest_gap)
     data.update(detection=result, detection_samples=samples)
@@ -81,7 +82,7 @@ def wait_idle_link(interval):
         time.sleep(0.5)
 
 
-def trial(mode, account, manager, output, workload=None, recovery=False, interval=None):
+def trial(mode, account, manager, output, workload=None, recovery=False, interval=None, threshold=70):
     from mininet.link import TCLink
     from mininet.net import Mininet
     from mininet.node import OVSSwitch, RemoteController
@@ -95,6 +96,7 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
         app.chmod(0o644)
         env = dict(os.environ, HOME=account.pw_dir, SDN_TOPOLOGY="mynetwork",
                    SDN_ROUTING_MODE=mode, SDN_POLL_INTERVAL=str(interval or 5),
+                   SDN_CONGESTION_PERCENT=str(threshold),
                    SDN_TRACE_DETECTION="1" if interval else "0", PYTHONDONTWRITEBYTECODE="1")
         controller = subprocess.Popen([str(manager), "--observe-links", "--ofp-tcp-listen-port",
             "6653", str(app)], cwd=temp, env=env, user=account.pw_uid, group=account.pw_gid,
@@ -102,6 +104,8 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
         net = None
         try:
             wait_status(controller, mode)
+            if demo["api"]("sdn/status").get("congestion_threshold_percent") != threshold:
+                raise RuntimeError("Unexpected congestion threshold on running controller")
             net = Mininet(topo=topo, build=False, controller=None,
                           switch=partial(OVSSwitch, protocols="OpenFlow13"),
                           link=TCLink, autoSetMacs=True)
@@ -147,7 +151,7 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
                         if (2, 3) not in zip(path, path[1:]):
                             raise RuntimeError("Calibration flow did not start on S2 -> S3")
                     with open("/proc/self/fd/%d" % log.fileno(), errors="replace") as trace:
-                        result = detection_result(output, data, trace.read(), interval)
+                        result = detection_result(output, data, trace.read(), interval, threshold)
                     for sample in data["detection_samples"]:
                         print("t=%.2fs  EWMA=%.3f%%  streak=%d" %
                               (sample["seconds"], sample["ewma_percent"], sample["streak"]))
@@ -211,6 +215,7 @@ def main():
     group.add_argument("--calibrate-detection", action="store_true", help="one direct H3-H5 UDP trial at T=5s")
     group.add_argument("--shared-link-detection", action="store_true", help="one trial with four UDP pairs sharing S2 -> S3")
     group.add_argument("--compare-shared-link", action="store_true", help="five matched T=2s and T=5s rounds on S2 -> S3")
+    group.add_argument("--compare-thresholds", action="store_true", help="five rounds at 60 and 80 percent with T=2s")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -246,6 +251,8 @@ def main():
         prefix = "detection-"
     if args.compare_shared_link:
         prefix = "shared-detection-"
+    if args.compare_thresholds:
+        prefix = "threshold-"
     compare_intervals = args.detection or args.compare_shared_link
     if args.resume and not re.fullmatch(prefix + r"\d{8}T\d{6}Z", args.resume):
         parser.error("Expected a compare-grid timestamp directory name")
@@ -267,6 +274,9 @@ def main():
         workload = None
         if args.recovery:
             modes = ("balanced",)
+        if args.compare_thresholds:
+            modes = ("theta60", "theta80") if pair % 2 else ("theta80", "theta60")
+            workload = shared_link_workload()
         if compare_intervals:
             modes = ("T2", "T5") if pair % 2 else ("T5", "T2")
             if args.compare_shared_link:
@@ -287,7 +297,10 @@ def main():
                 output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
                 if output.exists():
                     raise FileExistsError(output)
-            if compare_intervals:
+            if args.compare_thresholds:
+                result = trial("balanced", account, manager, output, workload=workload,
+                               interval=2, threshold=int(mode[5:]))
+            elif compare_intervals:
                 result = trial("balanced", account, manager, output, workload=workload, interval=int(mode[1:]))
             else:
                 result = trial(mode, account, manager, output, workload, args.recovery)
@@ -295,8 +308,8 @@ def main():
             pending = summary.with_suffix(".tmp")
             pending.write_text(json.dumps(trials, indent=2))
             pending.replace(summary)
-    if compare_intervals:
-        for setting in ("T2", "T5"):
+    if compare_intervals or args.compare_thresholds:
+        for setting in (("theta60", "theta80") if args.compare_thresholds else ("T2", "T5")):
             rows = [r for r in trials if r["mode"] == setting]
             times = [r["first_detection_seconds"] for r in rows if r["status"] == "detected"]
             print(setting, "detected:", len(times), "not detected:",
