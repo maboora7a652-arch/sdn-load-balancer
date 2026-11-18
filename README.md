@@ -13,7 +13,7 @@ Grid فيها 6 switches و7 links و6 hosts، وصلات TCLink بسعة 100 Mb
 
 آخر تجربة فعلية محفوظة في [grid-demo-20261117T193620Z.json](experiments/results/grid-demo-20261117T193620Z.json): انتقل H1->H6 من P1 إلى P3 [1,4,5,6] بأولوية 21 على الأربع switches، واختفت قواعد 20 القديمة لنفس التدفق. تحسن الأداء لم يثبت؛ H1 receiver = 53.2 Mbps وفقد 37%، وH3 receiver = 22.1 Mbps وفقد 26% في نفس التجربة.
 
-المتبقي يشمل اختبار S5-S6، معالجة أو تفسير فقد الحمل العالي، معايرة iperf3 و5 runs، وfat-tree من 20 switches و16 hosts، وdashboard وbaselines والتسليم النهائي. التفاصيل في الخطة.
+المتبقي يشمل معالجة أو تفسير فقد الحمل العالي، معايرة iperf3 و5 runs، وfat-tree من 20 switches و16 hosts، وdashboard وbaselines والتسليم النهائي. التفاصيل في الخطة.
 
 ## أين الكود؟
 
@@ -52,7 +52,7 @@ sudo mn --custom "$HOME/sdn-lab/custom_topology.py" --topo mynetwork --mac --swi
 py exec(open("/media/sf_sdn_transfer/experiments/grid_demo.py").read(), dict(h1=h1,h3=h3,h5=h5,h6=h6))
 ```
 
-الخطوة التالية، ولم تُنفذ بعد، اختبارPing خفيف يفصلS5-S6 حوالي 5s ويعيدها:
+أمر تجربة العطل التي نُفذت يوم 2026-11-18. يبدأ من P3 ويفصل S5-S6 مؤقتًا ثم يعيدها.
 
 ```text
 py exec(open("/media/sf_sdn_transfer/experiments/link_failure_demo.py").read(), dict(net=net))

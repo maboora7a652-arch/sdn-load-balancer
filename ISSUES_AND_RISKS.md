@@ -3,7 +3,7 @@
 | Item | Current evidence | State / next action |
 | --- | --- | --- |
 | High-load packet loss | Latest real trial: H1 receiver53.2Mbps,37% loss; H3 receiver22.1Mbps,26% loss. Raw file grid-demo-20261117T193620Z.json. | OPEN. Successful rerouting does not prove performance gains. Do not repeat stress blindly or change the assignment thresholds to force success. |
-| S5-S6 recovery | Failure driver prepared; no result yet. Earlier S4-S5 tests were before the latest controller. | NEXT ITEM. Read the alternate path while S5-S6 is down; preserve raw Ping output and restore the link. Do not claim zero convergence time from no lost probes. |
+| S5-S6 recovery | P3 before failure, P1 while down and after restoration. 79/80 probes received. | One live trial. Largest reply gap 0.328979 s. Exact recovery time remains open. |
 | iperf3 accuracy target | iperf is working; command -v iperf3 printed no path. No synchronized <10% accuracy study. | OPEN. Remain offline; no installs until Fouad changes the instruction. |
 | Course bandwidth/delay | All seven Topo links show TCLink100Mbps/2ms; tc on s1-eth1 confirms100Mbit and2ms; pingall30/30. | IMPLEMENTED. Other interfaces were not individually tc-audited. Local topology synchronized at close from the verified edits, not a new VM export. |
 | C4 and C5 | 20 port records,14 inter-switch directions; utilization, ingress host-pair rates; /topology,/links,/flows and old /sdn/ paths work. | IMPLEMENTED at defaultT5. T2-5 configuration exists but its experimental comparison and iperf3 calibration remain incomplete. |

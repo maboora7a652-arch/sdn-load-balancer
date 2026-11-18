@@ -1,8 +1,7 @@
 # HANDOFF
 
-## Now: نهاية جلسة 2026-11-17
+## Now: 2026-11-18
 
-- فؤاد طلب نوقف النهارده ونكمل بعدين. لا تشغّل اختبارات أو تغيّر حالة الـVM أثناء التوقف.
 - الشغل والحفظ offline حتى يقول غير كده. لا إنترنت أو تنزيل أو رفع أو push. Git المحلي مسموح. ممنوع Computer Use بدون طلب جديد.
 - فؤاد ينفذ على Ubuntu. نجمع التعديل في جزء مفيد واختبار في آخره، من غير نسخ وhash وrestart بعد كل سطر.
 - اقرأ README.md وPLAN.md وISSUES_AND_RISKS.md في الجذر. لا يوجد docs/ أو reference/. المطلوب Track 1، ولا proposal منفصل، وOS-Ken مسموح.
@@ -22,12 +21,10 @@
 - نفس التجربة: H1 sender 84.9 Mbps، receiver 53.2 Mbps، loss 160610/433673 (37%)، jitter 5.585 ms، و13477 out-of-order. H3 sender 30.0 Mbps، receiver 22.1 Mbps، loss 40025/153043 (26%)، jitter 0.498 ms، و1206 out-of-order. الأداء لم يتحل.
 - ARP refresh يحتفظ بالمسار السليم؛ baseline Dijkstra ثابت. القرار مرة لكل polling round، بالأكبر أولًا، ويرفض القياسات الأقدم من 2T.
 
-## Next step: اختبار فشل الوصلة، لم يُنفّذ
+## تجربة العطل والخطوة الجاية
 
-1. experiments/link_failure_demo.py جاهز ومفحوص syntax/parser فقط. يحتاج البداية على P3 بأولوية أعلى من 20.
-2. يرسل 80 Ping كل 0.2s، يفصل S5-S6 بعد 2s، يقرأ المسار البديل وهي مفصولة بعد 5s، ثم يعيدها ويكمل. يحاول استعادة الوصلة في finally لو التجربة انقطعت، ويحفظ raw results محليًا.
-3. أمر الاستكمال من mininet>: py exec(open("/media/sf_sdn_transfer/experiments/link_failure_demo.py").read(), dict(net=net)). لو حالة VM اتغيرت أو اتعمل restart، استعد حالة P3 أولًا بدل تشغيل الأمر بشكل أعمى.
-4. بعد نتيجة العطل نكمل بقية PLAN: الأداء، fat-tree، dashboard، baselines والتجارب والتسليم. لا تفترض موعدًا من PDF لأن خانة الموعد placeholder.
+- أثناء فصل S5-S6 رجع H1 إلى H6 عبر P1 بأولوية 20 واستمر عليه بعد استعادة الوصلة. وصل 79 من 80 ping. أكبر فاصل بين ردين 0.328979 ثانية. النتيجة في experiments/results/link-failure-20261118T143438Z.json.
+- التالي حسب PLAN عزل شرط hold-down لمدة 30 ثانية في تجربة حية. فقد UDP تحت الحمل ما زال مفتوحًا.
 
 ## حدود مهمة
 
