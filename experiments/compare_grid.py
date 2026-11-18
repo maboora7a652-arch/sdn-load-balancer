@@ -1,4 +1,5 @@
 """Run paired shortest-path and load-balancer trials on fresh Mininet grids."""
+import argparse
 import json
 import os
 import re
@@ -105,6 +106,9 @@ def trial(mode, account, manager, output):
 
 def main():
     import pwd
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--resume", metavar="BATCH", help="existing compare-grid results directory name")
+    args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
     account = pwd.getpwnam(os.environ["SUDO_USER"])
@@ -119,16 +123,36 @@ def main():
             if sock.connect_ex(("127.0.0.1", port)) == 0:
                 raise SystemExit("Stop the existing controller before launching.")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    folder = HERE / "results" / ("compare-grid-" + stamp)
-    folder.mkdir(parents=True)
-    trials = []
+    if args.resume and not re.fullmatch(r"compare-grid-\d{8}T\d{6}Z", args.resume):
+        parser.error("Expected a compare-grid timestamp directory name")
+    folder = HERE / "results" / (args.resume or "compare-grid-" + stamp)
+    summary = folder / "summary.json"
+    if args.resume:
+        trials = json.loads(summary.read_text())
+        for row in trials:
+            if not (folder / row["file"]).is_file():
+                raise ValueError("Missing raw data for " + row["file"])
+    else:
+        folder.mkdir(parents=True)
+        trials = []
+    completed = {(r["pair"], r["mode"]) for r in trials}
     for pair in range(1, 6):
         modes = ("shortest", "balanced") if pair % 2 else ("balanced", "shortest")
         for mode in modes:
+            if (pair, mode) in completed:
+                continue
             print("Pair %d/5: %s" % (pair, mode), flush=True)
-            result = trial(mode, account, manager, folder / ("%02d-%s.json" % (pair, mode)))
+            output = folder / ("%02d-%s.json" % (pair, mode))
+            if output.exists():
+                print("Preserving earlier attempt:", output.name, flush=True)
+                output = folder / ("%02d-%s-retry-%s.json" % (pair, mode, stamp))
+                if output.exists():
+                    raise FileExistsError(output)
+            result = trial(mode, account, manager, output)
             trials.append(dict(pair=pair, **result))
-            (folder / "summary.json").write_text(json.dumps(trials, indent=2))
+            pending = summary.with_suffix(".tmp")
+            pending.write_text(json.dumps(trials, indent=2))
+            pending.replace(summary)
     for mode in ("shortest", "balanced"):
         for host in ("H6", "H5"):
             rows = [r["receivers"][host] for r in trials if r["mode"] == mode]
