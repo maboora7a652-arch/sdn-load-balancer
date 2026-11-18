@@ -142,10 +142,16 @@ def trial(mode, account, manager, output, workload=None, recovery=False, interva
                 result = measure(net, mode, output, workload, demo, receiver_report)
                 if interval:
                     data = json.loads(output.read_text())
-                    if data["initial_paths"][str(workload[0]["port"])]["path"] != [2, 3]:
-                        raise RuntimeError("Calibration did not start on S2 -> S3")
+                    for flow in workload:
+                        path = data["initial_paths"][str(flow["port"])]["path"]
+                        if (2, 3) not in zip(path, path[1:]):
+                            raise RuntimeError("Calibration flow did not start on S2 -> S3")
                     with open("/proc/self/fd/%d" % log.fileno(), errors="replace") as trace:
-                        return detection_result(output, data, trace.read(), interval)
+                        result = detection_result(output, data, trace.read(), interval)
+                    for sample in data["detection_samples"]:
+                        print("t=%.2fs  EWMA=%.3f%%  streak=%d" %
+                              (sample["seconds"], sample["ewma_percent"], sample["streak"]))
+                    return result
                 return result
             for src, dst in (("h1", "h6"), ("h3", "h5")):
                 if net.ping([net[src], net[dst]], timeout="2") and net.ping(
@@ -196,6 +202,7 @@ def main():
     group.add_argument("--recovery", action="store_true", help="measure five S5-S6 link failures")
     group.add_argument("--detection", action="store_true", help="compare congestion detection at T=2s and T=5s")
     group.add_argument("--calibrate-detection", action="store_true", help="one direct H3-H5 UDP trial at T=5s")
+    group.add_argument("--shared-link-detection", action="store_true", help="one trial with four UDP pairs sharing S2 -> S3")
     args = parser.parse_args()
     if os.getuid() != 0 or not os.environ.get("SUDO_USER"):
         raise SystemExit("Launch with sudo from your Ubuntu user terminal.")
@@ -211,12 +218,19 @@ def main():
             if sock.connect_ex(("127.0.0.1", port)) == 0:
                 raise SystemExit("Stop the existing controller before launching.")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    if args.calibrate_detection:
+    if args.calibrate_detection or args.shared_link_detection:
         if args.resume:
             parser.error("Calibration is a single independent trial.")
-        output = HERE / "results" / ("calibration-" + stamp + ".json")
-        workload = [dict(src="h3", dst="h5", mbps=95, port=5811)]
-        print("Calibration: H3 -> H5, 95 Mbps UDP for 60 seconds, T=5s", flush=True)
+        if args.shared_link_detection:
+            output = HERE / "results" / ("shared-link-" + stamp + ".json")
+            pairs = [("h3", "h6", 16), ("h4", "h5", 18),
+                     ("h1", "h6", 28), ("h3", "h5", 28)]
+            workload = [dict(src=a, dst=b, mbps=rate, port=5821+i)
+                        for i, (a, b, rate) in enumerate(pairs)]
+        else:
+            output = HERE / "results" / ("calibration-" + stamp + ".json")
+            workload = [dict(src="h3", dst="h5", mbps=95, port=5811)]
+        print("S2 -> S3 calibration, 60 seconds, T=5s:", workload, flush=True)
         trial("balanced", account, manager, output, workload=workload, interval=5)
         print("Saved:", output)
         return
