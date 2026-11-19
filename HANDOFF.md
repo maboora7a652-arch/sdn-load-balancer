@@ -2,6 +2,8 @@
 
 ## Now: 2026-11-19
 
+- Latest iperf3 capture accuracy-20261119T201236Z.json: 4 automatically scored rounds (mean 3.013%). Round 5 retained all three steady-window S1→S9 readings and valid sender JSON before the final route lookup failed. Offline scoring with the same sender_mbps and error formula yields 4.99824 vs 5.15184 Mbps, error 3.073%; all five measurement windows mean 3.025%, sample SD 0.041 percentage points. Receiver summary extended to 54.84 s in round 5. Report as steady-window calibration with this caveat. Next: incorporate into report; no VM rerun needed.
+
 - Second iperf3 attempt accuracy-20261119T200950Z.json stopped on an end-of-run route change. Final route was not logged. Two completed trials remain; resume with first-link checks at each measurement and retain final route for interpretation.
 
 - iperf3 accuracy attempt accuracy-20261119T200519Z.json: two completed trials (3.07%, 3.00%); third timed out. Resume this file in bandwidth_accuracy.py to finish trials 3–5; original attempt retained.
