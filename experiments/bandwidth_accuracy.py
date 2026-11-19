@@ -42,7 +42,7 @@ def stop(proc):
             proc.wait()
 
 
-def run(network):
+def run(network, resume=None):
     root = Path("/media/sf_sdn_transfer/experiments")
     helpers = runpy.run_path(str(root / "grid_demo.py"))
     api = helpers["api"]
@@ -64,10 +64,18 @@ def run(network):
         return route["path"]
 
     report = dict(tool=tool, requested_bps=5000000, source="h1", target="h16", trials=[])
+    if resume:
+        previous = json.loads((root / "results" / resume).read_text(encoding="utf-8"))
+        if any(previous.get(k) != report[k] for k in ("tool", "requested_bps", "source", "target")):
+            raise ValueError("Previous workload or tool differs")
+        if not previous.get("error"):
+            raise ValueError("Expected an interrupted run")
+        report["resumed_from"] = resume
+        report["trials"] = [t for t in previous["trials"] if "error_percent" in t]
     output = root / "results" / datetime.now(timezone.utc).strftime("accuracy-%Y%m%dT%H%M%SZ.json")
     print(tool, "· H1 -> H16 · five 30-second UDP runs at 5 Mbps", flush=True)
     try:
-        for index in range(5):
+        for index in range(len(report["trials"]), 5):
             route = current_path()
             port = str(5710 + index)
             trial = dict(path=route, samples=[])
@@ -99,7 +107,7 @@ def run(network):
                         if elapsed > 25:
                             raise RuntimeError("Late controller reading")
                         trial["samples"].append(dict(elapsed=elapsed, **reading))
-                    if client.wait(timeout=20) != 0:
+                    if client.wait(timeout=60) != 0:
                         raise RuntimeError("Sender failed")
                 finally:
                     stop(client)
@@ -128,4 +136,4 @@ def run(network):
 
 
 if "net" in globals():
-    run(net)
+    run(net, globals().get("resume"))
