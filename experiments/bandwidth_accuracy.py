@@ -100,13 +100,16 @@ def run(network, resume=None):
                         time.sleep(max(0, start + offset - time.monotonic()))
                         if client.poll() is not None:
                             raise RuntimeError("Sender ended early")
+                        sampled_path = current_path()
+                        if sampled_path[:2] != route[:2]:
+                            raise RuntimeError("Measured first link changed during sampling")
                         records = api("sdn/bandwidth")["ports"]
                         reading = next(p for p in records if p["switch"] == route[0]
                                        and p.get("neighbor") == route[1])
                         elapsed = time.monotonic() - start
                         if elapsed > 25:
                             raise RuntimeError("Late controller reading")
-                        trial["samples"].append(dict(elapsed=elapsed, **reading))
+                        trial["samples"].append(dict(elapsed=elapsed, path=sampled_path, **reading))
                     if client.wait(timeout=60) != 0:
                         raise RuntimeError("Sender failed")
                 finally:
@@ -115,8 +118,7 @@ def run(network, resume=None):
                     tx.seek(0)
                     rx.seek(0)
                     trial.update(sender_output=tx.read(), receiver_output=rx.read())
-            if current_path() != route:
-                raise RuntimeError("Route changed during run")
+            trial["final_path"] = current_path()
             measured = sender_mbps(tool, trial["sender_output"])
             monitored = statistics.mean(p["tx_mbps"] for p in trial["samples"])
             error = 100 * abs(monitored - measured) / measured
