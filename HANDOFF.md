@@ -2,6 +2,8 @@
 
 ## Now: 2026-11-19
 
+- Chapter 3 System Design complete in output/report (editable Word and PDF, four pages). Covers architecture, grid and fat-tree, route scoring, installation sequence and failure recovery. Next: Chapter 4 Implementation.
+
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
 
 - Latest iperf3 capture accuracy-20261119T201236Z.json: 4 automatically scored rounds (mean 3.013%). Round 5 retained all three steady-window S1→S9 readings and valid sender JSON before the final route lookup failed. Offline scoring with the same sender_mbps and error formula yields 4.99824 vs 5.15184 Mbps, error 3.073%; all five measurement windows mean 3.025%, sample SD 0.041 percentage points. Receiver summary extended to 54.84 s in round 5. Report as steady-window calibration with this caveat. Next: incorporate into report; no VM rerun needed.
