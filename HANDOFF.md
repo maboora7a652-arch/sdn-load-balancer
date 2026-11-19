@@ -2,7 +2,7 @@
 
 ## Now: 2026-11-19
 
-- Chapter 3 System Design complete in output/report (editable Word and PDF, four pages). Covers architecture, grid and fat-tree, route scoring, installation sequence and failure recovery. Next: Chapter 4 Implementation.
+- Chapters 3–5 are in output/report (Word and PDF). Chapter 4 covers the actual handlers, key code, REST API and two original dashboard captures in four pages. Next: Chapter 1 introduction and objectives, then Chapter 2 background and references.
 
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
 
