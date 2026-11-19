@@ -2,7 +2,7 @@
 
 ## Now: 2026-11-19
 
-- Chapters 1, 3, 4 and 5 are in output/report (Word and PDF). Chapter 1 covers motivation, the Track 1 problem, objectives and report organization in two pages. Next: Chapter 2 SDN background, original diagrams and supporting references.
+- Chapters 1–5 are in output/report (Word and PDF). Chapter 2 has ten content pages and one references page, three original diagrams, Fouad’s C1 screenshot, six track-related papers and 18 references. Bibliographic metadata has not been independently checked online. Next: Chapter 6 conclusion and future work, then assemble the report and appendices.
 
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
 
