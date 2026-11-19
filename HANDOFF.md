@@ -2,7 +2,7 @@
 
 ## Now: 2026-11-19
 
-- Chapters 1–5 are in output/report (Word and PDF). Chapter 2 has ten content pages and one references page, three original diagrams, Fouad’s C1 screenshot, six track-related papers and 18 references. Bibliographic metadata has not been independently checked online. Next: Chapter 6 conclusion and future work, then assemble the report and appendices.
+- Chapters 1–6 are in output/report (Word and PDF). Chapter 6 summarizes measured outcomes and the open high-load loss and hold-down questions in one page. Next: assemble the report, references and appendices. Chapter 2 has 18 references; bibliographic metadata has not been independently checked online.
 
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
 
