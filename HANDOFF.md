@@ -1,6 +1,8 @@
 # HANDOFF
 
-## Now: 2026-11-18
+## Now: 2026-11-19
+
+- C1 linear,2: Fouad observed H1 → H2 ping 3/3, 0% loss, average RTT 7.152 ms. Rerun screenshot shows OpenFlow 1.3 HELLO, FEATURES, FLOW_MOD and PACKET_IN/OUT. Next: use the same capture to identify the learned forwarding rule; the pcapng has not been reviewed locally.
 
 - الشغل والحفظ offline حتى يقول غير كده. لا إنترنت أو تنزيل أو رفع أو push. Git المحلي مسموح. ممنوع Computer Use بدون طلب جديد.
 - فؤاد ينفذ على Ubuntu. نجمع التعديل في جزء مفيد واختبار في آخره، من غير نسخ وhash وrestart بعد كل سطر.
