@@ -2,7 +2,7 @@
 
 ## Now: 2026-11-19
 
-- Chapters 3–5 are in output/report (Word and PDF). Chapter 4 covers the actual handlers, key code, REST API and two original dashboard captures in four pages. Next: Chapter 1 introduction and objectives, then Chapter 2 background and references.
+- Chapters 1, 3, 4 and 5 are in output/report (Word and PDF). Chapter 1 covers motivation, the Track 1 problem, objectives and report organization in two pages. Next: Chapter 2 SDN background, original diagrams and supporting references.
 
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
 
