@@ -2,6 +2,8 @@
 
 ## Now: 2026-11-19
 
+- Ubuntu reports iperf3 3.9 installed. Next: run the existing five-round bandwidth_accuracy.py on fattree4 and record the measured error. Previous 2.96% result used iperf2.
+
 - C1 linear,2 complete. Local capture c1-linear-rerun.pcapng: FEATURES_REPLY 48/50 identify S1/S2. Table-miss 52/54 sends unmatched packets to controller. H1→H2 ICMP Echo Request on S1: PACKET_IN 448, priority-1 FLOW_MOD 449 (in 1, destination H2, out 2), PACKET_OUT 450. S2 repeats in 452–454 (in 2, out 1). Ping 3/3, mean RTT 7.152 ms. Next practical item: iperf3 calibration, subject to offline availability.
 
 - الشغل والحفظ offline حتى يقول غير كده. لا إنترنت أو تنزيل أو رفع أو push. Git المحلي مسموح. ممنوع Computer Use بدون طلب جديد.
