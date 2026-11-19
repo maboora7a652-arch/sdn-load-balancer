@@ -2,7 +2,7 @@
 
 ## Now: 2026-11-19
 
-- Chapters 1–6 are in output/report (Word and PDF). Chapter 6 summarizes measured outcomes and the open high-load loss and hold-down questions in one page. Next: assemble the report, references and appendices. Chapter 2 has 18 references; bibliographic metadata has not been independently checked online.
+- Combined report: output/report/sdn-track-1-report.docx and .pdf, 32 pages including contents, six chapters, 18 references and appendices for operation, contributions and dated progress. Weekly reports for weeks 3–14 and verified team attribution remain outstanding. Source metadata has not been independently checked online. Next deliverable: presentation.
 
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
 
