@@ -8,6 +8,9 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Legacy Mininet exec(open(...)) calls have no __file__; runpy supplies it.
+EXPERIMENTS = Path(globals().get("__file__", "/media/sf_sdn_transfer/experiments/link_failure_demo.py")).resolve().parent
+
 
 def ping_summary(text):
     match = re.search(r"(\d+) packets transmitted, (\d+) received, ([\d.]+)% packet loss", text)
@@ -35,12 +38,12 @@ def first_post_cut_reply_ms(text, requested, confirmed, restored):
 
 
 def run_link_failure_demo(network, source_name="h1", output_path=None):
-    helpers = runpy.run_path("/media/sf_sdn_transfer/experiments/grid_demo.py")
+    helpers = runpy.run_path(str(EXPERIMENTS / "grid_demo.py"))
     api = helpers["api"]
     tables = helpers["flow_tables"]
     trace = helpers["forwarding_path"]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    output = output_path or Path("/media/sf_sdn_transfer/experiments/results") / ("link-failure-" + stamp + ".json")
+    output = output_path or (EXPERIMENTS / "results") / ("link-failure-" + stamp + ".json")
     managed = source_name == "h1"
     expected = [1, 4, 5, 6] if managed else [4, 5, 6]
     interval, count = (0.2, 80) if managed else (0.05, 260)

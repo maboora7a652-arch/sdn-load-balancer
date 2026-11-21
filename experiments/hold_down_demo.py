@@ -7,9 +7,12 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Legacy Mininet exec(open(...)) calls have no __file__; runpy supplies it.
+EXPERIMENTS = Path(globals().get("__file__", "/media/sf_sdn_transfer/experiments/hold_down_demo.py")).resolve().parent
+
 
 def run_hold_down(network):
-    folder = Path("/media/sf_sdn_transfer/experiments")
+    folder = EXPERIMENTS
     helpers = runpy.run_path(str(folder / "grid_demo.py"))
     api = helpers["api"]
     h1, h2, h3, h4, h5, h6 = (network["h%d" % n] for n in range(1, 7))

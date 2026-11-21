@@ -8,6 +8,9 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Legacy Mininet exec(open(...)) calls have no __file__; runpy supplies it.
+EXPERIMENTS = Path(globals().get("__file__", "/media/sf_sdn_transfer/experiments/grid_demo.py")).resolve().parent
+
 
 def api(path):
     with urllib.request.urlopen("http://127.0.0.1:8080/" + path, timeout=3) as response:
@@ -69,7 +72,7 @@ def run_grid_demo(host1, host3, host5, host6, output_path=None):
               "requested_rates": {"H1->H6": "85000000 bit/s", "H3->H5": "30000000 bit/s"},
               "samples": [], "process_output": {}}
     processes, streams = {}, {}
-    output = output_path or Path("/media/sf_sdn_transfer/experiments/results") / ("grid-demo-" + stamp + ".json")
+    output = output_path or (EXPERIMENTS / "results") / ("grid-demo-" + stamp + ".json")
     try:
         topology = api("topology")
         hosts = {h["mac"].lower(): h for h in api("sdn/hosts")["hosts"]}

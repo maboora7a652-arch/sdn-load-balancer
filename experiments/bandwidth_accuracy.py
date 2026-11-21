@@ -10,6 +10,9 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Legacy Mininet exec(open(...)) calls have no __file__; runpy supplies it.
+EXPERIMENTS = Path(globals().get("__file__", "/media/sf_sdn_transfer/experiments/bandwidth_accuracy.py")).resolve().parent
+
 
 def sender_mbps(tool, output):
     if tool == "iperf3":
@@ -43,7 +46,7 @@ def stop(proc):
 
 
 def run(network, resume=None):
-    root = Path("/media/sf_sdn_transfer/experiments")
+    root = EXPERIMENTS
     helpers = runpy.run_path(str(root / "grid_demo.py"))
     api = helpers["api"]
     tool = "iperf3" if shutil.which("iperf3") else "iperf"
