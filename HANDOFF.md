@@ -1,9 +1,7 @@
 # HANDOFF
-
 ## Now: 2026-11-21
-
+- Arabic oral-exam and terminal guide: output/pdf/sdn-arabic-lab-guide.pdf (17 pages). Latest fat-tree run reported 0/240; controller status and topology mode still needed for diagnosis.
 - Ubuntu demo setup: ubuntu/install_local.py copies runtime, tests, past results, C1 and dashboard to ~/sdn-project. run.sh and the local README cover grid/fat-tree. Local copy and path checks passed; Fouad still needs to run setup and the demo on Ubuntu.
-
 - Combined report: output/report/sdn-track-1-report.docx and .pdf, 32 pages including contents, six chapters, 18 references and appendices for operation, contributions and dated progress. Weekly reports for weeks 3–14 and verified team attribution remain outstanding. Source metadata has not been independently checked online. Next deliverable: presentation.
 
 - Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
