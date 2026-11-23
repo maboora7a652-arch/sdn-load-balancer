@@ -681,6 +681,10 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
         dpid = ev.switch.dp.id
 
+        self.datapaths.pop(dpid, None)
+        self.switch_ports.pop(dpid, None)
+        self.flow_data.pop(dpid, None)
+        self.flow_snapshot.pop(dpid, None)
         if self.graph.has_node(dpid):
             self.graph.remove_node(dpid)
 
@@ -689,6 +693,16 @@ class HostDiscoveryController(app_manager.OSKenApp):
             if info["switch"] == dpid:
                 del self.hosts[mac]
 
+        self.arp_table = {
+            ip: mac for ip, mac in self.arp_table.items() if mac in self.hosts
+        }
+        for target, requests in list(self.pending_arp.items()):
+            remaining = [request for request in requests if request["switch"] != dpid]
+            if remaining:
+                self.pending_arp[target] = remaining
+            else:
+                del self.pending_arp[target]
+        self.rebuild_routes()
         self.logger.info(
             "Switch S%s removed", dpid
         )
@@ -1525,6 +1539,7 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
             data = {
                 "status": "running",
+                "topology": self.topology_name,
                 "routing_mode": self.routing_mode,
                 "congestion_threshold_percent": round(self.congestion_threshold * 100, 6),
                 "switches": len(self.datapaths),

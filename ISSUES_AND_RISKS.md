@@ -2,6 +2,7 @@
 
 ## Current triage | 2026-11-23
 
+- Source review fixes: switch-leave state cleanup and calibration final-path warning now have local regressions. Deploy and verify on Ubuntu before relying on them in the live demo. /sdn/status now includes the configured topology.
 - Open: latest Fat-tree pingall 0/240; no status/process output for that run yet. Previously 240/240. Use HANDOFF.md Next and the Arabic guide p.5.
 - Open: high-load loss cause, isolated live hold-down test and historical unshaped LLDP instability.
 - Measured: C1 linear capture; iperf3 mean error 3.025%; T2/T5 and thresholds compared; five H2 recovery trials averaged 82.60 ms to first qualifying reply. Evidence and limitations in Chapter 5 and experiments/results/.

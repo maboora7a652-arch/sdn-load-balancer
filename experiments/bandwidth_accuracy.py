@@ -121,7 +121,10 @@ def run(network, resume=None):
                     tx.seek(0)
                     rx.seek(0)
                     trial.update(sender_output=tx.read(), receiver_output=rx.read())
-            trial["final_path"] = current_path()
+            try:
+                trial["final_path"] = current_path()
+            except (KeyError, ValueError, OSError) as exc:
+                trial["final_path_warning"] = repr(exc)
             measured = sender_mbps(tool, trial["sender_output"])
             monitored = statistics.mean(p["tx_mbps"] for p in trial["samples"])
             error = 100 * abs(monitored - measured) / measured
@@ -136,6 +139,7 @@ def run(network, resume=None):
         report["error"] = repr(exc)
         print("Stopped:", repr(exc))
     finally:
+        output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(report, indent=2), encoding="utf-8")
         print("Saved:", output, flush=True)
 
