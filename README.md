@@ -1,30 +1,14 @@
 # SDN Track 1: Intelligent Load Balancer with Fault Tolerance
 
-آخر حفظ: 2026-11-17. فؤاد طلب نوقف النهارده ونكمل لاحقًا. كل العمل والحفظ offline؛ لا GitHub أو إنترنت حتى يطلب غير ذلك.
+ابدأ من [HANDOFF.md](HANDOFF.md) للحالة والتسليم بين الحسابات، و[PLAN.md](PLAN.md) للخطة، و[WORK_LOG.md](WORK_LOG.md) لتاريخ التنفيذ، و[ISSUES_AND_RISKS.md](ISSUES_AND_RISKS.md) للمشاكل. المرجع هو [تكليف الدكتور](Computer_Networks_Project_2026_v3.pdf).
 
-- ابدأ بـ[HANDOFF.md](HANDOFF.md)، ثم [PLAN.md](PLAN.md) و[ISSUES_AND_RISKS.md](ISSUES_AND_RISKS.md).
-- التكليف: [Computer_Networks_Project_2026_v3.pdf](Computer_Networks_Project_2026_v3.pdf). لا proposal منفصل، وOS-Ken مسموح صراحة.
-- [WORK_START_PROMPT_AR.md](WORK_START_PROMPT_AR.md) برومبت استكمال محدث؛ [ARABIC_START_HERE.md](ARABIC_START_HERE.md) مدخل مختصر.
-- التقارير PDF وملفات C1 وسجل WORK_LOG أرشيف تقدم، وليست تقرير التسليم النهائي. لا يوجد docs/ أو reference/ هنا.
+## التشغيل الحالي
 
-## آخر نتيجة مؤكدة
+اتبع [دليل نسخة Ubuntu المستقلة](ubuntu/README.md) و[الدليل العربي](output/pdf/sdn-arabic-lab-guide.pdf). ملفات العمل في vm-source/ وdashboard/ وexperiments/. التقرير المجمّع موجود [هنا](output/report/sdn-track-1-report.pdf). العمل محلي وفؤاد ينفّذ أوامر الـVM.
 
-Grid فيها 6 switches و7 links و6 hosts، وصلات TCLink بسعة 100 Mbps وتأخير 2 ms، وpingall نجح 30/30. C5 يدعم /topology و/links و/flows مع الاحتفاظ بمسارات /sdn/ القديمة. المراقبة تعرض20 منفذًا، وتفاصيل التدفقات عند الدخول.
+## طريقة التشغيل الأصلية من الشير وبيئة التطوير
 
-آخر تجربة فعلية محفوظة في [grid-demo-20261117T193620Z.json](experiments/results/grid-demo-20261117T193620Z.json): انتقل H1->H6 من P1 إلى P3 [1,4,5,6] بأولوية 21 على الأربع switches، واختفت قواعد 20 القديمة لنفس التدفق. تحسن الأداء لم يثبت؛ H1 receiver = 53.2 Mbps وفقد 37%، وH3 receiver = 22.1 Mbps وفقد 26% في نفس التجربة.
-
-المتبقي يشمل معالجة أو تفسير فقد الحمل العالي، معايرة iperf3 و5 runs، وdashboard وbaselines والتسليم النهائي. التفاصيل في الخطة.
-
-## أين الكود؟
-
-- Windows: `vm-source/rest_api_controller.py` و`vm-source/custom_topology.py` هما نسختا العمل المحدثتان.
-- Ubuntu: `~/sdn-lab/rest_api_controller.py` و`~/sdn-lab/custom_topology.py` هما الملفان النشطان اللذان يشغلهما فؤاد.
-- المجلد المشترك: `/media/sf_sdn_transfer` يشير إلى مجلد المشروع علىWindows.
-- الأرشيف `sdn-python-source-20261117-190113.tar.gz` والمجلد المستخرج بنفس الاسم baseline تاريخي، ليس آخر Controller.
-- تم تحديث topology المحلية عند الإغلاق بنفس التعديل الذي نفذه فؤاد وأكد مخرجاته؛ لم نطلب تصديرًا جديدًا لإثبات تطابقها بالبايت معUbuntu. لا تخلط المصدر المستلم القديم بالنسخة المحدثة.
-- لا نعيد نقل/حفظ/فحص بعد كل سطر. فؤاد ينفذ، ولا Computer Use بدون طلب جديد.
-
-## تشغيل عادي بعد إيقاف أي تشغيل قديم
+التعليمات التالية مرجع للنسخة القديمة أو لتشغيل مقصود من المجلد المشترك. عند استخدام النسخة المستقلة اتبع دليل Ubuntu أعلاه.
 
 Terminal Ubuntu الأولى:
 
@@ -34,7 +18,7 @@ source .venv/bin/activate
 osken-manager --observe-links --ofp-tcp-listen-port 6653 rest_api_controller.py
 ```
 
-فترة المراقبة الافتراضية 5s. لتغييرها إلى 2s للتجارب لاحقًا، ضع `SDN_POLL_INTERVAL=2` قبل `osken-manager`؛ القيم المقبولة 2-5. الافتراضي 5s اختُبر على Ubuntu؛ تغيير T لم يُقيّم تجريبيًا بعد.
+فترة المراقبة الافتراضية 5s. لتغييرها إلى 2s للتجارب لاحقًا، ضع `SDN_POLL_INTERVAL=2` قبل `osken-manager`؛ القيم المقبولة 2-5. الافتراضي 5s اختُبر على Ubuntu؛ نتائج مقارنة T موثّقة في الفصل الخامس.
 
 Terminal الثانية:
 

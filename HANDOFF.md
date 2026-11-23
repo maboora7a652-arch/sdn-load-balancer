@@ -1,59 +1,22 @@
-# HANDOFF
-## Now: 2026-11-21
-- Arabic oral-exam and terminal guide: output/pdf/sdn-arabic-lab-guide.pdf (17 pages). Latest fat-tree run reported 0/240; controller status and topology mode still needed for diagnosis.
-- Ubuntu demo setup: ubuntu/install_local.py copies runtime, tests, past results, C1 and dashboard to ~/sdn-project. run.sh and the local README cover grid/fat-tree. Local copy and path checks passed; Fouad still needs to run setup and the demo on Ubuntu.
-- Combined report: output/report/sdn-track-1-report.docx and .pdf, 32 pages including contents, six chapters, 18 references and appendices for operation, contributions and dated progress. Weekly reports for weeks 3–14 and verified team attribution remain outstanding. Source metadata has not been independently checked online. Next deliverable: presentation.
+# تسليم مشروع SDN Track 1
+## Now | 2026-11-23
 
-- Chapter 5 DOCX and PDF now use the iperf3 figure, table and run 5 qualification. C4 calibration checked in PLAN.md. Next: write the network and load-balancer design chapter.
+- فؤاد بيشغّل Ubuntu بنفسه. العمل offline وGit محلي فقط. نطاق المشروع في Computer_Networks_Project_2026_v3.pdf، والخطة الوحيدة PLAN.md.
+- الكود الحالي في vm-source/، والواجهة في dashboard/، والتجارب وبياناتها في experiments/. الأرشيف المؤرخ ونسخ النجاح تاريخية ومجمّدة.
+- التشغيل المستقل موضّح في ubuntu/README.md. المثبّت ubuntu/install_local.py ينشئ ~/sdn-project على Ubuntu ويستخدم OS-Ken من ~/sdn-lab/.venv. الشير وسيلة نقل. أي تعديل محلي في الـVM يحتاج مزامنة مقصودة قبل تسليم الكود للوكيل التالي.
+- Grid نجح 30/30، وH1→H6 انتقل من P1 إلى P3 بأولوية 21 ثم تعافى عند فصل S5–S6. المرجعان experiments/results/grid-demo-20261117T193620Z.json وlink-failure-20261118T143438Z.json في نفس المجلد.
+- C1 linear موثّق في c1-linear-rerun.pcapng. C4 معايرة iperf3 بخمس نوافذ، متوسط الخطأ 3.025%. العينة الخامسة اتراجعت من الملف الخام بعد تعذّر قراءة المسار النهائي. المصدر experiments/results/accuracy-20261119T201236Z.json.
+- Fat-tree سبق وحقق 240/240. آخر تشغيل أرسله فؤاد أعطى 0/240. سبب الفشل مفتوح، وتكامل النسخة المستقلة على Ubuntu لم يتأكد. ما نعتبرش النجاح القديم إصلاح للمحاولة الأخيرة.
+- نقل المسار، الفشل، مقارنة السياسات والتجارب المتكررة موثّقة في الفصل الخامس والـJSON. سبب فقد الحزم العالي وعزل أثر hold-down لمدة 30 ثانية لسه مفتوحين.
+- التقرير المجمّع 32 صفحة في output/report/sdn-track-1-report.pdf ونسخته Word بجانبه. دليل المذاكرة والتشغيل في output/pdf/sdn-arabic-lab-guide.pdf، خصوصًا ص5 للتشخيص.
 
-- Latest iperf3 capture accuracy-20261119T201236Z.json: 4 automatically scored rounds (mean 3.013%). Round 5 retained all three steady-window S1→S9 readings and valid sender JSON before the final route lookup failed. Offline scoring with the same sender_mbps and error formula yields 4.99824 vs 5.15184 Mbps, error 3.073%; all five measurement windows mean 3.025%, sample SD 0.041 percentage points. Receiver summary extended to 54.84 s in round 5. Report as steady-window calibration with this caveat. Next: incorporate into report; no VM rerun needed.
+## Next
 
-- Second iperf3 attempt accuracy-20261119T200950Z.json stopped on an end-of-run route change. Final route was not logged. Two completed trials remain; resume with first-link checks at each measurement and retain final route for interpretation.
+1. لجاهزية الديمو، اطلب من فؤاد ناتج /sdn/status ومود عملية الكنترولر على 6653 من نفس التشغيل. قارن fattree4 على الطرفين و20 سويتش/32 لينك، ثم ping واحد. لو الجلسة قديمة اقترح بداية جديدة بالتنسيق معه. خطوات الفحص في دليل المذاكرة.
+2. بند التسليم التالي المستقل هو العرض 25–35 شريحة، ثم تسجيل فيديو 5–8 دقائق. عند استكمال التقرير يلزم بيانات الفريق والمساهمات وتقارير الأسابيع 3–14 إن وُجدت ومراجعة المراجع. GitHub ينتظر إذن صريح.
 
-- iperf3 accuracy attempt accuracy-20261119T200519Z.json: two completed trials (3.07%, 3.00%); third timed out. Resume this file in bandwidth_accuracy.py to finish trials 3–5; original attempt retained.
+## استلام وتسليم بين الحسابات
 
-- Ubuntu reports iperf3 3.9 installed. Next: run the existing five-round bandwidth_accuracy.py on fattree4 and record the measured error. Previous 2.96% result used iperf2.
-
-- C1 linear,2 complete. Local capture c1-linear-rerun.pcapng: FEATURES_REPLY 48/50 identify S1/S2. Table-miss 52/54 sends unmatched packets to controller. H1→H2 ICMP Echo Request on S1: PACKET_IN 448, priority-1 FLOW_MOD 449 (in 1, destination H2, out 2), PACKET_OUT 450. S2 repeats in 452–454 (in 2, out 1). Ping 3/3, mean RTT 7.152 ms. Next practical item: iperf3 calibration, subject to offline availability.
-
-- الشغل والحفظ offline حتى يقول غير كده. لا إنترنت أو تنزيل أو رفع أو push. Git المحلي مسموح. ممنوع Computer Use بدون طلب جديد.
-- فؤاد ينفذ على Ubuntu. نجمع التعديل في جزء مفيد واختبار في آخره، من غير نسخ وhash وrestart بعد كل سطر.
-- اقرأ README.md وPLAN.md وISSUES_AND_RISKS.md في الجذر. لا يوجد docs/ أو reference/. المطلوب Track 1، ولا proposal منفصل، وOS-Ken مسموح.
-- ملفات Ubuntu النشطة داخل ~/sdn-lab؛ نسخ العمل على Windows داخل vm-source/. الأرشيف المستلم ومجلده المستخرج baseline قديم ومجمّد.
-- ملفات vm-source اتحدثت لدعم fat-tree. التشغيل من نسخة محلية مملوكة لفؤاد مأخوذة من المجلد المشترك، ونسخ Ubuntu القديمة ما اتغيرتش.
-
-## اللي اشتغل واتأكد
-
-- Grid من 6 switches و7 links و6 hosts، وpingall نجح 30/30. وصلات switches السبع معرفة TCLink بسعة 100 Mbps وتأخير 2 ms؛ فحص tc الفعلي كان على s1-eth1. Cold-start مش مضمون دائمًا بلا فقد.
-- /topology و/links و/flows تعمل، مع بقاء مسارات /sdn/. المراقبة تعرض 20 منفذًا، منها 14 اتجاهًا لوصلات switches.
-- القياس التفصيلي عند ingress هو directed host pair بقواعد IPv4 MAC-pair، وليس TCP/UDP sessions منفصلة. معدلات ingress لا تجمع نفس المرور عبر عدة switches.
-- Elephant: أكبر من 10 Mbps لفترتين. Congestion: EWMA بمعامل 0.5 فوق 70% لفترتين. T الافتراضي 5s وقابل للضبط 2-5 عبر SDN_POLL_INTERVAL؛ مقارنة فترات T لم تُجرَ بعد.
-- الاختيار بين 3 paths، بكلفة الحمل المتوقع بعد النقل، ثم hops وshared links. نموذج الطلب يستخدم max(port TX, ingress demand)؛ ده مختلف عن C4 measured utilization.
-- التحويل يثبت priority أعلى من egress إلى ingress مع barriers، ثم يحذف قواعد الأولوية القديمة فقط. شرط التحسن 15pp وhold-down لمدة 30s موجودان؛ hold-down لم يُعزل في اختبار حي عن شرط التحسن.
-- آخر دليل: experiments/results/grid-demo-20261117T193620Z.json. انتقل H1->H6 من P1 إلى P3 [1,4,5,6] بقواعد priority 21 على الأربع switches، ولا قواعد priority 20 متبقية لنفس الزوج في OVS final.
-- Congestion ظهر عند 30s؛ آخر عينة P1 كانت 35.032s وأول P3 كانت 40.034s. دي نافذة رصد، مش قياس دقيق لزمن التحويل.
-- نفس التجربة: H1 sender 84.9 Mbps، receiver 53.2 Mbps، loss 160610/433673 (37%)، jitter 5.585 ms، و13477 out-of-order. H3 sender 30.0 Mbps، receiver 22.1 Mbps، loss 40025/153043 (26%)، jitter 0.498 ms، و1206 out-of-order. الأداء لم يتحل.
-- ARP refresh يحتفظ بالمسار السليم؛ baseline Dijkstra ثابت. القرار مرة لكل polling round، بالأكبر أولًا، ويرفض القياسات الأقدم من 2T.
-
-## تجربة العطل والخطوة الجاية
-
-- أثناء فصل S5-S6 رجع H1 إلى H6 عبر P1 بأولوية 20 واستمر عليه بعد استعادة الوصلة. وصل 79 من 80 ping. أكبر فاصل بين ردين 0.328979 ثانية. النتيجة في experiments/results/link-failure-20261118T143438Z.json.
-- تجربة hold-down-20261118T150135Z.json رصدت P3 من 31.641s حتى 87.331s. تحسن P1 المتوقع 31.21 نقطة عند 48.156s دون رصد زحمة على P3؛ عزل المؤقت حيًا ما زال مفتوحًا. الـfat-tree جاهزة في المصدر؛ شغّل فؤاد fat-tree على Ubuntu؛ أول pingall 1 وصل 0/240، حتى بين h1 وh2 على s1. الحالة 20 سويتش و32 وصلة و0 هوست بعناوين متعلَّمة؛ s1 يرسل للكنترولر. وضع العملية fattree4 لكن cwd هو /home/fouad/sdn-lab. تحميل نسخة Grid القديمة محتمل ولم يُثبت من cwd وحده. محاولة cd للمجلد المشترك فشلت بـ Permission denied قبل تشغيل الكنترولر. بعد تصحيح أمر التشغيل، h1 إلى h2 على s1 حقق 4/4 وأول رد 1064ms. نجح pingall 2 على الشبكة كلها: 240/240، فقد 0% في هذا التشغيل. الـDashboard جاهزة في dashboard/. اتفحص خادمها محليًا ومنطق عرضها ببيانات Grid المسجلة. فؤاد فتحها وأكد تحديث وقت القراءة. اتصلح تقريب المعدلات الصغيرة؛ لقطتا Firefox أظهرتا H1 إلى H16 على S1→S9→S17→S15→S8 بقراءات 0.0083 و0.08 Mbps؛ عند 0.08 Mbps ظهرت الوصلات عند 0.08%. التالي تجارب التقييم. فحص محلي أكد 20 سويتش و16 هوست و32 وصلة بين السويتشات ومسافات كل أزواج الهوستات. راجع فجوة الأداء في تجارب التقييم.
-
-- في لقطتي Firefox لتجربة فصل S9–S17 على fat-tree ظهر مسار H1 إلى H16 عبر S1→S9→S18→S15→S8 مع 31 وصلة، وعبر S1→S9→S17→S15→S8 مع 32 وصلة. الأولوية 20 في الحالتين. بعد الفصل وصل 15/15 في كل تشغيل. متوسط RTT في الأول 23.829 ms وفي الثاني 20.664 ms. فؤاد أعاد الوصلة بأمر link s9 s17 up. بدأ ping بعد الفصل، وزمن التحويل الدقيق غير مقاس.
-
-- accuracy-20261118T162628Z.json: خمس تجارب iperf2 على H1→H16 بقياس S1→S9. متوسط الإرسال 5.0035 Mbps والكنترولر 5.1515 Mbps؛ متوسط الخطأ 2.96% وSD 0.48 نقطة مئوية. معايرة iperf3 باقية. دفعة compare-grid-20261118T163914Z اكتملت 5 تشغيلات لكل وضع. محاولة Balanced غير مكتملة إضافية محفوظة خارج المتوسطات. H6 استقبل 46.78 Mbps مع shortest و48.76 مع balanced. H5 استقبل 14.40 و16.72 Mbps. H1 انتقل إلى P3 في تشغيل balanced واحد فقط. دفعة ten-flows-20261118T170441Z اكتملت 15/15. متوسط الذروة ± SD بالنقاط: shortest 56.16 ± 15.08، ECMP 48.16 ± 4.57، balanced 56.20 ± 15.13. مجموع معدلات المستقبلين المعروضة 144 Mbps في كل تشغيل. فقد balanced بلغ 12 من 3673622، والباقي صفر. دفعة recovery-20261118T173006Z اكتملت 5/5 على H2→H6. زمن أول رد بعد الفصل 82.599 ms في المتوسط وSD 14.012 ms. فُقد 6 من 1300 على مدى الجولات. عاد المسار الأصلي بعد الاستعادة في الخمس. دفعة detection-20261118T173741Z اكتملت بقراءات كاملة: صفر اكتشاف في 5 جولات عند كل فترة؛ أقصى EWMA بلغ 66.70% عند T2 و63.60% عند T5. لا زمن اكتشاف عند 70%. إعادة تحليل نفس العينات عند 60% أعطت 5/5 بمتوسط 13.67s و45.36s على الترتيب (تحليل افتراضي دون تشغيل أو تغيير العتبة). معايرة calibration-20261118T175608Z اكتملت: EWMA وصل 71.329% عند 49.004s لفترة واحدة ثم 61.667%. لا إعلان. الاستقبال 65.2 Mbps وفقد 31.197%. لا نكرر نفس الدفعة. تجارب Grid السابقة سجلت عينات congested=true؛ طلب فؤاد جولة ثانية لتأكيد عبور العتبة. جولة shared-link-20261118T180200Z نجحت. عند T=5s سجل S2→S3 أربع قراءات EWMA متتالية فوق 70%، وأعلن الزحمة عند 18.905s من إطلاق أول مرسل. عاد العداد للصفر عند 33.908s. في shared-detection-20261118T180711Z سُجل إعلان الزحمة في كل التشغيلات العشرة. من إطلاق أول مرسل إلى الإعلان: T2 متوسط 13.214s وSD 4.548s، وT5 متوسط 32.081s وSD 7.492s؛ T2 أسرع في الأزواج الخمسة. دفعة threshold-20261118T182438Z اكتملت. عند T=2s: عتبة 60% أعلنت في 5/5 بمتوسط 7.390s وSD 0.966s؛ عتبة 80% أعلنت في 1/5 عند 44.998s، والأربع الأخرى بلا إعلان خلال 60s. مرجع 70% من الدفعة السابقة بنفس الحمل: 5/5 ومتوسط 13.214s. دفعة route-phases-20261118T185932Z اكتملت 5/5؛ 15 مقارنة لنفس التدفق قبل/بعد. H1→H6: متوسط الاستقبال 24.752 ثم 27.768 Mbps، الفقد 11.644% ثم 0%، RTT 165.15 ثم 24.17 ms. المحاولة السابقة 185432Z توقفت في الجولة الرابعة ومسجلة منفصلة. تم إنشاء output/pdf/sdn-experiment-results.pdf من JSON الفعلي باستخدام experiments/results_figures.py. تسع صفحات رسوم وجداول بالإنجليزية. فصل النتائج جاهز في output/report/chapter-5-experiments-and-results.docx وPDF، ست صفحات إنجليزية مع 6 رسوم وجداول وتفسير وحدود القياس. اتراجع إخراج Word وPDF بصريًا. التالي كتابة فصل التصميم والتنفيذ من الكود الفعلي ثم تجميع التقرير. باقي iperf3 وC1 linear وhold-down الحي والتسليم الكامل.
-
-## حدود مهمة
-
-- فقد الحمل العالي وسببه مفتوحان؛ ومشكلة LLDP التاريخية مع 32-34 Gbps غير محلولة. لا نكرر الضغط الأعمى أو نغيّر حدود الدكتور لإظهار نجاح.
-- iperf3 غير ظاهر عبر PATH؛ لا تثبيت أثناء offline. الدقة <10%، التجارب الخمس وmean/std، والتقرير والعرض والفيديو لم يكتملوا.
-- C1 القديمة كانت single,2؛ يلزم مراجعتها مقابل linear المطلوبة. لا تزود دعم sessions منفصلة أو bonus إلا عند حاجة فعلية في الخطة.
-- ملفات PDF القديمة لم تتحدث اليوم. WORK_LOG فيه ملحق الجلسة؛ النتائج الخام الثلاثة محفوظة دون تعديل في experiments/results/.
-- تم حفظ الشغل في Git محلي بعد السماح بكتابة .git، بدون remote أو رفع أو إنترنت. حدّثنا ملفات البداية وAGENTS عند الإغلاق. استخدم git log لمعرفة آخر commit؛ لا تعيد طلب GitHub لمجرد الحفظ المحلي.
-
-## SHA-256 لنسخ العمل المحلية يوم 2026-11-17 قبل إضافة fat-tree
-
-- Controller: `ae5339affe9925cb40e4dde39db406f2cbab3d7cce506a6142b7009bf7ccdafe`
-- Topology: `6b25536c804fca1ff2f51c009bd58fc1c66afe63bbb9fad73401237384c6cc8d`
-- الأرشيف الأصلي: `7f7577a1f2816667a2dfe151bec759592714ecaaa47d643c9c55f2c5fa9a8188`
+- وكيل واحد فقط يعدّل في نفس المجلد في كل مرة. قبل البداية اقرأ AGENTS.md ثم هذا الملف وPLAN.md. نفّذ git status --short --branch وgit log --oneline -5. أي تغييرات غير محفوظة تُراجع وتُستكمل من غير مسحها.
+- النتائج والمشاكل التاريخية في WORK_LOG.md وISSUES_AND_RISKS.md؛ سجل تغييرات الملفات في Git. الأوامر اللي اتنفذت على Ubuntu لا تدخل Git تلقائيًا.
+- بعد كل بند مفيد سجّل في WORK_LOG.md ما اتعمل والدليل وما تعذّر، وحدّث Now وNext هنا وPLAN.md لو حالة بند اتغيرت. احفظ الكود والنتيجة مع تحديث التسليم في commit محلي، وراجع git status قبل ما تسلّم. لو فيه شغل ناقص، سمّه بوضوح.

@@ -1,5 +1,15 @@
 # Issues and limits: current state at 2026-11-17 close
 
+## Current triage | 2026-11-23
+
+- Open: latest Fat-tree pingall 0/240; no status/process output for that run yet. Previously 240/240. Use HANDOFF.md Next and the Arabic guide p.5.
+- Open: high-load loss cause, isolated live hold-down test and historical unshaped LLDP instability.
+- Measured: C1 linear capture; iperf3 mean error 3.025%; T2/T5 and thresholds compared; five H2 recovery trials averaged 82.60 ms to first qualifying reply. Evidence and limitations in Chapter 5 and experiments/results/.
+- Pending delivery: presentation, video, team/weekly records, reference check and authorized remote publication.
+
+## Historical troubleshooting snapshot (18 November; statuses below are as of that session)
+
+
 | Item | Current evidence | State / next action |
 | --- | --- | --- |
 | High-load packet loss | Latest real trial: H1 receiver53.2Mbps,37% loss; H3 receiver22.1Mbps,26% loss. Raw file grid-demo-20261117T193620Z.json. | OPEN. Successful rerouting does not prove performance gains. Do not repeat stress blindly or change the assignment thresholds to force success. |

@@ -72,7 +72,7 @@
 - `watch -n 1 .../sdn/flows` while `h2 ping -c 100 -i 0.1 10.0.0.1` captured 100/100 packets and 0% loss; API showed `new_packets:84`,`new_bytes:8232` for S1 and S4, with their `total_packets` 190 and 206 in that screenshot; S2/S3/S5 showed zero new_packets. Original `image(20261117-151334).png`.
 - User was told to preserve checkpoint `rest_api_controller_flows_success.py`; existence on VM not independently audited.
 
-## Current pause point
+## Historical pause point (17 November)
 
 - Next intended `/sdn/routes` read-only introspection endpoint. Before coding, assistant asked user to run `grep -nE 'def .*route|def .*path|shortest_path|def rest_application' rest_api_controller.py`. **No result for that command is present yet.**
 - User instead requested full PDFs, work log, comprehensive handoff and transfer to Work/Codex; this bundle is that documentation handoff. **No route endpoint has been added or tested.**
@@ -100,3 +100,11 @@
 - حدثنا ملفات البداية وAGENTS والخطة والـhandoff والمشاكل، وزامنا topology المحلية معالتعديلالمؤكد دونتصديرVM جديد. لارفع أوإنترنت أوتعديلPDF. Gitمحلي بلاremote؛ حالةcommit النهائية موضحةفيHANDOFF.
 
 - حفظ الجلسة: تم إنشاء commit محلي بعد السماح بالكتابة داخل .git؛ لا remote أو إنترنت أو رفع. أضيفت .gitattributes للحفاظ على bytes المصدر والنتائج عند Git checkout.
+
+
+## متابعة من سجل Git والتجارب حتى 2026-11-23
+
+- 18 نوفمبر: تشغيل Fat-tree والداشبورد. اختبارات المقارنة والتعافي والكشف والعتبة وقبل/بعد النقل محفوظة في experiments/results/. أمثلة للاسترجاع: recovery-20261118T173006Z وroute-phases-20261118T185932Z. تجربة عزل hold-down لم تحسم السبب.
+- 19 نوفمبر: التقاط C1 ومعايرة iperf3. الجولتان المتوقفتان محفوظتان، والخامسة حُسبت من نافذة الإرسال والعينات الثلاث. تفاصيل القياس في الفصل الخامس. تجميع تقرير 32 صفحة وملحقاته في commit 53388ed.
+- 21 نوفمبر: تجهيز نسخة Ubuntu المستقلة b2c2884 ثم الدليل العربي a4c8652. آخر إخراج من فؤاد 0/240 في Fat-tree. طُلبت حالة الكنترولر والمود؛ لا توجد مخرجات تحسم التشخيص حتى التسليم.
+- 23 نوفمبر: توحيد ملفات بداية الجلسة والتسليم. فُحص تتبّع الملفات والأدلة في Git؛ لم تُشغّل VM أو تجارب جديدة. سجل Git يحفظ تغييرات الملفات، وهذا السجل يلخص البنود والقرارات والنتائج التي وصلت للمشروع.
