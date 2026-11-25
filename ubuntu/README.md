@@ -9,6 +9,8 @@ Use the same topology for the controller and Mininet.
 
 Open http://127.0.0.1:8081 in Ubuntu. Select H1 to H6. After discovery shows six switches and seven links, type the following lines in Mininet, one at a time. The launcher starts Mininet in the local project directory.
 
+The browser requests another snapshot one second after the preceding request finishes. Link discovery and counter polling have their own timing; traffic measurements use the controller polling period (five seconds by default).
+
     pingall
     py __import__('runpy').run_path('experiments/grid_demo.py', init_globals=dict(h1=h1,h3=h3,h5=h5,h6=h6)) and None
 

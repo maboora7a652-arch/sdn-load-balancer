@@ -151,6 +151,6 @@ async function refresh() {
     } catch {
         previous=null;
         el("status").textContent=lastSeen?"Disconnected · last update "+lastSeen:"Waiting for controller · retrying";
-    } finally { setTimeout(refresh,5000); }
+    } finally { setTimeout(refresh,1000); }
 }
 refresh();
