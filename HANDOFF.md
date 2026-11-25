@@ -3,6 +3,7 @@
 
 - أحدث Grid من إخراج فؤاد: grid-demo-20261125T133231Z.json محفوظ على Ubuntu في ~/sdn-project/experiments/results/ ولم يُستلم محليًا. أعلى EWMA ظاهر 67.657%، فلا إعلان زحمة أو تحويل؛ ظل P1/20. استقبال H1 48.1Mbps بفقد43% وH3 15.4Mbps بفقد49%. التالي فحص tc -s على S2→S3 لتحديد موضع الفقد قبل تكرار الضغط.
 - فحص tc على s2-eth2: HTB rate/ceil100Mbit وnetem2ms limit1000؛ dropped237742 وsent654516 packets، والعدّاد تراكمي. نفس الإسقاط ظاهر في الأب والابن فلا يُجمع مرتين. السبب النهائي لهبوط المعدل تحت العتبة لم يُحدّد.
+- تم استلام ملف الجولة في experiments/results/grid-demo-20261125T133231Z.json. متوسط العينات من10s: H1 ingress87.45 مقابل S1→S2 TX58.96، وS2→S3 TX64.88Mbps (أقصى69.514). التالي عداد طابور S1→S2 وعدد CPUs؛ لم يصل ناتج nproc بعد.
 
 - Dashboard refresh reduced to one second after each completed request. Counter polling remains five seconds by default. Link-failure demo requests restoration after its five-second down interval and intermediate snapshot; actual UI latency on Ubuntu still unverified.
 - مراجعة الكود: إصلاح تنظيف حالة السويتش عند خروجه، وإضافة topology إلى /sdn/status، وحساب نافذة معايرة مكتملة مع تحذير لو تعذّر فحص المسار النهائي. 9 اختبارات منطق محلية نجحت في experiments/check_logic.py. الإصلاحات لم تتشغّل على Ubuntu بعد؛ النسخة المنسوخة هناك قديمة حتى تُزامَن.
