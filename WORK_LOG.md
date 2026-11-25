@@ -1,5 +1,9 @@
 # SDN work log — reconstructed from actual conversation, files and captures
 
+## 26 نوفمبر 2026 | استكمال بروفة README
+
+- بعد تعليمات تشغيل الكنترولر معtee وفلترة عرضC4، أرسل فؤاد اتصالFat-tree240/240 ومعايرةaccuracy-20261125T220051Z.json. أربع جولات معلنة: sender/controller/error بالترتيب5.000/5.147/2.93%،5.000/5.148/2.97%،4.998/5.170/3.45%،5.005/5.151/2.93%. ثم ValueError('No complete inter-switch route after 3 reads; see last_incomplete_route in saved JSON'). لا نحتسبها خمس جولات، ولا نثبت سبب التوقف منconsole. فحص الشير لم يجد JSON أو ملفsdn-controller-demo*.log الجديد بعد؛ التالي نقلهما منUbuntu وقراءتهما، دون إعادة اختبار أوRestart.
+
 ## 25 نوفمبر 2026 | تشغيل Grid مستقل
 
 - فؤادأوضحأنسيلC4 BANDWIDTHيصعّباستخراجسجلالأحداث. وصلخام214446Zوحُفظكماهوفيexperiments/results/:لاعينات، السيرفرمتصلوصفرbytes0→10.72s، ثممرورو216/1475lostقبلإيقافه، والعميلinterruptعندcleanup. لايحددذلكسببالفراغ. تجهيزتعليماتتسجيلstdout/stderrعبرtee -a /tmp/sdn-controller-demo.log قبلgrep --line-buffered -v 'C4 BANDWIDTH' يحفظكاملالسجلويخففالعرض؛ دونتعديلكودأوحذفالسجل. يحتاجإغلاقMininetوالكنترولرثمإعادةتشغيلهمالتفعيلالتسجيل، لاإعادةتشغيلVM؛ التنفيذمازالبيدفؤاد.
