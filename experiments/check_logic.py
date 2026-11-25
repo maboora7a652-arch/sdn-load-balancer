@@ -32,6 +32,26 @@ def methods(*names):
 
 
 class LogicChecks(unittest.TestCase):
+    def test_discovery_uses_a_private_monotonic_clock(self):
+        tree = ast.parse(SOURCE.read_text())
+        assignments = [node for node in tree.body if isinstance(node, ast.Assign)
+                       and any(isinstance(target, ast.Attribute)
+                               and isinstance(target.value, ast.Name)
+                               and target.value.id == "switches" and target.attr == "time"
+                               for target in node.targets)]
+        self.assertEqual(len(assignments), 1)
+        clock = SimpleNamespace(time=Mock(return_value=1000),
+                                monotonic=Mock(return_value=10))
+        discovery = SimpleNamespace(time=clock)
+        scope = dict(time=clock, switches=discovery, SimpleNamespace=SimpleNamespace)
+        exec(compile(ast.Module(body=assignments, type_ignores=[]), str(SOURCE), "exec"), scope)
+        timestamp = discovery.time.time()
+        clock.time.return_value = 2000
+        clock.monotonic.return_value = 11
+        self.assertLess(discovery.time.time() - timestamp, 10)
+        self.assertEqual(clock.time(), 2000)
+        self.assertIs(discovery.time.time, clock.monotonic)
+
     def test_missing_bandwidth_is_bounded_and_never_fabricated(self):
         script = runpy.run_path(str(ROOT / "experiments/bandwidth_accuracy.py"))
         read = script["port_reading"]

@@ -4,6 +4,7 @@ import time
 import os
 import hashlib
 from itertools import islice
+from types import SimpleNamespace
 import json
 
 from eventlet import listen, wsgi
@@ -19,11 +20,14 @@ from os_ken.controller.handler import (
     set_ev_cls
 )
 from os_ken.ofproto import ofproto_v1_3
-from os_ken.topology import event
+from os_ken.topology import event, switches
 from os_ken.lib.packet import packet, ethernet, arp
 from os_ken.lib import hub
 
 # Enable topology discovery
+# All four discovery timestamps in the installed switches module use this alias.
+# Keep elapsed-time checks independent of guest wall-clock corrections.
+switches.time = SimpleNamespace(time=time.monotonic)
 app_manager.require_app("os_ken.topology.switches")
 
 
@@ -35,6 +39,8 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.logger.info("Discovery uses a monotonic clock; LLDP timeout: %ss",
+                         switches.Switches.LINK_TIMEOUT)
 
         # Store switches and links
         self.graph = nx.Graph()
