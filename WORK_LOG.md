@@ -2,6 +2,7 @@
 
 ## 25 نوفمبر 2026 | تشغيل Grid مستقل
 
+- فحص قراءة فقط على Windows: VM obunto مخصصة4vCPU و4096MB، والمضيف16logicalCPU ونحو16GB RAM. سجل VBox.log بدأ2026-11-25T13:04:30Z ويذكر NEM وSnail execution mode وتحذير full potential. DeviceGuard يذكر VBS running وSecurityServicesRunning{2}. لم يتم تعديل Windows أو إعدادات VM. هذا مؤشر محتمل لضعف الأداء، وليس إثباتًا أن تعطيله يحل فقد الطوابير.
 - وصل JSON الأصلي عبر الشير وحُفظ في experiments/results/grid-demo-20261125T133231Z.json. عينات t≥10s تعطي متوسط H1 RX87.45 وS1→S2 TX58.96 وH3 RX30.87 وS2→S3 TX64.88 وS3→S6 TX49.13Mbps. أقصى TX ظاهر S2→S3 هو69.514392Mbps. التباين موجود قبل الوصلة المشتركة أيضًا؛ موارد الـVM وجدولة التشكيل احتمال يحتاج فحص، دون جزم بالسبب.
 - عدادات s2-eth2 من Ubuntu: netem delay2ms limit1000، وHTB rate/ceil100Mbit. Sent987384561 bytes/654516 packets وdropped237742، backlog0 بعد التجربة. نفس dropped ظاهر في HTB وnetem، فلا جمع بينهما. overlimits450680 مؤشر تطبيق rate control وليس عدّاد فقد إضافي. تثبت البيانات إسقاطًا في هذه الطوابير خلال عمر العدادات، دون تحديد معدل لحظي أو إسناد كل العدد للجولة الأخيرة.
 

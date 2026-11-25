@@ -1,6 +1,7 @@
 # تسليم مشروع SDN Track 1
 ## Now | 2026-11-25
 
+- Ubuntu nproc=4؛ s1-eth1 dropped245417 cumulative مع rate100Mbit. قراءة سجل VirtualBox المحلي لنفس جلسة25نوفمبر أثبتت NEM/Hyper-V و"Snail execution mode". Win32_DeviceGuard أظهر VBS status2 وSecurityServicesRunning{2}. ضعف محاكاة الـVM سبب محتمل يحتاج مقارنة؛ تغيير وضع إقلاع Windows/VBS يحتاج إذن صريح وإعادة تشغيل.
 - أحدث Grid من إخراج فؤاد: grid-demo-20261125T133231Z.json محفوظ على Ubuntu في ~/sdn-project/experiments/results/ ولم يُستلم محليًا. أعلى EWMA ظاهر 67.657%، فلا إعلان زحمة أو تحويل؛ ظل P1/20. استقبال H1 48.1Mbps بفقد43% وH3 15.4Mbps بفقد49%. التالي فحص tc -s على S2→S3 لتحديد موضع الفقد قبل تكرار الضغط.
 - فحص tc على s2-eth2: HTB rate/ceil100Mbit وnetem2ms limit1000؛ dropped237742 وsent654516 packets، والعدّاد تراكمي. نفس الإسقاط ظاهر في الأب والابن فلا يُجمع مرتين. السبب النهائي لهبوط المعدل تحت العتبة لم يُحدّد.
 - تم استلام ملف الجولة في experiments/results/grid-demo-20261125T133231Z.json. متوسط العينات من10s: H1 ingress87.45 مقابل S1→S2 TX58.96، وS2→S3 TX64.88Mbps (أقصى69.514). التالي عداد طابور S1→S2 وعدد CPUs؛ لم يصل ناتج nproc بعد.
