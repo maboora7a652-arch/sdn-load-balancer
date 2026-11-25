@@ -1,5 +1,9 @@
 # SDN work log — reconstructed from actual conversation, files and captures
 
+## 25 نوفمبر 2026 | تشغيل Grid مستقل
+
+- فؤاد أرسل ناتج grid-demo-20261125T133231Z.json من نسخة Ubuntu المستقلة. بقي H1→H6 على [1,2,3,6] بأولوية20، والمرشح P3. أعلى EWMA في العينات المعروضة67.657%، وcongested ظل false. أبلغ iperf عن استقبال H1 بمعدل48.1Mbps وفقد186856/433668 (43%)، وH3 بمعدل15.4Mbps وفقد74319/153063 (49%). لا دليل على تحويل في هذه الجولة، والداشبورد تطابق المسار النهائي. ملف JSON الأصلي لم يُنقل من Ubuntu إلى هذا المستودع.
+
 **Date range:** approximately 22 Oct – 17 Nov 2026. Dates inside periods are only assigned where independently recorded. This is a **detailed reconstruction**, not a line-by-line verbatim export of ChatGPT dialogue. Source screenshots, older PDFs and pasted code/logs are in the bundle.
 
 ## Phase 0: assignment and environment

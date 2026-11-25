@@ -1,5 +1,7 @@
 # تسليم مشروع SDN Track 1
-## Now | 2026-11-23
+## Now | 2026-11-25
+
+- أحدث Grid من إخراج فؤاد: grid-demo-20261125T133231Z.json محفوظ على Ubuntu في ~/sdn-project/experiments/results/ ولم يُستلم محليًا. أعلى EWMA ظاهر 67.657%، فلا إعلان زحمة أو تحويل؛ ظل P1/20. استقبال H1 48.1Mbps بفقد43% وH3 15.4Mbps بفقد49%. التالي فحص tc -s على S2→S3 لتحديد موضع الفقد قبل تكرار الضغط.
 
 - Dashboard refresh reduced to one second after each completed request. Counter polling remains five seconds by default. Link-failure demo requests restoration after its five-second down interval and intermediate snapshot; actual UI latency on Ubuntu still unverified.
 - مراجعة الكود: إصلاح تنظيف حالة السويتش عند خروجه، وإضافة topology إلى /sdn/status، وحساب نافذة معايرة مكتملة مع تحذير لو تعذّر فحص المسار النهائي. 9 اختبارات منطق محلية نجحت في experiments/check_logic.py. الإصلاحات لم تتشغّل على Ubuntu بعد؛ النسخة المنسوخة هناك قديمة حتى تُزامَن.
