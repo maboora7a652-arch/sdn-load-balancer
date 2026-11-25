@@ -18,6 +18,8 @@ The second command generates two UDP streams for 60 seconds. Watch the path, uti
 
     py __import__('runpy').run_path('experiments/link_failure_demo.py', init_globals=dict(net=net)) and None
 
+This interactive command uses presentation timing: about 60 seconds of ping, eight seconds before the cut, and at least 15 seconds with the link down. The restored path is printed five seconds after requesting link-up. Standalone repeated recovery experiments keep their original short timing. The JSON records presentation_mode.
+
 Type `exit` in Mininet and press Ctrl+C in the controller and dashboard terminals to stop. For the fat-tree, start the same launchers using `fattree` in place of `grid`. Wait for 20 switches and 32 links. In Mininet:
 
     pingall 2

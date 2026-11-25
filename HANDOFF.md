@@ -1,6 +1,7 @@
 # تسليم مشروع SDN Track 1
 ## Now | 2026-11-25
 
+- فؤاد طلب إطالة ديمو العطل. التشغيل التفاعلي link_failure_demo.py صار presentation=True: ping60s تقريبًا، انتظار8s قبل القطع، فصل15s على الأقل، وطباعة الطريق بعد5s من up. الاستدعاء البرمجي في دفعات recovery يظل بالتوقيت القديم. مطلوب نقل السكربت إلى Ubuntu وتجربته.
 - نجاح بعد HTB burst/cburst64k مؤقتًا: إخراج فؤاد grid-demo-20261125T144640Z.json (على Ubuntu فقط). congested=True عند20s، P3/21 ظاهر30s ونهائي كامل على4switches. H1 recv79.0Mbps/loss30540/433659 (7%)، H3 recv25.9Mbps/loss21072/153046 (14%). التالي link_failure_demo.py على نفس الجلسة؛ ثم تثبيت إعداد HTB في مسار الإنشاء بعد مراجعة API Mininet الفعلي. إعادة بناء الشبكة حاليًا تلغي تعديل tc المؤقت. لا تدمج الجولة مع إحصاءات التقرير القديمة.
 - الجولة بعد Restart: grid-demo-20261125T144102Z.json على Ubuntu فقط. لا تحويل؛ أقصى EWMA ظاهر68.614%، P1/20. H1 receiver50.8Mbps/loss40% وH3 receiver15.1Mbps/loss50%. اقتراح تجربة مؤقتة HTB burst/cburst64k على وصلات Grid مع rate/ceil100Mbit؛ لم تُنفذ بعد، وسبب الأداء غير مثبت. الإعداد يرجع بإعادة بناء Mininet. لا تغيير للعتبة أو السيناريو.
 - بعد Restart، نقل فؤاد إصلاحات المراجعة إلى ~/sdn-project وصحح ملكية أربعة ملفات بـchown بعد Permission denied من sudo cp. check_logic.py نجح9/9 على Ubuntu ثم Grid pingall30/30. التالي تجربة grid_demo.py مرة على الجلسة الجديدة ومراجعة الزحمة والمسار النهائي قبل تجربة العطل.

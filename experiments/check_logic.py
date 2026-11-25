@@ -252,6 +252,32 @@ class LogicChecks(unittest.TestCase):
             self.assertIn("final_path_warning", report["trials"][-1])
             self.assertIn("error_percent", report["trials"][-1])
 
+    def test_presentation_failure_timing_and_cleanup(self):
+        run = runpy.run_path(str(ROOT / "experiments/link_failure_demo.py"))["run_link_failure_demo"]
+        host = Mock(MAC=Mock(return_value="a"), IP=Mock(return_value="10.0.0.6"))
+        network = Mock()
+        network.__getitem__ = Mock(return_value=host)
+        helpers = dict(api=Mock(side_effect=lambda path: (
+            {"hosts": [dict(mac="a", switch=1, port=3)]} if path == "sdn/hosts"
+            else dict(switches=[1, 6], links=[dict(source=5, destination=6)]))),
+            flow_tables=Mock(return_value={}), forwarding_path=Mock(return_value=dict(
+                complete=True, path=[1, 4, 5, 6], priorities=[21]*4)))
+        for presentation, count, delays in [(False, 80, [2, 5]),
+                                             (True, 300, [8, 5, 10, 5])]:
+            host.reset_mock()
+            network.reset_mock()
+            clock = Mock(time=Mock(return_value=100))
+            with tempfile.TemporaryDirectory() as temp:
+                output = Path(temp) / "result.json"
+                with patch.dict(run.__globals__, time=clock), redirect_stdout(io.StringIO()):
+                    with patch.object(run.__globals__["runpy"], "run_path", return_value=helpers):
+                        run(network, output_path=output, presentation=presentation)
+                report = json.loads(output.read_text())
+                self.assertEqual(report["requested_ping_count"], count)
+                self.assertEqual([c.args[0] for c in clock.sleep.call_args_list], delays)
+                self.assertEqual(network.configLinkStatus.call_args_list[0].args, ("s5", "s6", "down"))
+                self.assertEqual(network.configLinkStatus.call_args_list[1].args, ("s5", "s6", "up"))
+
 
 if __name__ == "__main__":
     unittest.main()

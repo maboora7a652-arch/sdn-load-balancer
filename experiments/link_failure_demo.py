@@ -37,7 +37,7 @@ def first_post_cut_reply_ms(text, requested, confirmed, restored):
     return None
 
 
-def run_link_failure_demo(network, source_name="h1", output_path=None):
+def run_link_failure_demo(network, source_name="h1", output_path=None, presentation=False):
     helpers = runpy.run_path(str(EXPERIMENTS / "grid_demo.py"))
     api = helpers["api"]
     tables = helpers["flow_tables"]
@@ -47,9 +47,12 @@ def run_link_failure_demo(network, source_name="h1", output_path=None):
     managed = source_name == "h1"
     expected = [1, 4, 5, 6] if managed else [4, 5, 6]
     interval, count = (0.2, 80) if managed else (0.05, 260)
+    if presentation:
+        interval, count = 0.2, 300
     result = {"started_utc": stamp, "failed_link": [5, 6],
               "source": source_name, "destination": "h6",
               "ping_interval_seconds": interval, "requested_ping_count": count}
+    result["presentation_mode"] = presentation
     link_down, process = False, None
     stream = tempfile.TemporaryFile(mode="w+t")
     try:
@@ -77,7 +80,9 @@ def run_link_failure_demo(network, source_name="h1", output_path=None):
             return
         process = source.popen(["ping", "-n", "-D", "-c", str(count), "-i", str(interval), target.IP()],
                                stdout=stream, stderr=subprocess.STDOUT)
-        time.sleep(2)
+        if presentation:
+            print("Presentation mode: about 60s of ping; link down for at least 15s.", flush=True)
+        time.sleep(8 if presentation else 2)
         print("Taking S5-S6 down; ping continues.", flush=True)
         result["link_down_requested_unix"] = time.time()
         link_down = True
@@ -86,14 +91,21 @@ def run_link_failure_demo(network, source_name="h1", output_path=None):
         time.sleep(5)
         result["while_down"] = snapshot()
         print("While S5-S6 is down:", result["while_down"]["forwarding"], flush=True)
+        if presentation:
+            time.sleep(10)
         print("Restoring S5-S6.", flush=True)
         result["link_up_requested_unix"] = time.time()
         network.configLinkStatus("s5", "s6", "up")
         link_down = False
         result["link_up_command_returned_unix"] = time.time()
-        process.wait(timeout=20)
+        if presentation:
+            time.sleep(5)
+        else:
+            process.wait(timeout=20)
         result["after"] = snapshot()
         print("After restoration:", result["after"]["forwarding"], flush=True)
+        if presentation:
+            process.wait(timeout=70)
     except KeyboardInterrupt:
         result["interrupted"] = True
         print("Interrupted; restoring the link.", flush=True)
@@ -137,4 +149,4 @@ def run_link_failure_demo(network, source_name="h1", output_path=None):
 
 
 if "net" in globals():
-    run_link_failure_demo(net)
+    run_link_failure_demo(net, presentation=True)
