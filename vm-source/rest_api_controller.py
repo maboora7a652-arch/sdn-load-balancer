@@ -39,9 +39,6 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.logger.info("Discovery uses a monotonic clock; LLDP timeout: %ss",
-                         switches.Switches.LINK_TIMEOUT)
-
         # Store switches and links
         self.graph = nx.Graph()
         self.trace_detection = os.environ.get("SDN_TRACE_DETECTION") == "1"
@@ -57,6 +54,14 @@ class HostDiscoveryController(app_manager.OSKenApp):
             raise ValueError("SDN_TOPOLOGY must be mynetwork or fattree4")
         self.expected_switches = 20 if self.topology_name == "fattree4" else 6
         self.fat_tree_discovered = False
+
+        # Fat-tree has 80 ports; a 50ms guard alone takes 4s per LLDP sweep.
+        if self.topology_name == "fattree4":
+            switches.Switches.LLDP_SEND_GUARD = min(
+                switches.Switches.LLDP_SEND_GUARD, 0.01)
+        self.logger.info(
+            "Discovery uses a monotonic clock; LLDP timeout: %ss; send guard: %ss",
+            switches.Switches.LINK_TIMEOUT, switches.Switches.LLDP_SEND_GUARD)
 
         # Store discovered hosts
         self.hosts = {}
@@ -1501,6 +1506,9 @@ class HostDiscoveryController(app_manager.OSKenApp):
 
                 if self.install_dynamic_route(src_mac, dst_mac):
                     rebuilt += 1
+
+                # Let LLDP and switch I/O run between pairs in a bulk rebuild.
+                hub.sleep(0)
 
         self.logger.info(
             "Route rebuild requested for %s host pairs",
