@@ -1,0 +1,255 @@
+{
+  "started_utc": "20261125T203007Z",
+  "failed_link": [
+    5,
+    6
+  ],
+  "source": "h2",
+  "destination": "h6",
+  "ping_interval_seconds": 0.05,
+  "requested_ping_count": 260,
+  "presentation_mode": false,
+  "before": {
+    "topology": {
+      "switches": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "links": [
+        {
+          "source": 1,
+          "source_port": 1,
+          "destination": 2,
+          "destination_port": 1
+        },
+        {
+          "source": 1,
+          "source_port": 2,
+          "destination": 4,
+          "destination_port": 2
+        },
+        {
+          "source": 2,
+          "source_port": 2,
+          "destination": 3,
+          "destination_port": 1
+        },
+        {
+          "source": 2,
+          "source_port": 3,
+          "destination": 5,
+          "destination_port": 2
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "destination": 6,
+          "destination_port": 1
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "destination": 5,
+          "destination_port": 3
+        },
+        {
+          "source": 5,
+          "source_port": 1,
+          "destination": 6,
+          "destination_port": 2
+        }
+      ]
+    },
+    "flow_tables": {
+      "1": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=2.510s, table=0, n_packets=6, n_bytes=360, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=1.807s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=3,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=1.807s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:01 actions=output:3\n cookie=0x0, duration=2.514s, table=0, n_packets=28, n_bytes=3736, priority=0 actions=CONTROLLER:65535\n",
+      "2": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=2.416s, table=0, n_packets=8, n_bytes=480, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=1.818s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=1.818s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=2,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=2.418s, table=0, n_packets=38, n_bytes=4941, priority=0 actions=CONTROLLER:65535\n",
+      "3": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=2.287s, table=0, n_packets=5, n_bytes=300, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=1.827s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=1.827s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=2,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=2.288s, table=0, n_packets=28, n_bytes=3540, priority=0 actions=CONTROLLER:65535\n",
+      "4": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=2.167s, table=0, n_packets=5, n_bytes=300, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.068s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=0.068s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:3\n cookie=0x0, duration=2.171s, table=0, n_packets=29, n_bytes=3514, priority=0 actions=CONTROLLER:65535\n",
+      "5": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=2.045s, table=0, n_packets=6, n_bytes=360, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.076s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=0.076s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:3\n cookie=0x0, duration=2.052s, table=0, n_packets=35, n_bytes=4601, priority=0 actions=CONTROLLER:65535\n",
+      "6": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=1.857s, table=0, n_packets=4, n_bytes=240, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=0.083s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=0.083s, table=0, n_packets=1, n_bytes=98, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:2\n cookie=0x0, duration=1.848s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=1,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=1.848s, table=0, n_packets=0, n_bytes=0, priority=10,ip,in_port=3,dl_dst=00:00:00:00:00:01 actions=output:1\n cookie=0x0, duration=1.869s, table=0, n_packets=27, n_bytes=3273, priority=0 actions=CONTROLLER:65535\n"
+    },
+    "forwarding": {
+      "path": [
+        4,
+        5,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    }
+  },
+  "link_down_requested_unix": 1795638609.649454,
+  "link_down_command_returned_unix": 1795638609.6606646,
+  "while_down": {
+    "topology": {
+      "switches": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "links": [
+        {
+          "source": 1,
+          "source_port": 1,
+          "destination": 2,
+          "destination_port": 1
+        },
+        {
+          "source": 1,
+          "source_port": 2,
+          "destination": 4,
+          "destination_port": 2
+        },
+        {
+          "source": 2,
+          "source_port": 2,
+          "destination": 3,
+          "destination_port": 1
+        },
+        {
+          "source": 2,
+          "source_port": 3,
+          "destination": 5,
+          "destination_port": 2
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "destination": 6,
+          "destination_port": 1
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "destination": 5,
+          "destination_port": 3
+        }
+      ]
+    },
+    "flow_tables": {
+      "1": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=9.579s, table=0, n_packets=18, n_bytes=1080, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=5.001s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=5.001s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:2\n cookie=0x0, duration=9.583s, table=0, n_packets=38, n_bytes=4860, priority=0 actions=CONTROLLER:65535\n",
+      "2": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=9.480s, table=0, n_packets=27, n_bytes=1620, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=5.007s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=5.007s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:1\n cookie=0x0, duration=9.482s, table=0, n_packets=55, n_bytes=7158, priority=0 actions=CONTROLLER:65535\n",
+      "3": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=9.349s, table=0, n_packets=18, n_bytes=1080, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=5.013s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=5.013s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:1\n cookie=0x0, duration=9.350s, table=0, n_packets=39, n_bytes=4970, priority=0 actions=CONTROLLER:65535\n",
+      "4": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=9.229s, table=0, n_packets=18, n_bytes=1080, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=5.019s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:2\n cookie=0x0, duration=5.019s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:3\n cookie=0x0, duration=9.233s, table=0, n_packets=41, n_bytes=5034, priority=0 actions=CONTROLLER:65535\n",
+      "5": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=9.107s, table=0, n_packets=22, n_bytes=1320, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=9.114s, table=0, n_packets=50, n_bytes=6550, priority=0 actions=CONTROLLER:65535\n",
+      "6": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=8.918s, table=0, n_packets=13, n_bytes=780, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=5.034s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=5.034s, table=0, n_packets=81, n_bytes=7938, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:1\n cookie=0x0, duration=8.930s, table=0, n_packets=36, n_bytes=4435, priority=0 actions=CONTROLLER:65535\n"
+    },
+    "forwarding": {
+      "path": [
+        4,
+        1,
+        2,
+        3,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    }
+  },
+  "link_up_requested_unix": 1795638614.7054982,
+  "link_up_command_returned_unix": 1795638614.717991,
+  "after": {
+    "topology": {
+      "switches": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "links": [
+        {
+          "source": 1,
+          "source_port": 1,
+          "destination": 2,
+          "destination_port": 1
+        },
+        {
+          "source": 1,
+          "source_port": 2,
+          "destination": 4,
+          "destination_port": 2
+        },
+        {
+          "source": 2,
+          "source_port": 2,
+          "destination": 3,
+          "destination_port": 1
+        },
+        {
+          "source": 2,
+          "source_port": 3,
+          "destination": 5,
+          "destination_port": 2
+        },
+        {
+          "source": 3,
+          "source_port": 2,
+          "destination": 6,
+          "destination_port": 1
+        },
+        {
+          "source": 4,
+          "source_port": 1,
+          "destination": 5,
+          "destination_port": 3
+        },
+        {
+          "source": 5,
+          "source_port": 1,
+          "destination": 6,
+          "destination_port": 2
+        }
+      ]
+    },
+    "flow_tables": {
+      "1": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=16.568s, table=0, n_packets=32, n_bytes=1920, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=16.572s, table=0, n_packets=46, n_bytes=5578, priority=0 actions=CONTROLLER:65535\n",
+      "2": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=16.469s, table=0, n_packets=48, n_bytes=2880, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=16.471s, table=0, n_packets=64, n_bytes=7946, priority=0 actions=CONTROLLER:65535\n",
+      "3": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=16.337s, table=0, n_packets=31, n_bytes=1860, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=16.338s, table=0, n_packets=47, n_bytes=5679, priority=0 actions=CONTROLLER:65535\n",
+      "4": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=16.218s, table=0, n_packets=32, n_bytes=1920, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=6.872s, table=0, n_packets=125, n_bytes=12250, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=6.872s, table=0, n_packets=123, n_bytes=12054, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:3\n cookie=0x0, duration=16.222s, table=0, n_packets=46, n_bytes=5449, priority=0 actions=CONTROLLER:65535\n",
+      "5": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=16.095s, table=0, n_packets=43, n_bytes=2580, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=6.879s, table=0, n_packets=123, n_bytes=12054, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:1\n cookie=0x0, duration=6.879s, table=0, n_packets=123, n_bytes=12054, priority=20,ip,in_port=1,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:3\n cookie=0x0, duration=16.102s, table=0, n_packets=71, n_bytes=9131, priority=0 actions=CONTROLLER:65535\n",
+      "6": "OFPST_FLOW reply (OF1.3) (xid=0x2):\n cookie=0x0, duration=15.907s, table=0, n_packets=26, n_bytes=1560, priority=65535,dl_dst=01:80:c2:00:00:0e,dl_type=0x88cc actions=CONTROLLER:65535\n cookie=0x0, duration=6.886s, table=0, n_packets=123, n_bytes=12054, priority=20,ip,in_port=2,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:06 actions=output:3\n cookie=0x0, duration=6.886s, table=0, n_packets=125, n_bytes=12250, priority=20,ip,in_port=3,dl_src=00:00:00:00:00:06,dl_dst=00:00:00:00:00:02 actions=output:2\n cookie=0x0, duration=15.919s, table=0, n_packets=58, n_bytes=7142, priority=0 actions=CONTROLLER:65535\n"
+    },
+    "forwarding": {
+      "path": [
+        4,
+        5,
+        6
+      ],
+      "priorities": [
+        20,
+        20,
+        20
+      ],
+      "complete": true
+    }
+  },
+  "ping_output": "PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.\n[1795638607.663637] 64 bytes from 10.0.0.6: icmp_seq=1 ttl=64 time=9.66 ms\n[1795638607.718498] 64 bytes from 10.0.0.6: icmp_seq=2 ttl=64 time=13.0 ms\n[1795638607.767633] 64 bytes from 10.0.0.6: icmp_seq=3 ttl=64 time=11.1 ms\n[1795638607.819616] 64 bytes from 10.0.0.6: icmp_seq=4 ttl=64 time=12.2 ms\n[1795638607.874409] 64 bytes from 10.0.0.6: icmp_seq=5 ttl=64 time=16.1 ms\n[1795638607.933428] 64 bytes from 10.0.0.6: icmp_seq=6 ttl=64 time=17.5 ms\n[1795638607.979840] 64 bytes from 10.0.0.6: icmp_seq=7 ttl=64 time=12.5 ms\n[1795638608.036698] 64 bytes from 10.0.0.6: icmp_seq=8 ttl=64 time=15.9 ms\n[1795638608.084117] 64 bytes from 10.0.0.6: icmp_seq=9 ttl=64 time=12.9 ms\n[1795638608.134729] 64 bytes from 10.0.0.6: icmp_seq=10 ttl=64 time=12.8 ms\n[1795638608.186224] 64 bytes from 10.0.0.6: icmp_seq=11 ttl=64 time=11.5 ms\n[1795638608.234899] 64 bytes from 10.0.0.6: icmp_seq=12 ttl=64 time=9.35 ms\n[1795638608.285777] 64 bytes from 10.0.0.6: icmp_seq=13 ttl=64 time=9.32 ms\n[1795638608.340470] 64 bytes from 10.0.0.6: icmp_seq=14 ttl=64 time=12.8 ms\n[1795638608.388783] 64 bytes from 10.0.0.6: icmp_seq=15 ttl=64 time=11.0 ms\n[1795638608.440898] 64 bytes from 10.0.0.6: icmp_seq=16 ttl=64 time=9.92 ms\n[1795638608.495959] 64 bytes from 10.0.0.6: icmp_seq=17 ttl=64 time=14.1 ms\n[1795638608.549397] 64 bytes from 10.0.0.6: icmp_seq=18 ttl=64 time=16.8 ms\n[1795638608.592961] 64 bytes from 10.0.0.6: icmp_seq=19 ttl=64 time=8.77 ms\n[1795638608.645286] 64 bytes from 10.0.0.6: icmp_seq=20 ttl=64 time=9.89 ms\n[1795638608.696839] 64 bytes from 10.0.0.6: icmp_seq=21 ttl=64 time=9.89 ms\n[1795638608.747546] 64 bytes from 10.0.0.6: icmp_seq=22 ttl=64 time=11.0 ms\n[1795638608.797481] 64 bytes from 10.0.0.6: icmp_seq=23 ttl=64 time=10.3 ms\n[1795638608.846652] 64 bytes from 10.0.0.6: icmp_seq=24 ttl=64 time=8.68 ms\n[1795638608.903491] 64 bytes from 10.0.0.6: icmp_seq=25 ttl=64 time=13.4 ms\n[1795638608.953136] 64 bytes from 10.0.0.6: icmp_seq=26 ttl=64 time=12.1 ms\n[1795638609.003112] 64 bytes from 10.0.0.6: icmp_seq=27 ttl=64 time=11.6 ms\n[1795638609.052426] 64 bytes from 10.0.0.6: icmp_seq=28 ttl=64 time=10.4 ms\n[1795638609.107931] 64 bytes from 10.0.0.6: icmp_seq=29 ttl=64 time=15.2 ms\n[1795638609.154547] 64 bytes from 10.0.0.6: icmp_seq=30 ttl=64 time=10.3 ms\n[1795638609.206815] 64 bytes from 10.0.0.6: icmp_seq=31 ttl=64 time=11.7 ms\n[1795638609.255727] 64 bytes from 10.0.0.6: icmp_seq=32 ttl=64 time=9.55 ms\n[1795638609.308756] 64 bytes from 10.0.0.6: icmp_seq=33 ttl=64 time=10.7 ms\n[1795638609.358719] 64 bytes from 10.0.0.6: icmp_seq=34 ttl=64 time=9.47 ms\n[1795638609.410429] 64 bytes from 10.0.0.6: icmp_seq=35 ttl=64 time=9.38 ms\n[1795638609.463553] 64 bytes from 10.0.0.6: icmp_seq=36 ttl=64 time=11.4 ms\n[1795638609.512591] 64 bytes from 10.0.0.6: icmp_seq=37 ttl=64 time=9.09 ms\n[1795638609.565622] 64 bytes from 10.0.0.6: icmp_seq=38 ttl=64 time=10.4 ms\n[1795638609.616201] 64 bytes from 10.0.0.6: icmp_seq=39 ttl=64 time=9.50 ms\n[1795638609.734432] 64 bytes from 10.0.0.6: icmp_seq=41 ttl=64 time=24.5 ms\n[1795638609.779875] 64 bytes from 10.0.0.6: icmp_seq=42 ttl=64 time=18.0 ms\n[1795638609.832753] 64 bytes from 10.0.0.6: icmp_seq=43 ttl=64 time=18.7 ms\n[1795638609.885039] 64 bytes from 10.0.0.6: icmp_seq=44 ttl=64 time=18.7 ms\n[1795638609.936105] 64 bytes from 10.0.0.6: icmp_seq=45 ttl=64 time=18.4 ms\n[1795638609.987641] 64 bytes from 10.0.0.6: icmp_seq=46 ttl=64 time=18.4 ms\n[1795638610.054074] 64 bytes from 10.0.0.6: icmp_seq=47 ttl=64 time=19.3 ms\n[1795638610.106985] 64 bytes from 10.0.0.6: icmp_seq=48 ttl=64 time=21.0 ms\n[1795638610.187747] 64 bytes from 10.0.0.6: icmp_seq=49 ttl=64 time=18.8 ms\n[1795638610.252437] 64 bytes from 10.0.0.6: icmp_seq=50 ttl=64 time=18.9 ms\n[1795638610.304403] 64 bytes from 10.0.0.6: icmp_seq=51 ttl=64 time=20.4 ms\n[1795638610.357385] 64 bytes from 10.0.0.6: icmp_seq=52 ttl=64 time=19.9 ms\n[1795638610.406158] 64 bytes from 10.0.0.6: icmp_seq=53 ttl=64 time=18.4 ms\n[1795638610.456672] 64 bytes from 10.0.0.6: icmp_seq=54 ttl=64 time=18.1 ms\n[1795638610.510440] 64 bytes from 10.0.0.6: icmp_seq=55 ttl=64 time=19.3 ms\n[1795638610.560832] 64 bytes from 10.0.0.6: icmp_seq=56 ttl=64 time=18.0 ms\n[1795638610.623260] 64 bytes from 10.0.0.6: icmp_seq=57 ttl=64 time=17.5 ms\n[1795638610.675359] 64 bytes from 10.0.0.6: icmp_seq=58 ttl=64 time=18.1 ms\n[1795638610.729711] 64 bytes from 10.0.0.6: icmp_seq=59 ttl=64 time=21.4 ms\n[1795638610.780096] 64 bytes from 10.0.0.6: icmp_seq=60 ttl=64 time=20.7 ms\n[1795638610.828294] 64 bytes from 10.0.0.6: icmp_seq=61 ttl=64 time=18.7 ms\n[1795638610.881157] 64 bytes from 10.0.0.6: icmp_seq=62 ttl=64 time=20.9 ms\n[1795638610.935741] 64 bytes from 10.0.0.6: icmp_seq=63 ttl=64 time=24.3 ms\n[1795638610.982804] 64 bytes from 10.0.0.6: icmp_seq=64 ttl=64 time=20.6 ms\n[1795638611.035401] 64 bytes from 10.0.0.6: icmp_seq=65 ttl=64 time=18.3 ms\n[1795638611.088496] 64 bytes from 10.0.0.6: icmp_seq=66 ttl=64 time=19.8 ms\n[1795638611.138381] 64 bytes from 10.0.0.6: icmp_seq=67 ttl=64 time=19.3 ms\n[1795638611.188555] 64 bytes from 10.0.0.6: icmp_seq=68 ttl=64 time=18.4 ms\n[1795638611.240257] 64 bytes from 10.0.0.6: icmp_seq=69 ttl=64 time=19.1 ms\n[1795638611.289774] 64 bytes from 10.0.0.6: icmp_seq=70 ttl=64 time=17.2 ms\n[1795638611.341771] 64 bytes from 10.0.0.6: icmp_seq=71 ttl=64 time=19.0 ms\n[1795638611.399037] 64 bytes from 10.0.0.6: icmp_seq=72 ttl=64 time=17.6 ms\n[1795638611.449955] 64 bytes from 10.0.0.6: icmp_seq=73 ttl=64 time=17.4 ms\n[1795638611.501630] 64 bytes from 10.0.0.6: icmp_seq=74 ttl=64 time=18.3 ms\n[1795638611.553005] 64 bytes from 10.0.0.6: icmp_seq=75 ttl=64 time=18.4 ms\n[1795638611.603652] 64 bytes from 10.0.0.6: icmp_seq=76 ttl=64 time=18.2 ms\n[1795638611.655421] 64 bytes from 10.0.0.6: icmp_seq=77 ttl=64 time=19.3 ms\n[1795638611.722157] 64 bytes from 10.0.0.6: icmp_seq=78 ttl=64 time=19.1 ms\n[1795638611.771877] 64 bytes from 10.0.0.6: icmp_seq=79 ttl=64 time=18.3 ms\n[1795638611.821698] 64 bytes from 10.0.0.6: icmp_seq=80 ttl=64 time=17.2 ms\n[1795638611.873138] 64 bytes from 10.0.0.6: icmp_seq=81 ttl=64 time=17.7 ms\n[1795638611.925749] 64 bytes from 10.0.0.6: icmp_seq=82 ttl=64 time=19.2 ms\n[1795638611.975499] 64 bytes from 10.0.0.6: icmp_seq=83 ttl=64 time=18.2 ms\n[1795638612.026583] 64 bytes from 10.0.0.6: icmp_seq=84 ttl=64 time=18.4 ms\n[1795638612.078501] 64 bytes from 10.0.0.6: icmp_seq=85 ttl=64 time=18.9 ms\n[1795638612.130379] 64 bytes from 10.0.0.6: icmp_seq=86 ttl=64 time=19.8 ms\n[1795638612.205036] 64 bytes from 10.0.0.6: icmp_seq=87 ttl=64 time=18.8 ms\n[1795638612.266788] 64 bytes from 10.0.0.6: icmp_seq=88 ttl=64 time=18.9 ms\n[1795638612.318622] 64 bytes from 10.0.0.6: icmp_seq=89 ttl=64 time=17.7 ms\n[1795638612.370062] 64 bytes from 10.0.0.6: icmp_seq=90 ttl=64 time=18.1 ms\n[1795638612.424720] 64 bytes from 10.0.0.6: icmp_seq=91 ttl=64 time=18.9 ms\n[1795638612.484911] 64 bytes from 10.0.0.6: icmp_seq=92 ttl=64 time=18.3 ms\n[1795638612.541785] 64 bytes from 10.0.0.6: icmp_seq=93 ttl=64 time=19.1 ms\n[1795638612.624920] 64 bytes from 10.0.0.6: icmp_seq=94 ttl=64 time=22.5 ms\n[1795638612.672114] 64 bytes from 10.0.0.6: icmp_seq=95 ttl=64 time=18.4 ms\n[1795638612.756666] 64 bytes from 10.0.0.6: icmp_seq=96 ttl=64 time=17.5 ms\n[1795638612.810094] 64 bytes from 10.0.0.6: icmp_seq=97 ttl=64 time=19.8 ms\n[1795638612.862114] 64 bytes from 10.0.0.6: icmp_seq=98 ttl=64 time=20.4 ms\n[1795638612.914839] 64 bytes from 10.0.0.6: icmp_seq=99 ttl=64 time=17.6 ms\n[1795638612.966272] 64 bytes from 10.0.0.6: icmp_seq=100 ttl=64 time=17.7 ms\n[1795638613.060396] 64 bytes from 10.0.0.6: icmp_seq=101 ttl=64 time=18.8 ms\n[1795638613.121453] 64 bytes from 10.0.0.6: icmp_seq=102 ttl=64 time=18.2 ms\n[1795638613.179343] 64 bytes from 10.0.0.6: icmp_seq=103 ttl=64 time=17.8 ms\n[1795638613.232055] 64 bytes from 10.0.0.6: icmp_seq=104 ttl=64 time=19.4 ms\n[1795638613.282370] 64 bytes from 10.0.0.6: icmp_seq=105 ttl=64 time=18.9 ms\n[1795638613.343874] 64 bytes from 10.0.0.6: icmp_seq=106 ttl=64 time=19.2 ms\n[1795638613.399676] 64 bytes from 10.0.0.6: icmp_seq=107 ttl=64 time=18.5 ms\n[1795638613.460820] 64 bytes from 10.0.0.6: icmp_seq=108 ttl=64 time=18.8 ms\n[1795638613.522394] 64 bytes from 10.0.0.6: icmp_seq=109 ttl=64 time=19.5 ms\n[1795638613.577813] 64 bytes from 10.0.0.6: icmp_seq=110 ttl=64 time=18.0 ms\n[1795638613.678905] 64 bytes from 10.0.0.6: icmp_seq=111 ttl=64 time=18.3 ms\n[1795638613.732523] 64 bytes from 10.0.0.6: icmp_seq=112 ttl=64 time=17.8 ms\n[1795638613.785726] 64 bytes from 10.0.0.6: icmp_seq=113 ttl=64 time=19.8 ms\n[1795638613.835881] 64 bytes from 10.0.0.6: icmp_seq=114 ttl=64 time=19.5 ms\n[1795638613.886901] 64 bytes from 10.0.0.6: icmp_seq=115 ttl=64 time=19.4 ms\n[1795638613.936345] 64 bytes from 10.0.0.6: icmp_seq=116 ttl=64 time=17.5 ms\n[1795638613.989660] 64 bytes from 10.0.0.6: icmp_seq=117 ttl=64 time=19.4 ms\n[1795638614.040351] 64 bytes from 10.0.0.6: icmp_seq=118 ttl=64 time=19.3 ms\n[1795638614.089864] 64 bytes from 10.0.0.6: icmp_seq=119 ttl=64 time=17.9 ms\n[1795638614.142989] 64 bytes from 10.0.0.6: icmp_seq=120 ttl=64 time=20.3 ms\n[1795638614.192497] 64 bytes from 10.0.0.6: icmp_seq=121 ttl=64 time=19.1 ms\n[1795638614.242281] 64 bytes from 10.0.0.6: icmp_seq=122 ttl=64 time=17.9 ms\n[1795638614.292523] 64 bytes from 10.0.0.6: icmp_seq=123 ttl=64 time=17.7 ms\n[1795638614.341782] 64 bytes from 10.0.0.6: icmp_seq=124 ttl=64 time=17.6 ms\n[1795638614.398528] 64 bytes from 10.0.0.6: icmp_seq=125 ttl=64 time=19.7 ms\n[1795638614.446490] 64 bytes from 10.0.0.6: icmp_seq=126 ttl=64 time=17.2 ms\n[1795638614.498413] 64 bytes from 10.0.0.6: icmp_seq=127 ttl=64 time=18.2 ms\n[1795638614.551312] 64 bytes from 10.0.0.6: icmp_seq=128 ttl=64 time=18.2 ms\n[1795638614.601487] 64 bytes from 10.0.0.6: icmp_seq=129 ttl=64 time=18.0 ms\n[1795638614.652936] 64 bytes from 10.0.0.6: icmp_seq=130 ttl=64 time=18.6 ms\n[1795638614.703848] 64 bytes from 10.0.0.6: icmp_seq=131 ttl=64 time=18.4 ms\n[1795638614.758732] 64 bytes from 10.0.0.6: icmp_seq=132 ttl=64 time=20.0 ms\n[1795638614.866538] 64 bytes from 10.0.0.6: icmp_seq=134 ttl=64 time=15.9 ms\n[1795638614.910516] 64 bytes from 10.0.0.6: icmp_seq=135 ttl=64 time=9.28 ms\n[1795638614.961085] 64 bytes from 10.0.0.6: icmp_seq=136 ttl=64 time=9.13 ms\n[1795638615.011738] 64 bytes from 10.0.0.6: icmp_seq=137 ttl=64 time=9.41 ms\n[1795638615.076055] 64 bytes from 10.0.0.6: icmp_seq=138 ttl=64 time=11.0 ms\n[1795638615.128192] 64 bytes from 10.0.0.6: icmp_seq=139 ttl=64 time=9.16 ms\n[1795638615.183773] 64 bytes from 10.0.0.6: icmp_seq=140 ttl=64 time=9.01 ms\n[1795638615.235071] 64 bytes from 10.0.0.6: icmp_seq=141 ttl=64 time=9.74 ms\n[1795638615.286859] 64 bytes from 10.0.0.6: icmp_seq=142 ttl=64 time=10.5 ms\n[1795638615.336480] 64 bytes from 10.0.0.6: icmp_seq=143 ttl=64 time=9.71 ms\n[1795638615.387718] 64 bytes from 10.0.0.6: icmp_seq=144 ttl=64 time=9.92 ms\n[1795638615.444130] 64 bytes from 10.0.0.6: icmp_seq=145 ttl=64 time=9.35 ms\n[1795638615.496225] 64 bytes from 10.0.0.6: icmp_seq=146 ttl=64 time=10.5 ms\n[1795638615.546917] 64 bytes from 10.0.0.6: icmp_seq=147 ttl=64 time=10.2 ms\n[1795638615.598428] 64 bytes from 10.0.0.6: icmp_seq=148 ttl=64 time=10.4 ms\n[1795638615.648697] 64 bytes from 10.0.0.6: icmp_seq=149 ttl=64 time=9.63 ms\n[1795638615.701218] 64 bytes from 10.0.0.6: icmp_seq=150 ttl=64 time=10.1 ms\n[1795638615.752053] 64 bytes from 10.0.0.6: icmp_seq=151 ttl=64 time=9.72 ms\n[1795638615.804401] 64 bytes from 10.0.0.6: icmp_seq=152 ttl=64 time=9.26 ms\n[1795638615.856369] 64 bytes from 10.0.0.6: icmp_seq=153 ttl=64 time=9.73 ms\n[1795638615.907649] 64 bytes from 10.0.0.6: icmp_seq=154 ttl=64 time=9.94 ms\n[1795638615.957818] 64 bytes from 10.0.0.6: icmp_seq=155 ttl=64 time=9.82 ms\n[1795638616.009935] 64 bytes from 10.0.0.6: icmp_seq=156 ttl=64 time=10.2 ms\n[1795638616.060182] 64 bytes from 10.0.0.6: icmp_seq=157 ttl=64 time=9.27 ms\n[1795638616.111406] 64 bytes from 10.0.0.6: icmp_seq=158 ttl=64 time=9.63 ms\n[1795638616.161841] 64 bytes from 10.0.0.6: icmp_seq=159 ttl=64 time=9.07 ms\n[1795638616.213588] 64 bytes from 10.0.0.6: icmp_seq=160 ttl=64 time=9.44 ms\n[1795638616.265915] 64 bytes from 10.0.0.6: icmp_seq=161 ttl=64 time=10.3 ms\n[1795638616.316543] 64 bytes from 10.0.0.6: icmp_seq=162 ttl=64 time=10.2 ms\n[1795638616.365623] 64 bytes from 10.0.0.6: icmp_seq=163 ttl=64 time=8.63 ms\n[1795638616.417909] 64 bytes from 10.0.0.6: icmp_seq=164 ttl=64 time=9.43 ms\n[1795638616.487336] 64 bytes from 10.0.0.6: icmp_seq=165 ttl=64 time=8.80 ms\n[1795638616.541000] 64 bytes from 10.0.0.6: icmp_seq=166 ttl=64 time=9.39 ms\n[1795638616.595907] 64 bytes from 10.0.0.6: icmp_seq=167 ttl=64 time=9.99 ms\n[1795638616.656583] 64 bytes from 10.0.0.6: icmp_seq=168 ttl=64 time=15.4 ms\n[1795638616.712217] 64 bytes from 10.0.0.6: icmp_seq=169 ttl=64 time=10.1 ms\n[1795638616.761738] 64 bytes from 10.0.0.6: icmp_seq=170 ttl=64 time=8.64 ms\n[1795638616.814112] 64 bytes from 10.0.0.6: icmp_seq=171 ttl=64 time=9.86 ms\n[1795638616.863010] 64 bytes from 10.0.0.6: icmp_seq=172 ttl=64 time=8.55 ms\n[1795638616.916073] 64 bytes from 10.0.0.6: icmp_seq=173 ttl=64 time=10.3 ms\n[1795638616.966183] 64 bytes from 10.0.0.6: icmp_seq=174 ttl=64 time=9.46 ms\n[1795638617.018982] 64 bytes from 10.0.0.6: icmp_seq=175 ttl=64 time=10.0 ms\n[1795638617.069583] 64 bytes from 10.0.0.6: icmp_seq=176 ttl=64 time=10.0 ms\n[1795638617.121352] 64 bytes from 10.0.0.6: icmp_seq=177 ttl=64 time=10.5 ms\n[1795638617.174364] 64 bytes from 10.0.0.6: icmp_seq=178 ttl=64 time=11.6 ms\n[1795638617.233464] 64 bytes from 10.0.0.6: icmp_seq=179 ttl=64 time=18.0 ms\n[1795638617.295099] 64 bytes from 10.0.0.6: icmp_seq=180 ttl=64 time=12.4 ms\n[1795638617.352210] 64 bytes from 10.0.0.6: icmp_seq=181 ttl=64 time=15.4 ms\n[1795638617.411453] 64 bytes from 10.0.0.6: icmp_seq=182 ttl=64 time=10.4 ms\n[1795638617.464417] 64 bytes from 10.0.0.6: icmp_seq=183 ttl=64 time=12.4 ms\n[1795638617.526389] 64 bytes from 10.0.0.6: icmp_seq=184 ttl=64 time=9.36 ms\n[1795638617.582088] 64 bytes from 10.0.0.6: icmp_seq=185 ttl=64 time=14.2 ms\n[1795638617.632293] 64 bytes from 10.0.0.6: icmp_seq=186 ttl=64 time=13.2 ms\n[1795638617.682645] 64 bytes from 10.0.0.6: icmp_seq=187 ttl=64 time=11.7 ms\n[1795638617.733664] 64 bytes from 10.0.0.6: icmp_seq=188 ttl=64 time=11.2 ms\n[1795638617.789697] 64 bytes from 10.0.0.6: icmp_seq=189 ttl=64 time=10.2 ms\n[1795638617.855129] 64 bytes from 10.0.0.6: icmp_seq=190 ttl=64 time=16.2 ms\n[1795638617.900638] 64 bytes from 10.0.0.6: icmp_seq=191 ttl=64 time=9.66 ms\n[1795638617.952888] 64 bytes from 10.0.0.6: icmp_seq=192 ttl=64 time=10.2 ms\n[1795638618.006112] 64 bytes from 10.0.0.6: icmp_seq=193 ttl=64 time=12.3 ms\n[1795638618.053779] 64 bytes from 10.0.0.6: icmp_seq=194 ttl=64 time=9.10 ms\n[1795638618.130627] 64 bytes from 10.0.0.6: icmp_seq=195 ttl=64 time=26.7 ms\n[1795638618.169217] 64 bytes from 10.0.0.6: icmp_seq=196 ttl=64 time=13.9 ms\n[1795638618.222678] 64 bytes from 10.0.0.6: icmp_seq=197 ttl=64 time=16.2 ms\n[1795638618.268868] 64 bytes from 10.0.0.6: icmp_seq=198 ttl=64 time=11.6 ms\n[1795638618.320187] 64 bytes from 10.0.0.6: icmp_seq=199 ttl=64 time=10.2 ms\n[1795638618.371467] 64 bytes from 10.0.0.6: icmp_seq=200 ttl=64 time=10.1 ms\n[1795638618.423140] 64 bytes from 10.0.0.6: icmp_seq=201 ttl=64 time=10.4 ms\n[1795638618.481154] 64 bytes from 10.0.0.6: icmp_seq=202 ttl=64 time=17.6 ms\n[1795638618.527462] 64 bytes from 10.0.0.6: icmp_seq=203 ttl=64 time=12.5 ms\n[1795638618.580198] 64 bytes from 10.0.0.6: icmp_seq=204 ttl=64 time=11.9 ms\n[1795638618.635209] 64 bytes from 10.0.0.6: icmp_seq=205 ttl=64 time=16.3 ms\n[1795638618.691967] 64 bytes from 10.0.0.6: icmp_seq=206 ttl=64 time=16.2 ms\n[1795638618.739283] 64 bytes from 10.0.0.6: icmp_seq=207 ttl=64 time=12.3 ms\n[1795638618.794202] 64 bytes from 10.0.0.6: icmp_seq=208 ttl=64 time=15.7 ms\n[1795638618.852152] 64 bytes from 10.0.0.6: icmp_seq=209 ttl=64 time=20.0 ms\n[1795638618.893512] 64 bytes from 10.0.0.6: icmp_seq=210 ttl=64 time=9.80 ms\n[1795638618.944549] 64 bytes from 10.0.0.6: icmp_seq=211 ttl=64 time=10.2 ms\n[1795638618.994791] 64 bytes from 10.0.0.6: icmp_seq=212 ttl=64 time=9.96 ms\n[1795638619.045747] 64 bytes from 10.0.0.6: icmp_seq=213 ttl=64 time=10.1 ms\n[1795638619.097051] 64 bytes from 10.0.0.6: icmp_seq=214 ttl=64 time=10.6 ms\n[1795638619.147427] 64 bytes from 10.0.0.6: icmp_seq=215 ttl=64 time=9.53 ms\n[1795638619.200270] 64 bytes from 10.0.0.6: icmp_seq=216 ttl=64 time=11.3 ms\n[1795638619.249997] 64 bytes from 10.0.0.6: icmp_seq=217 ttl=64 time=9.72 ms\n[1795638619.302473] 64 bytes from 10.0.0.6: icmp_seq=218 ttl=64 time=10.5 ms\n[1795638619.351760] 64 bytes from 10.0.0.6: icmp_seq=219 ttl=64 time=9.54 ms\n[1795638619.402901] 64 bytes from 10.0.0.6: icmp_seq=220 ttl=64 time=9.67 ms\n[1795638619.454461] 64 bytes from 10.0.0.6: icmp_seq=221 ttl=64 time=10.1 ms\n[1795638619.504526] 64 bytes from 10.0.0.6: icmp_seq=222 ttl=64 time=9.54 ms\n[1795638619.556908] 64 bytes from 10.0.0.6: icmp_seq=223 ttl=64 time=11.0 ms\n[1795638619.604886] 64 bytes from 10.0.0.6: icmp_seq=224 ttl=64 time=8.65 ms\n[1795638619.655754] 64 bytes from 10.0.0.6: icmp_seq=225 ttl=64 time=8.50 ms\n[1795638619.706941] 64 bytes from 10.0.0.6: icmp_seq=226 ttl=64 time=8.63 ms\n[1795638619.757758] 64 bytes from 10.0.0.6: icmp_seq=227 ttl=64 time=8.69 ms\n[1795638619.808907] 64 bytes from 10.0.0.6: icmp_seq=228 ttl=64 time=8.68 ms\n[1795638619.866349] 64 bytes from 10.0.0.6: icmp_seq=229 ttl=64 time=11.7 ms\n[1795638619.915502] 64 bytes from 10.0.0.6: icmp_seq=230 ttl=64 time=9.53 ms\n[1795638619.967788] 64 bytes from 10.0.0.6: icmp_seq=231 ttl=64 time=11.3 ms\n[1795638620.017273] 64 bytes from 10.0.0.6: icmp_seq=232 ttl=64 time=9.91 ms\n[1795638620.067908] 64 bytes from 10.0.0.6: icmp_seq=233 ttl=64 time=9.84 ms\n[1795638620.117795] 64 bytes from 10.0.0.6: icmp_seq=234 ttl=64 time=9.26 ms\n[1795638620.171587] 64 bytes from 10.0.0.6: icmp_seq=235 ttl=64 time=10.8 ms\n[1795638620.220452] 64 bytes from 10.0.0.6: icmp_seq=236 ttl=64 time=9.11 ms\n[1795638620.272180] 64 bytes from 10.0.0.6: icmp_seq=237 ttl=64 time=9.18 ms\n[1795638620.328823] 64 bytes from 10.0.0.6: icmp_seq=238 ttl=64 time=13.3 ms\n[1795638620.378881] 64 bytes from 10.0.0.6: icmp_seq=239 ttl=64 time=11.7 ms\n[1795638620.426853] 64 bytes from 10.0.0.6: icmp_seq=240 ttl=64 time=9.21 ms\n[1795638620.478265] 64 bytes from 10.0.0.6: icmp_seq=241 ttl=64 time=9.50 ms\n[1795638620.528874] 64 bytes from 10.0.0.6: icmp_seq=242 ttl=64 time=8.74 ms\n[1795638620.580547] 64 bytes from 10.0.0.6: icmp_seq=243 ttl=64 time=9.02 ms\n[1795638620.637025] 64 bytes from 10.0.0.6: icmp_seq=244 ttl=64 time=9.63 ms\n[1795638620.687153] 64 bytes from 10.0.0.6: icmp_seq=245 ttl=64 time=9.24 ms\n[1795638620.743638] 64 bytes from 10.0.0.6: icmp_seq=246 ttl=64 time=9.31 ms\n[1795638620.797508] 64 bytes from 10.0.0.6: icmp_seq=247 ttl=64 time=12.4 ms\n[1795638620.846416] 64 bytes from 10.0.0.6: icmp_seq=248 ttl=64 time=10.1 ms\n[1795638620.899581] 64 bytes from 10.0.0.6: icmp_seq=249 ttl=64 time=10.5 ms\n[1795638620.950560] 64 bytes from 10.0.0.6: icmp_seq=250 ttl=64 time=10.6 ms\n[1795638621.003599] 64 bytes from 10.0.0.6: icmp_seq=251 ttl=64 time=11.6 ms\n[1795638621.053906] 64 bytes from 10.0.0.6: icmp_seq=252 ttl=64 time=9.65 ms\n[1795638621.105670] 64 bytes from 10.0.0.6: icmp_seq=253 ttl=64 time=11.0 ms\n[1795638621.156458] 64 bytes from 10.0.0.6: icmp_seq=254 ttl=64 time=11.5 ms\n[1795638621.208289] 64 bytes from 10.0.0.6: icmp_seq=255 ttl=64 time=11.9 ms\n[1795638621.330961] 64 bytes from 10.0.0.6: icmp_seq=256 ttl=64 time=46.3 ms\n[1795638621.346751] 64 bytes from 10.0.0.6: icmp_seq=257 ttl=64 time=12.1 ms\n[1795638621.413077] 64 bytes from 10.0.0.6: icmp_seq=258 ttl=64 time=21.4 ms\n[1795638621.483218] 64 bytes from 10.0.0.6: icmp_seq=259 ttl=64 time=18.2 ms\n[1795638621.545814] 64 bytes from 10.0.0.6: icmp_seq=260 ttl=64 time=29.4 ms\n\n--- 10.0.0.6 ping statistics ---\n260 packets transmitted, 258 received, 0.769231% packet loss, time 13869ms\nrtt min/avg/max/mdev = 8.497/14.142/46.285/4.878 ms\n",
+  "ping_measurements": {
+    "summary": {
+      "transmitted": 260,
+      "received": 258,
+      "packet_loss_percent": 0.769231
+    },
+    "largest_reply_gap_seconds": 0.122672,
+    "first_post_cut_reply_ms": 84.978
+  }
+}
