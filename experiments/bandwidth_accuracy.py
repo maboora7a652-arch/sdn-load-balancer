@@ -73,14 +73,21 @@ def run(network, resume=None, target_name="h16"):
     src.cmd("ping -n -c 1 -W 2 " + dst.IP())
 
     def current_path():
-        topo = api("topology")
-        hosts = {h["mac"]: h for h in api("sdn/hosts")["hosts"]}
-        a, b = src.MAC().lower(), dst.MAC().lower()
-        route = helpers["forwarding_path"](helpers["flow_tables"](topo["switches"]),
-                                           topo["links"], a, b, hosts[a], hosts[b])
-        if not route["complete"] or len(route["path"]) < 2:
-            raise ValueError("No complete inter-switch route")
-        return route["path"]
+        for attempt in range(3):
+            topo = api("topology")
+            hosts = {h["mac"]: h for h in api("sdn/hosts")["hosts"]}
+            a, b = src.MAC().lower(), dst.MAC().lower()
+            tables = helpers["flow_tables"](topo["switches"])
+            route = helpers["forwarding_path"](tables, topo["links"], a, b, hosts[a], hosts[b])
+            if route["complete"] and len(route["path"]) >= 2:
+                return route["path"]
+            report["last_incomplete_route"] = dict(
+                topology=topo, source=hosts[a], target=hosts[b],
+                forwarding=route, flow_tables=tables)
+            if attempt < 2:
+                time.sleep(0.5)
+        raise ValueError("No complete inter-switch route after 3 reads; "
+                         "see last_incomplete_route in saved JSON")
 
     report = dict(tool=tool, requested_bps=5000000, source="h1", target=target_name, trials=[])
     if resume:
@@ -95,6 +102,7 @@ def run(network, resume=None, target_name="h16"):
     print(tool, "· H1 -> %s · five 30-second UDP runs at 5 Mbps" % target_name.upper(), flush=True)
     try:
         for index in range(len(report["trials"]), 5):
+            src.cmd("ping -n -c 2 -W 2 " + dst.IP())
             route = current_path()
             port = str(5710 + index)
             trial = dict(path=route, samples=[])

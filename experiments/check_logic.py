@@ -32,6 +32,28 @@ def methods(*names):
 
 
 class LogicChecks(unittest.TestCase):
+    def test_route_read_retries_then_preserves_failure_details(self):
+        tree = ast.parse((ROOT / "experiments/bandwidth_accuracy.py").read_text())
+        run = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "run")
+        read = next(n for n in run.body if isinstance(n, ast.FunctionDef) and n.name == "current_path")
+        failed = dict(complete=False, path=[1], priorities=[])
+        ready = dict(complete=True, path=[1, 2], priorities=[20, 20])
+        trace = Mock(side_effect=[failed, ready])
+        api = lambda path: (dict(switches=[1, 2], links=[]) if path == "topology" else
+                            dict(hosts=[dict(mac="a"), dict(mac="b")]))
+        scope = dict(api=api, src=Mock(MAC=Mock(return_value="a")),
+                     dst=Mock(MAC=Mock(return_value="b")), report={}, time=Mock(),
+                     helpers=dict(flow_tables=Mock(return_value={1: "no matching rule"}),
+                                  forwarding_path=trace))
+        exec(compile(ast.Module(body=[read], type_ignores=[]), "accuracy", "exec"), scope)
+        self.assertEqual(scope["current_path"](), [1, 2])
+        scope["time"].sleep.assert_called_once_with(0.5)
+        trace.side_effect = None
+        trace.return_value = failed
+        with self.assertRaisesRegex(ValueError, "after 3 reads"):
+            scope["current_path"]()
+        self.assertEqual(scope["report"]["last_incomplete_route"]["flow_tables"],
+                         {1: "no matching rule"})
     def test_discovery_uses_a_private_monotonic_clock(self):
         tree = ast.parse(SOURCE.read_text())
         assignments = [node for node in tree.body if isinstance(node, ast.Assign)
