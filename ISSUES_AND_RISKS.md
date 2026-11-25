@@ -1,12 +1,12 @@
-# Issues and limits: current state at 2026-11-17 close
+# Issues and limits
 
-## Current triage | 2026-11-23
+## Current triage | 2026-11-26
 
-- Source review fixes: switch-leave state cleanup and calibration final-path warning now have local regressions. Deploy and verify on Ubuntu before relying on them in the live demo. /sdn/status now includes the configured topology.
-- Open: latest Fat-tree pingall 0/240; no status/process output for that run yet. Previously 240/240. Use HANDOFF.md Next and the Arabic guide p.5.
-- Open: high-load loss cause, isolated live hold-down test and historical unshaped LLDP instability.
-- Measured: C1 linear capture; iperf3 mean error 3.025%; T2/T5 and thresholds compared; five H2 recovery trials averaged 82.60 ms to first qualifying reply. Evidence and limitations in Chapter 5 and experiments/results/.
-- Pending delivery: presentation, video, team/weekly records, reference check and authorized remote publication.
+- Current rehearsal: Grid connectivity 30/30, managed reroute P1/20 to P3/21, long recovery 300/300, and Fat-tree connectivity 240/240. Raw rehearsal files are preserved under experiments/results/.
+- Discovery remains an open limitation. The earlier recorded session removed all 32 Fat-tree links and rebuilt routes 64 times. The deployed change uses a maximum 10ms LLDP send guard on Fat-tree and yields between host pairs during bulk rebuilds. The newer supplied session has no link deletions, route rebuilds or tracebacks after startup. This is bounded evidence, not a proven root cause or universal stability guarantee.
+- Resumed calibration221916Z contains four trials before that discovery change and one after it. Recomputed mean error3.135351% and sample SD0.263988 percentage points agree with the saved report. Keep this mixed-configuration rehearsal separate from the homogeneous five-trial batch193415Z (mean3.739527%, sample SD2.125110 percentage points).
+- High-load loss is workload-dependent and not fully explained. Current baseline comparisons show gains, while current ten-flow and before/after experiments do not show an improvement in every metric. The isolated live hold-down test and historical unshaped LLDP instability remain unresolved.
+- Pending delivery: update the report, figures, Arabic guide and run instructions with the current results and discovery setting; presentation, video, team/weekly records, reference review and any explicitly authorized remote publication remain pending. Historical entries below must not be read as current status.
 
 ## Historical troubleshooting snapshot (18 November; statuses below are as of that session)
 
