@@ -45,6 +45,22 @@ def stop(proc):
             proc.wait()
 
 
+def port_reading(api, route, deadline):
+    while True:
+        records = api("sdn/bandwidth")["ports"]
+        reading = next((p for p in records if p["switch"] == route[0]
+                        and p.get("neighbor") == route[1]), None)
+        if reading is not None:
+            return reading
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            available = [(p["switch"], p.get("neighbor")) for p in records]
+            raise RuntimeError(
+                "Missing bandwidth for S%s -> S%s; available ports: %s"
+                % (route[0], route[1], available))
+        time.sleep(min(1, remaining))
+
+
 def run(network, resume=None, target_name="h16"):
     root = EXPERIMENTS
     helpers = runpy.run_path(str(root / "grid_demo.py"))
@@ -106,9 +122,7 @@ def run(network, resume=None, target_name="h16"):
                         sampled_path = current_path()
                         if sampled_path[:2] != route[:2]:
                             raise RuntimeError("Measured first link changed during sampling")
-                        records = api("sdn/bandwidth")["ports"]
-                        reading = next(p for p in records if p["switch"] == route[0]
-                                       and p.get("neighbor") == route[1])
+                        reading = port_reading(api, route, min(start + offset + 3, start + 25))
                         elapsed = time.monotonic() - start
                         if elapsed > 25:
                             raise RuntimeError("Late controller reading")

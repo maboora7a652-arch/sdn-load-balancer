@@ -144,4 +144,4 @@ sudo python3 ~/sdn-project/experiments/compare_grid.py --help
 python3 ~/sdn-project/experiments/check_logic.py
 ```
 
-النسخة الحالية تتضمن11اختبارًا. اختبارات المنطق تحتاج استكمالها بالتجارب الحية. c1 يحتوي كود learning switch والتقاط Wireshark الأصلي. لإغلاق الديمو كله، exit في Mininet ثم Ctrl+C في الكنترولر والداشبورد.
+النسخة الحالية تتضمن12اختبارًا. اختبارات المنطق تحتاج استكمالها بالتجارب الحية. c1 يحتوي كود learning switch والتقاط Wireshark الأصلي. لإغلاق الديمو كله، exit في Mininet ثم Ctrl+C في الكنترولر والداشبورد.

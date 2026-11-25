@@ -32,6 +32,25 @@ def methods(*names):
 
 
 class LogicChecks(unittest.TestCase):
+    def test_missing_bandwidth_is_bounded_and_never_fabricated(self):
+        script = runpy.run_path(str(ROOT / "experiments/bandwidth_accuracy.py"))
+        read = script["port_reading"]
+        clock = SimpleNamespace(now=0)
+
+        def sleep(seconds):
+            clock.now += seconds
+
+        row = dict(switch=1, neighbor=2, tx_mbps=5.1)
+        with patch.dict(read.__globals__, time=SimpleNamespace(
+                monotonic=lambda: clock.now, sleep=sleep)):
+            api = Mock(side_effect=[dict(ports=[]), dict(ports=[row])])
+            self.assertEqual(read(api, [1, 2], 3), row)
+            self.assertEqual(clock.now, 1)
+            api = Mock(return_value=dict(ports=[dict(switch=2, neighbor=3)]))
+            with self.assertRaisesRegex(RuntimeError, "Missing bandwidth for S1 -> S2"):
+                read(api, [1, 2], 3)
+            self.assertEqual(clock.now, 3)
+
     def test_topologies_and_grid_port_order(self):
         class Topology:
             def __init__(self):
