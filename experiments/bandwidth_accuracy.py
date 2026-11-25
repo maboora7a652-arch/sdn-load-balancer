@@ -45,7 +45,7 @@ def stop(proc):
             proc.wait()
 
 
-def run(network, resume=None):
+def run(network, resume=None, target_name="h16"):
     root = EXPERIMENTS
     helpers = runpy.run_path(str(root / "grid_demo.py"))
     api = helpers["api"]
@@ -53,7 +53,7 @@ def run(network, resume=None):
     if not shutil.which(tool):
         print("No local iperf executable found.")
         return
-    src, dst = network["h1"], network["h16"]
+    src, dst = network["h1"], network[target_name]
     src.cmd("ping -n -c 1 -W 2 " + dst.IP())
 
     def current_path():
@@ -66,7 +66,7 @@ def run(network, resume=None):
             raise ValueError("No complete inter-switch route")
         return route["path"]
 
-    report = dict(tool=tool, requested_bps=5000000, source="h1", target="h16", trials=[])
+    report = dict(tool=tool, requested_bps=5000000, source="h1", target=target_name, trials=[])
     if resume:
         previous = json.loads((root / "results" / resume).read_text(encoding="utf-8"))
         if any(previous.get(k) != report[k] for k in ("tool", "requested_bps", "source", "target")):
@@ -76,7 +76,7 @@ def run(network, resume=None):
         report["resumed_from"] = resume
         report["trials"] = [t for t in previous["trials"] if "error_percent" in t]
     output = root / "results" / datetime.now(timezone.utc).strftime("accuracy-%Y%m%dT%H%M%SZ.json")
-    print(tool, "· H1 -> H16 · five 30-second UDP runs at 5 Mbps", flush=True)
+    print(tool, "· H1 -> %s · five 30-second UDP runs at 5 Mbps" % target_name.upper(), flush=True)
     try:
         for index in range(len(report["trials"]), 5):
             route = current_path()
@@ -145,4 +145,4 @@ def run(network, resume=None):
 
 
 if "net" in globals():
-    run(net, globals().get("resume"))
+    run(net, globals().get("resume"), globals().get("target", "h16"))

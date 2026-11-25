@@ -110,6 +110,14 @@ sh curl -sS --max-time 3 http://127.0.0.1:8080/sdn/status
 
 ## 5. المعايرة والتجارب المتكررة
 
+عند تقطّع مسارات Fat-tree، يمكن إجراء معايرة C4 على Grid المستقرة بين H1 وH6 بنفس المعدل ونوافذ القياس. أنشئ Grid جديدة واختبر الاتصال ثم شغّل:
+
+```text
+py __import__('runpy').run_path('experiments/bandwidth_accuracy.py', init_globals=dict(net=net, target='h6')) and None
+```
+
+تسجل المعايرة اسم الهدف في JSON. نتائج Grid وFat-tree دفعات منفصلة. هذا البديل يكمل قياس الدقة؛ مشكلة استقرار Fat-tree تظل مفتوحة.
+
 على الـFat-tree بعد نجاح الاتصال، عند mininet>:
 
 ```text

@@ -236,6 +236,7 @@ class LogicChecks(unittest.TestCase):
         previous = json.loads((ROOT / "experiments/results/accuracy-20261119T201236Z.json").read_text())
         final = previous["trials"][-1]
         previous["trials"] = previous["trials"][:4]
+        previous["target"] = "h6"
 
         def process(args, stdout, **kwargs):
             if "-c" in args:
@@ -270,13 +271,14 @@ class LogicChecks(unittest.TestCase):
                 with patch.object(run.__globals__["runpy"], "run_path", return_value=helpers):
                     with patch.object(run.__globals__["shutil"], "which", return_value="iperf3"):
                         with redirect_stdout(io.StringIO()):
-                            run(dict(h1=source, h16=target), "previous.json")
+                            run(dict(h1=source, h6=target), "previous.json", target_name="h6")
             output = next(p for p in (root / "results").glob("accuracy-*.json"))
             report = json.loads(output.read_text())
             self.assertEqual(len(report["trials"]), 5)
             self.assertNotIn("error", report)
             self.assertIn("final_path_warning", report["trials"][-1])
             self.assertIn("error_percent", report["trials"][-1])
+            self.assertEqual(report["target"], "h6")
 
     def test_presentation_failure_timing_and_cleanup(self):
         run = runpy.run_path(str(ROOT / "experiments/link_failure_demo.py"))["run_link_failure_demo"]
