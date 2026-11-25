@@ -1,6 +1,24 @@
 
 from mininet.topo import Topo
-from mininet.link import TCLink
+from mininet.link import TCIntf, TCLink
+
+
+class LabTCIntf(TCIntf):
+    def bwCmds(self, *args, **kwargs):
+        commands, parent = super().bwCmds(*args, **kwargs)
+        # Allow the shaper to catch up after scheduling delays in the VM.
+        commands = [
+            command.replace("burst 15k", "burst 64k cburst 64k")
+            if " htb " in command else command
+            for command in commands
+        ]
+        return commands, parent
+
+
+class LabTCLink(TCLink):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("intf", LabTCIntf)
+        super().__init__(*args, **kwargs)
 
 class MyNetwork(Topo):
 
@@ -23,13 +41,13 @@ class MyNetwork(Topo):
         h6 = self.addHost('h6')
         
         # Connect switches
-        self.addLink(s1, s2, cls=TCLink, bw=100, delay='2ms')
-        self.addLink(s2, s3, cls=TCLink, bw=100, delay='2ms')
-        self.addLink(s3, s6, cls=TCLink, bw=100, delay='2ms')
-        self.addLink(s6, s5, cls=TCLink, bw=100, delay='2ms')
-        self.addLink(s2, s5, cls=TCLink, bw=100, delay='2ms')
-        self.addLink(s4, s5, cls=TCLink, bw=100, delay='2ms')
-        self.addLink(s1, s4, cls=TCLink, bw=100, delay='2ms')
+        self.addLink(s1, s2, cls=LabTCLink, bw=100, delay='2ms')
+        self.addLink(s2, s3, cls=LabTCLink, bw=100, delay='2ms')
+        self.addLink(s3, s6, cls=LabTCLink, bw=100, delay='2ms')
+        self.addLink(s6, s5, cls=LabTCLink, bw=100, delay='2ms')
+        self.addLink(s2, s5, cls=LabTCLink, bw=100, delay='2ms')
+        self.addLink(s4, s5, cls=LabTCLink, bw=100, delay='2ms')
+        self.addLink(s1, s4, cls=LabTCLink, bw=100, delay='2ms')
 
         # Connect hosts
         self.addLink(h1, s1)
@@ -45,7 +63,7 @@ class FatTree4(Topo):
 
     def build(self):
         core = [self.addSwitch('s%d' % i) for i in range(17, 21)]
-        trunk = dict(cls=TCLink, bw=100, delay='2ms')
+        trunk = dict(cls=LabTCLink, bw=100, delay='2ms')
         for pod in range(4):
             edges = [self.addSwitch('s%d' % (2 * pod + i)) for i in (1, 2)]
             aggregation = [self.addSwitch('s%d' % (9 + 2 * pod + i)) for i in (0, 1)]

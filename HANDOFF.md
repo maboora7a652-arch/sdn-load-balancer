@@ -1,6 +1,7 @@
 # تسليم مشروع SDN Track 1
 ## Now | 2026-11-25
 
+- تثبيت HTB burst/cburst64k في vm-source/custom_topology.py عبر LabTCIntf/LabTCLink، وفق bwCmds الذي أرسله فؤاد. يطبق تلقائيًا على وصلات Grid وFat-tree عند البناء، rate100Mbps/delay2ms. 11 اختبارًا محليًا نجحوا. التالي نقل topology وcheck_logic إلى Ubuntu وحفظ topology السابقة، وإعادة البناء ثم فحص tc والتجربة. التطبيق الدائم لم يُختبر حيًا بعد.
 - ديمو التعافي الطويل اتنقل واتجرّب على Ubuntu مرتين علىH2→H6: الطبيعي[4,5,6]، وقت القطع[4,1,2,3,6]، وبعدup رجع الطبيعي. link-failure-20261125T150400Z.json:298/300 و150505Z:300/300؛ الملفان على Ubuntu فقط. التالي تثبيت burst/cburst64k في إنشاء الشبكة بعد مراجعة TCIntf.bwCmds المحلي، ثم مراجعة جاهزية باقي الاختبارات. مدة العرض لا تعني زمن التعافي.
 - نجاح بعد HTB burst/cburst64k مؤقتًا: إخراج فؤاد grid-demo-20261125T144640Z.json (على Ubuntu فقط). congested=True عند20s، P3/21 ظاهر30s ونهائي كامل على4switches. H1 recv79.0Mbps/loss30540/433659 (7%)، H3 recv25.9Mbps/loss21072/153046 (14%). التالي link_failure_demo.py على نفس الجلسة؛ ثم تثبيت إعداد HTB في مسار الإنشاء بعد مراجعة API Mininet الفعلي. إعادة بناء الشبكة حاليًا تلغي تعديل tc المؤقت. لا تدمج الجولة مع إحصاءات التقرير القديمة.
 - الجولة بعد Restart: grid-demo-20261125T144102Z.json على Ubuntu فقط. لا تحويل؛ أقصى EWMA ظاهر68.614%، P1/20. H1 receiver50.8Mbps/loss40% وH3 receiver15.1Mbps/loss50%. اقتراح تجربة مؤقتة HTB burst/cburst64k على وصلات Grid مع rate/ceil100Mbit؛ لم تُنفذ بعد، وسبب الأداء غير مثبت. الإعداد يرجع بإعادة بناء Mininet. لا تغيير للعتبة أو السيناريو.

@@ -53,7 +53,7 @@ class LogicChecks(unittest.TestCase):
 
         tree = ast.parse((ROOT / "vm-source/custom_topology.py").read_text())
         tree.body = [node for node in tree.body if not isinstance(node, ast.ImportFrom)]
-        scope = {"Topo": Topology, "TCLink": object()}
+        scope = {"Topo": Topology, "TCLink": object, "TCIntf": object}
         exec(compile(tree, "custom_topology.py", "exec"), scope)
         for name, switches, hosts, trunks in [("MyNetwork", 6, 6, 7), ("FatTree4", 20, 16, 32)]:
             topo = scope[name]()
@@ -62,9 +62,33 @@ class LogicChecks(unittest.TestCase):
             links = [row for row in topo.links if row[0].startswith("s") and row[1].startswith("s")]
             self.assertEqual(len(links), trunks)
             self.assertTrue(all(row[2]["bw"] == 100 and row[2]["delay"] == "2ms" for row in links))
+            self.assertTrue(all(row[2]["cls"] is scope["LabTCLink"] for row in links))
         grid = scope["MyNetwork"]()
         self.assertEqual([(a, b, pa, pb) for a, b, _, pa, pb in grid.links[:3]],
                          [("s1", "s2", 1, 1), ("s2", "s3", 2, 1), ("s3", "s6", 2, 1)])
+
+    def test_htb_burst_preserves_rate_parent_and_other_shapers(self):
+        class Interface:
+            def bwCmds(self, *args, **kwargs):
+                return kwargs["commands"], " parent 5:1 "
+
+        class Link:
+            def __init__(self, **kwargs):
+                self.interface = kwargs["intf"]
+
+        tree = ast.parse((ROOT / "vm-source/custom_topology.py").read_text())
+        tree.body = [node for node in tree.body if isinstance(node, ast.ClassDef)
+                     and node.name in ("LabTCIntf", "LabTCLink")]
+        scope = {"TCIntf": Interface, "TCLink": Link}
+        exec(compile(tree, "custom_topology.py", "exec"), scope)
+        intf = scope["LabTCIntf"]()
+        commands = ["%s class add dev %s parent 5:0 classid 5:1 htb rate 100.000000Mbit burst 15k",
+                    "%s qdisc add dev %s root handle 5: tbf rate 100Mbit burst 15000 latency 1ms"]
+        updated, parent = intf.bwCmds(commands=commands)
+        self.assertEqual(updated[0], commands[0].replace("burst 15k", "burst 64k cburst 64k"))
+        self.assertEqual(updated[1], commands[1])
+        self.assertEqual(parent, " parent 5:1 ")
+        self.assertIs(scope["LabTCLink"]().interface, scope["LabTCIntf"])
 
     def test_host_pair_rate_counts_only_ingress(self):
         update = methods("update_flow_details")["update_flow_details"]

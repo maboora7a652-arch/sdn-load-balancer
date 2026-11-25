@@ -3,6 +3,8 @@
 From the Ubuntu account, open three terminals. Start the controller first.
 Use the same topology for the controller and Mininet.
 
+Inter-switch links use the project's LabTCLink/LabTCIntf classes. They retain the 100 Mbps rate and 2 ms delay and set HTB burst and cburst to 64k. This setting enabled the November 25 grid reroute demonstration in a live manual trial. Historical experiment batches used the earlier Mininet shaping settings; fresh measurements must record the new configuration.
+
     bash ~/sdn-project/run.sh controller grid
     bash ~/sdn-project/run.sh network grid
     bash ~/sdn-project/run.sh dashboard
