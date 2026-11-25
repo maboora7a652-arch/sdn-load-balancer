@@ -17,7 +17,8 @@ class LabTCIntf(TCIntf):
 
 class LabTCLink(TCLink):
     def __init__(self, *args, **kwargs):
-        kwargs.setdefault("intf", LabTCIntf)
+        kwargs.setdefault("cls1", LabTCIntf)
+        kwargs.setdefault("cls2", LabTCIntf)
         super().__init__(*args, **kwargs)
 
 class MyNetwork(Topo):

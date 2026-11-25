@@ -74,7 +74,8 @@ class LogicChecks(unittest.TestCase):
 
         class Link:
             def __init__(self, **kwargs):
-                self.interface = kwargs["intf"]
+                self.interfaces = (kwargs.get("cls1", Interface),
+                                   kwargs.get("cls2", Interface))
 
         tree = ast.parse((ROOT / "vm-source/custom_topology.py").read_text())
         tree.body = [node for node in tree.body if isinstance(node, ast.ClassDef)
@@ -88,7 +89,8 @@ class LogicChecks(unittest.TestCase):
         self.assertEqual(updated[0], commands[0].replace("burst 15k", "burst 64k cburst 64k"))
         self.assertEqual(updated[1], commands[1])
         self.assertEqual(parent, " parent 5:1 ")
-        self.assertIs(scope["LabTCLink"]().interface, scope["LabTCIntf"])
+        self.assertEqual(scope["LabTCLink"]().interfaces,
+                         (scope["LabTCIntf"], scope["LabTCIntf"]))
 
     def test_host_pair_rate_counts_only_ingress(self):
         update = methods("update_flow_details")["update_flow_details"]
