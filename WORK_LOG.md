@@ -1,3 +1,8 @@
+## 26 نوفمبر 2026 | النشر العام على GitHub
+
+- أُنشئ المستودعPublic على https://github.com/maboora7a652-arch/sdn-load-balancer بإذن فؤاد. رُفعmasterبسجلGitالحقيقي، وضُبطالفرعالافتراضي والوصف و10topics. READMEيعرضالرسوم والتقارير ومعاينةGIFورابطالفيديو.
+- تأكدAPIأن visibility=public والـremoteHEADمطابق لأولHEADمرفوع4de80a0. ملفcredentialsلم يُكتب إلىالمشروع أوالسجل. لا تغييرللتواريخ أوإسنادالمساهمات. ملخصالتسليم يعكس النشر، بينما بنودالمقررغيرالمكتملة باقيةكماهي.
+
 ## 26 نوفمبر 2026 | بدء النشر على GitHub بإذن فؤاد
 
 - فؤاد طلب الرفع واختارPublic صراحة. الحساب المتصل Git Credential Manager هوmaboora7a652-arch، واسمsdn-load-balancer متاح. الوصول المفوّض تأكد عبرGitHubAPI دون عرض بيانات الدخول.
