@@ -185,4 +185,6 @@ media/              Repository artwork, explainer and current video numbers
 
 `PLAN.md` is the single project plan. `HANDOFF.md` is the short current state for another AI/account. `WORK_LOG.md`, raw results and local Git preserve the history. Dated source archives and checkpoints are historical baselines and must not replace the current `vm-source/` files.
 
+The combined report is 30 pages, including a standalone cover. Its main body remains 12 pt; images retain their original dimensions. Chapter lengths follow the assignment minima.
+
 Report authoring is separate from the network runtime. With the authoring Python packages available, `python experiments/build_deliverables.py` updates Word content, experiment figures and video numbers. On Windows with Word and Chrome, `experiments/export_report.ps1` renders the updated report and Arabic HTML guide to PDF. The team roster and explainer revision are approved. Individual contribution attribution remains pending for the course submission.

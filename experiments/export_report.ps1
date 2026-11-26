@@ -35,7 +35,7 @@ try {
         $text = $text -replace 'color:\s*(white|#FFFFFF)(?=[;''"\s>])', 'color:#000000'
         $text = $text.Replace('charset=windows-1252', 'charset=utf-8')
         # Word's HTML can emit text-align:left for native right-aligned RTL cells.
-        $text = $text.Replace('</head>', '<style>p[dir=RTL]{direction:rtl;text-align:right!important}</style></head>')
+        $text = $text.Replace('</head>', '<style>p[dir=RTL]{direction:rtl;text-align:right!important}table,tr{break-inside:avoid}</style></head>')
         [IO.File]::WriteAllText($html, $text, (New-Object Text.UTF8Encoding($false)))
         $exports += [pscustomobject]@{Html=$html; Pdf=(Join-Path $scratch ($base + '.pdf')); Target=(Join-Path $ProjectRoot ('output\report\' + $base + '.pdf'))}
     }

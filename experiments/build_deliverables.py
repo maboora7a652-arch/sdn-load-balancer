@@ -151,6 +151,48 @@ def update_cover(doc):
         row.cells[1].text = str(page)
 
 
+def compact_layout(doc):
+    """Remove optional breaks while retaining the assignment's chapter minima."""
+    paragraphs = list(doc.paragraphs)
+    join_before = ('Contents', '5.4  Congestion detection', '5.5  Receiver measurements',
+                   '5.6  Recovery after', 'Appendix B')
+    for i, p in enumerate(paragraphs):
+        breaks = p._p.xpath('.//w:br[@w:type="page"]')
+        if not breaks:
+            continue
+        following = next((x.text for x in paragraphs[i + 1:] if x.text.strip()), '')
+        if following.startswith(join_before):
+            for br in breaks:
+                br.getparent().remove(br)
+            if not p.text.strip() and not p._p.xpath('.//w:drawing'):
+                p._p.getparent().remove(p._p)
+    in_body = False
+    for p in doc.paragraphs:
+        if p.text == 'Abstract':
+            in_body = True
+        if not in_body:
+            continue
+        if p._p.xpath('.//w:drawing'):
+            p.paragraph_format.keep_with_next = True
+            p.paragraph_format.keep_together = True
+        elif p.text.strip() and p.style.name == 'Normal':
+            p.paragraph_format.space_after = Pt(3)
+    # Give narrative columns the space they need instead of wasting half a table on dates.
+    width = doc.sections[0].page_width - doc.sections[0].left_margin - doc.sections[0].right_margin
+    for table in doc.tables:
+        header = table.cell(0, 0).text
+        ratios = {'Record': (0.23, 0.59, 0.18), 'Date (2026)': (0.20, 0.80)}.get(header)
+        if ratios:
+            table.autofit = False
+            for i, ratio in enumerate(ratios):
+                table.columns[i].width = int(width * ratio)
+                for row in table.rows:
+                    row.cells[i].width = int(width * ratio)
+    toc = next(t for t in doc.tables if t.cell(0, 0).text == 'Section')
+    for row, page in zip(toc.rows[1:], (3, 5, 15, 19, 23, 28, 29, 30, 30)):
+        row.cells[1].text = str(page)
+
+
 def metric(values):
     return {"n": len(values), "mean": st.mean(values),
             "sample_sd": st.stdev(values) if len(values) > 1 else None,
@@ -436,6 +478,7 @@ def update_reports(data, plots):
     progress.cell(3, 0).text = '25-26 November'
     progress.cell(3, 1).text = '64k shaping comparisons, current recovery/detection/threshold/window measurements, LLDP source review, 16 logic regressions and a complete new iperf3 calibration.'
     update_cover(combined)
+    compact_layout(combined)
     combined.save(REPORT / 'sdn-track-1-report.docx')
 
 
