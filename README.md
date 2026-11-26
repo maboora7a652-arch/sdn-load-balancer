@@ -6,7 +6,23 @@ An OpenFlow 1.3 controller that measures directional link load, identifies susta
 
 **OS-Ken · Mininet · Open vSwitch · Python · OpenFlow 1.3**
 
-[Arabic Ubuntu run guide](ubuntu/README.md) · [English report PDF](output/report/sdn-track-1-report.pdf) · [Arabic lab and discussion guide](output/pdf/sdn-arabic-lab-guide.pdf) · [Experiment figures](output/pdf/sdn-experiment-results.pdf)
+[Full video, 96 seconds](#motion-graphics-video-full-96-seconds) · [Arabic Ubuntu run guide](ubuntu/README.md) · [English report PDF](output/report/sdn-track-1-report.pdf) · [Arabic lab and discussion guide](output/pdf/sdn-arabic-lab-guide.pdf) · [Experiment figures](output/pdf/sdn-experiment-results.pdf)
+
+## Motion graphics video, full 96 seconds
+
+**[Download the FULL video: MP4 · 1:36 · 1080p · silent](https://raw.githubusercontent.com/maboora7a652-arch/sdn-load-balancer/master/output/video/sdn-load-balancer-explainer.mp4)**
+
+The complete approved video is stored at [`output/video/sdn-load-balancer-explainer.mp4`](output/video/sdn-load-balancer-explainer.mp4) (14.97 MB). Use the direct download link above; if you open the repository file page, use **Download raw file** to save it and play it locally.
+
+### Short highlights preview, 13.5 seconds
+
+The animation below is a looping GIF assembled from four excerpts. Its jumps are edits in the preview, not missing sections in the full MP4. Click it to download the complete video.
+
+[![Short 13.5-second highlights, click for the complete 96-second MP4](output/video/sdn-load-balancer-preview.gif)](https://raw.githubusercontent.com/maboora7a652-arch/sdn-load-balancer/master/output/video/sdn-load-balancer-explainer.mp4)
+
+The revised clip is a **96-second silent motion graphics explainer**. Its main calibration and benchmark cards use the current recorded results, including the separate November 26 calibration. The grid telemetry trace and 79/80 H1-H6 failure illustration are explicitly historical examples. Diagrams animate the control logic; they are not a recording of a live lab run. Fouad approved this revision as supplied. This asset is separate from the course's 5-8 minute live demonstration recording.
+
+[Current numbers and source references](media/video-data.json)
 
 ## Project overview
 
@@ -206,14 +222,6 @@ These are measurements of the saved workloads, not guarantees for every VM or tr
 ![Receiver throughput from the saved five-run comparison](media/baseline-throughput.png)
 
 The plot is generated from raw experiment data. In the separate 90 Mbps before/after batch, H1-H6 throughput was already near 28 Mbps; its RTT decreased while jitter increased. A lower peak, a higher receiver rate and a lower RTT answer different questions.
-
-### Explainer video
-
-[![Preview of the motion graphics explainer](output/video/sdn-load-balancer-preview.gif)](output/video/sdn-load-balancer-explainer.mp4)
-
-[Open the motion graphics explainer](output/video/sdn-load-balancer-explainer.mp4) · [Current numbers and source references for the revised video](media/video-data.json)
-
-The revised clip is a **96-second silent motion graphics explainer**. Its main calibration and benchmark cards use the current recorded results, including the separate November 26 calibration. The grid telemetry trace and 79/80 H1-H6 failure illustration are explicitly historical examples. Diagrams animate the control logic; they are not a recording of a live lab run. Fouad approved this revision as supplied. This asset is separate from the course's 5-8 minute live demonstration recording.
 
 ## Experiments and tests
 
