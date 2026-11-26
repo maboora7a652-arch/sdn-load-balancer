@@ -2,6 +2,8 @@
 
 ## Current triage | 2026-11-26
 
+- The user-revised combined report is now32pages. Its final review found chapter2 at7pages (required10–12), chapter5 at7pages (specified5–6), an unsupported statement that individual roles and weekly reports are finalized and attached, and stale DOCX TOC entries inconsistent with the PDF. The claim that both November26 live demos followed the bounded-wait patch also needs provenance correction. Preserve the supplied files; do not use the old combined-report assembler on their new structure.
+
 - Latest supplied grid rehearsal: connectivity30/30, P1/20→P3/21, H6 receiver80Mbps/loss5.9% and H5 receiver27.2Mbps/loss9.3%. The long failure trial received299/300 and forwarded over P1 during the S5-S6 cut. Raw120202Z/120735Z files are preserved.
 - Sixteen logic regressions passed on Ubuntu. Fat-tree connectivity reached240/240 and accuracy124854Z completed five fresh trials: mean error3.115742%, sample SD0.180965 percentage points, three samples per trial, no final-route warnings.
 - Discovery remains an open limitation. The final supplied log144135 contains the bounded-wait startup marker AND32 link deletions/64 route rebuilds, without tracebacks. The completed calibration does not establish universal stability or prove the root cause of every LLDP episode. Log timestamps do not establish how each episode aligns with the measurement windows.

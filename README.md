@@ -113,9 +113,9 @@ The plot is generated from raw experiment data. In the separate 90 Mbps before/a
 
 ### Explainer video
 
-[![Preview of the motion graphics explainer](media/video-preview.jpg)](media/sdn-load-balancer-explainer.mp4)
+[![Preview of the motion graphics explainer](output/video/sdn-load-balancer-preview.gif)](output/video/sdn-load-balancer-explainer.mp4)
 
-[Open the motion graphics explainer](media/sdn-load-balancer-explainer.mp4) · [Current numbers and source references for the revised video](media/video-data.json)
+[Open the motion graphics explainer](output/video/sdn-load-balancer-explainer.mp4) · [Current numbers and source references for the revised video](media/video-data.json)
 
 The revised clip is a **96-second silent motion graphics explainer**. Its main calibration and benchmark cards use the current recorded results, including the separate November 26 calibration. The grid telemetry trace and 79/80 H1-H6 failure illustration are explicitly historical examples. Diagrams animate the control logic; they are not a recording of a live lab run. Fouad approved this revision as supplied. This asset is separate from the course's 5-8 minute live demonstration recording.
 
@@ -180,11 +180,12 @@ dashboard/          Local HTML/CSS/JavaScript dashboard and proxy
 c1/                 Learning switch and original Wireshark capture
 output/report/      Editable English report and PDF chapters
 output/pdf/         Experiment figures and Arabic lab guide
+output/video/       Approved explainer, animated preview and stills
 media/              Repository artwork, explainer and current video numbers
 ```
 
 `PLAN.md` is the single project plan. `HANDOFF.md` is the short current state for another AI/account. `WORK_LOG.md`, raw results and local Git preserve the history. Dated source archives and checkpoints are historical baselines and must not replace the current `vm-source/` files.
 
-The combined report is 30 pages, including a standalone cover. Its main body remains 12 pt; images retain their original dimensions. Chapter lengths follow the assignment minima.
+The current combined report is Fouad's manually revised 32-page Word/PDF edition, with a standalone cover. Its final content review is recorded in HANDOFF.md; the individual chapter files are earlier drafts.
 
-Report authoring is separate from the network runtime. With the authoring Python packages available, `python experiments/build_deliverables.py` updates Word content, experiment figures and video numbers. On Windows with Word and Chrome, `experiments/export_report.ps1` renders the updated report and Arabic HTML guide to PDF. The team roster and explainer revision are approved. Individual contribution attribution remains pending for the course submission.
+Report authoring is separate from the network runtime. The manually revised combined Word/PDF is the current source for review. Preserve it when working on this repository. `experiments/build_deliverables.py` is the older chapter assembler and is not compatible with this edition's new heading structure; do not run it to rebuild the current combined report. The final authoring workflow needs to be reconciled before further automated regeneration. Team names and the explainer revision are approved; individual contribution attribution and original weekly submissions remain pending.
