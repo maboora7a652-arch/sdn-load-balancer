@@ -32,6 +32,63 @@ def methods(*names):
 
 
 class LogicChecks(unittest.TestCase):
+    def test_lldp_wait_is_bounded_using_installed_discovery_source(self):
+        fixture = ROOT / "experiments/fixtures/osken-switches-runtime-20261126.txt"
+        tree = ast.parse(fixture.read_text(encoding="utf-8"))
+        discovery = next(n for n in tree.body if isinstance(n, ast.ClassDef)
+                         and n.name == "Switches")
+        loop = next(n for n in discovery.body if isinstance(n, ast.FunctionDef)
+                    and n.name == "lldp_loop")
+        scope = dict(time=SimpleNamespace(time=lambda: 10), hub=Mock())
+        exec(compile(ast.Module(body=[loop], type_ignores=[]), str(fixture), "exec"), scope)
+        controller = ast.parse(SOURCE.read_text())
+        wrapper = next(n for n in controller.body if isinstance(n, ast.FunctionDef)
+                       and n.name == "_lldp_loop_with_deadline")
+        scope["_discovery_lldp_loop"] = scope["lldp_loop"]
+        exec(compile(ast.Module(body=[wrapper], type_ignores=[]), str(SOURCE), "exec"), scope)
+
+        # Exercise the real scheduler, including both previously unbounded cases.
+        for timestamps in ([0] * 80, [None] * 80, [10], []):
+            observed = []
+            for run in (scope["lldp_loop"], scope["_lldp_loop_with_deadline"]):
+                waits = []
+                instance = SimpleNamespace(
+                    is_active=True,
+                    ports={i: SimpleNamespace(timestamp=value)
+                           for i, value in enumerate(timestamps)},
+                    LLDP_SEND_PERIOD_PER_PORT=0.9, LLDP_SEND_GUARD=0.01,
+                    send_lldp_packet=Mock())
+
+                def wait(timeout=None):
+                    waits.append(timeout)
+                    instance.is_active = False
+
+                instance.lldp_event = SimpleNamespace(clear=Mock(), wait=wait)
+                run(instance)
+                self.assertIs(instance.lldp_event.wait, wait)
+                self.assertEqual(instance.send_lldp_packet.call_count,
+                                 len(timestamps) if timestamps != [10] else 0)
+                self.assertEqual(len(waits), 1)
+                observed.append(waits[0])
+            if timestamps and timestamps[0] != 10:
+                self.assertIsNone(observed[0])
+                self.assertEqual(observed[1], 0.9)
+            else:
+                # Existing finite deadlines and idle-with-no-ports are preserved.
+                self.assertEqual(observed[0], observed[1])
+
+    def test_lldp_wait_restores_event_after_discovery_failure(self):
+        tree = ast.parse(SOURCE.read_text())
+        wrapper = next(n for n in tree.body if isinstance(n, ast.FunctionDef)
+                       and n.name == "_lldp_loop_with_deadline")
+        original_wait = Mock()
+        instance = SimpleNamespace(lldp_event=SimpleNamespace(wait=original_wait))
+        scope = dict(_discovery_lldp_loop=Mock(side_effect=RuntimeError("discovery error")))
+        exec(compile(ast.Module(body=[wrapper], type_ignores=[]), str(SOURCE), "exec"), scope)
+        with self.assertRaisesRegex(RuntimeError, "discovery error"):
+            scope["_lldp_loop_with_deadline"](instance)
+        self.assertIs(instance.lldp_event.wait, original_wait)
+
     def test_route_read_retries_then_preserves_failure_details(self):
         tree = ast.parse((ROOT / "experiments/bandwidth_accuracy.py").read_text())
         run = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "run")

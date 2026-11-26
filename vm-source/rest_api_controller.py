@@ -28,6 +28,28 @@ from os_ken.lib import hub
 # All four discovery timestamps in the installed switches module use this alias.
 # Keep elapsed-time checks independent of guest wall-clock corrections.
 switches.time = SimpleNamespace(time=time.monotonic)
+
+# The installed LLDP loop can wait forever when every port is due at once.
+_discovery_lldp_loop = switches.Switches.lldp_loop
+
+
+def _lldp_loop_with_deadline(discovery):
+    lldp_event = discovery.lldp_event
+    original_wait = lldp_event.wait
+
+    def bounded_wait(timeout=None):
+        if timeout is None and discovery.ports:
+            timeout = discovery.LLDP_SEND_PERIOD_PER_PORT
+        return original_wait(timeout=timeout)
+
+    lldp_event.wait = bounded_wait
+    try:
+        return _discovery_lldp_loop(discovery)
+    finally:
+        lldp_event.wait = original_wait
+
+
+switches.Switches.lldp_loop = _lldp_loop_with_deadline
 app_manager.require_app("os_ken.topology.switches")
 
 
@@ -62,6 +84,7 @@ class HostDiscoveryController(app_manager.OSKenApp):
         self.logger.info(
             "Discovery uses a monotonic clock; LLDP timeout: %ss; send guard: %ss",
             switches.Switches.LINK_TIMEOUT, switches.Switches.LLDP_SEND_GUARD)
+        self.logger.info("LLDP wait is bounded while ports are present")
 
         # Store discovered hosts
         self.hosts = {}
