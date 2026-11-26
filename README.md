@@ -58,6 +58,12 @@ To stop, enter `exit` in Mininet and use Ctrl+C in the controller and dashboard 
 
 ## Set up another Ubuntu installation
 
+Clone the repository into a new project directory:
+
+```bash
+git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-project"
+```
+
 The runtime is intended for Ubuntu with Python 3.10, Mininet and Open vSwitch. The existing VM has been tested; a fresh installation on another machine has not been verified. Install system packages and create the controller environment when network access is available:
 
 ```bash
