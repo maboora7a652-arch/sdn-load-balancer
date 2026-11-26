@@ -14,6 +14,9 @@ from pathlib import Path
 
 from docx import Document
 from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 import pypdfium2 as pdfium
 
 import results_figures as figures
@@ -22,6 +25,41 @@ import results_figures as figures
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "output/report"
 DATA = ROOT / "experiments/results"
+TEAM = [
+    ("عبدالحميد أحمد", "921230064"),
+    ("عبدالرحمن أحمد محمد محمد", "921230066"),
+    ("عبدالرحمن أحمد فؤاد", "921230065"),
+    ("عبدالرحمن عمرو عبدالحليم", "921230069"),
+    ("صهيب وائل محمد", "921230061"),
+    ("عبدالرحمن صلاح الدين يحي", "921230068"),
+]
+
+
+def update_team(doc):
+    """Use the supplied Arabic names verbatim, with native Word RTL semantics."""
+    paragraph = doc.paragraphs[5]
+    paragraph.clear()
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    paragraph.paragraph_format.space_after = Pt(12)
+    properties = paragraph._p.get_or_add_pPr()
+    bidi = properties.find(qn('w:bidi'))
+    if bidi is None:
+        bidi = OxmlElement('w:bidi')
+        properties.append(bidi)
+    bidi.set(qn('w:val'), '1')
+    for i, (name, student_id) in enumerate(TEAM):
+        if i:
+            paragraph.add_run().add_break()
+        for text, rtl in ((name, True), (f' ({student_id})', False)):
+            run = paragraph.add_run(text)
+            run.font.name = 'Arial'
+            run.font.size = Pt(11)
+            run.font.rtl = rtl
+            fonts = run._r.get_or_add_rPr().rFonts
+            fonts.set(qn('w:cs'), 'Arial')
+            language = OxmlElement('w:lang')
+            language.set(qn('w:val'), 'ar-EG' if rtl else 'en-US')
+            run._r.rPr.append(language)
 
 
 def metric(values):
@@ -297,7 +335,9 @@ def update_reports(data, plots):
         elif text.startswith('For the fat-tree, use fattree4 for both'):
             p.text = 'For the fat-tree, use fattree instead of grid in the controller and network launchers. Expect 20 switches, 32 inter-switch links and 240/240 directed ping replies in a successful test. The five-run iperf3 command and complete demo sequence are in ubuntu/README.md. Results stay under experiments/results/. Stop Mininet with exit, then stop the controller and dashboard with Ctrl+C.'
         elif text.startswith('The repository count is a snapshot before assembly'):
-            p.text = 'The local Git count is a dated snapshot of version history. A shared commit identity cannot establish the division of work among students. Final team names, student IDs and per-member attribution remain to be supplied before submission.'
+            p.text = 'The six-member team and student IDs are listed on the cover as supplied by the team. The local Git count is a dated snapshot of version history. A shared commit identity cannot establish the division of work among students. Per-member contribution allocation remains to be supplied before submission.'
+        elif text.startswith('The six-member team and student IDs'):
+            p.text = 'The six-member team and student IDs are listed on the cover as supplied by the team. The local Git count is a dated snapshot of version history. A shared commit identity cannot establish the division of work among students. Per-member contribution allocation remains to be supplied before submission.'
     count = subprocess.run(['git', 'rev-list', '--count', 'HEAD'], cwd=ROOT,
                            capture_output=True, text=True, check=False).stdout.strip()
     combined.tables[10].cell(2, 1).text = 'Controller, topology, dashboard, experiments and updated report sources. Snapshot on 26 November 2026; not individual attribution.'
@@ -306,6 +346,7 @@ def update_reports(data, plots):
     combined.tables[11].cell(2, 1).text = 'Fat-tree, dashboard, original C1 capture and earlier evaluation batches. Raw outputs remain distinct from later repetitions.'
     combined.tables[11].cell(3, 0).text = '25-26 November'
     combined.tables[11].cell(3, 1).text = '64k shaping comparisons, current recovery/detection/threshold/window measurements, LLDP source review, 16 logic regressions and a complete new iperf3 calibration.'
+    update_team(combined)
     combined.save(REPORT / 'sdn-track-1-report.docx')
 
 

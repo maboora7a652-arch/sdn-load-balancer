@@ -154,7 +154,18 @@ The 16 logic tests cover actual method bodies and an exported OS-Ken source fixt
 - High-load UDP loss is retained in the raw data. The adaptive policy does not improve every workload or every metric.
 - The 30-second hold-down is implemented and regression-tested, but its effect has not been isolated in a completed live test.
 - Cold-start reachability and rate samples can differ from warmed-up operation. Port TX includes framing and background traffic. Delay results are ping RTT, not one-way latency.
-- Final student names, IDs, contribution attribution and original weekly submissions remain to be completed. Report and presentation submission status should be checked against the course requirements.
+- The six-member roster is confirmed below. Individual contribution attribution and original weekly submissions remain to be completed. Report and presentation submission status should be checked against the course requirements.
+
+## Team
+
+| الاسم | Student ID |
+| --- | --- |
+| عبدالحميد أحمد | 921230064 |
+| عبدالرحمن أحمد محمد محمد | 921230066 |
+| عبدالرحمن أحمد فؤاد | 921230065 |
+| عبدالرحمن عمرو عبدالحليم | 921230069 |
+| صهيب وائل محمد | 921230061 |
+| عبدالرحمن صلاح الدين يحي | 921230068 |
 
 ## Repository layout
 

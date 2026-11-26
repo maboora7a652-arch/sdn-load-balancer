@@ -1,7 +1,8 @@
 param(
     [string]$ProjectRoot = (Split-Path -Parent $PSScriptRoot),
     [string]$ChromePath = "$env:ProgramFiles\Google\Chrome\Application\chrome.exe",
-    [switch]$KeepTemporary
+    [switch]$KeepTemporary,
+    [switch]$CombinedOnly
 )
 
 $ErrorActionPreference = 'Stop'
@@ -14,16 +15,19 @@ try {
     $word = New-Object -ComObject Word.Application
     $word.Visible = $false
     $word.DisplayAlerts = 0
-    foreach ($base in @('chapter-3-system-design', 'chapter-4-implementation', 'chapter-5-experiments-and-results', 'chapter-6-conclusion', 'sdn-track-1-report')) {
+    $reportNames = @('chapter-3-system-design', 'chapter-4-implementation', 'chapter-5-experiments-and-results', 'chapter-6-conclusion', 'sdn-track-1-report')
+    if ($CombinedOnly) { $reportNames = @('sdn-track-1-report') }
+    foreach ($base in $reportNames) {
         $doc = $null
         $html = Join-Path $scratch ($base + '.html')
         try {
             $doc = $word.Documents.Open((Join-Path $ProjectRoot ('output\report\' + $base + '.docx')), $false, $true)
+            $doc.WebOptions.Encoding = 65001
             $doc.SaveAs2($html, 10)
         } finally {
             if ($null -ne $doc) { $doc.Close(0); [void][Runtime.InteropServices.Marshal]::ReleaseComObject($doc) }
         }
-        $text = [IO.File]::ReadAllText($html, [Text.Encoding]::GetEncoding(1252))
+        $text = [IO.File]::ReadAllText($html, [Text.Encoding]::UTF8)
         # Word exports page breaks on inline BR elements; print CSS needs a block.
         $text = $text -replace '<br\b[^>]*page-break-before:always[^>]*>', '<div style="break-before:page;page-break-before:always"></div>'
         # Word can leak a table's white text colour into the following body span.
@@ -34,7 +38,9 @@ try {
         $exports += [pscustomobject]@{Html=$html; Pdf=(Join-Path $scratch ($base + '.pdf')); Target=(Join-Path $ProjectRoot ('output\report\' + $base + '.pdf'))}
     }
     $guide = Join-Path $ProjectRoot 'output\pdf\sdn-arabic-lab-guide.html'
-    $exports += [pscustomobject]@{Html=$guide; Pdf=(Join-Path $scratch 'guide.pdf'); Target=(Join-Path $ProjectRoot 'output\pdf\sdn-arabic-lab-guide.pdf')}
+    if (-not $CombinedOnly) {
+        $exports += [pscustomobject]@{Html=$guide; Pdf=(Join-Path $scratch 'guide.pdf'); Target=(Join-Path $ProjectRoot 'output\pdf\sdn-arabic-lab-guide.pdf')}
+    }
     foreach ($item in $exports) {
         $arguments = @('--headless', '--disable-gpu', '--disable-background-networking', '--disable-component-update', '--disable-extensions', '--disable-sync', '--no-first-run', '--no-default-browser-check', '--no-pdf-header-footer',
             ('--user-data-dir="' + (Join-Path $scratch 'chrome-profile') + '"'), ('--print-to-pdf="' + $item.Pdf + '"'), ([System.Uri]$item.Html).AbsoluteUri)
