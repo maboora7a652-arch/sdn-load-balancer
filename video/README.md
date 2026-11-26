@@ -1,7 +1,5 @@
 # SDN Track 1 — Offline Motion Graphics Explainer
 
-**Video authoring sources only.** To watch the finished video, open the [project homepage](../README.md#video). To run the SDN network, use the [Ubuntu guide](../ubuntu/README.md#demo).
-
 Self-contained, 100% offline 1920×1080 @ 30fps motion graphics explainer for the **SDN Track 1: Intelligent Load Balancer with Fault Tolerance** project.
 
 ## Interactive Preview (No Build or Server Required)
