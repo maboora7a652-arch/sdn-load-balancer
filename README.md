@@ -117,7 +117,7 @@ The plot is generated from raw experiment data. In the separate 90 Mbps before/a
 
 [Open the motion graphics explainer](media/sdn-load-balancer-explainer.mp4) · [Current numbers and source references for the revised video](media/video-data.json)
 
-The revised clip is a **96-second silent motion graphics explainer**. Its main calibration and benchmark cards use the current recorded results, including the separate November 26 calibration. The grid telemetry trace and 79/80 H1-H6 failure illustration are explicitly historical examples. Diagrams animate the control logic; they are not a recording of a live lab run. A few presentation corrections remain before final publication. This asset is separate from the course's 5-8 minute live demonstration recording.
+The revised clip is a **96-second silent motion graphics explainer**. Its main calibration and benchmark cards use the current recorded results, including the separate November 26 calibration. The grid telemetry trace and 79/80 H1-H6 failure illustration are explicitly historical examples. Diagrams animate the control logic; they are not a recording of a live lab run. Fouad approved this revision as supplied. This asset is separate from the course's 5-8 minute live demonstration recording.
 
 ## Experiments and tests
 
@@ -185,4 +185,4 @@ media/              Repository artwork, explainer and current video numbers
 
 `PLAN.md` is the single project plan. `HANDOFF.md` is the short current state for another AI/account. `WORK_LOG.md`, raw results and local Git preserve the history. Dated source archives and checkpoints are historical baselines and must not replace the current `vm-source/` files.
 
-Report authoring is separate from the network runtime. With the authoring Python packages available, `python experiments/build_deliverables.py` updates Word content, experiment figures and video numbers. On Windows with Word and Chrome, `experiments/export_report.ps1` renders the updated report and Arabic HTML guide to PDF. Keep team details and final video approval as the last publication checks.
+Report authoring is separate from the network runtime. With the authoring Python packages available, `python experiments/build_deliverables.py` updates Word content, experiment figures and video numbers. On Windows with Word and Chrome, `experiments/export_report.ps1` renders the updated report and Arabic HTML guide to PDF. The team roster and explainer revision are approved. Individual contribution attribution remains pending for the course submission.
