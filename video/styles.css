@@ -1,0 +1,433 @@
+/* SDN Track 1 — Dark Telemetry Design System (1920x1080 Broadcast Safe)
+   CRITICAL RULE: ZERO CSS transitions and ZERO @keyframes inside #stage. */
+
+:root {
+  --bg: #070E0D;
+  --bg-radial: #0C1A17;
+  --surface: #0F1E1B;
+  --surface-elevated: #132723;
+  --border: #1F3B34;
+  --header: #163A31;
+  --text: #F0F6F3;
+  --text-muted: #93ACA1;
+  --link-idle: #4E6B60;
+  --switch-stroke: #71877B;
+  --emerald: #10B981;
+  --emerald-bright: #34D399;
+  --emerald-fill: #147555;
+  --amber: #F97316;
+  --amber-fill: #BF541A;
+  --crimson: #EF4444;
+  --cyan: #22D3EE;
+
+  --font-sans: "Segoe UI", "Bahnschrift", "Arial", sans-serif;
+  --font-mono: "Cascadia Mono", "Cascadia Code", "Consolas", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #030707;
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+#viewport {
+  position: fixed;
+  inset: 0 0 64px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #030707;
+}
+
+#stage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: var(--bg);
+  transform-origin: center center;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.72);
+}
+
+body.render-mode #viewport {
+  position: fixed;
+  inset: 0;
+  display: block;
+  background: var(--bg);
+}
+
+body.render-mode #stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: none !important;
+  box-shadow: none;
+}
+
+body.render-mode #controls {
+  display: none !important;
+}
+
+/* Guarantee zero CSS wall-clock transitions or keyframe animations inside the stage */
+#stage,
+#stage * {
+  transition: none !important;
+  animation: none !important;
+}
+
+#bg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  display: block;
+  z-index: 0;
+}
+
+#scenes-layer {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  z-index: 10;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transform-origin: 960px 540px;
+}
+
+/* Persistent Telemetry Chrome (inside safe area: 96px H, 72px V edge margins) */
+#chrome-layer {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+#hud-top {
+  position: absolute;
+  left: 96px;
+  right: 96px;
+  top: 26px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: rgba(22, 58, 49, 0.72);
+  border: 1px solid rgba(52, 211, 153, 0.34);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.hud-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.85);
+}
+
+.hud-tag {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: rgba(15, 30, 27, 0.78);
+  border: 1px solid var(--border);
+}
+
+#hud-bottom {
+  position: absolute;
+  left: 96px;
+  right: 96px;
+  bottom: 24px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#hud-rail {
+  position: relative;
+  flex: 1 1 auto;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(147, 172, 161, 0.18);
+  overflow: hidden;
+}
+
+#hud-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--emerald), var(--cyan));
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+#hud-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hud-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(7, 14, 13, 0.85);
+}
+
+#hud-time {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+/* Shared Video-Safe Typography & Card Helpers for Scenes */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.safe-area {
+  position: absolute;
+  left: 96px;
+  right: 96px;
+  top: 88px;
+  bottom: 72px;
+}
+
+.scene-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.scene-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  color: var(--text);
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 82px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  color: var(--text);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.32;
+  color: var(--text-muted);
+}
+
+.card {
+  background: rgba(15, 30, 27, 0.90);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.34);
+}
+
+.card-emerald {
+  border-color: rgba(16, 185, 129, 0.55);
+  box-shadow: 0 0 28px rgba(16, 185, 129, 0.14), 0 14px 36px rgba(0, 0, 0, 0.34);
+}
+
+.card-amber {
+  border-color: rgba(249, 115, 22, 0.58);
+  box-shadow: 0 0 28px rgba(249, 115, 22, 0.14), 0 14px 36px rgba(0, 0, 0, 0.34);
+}
+
+.card-cyan {
+  border-color: rgba(34, 211, 238, 0.50);
+  box-shadow: 0 0 26px rgba(34, 211, 238, 0.12), 0 14px 36px rgba(0, 0, 0, 0.34);
+}
+
+.card-crimson {
+  border-color: rgba(239, 68, 68, 0.58);
+  box-shadow: 0 0 28px rgba(239, 68, 68, 0.14), 0 14px 36px rgba(0, 0, 0, 0.34);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(22, 58, 49, 0.72);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.pill-emerald {
+  background: rgba(20, 117, 85, 0.35);
+  border-color: rgba(16, 185, 129, 0.65);
+  color: var(--emerald-bright);
+}
+
+.pill-amber {
+  background: rgba(191, 84, 26, 0.34);
+  border-color: rgba(249, 115, 22, 0.72);
+  color: #FDBA74;
+}
+
+.pill-cyan {
+  background: rgba(34, 211, 238, 0.16);
+  border-color: rgba(34, 211, 238, 0.62);
+  color: #67E8F9;
+}
+
+.pill-crimson {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.70);
+  color: #FCA5A5;
+}
+
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-label {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.badge-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+/* Interactive Preview Controls (hidden when ?render=1) */
+#controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  background: #0B1514;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+#controls button {
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#controls button:hover {
+  border-color: var(--emerald);
+  color: var(--emerald-bright);
+}
+
+#controls button.active {
+  background: var(--header);
+  border-color: var(--emerald);
+  color: var(--emerald-bright);
+}
+
+#scrubber {
+  flex: 1 1 220px;
+  accent-color: var(--emerald);
+  cursor: pointer;
+}
+
+#ctrl-time {
+  min-width: 142px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+#chapter-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
