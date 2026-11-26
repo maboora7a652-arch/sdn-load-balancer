@@ -1,3 +1,5 @@
 # برومبت استلام المشروع
 
-استلم مشروع SDN Track 1 من نفس فولدر Windows. اقرأ AGENTS.md وHANDOFF.md وPLAN.md، وشوف git status --short --branch وgit log --oneline -5. ابدأ من Next حسب طلب فؤاد. افتح WORK_LOG.md للتاريخ وISSUES_AND_RISKS.md للمشاكل. التزم بالعمل offline؛ فؤاد ينفذ على Ubuntu. بعد كل بند احفظ النتيجة والدليل والخطوة التالية في السجل والـhandoff واعمل commit محلي. سلّم الدور قبل ما وكيل تاني يكتب في نفس الفولدر.
+هذا الملف لتسليم تطوير المشروع إلى AI آخر، وليس لتثبيت المشروع أو تشغيل الديمو. تعليمات الاستخدام في [دليل Ubuntu](ubuntu/README.md).
+
+استلم مشروع SDN Track 1 من نفس فولدر Windows. اقرأ AGENTS.md وREADME.md وHANDOFF.md وPLAN.md، وشوف git status --short --branch وgit log --oneline -5. ابدأ من Next حسب طلب فؤاد. افتح WORK_LOG.md للتاريخ وISSUES_AND_RISKS.md للمشاكل. فؤاد ينفذ على Ubuntu يدويًا، وتغيير Windows لا يحدّث نسخته تلقائيًا. النشر والتحديث على مستودع GitHub العام الحالي مأذون بهما؛ لا تستخدم Computer Use أو تنشر إلى خدمة جديدة دون طلبه. بعد كل بند مفيد حدّث الحالة والخطوة التالية في HANDOFF.md تحت 60 سطرًا، واكتب ملخصًا قصيرًا في WORK_LOG.md، واحفظ commit. سلّم الدور قبل ما وكيل تاني يكتب في نفس الفولدر.
