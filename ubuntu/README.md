@@ -1,6 +1,6 @@
 # تشغيل وديمو مشروع SDN على Ubuntu
 
-آخر تحديث 2026-11-26. الأوامر التالية تُنفّذ داخل Ubuntu.
+آخر تحديث 2026-11-26. نسخة الدليل: linux-setup-20261126. الأوامر التالية تُنفّذ داخل Ubuntu.
 
 الكنترولر يستخدم monotonic لحساب مدد LLDP، ويحتفظ بمهلة الفشل الأصلية 10 ثوانٍ ومعالجة PortStatus للفصل الحقيقي. الإصلاح المحلي يمنع انتظار LLDP المفتوح عند وجود بورتات، ويظهر سطر LLDP wait is bounded while ports are present عند التشغيل. على Fat-tree انتظار الإرسال بين البورتات أقصاه 0.01 ثانية، مع إتاحة وقت للاكتشاف أثناء إعادة بناء المسارات. المعايرة الجديدة اكتملت خمس جولات، لكن السجلات الكاملة ما زالت تحتوي على دورات حذف وإعادة اكتشاف؛ لا نعتبر كل أسباب التقطّع محلولة.
 
@@ -15,6 +15,108 @@ sudo python3 /media/sf_sdn_transfer/ubuntu/update_local.py
 ```
 
 المُحدّث ينقل الكود و README والاختبارات والتقارير والوسائط، ويحافظ على البيئة الموجودة والنتائج المحلية. لو الكنترولر الحالي مختلف، يحفظه في sdn-backups قبل استبداله. أي نتيجة محلية بنفس الاسم ومحتوى مختلف تظل كما هي ويذكرها في الخرج. لا يشغّل أو يوقف عمليات الشبكة تلقائيًا.
+
+المُحدّث ينسخ هذا الدليل إلى README في جذر نسخة Ubuntu. للتأكد من تطابقه مع النسخة الحالية في الشير، نفّذ مرة واحدة بعد التحديث:
+
+```bash
+cmp -s "$HOME/sdn-project/README.md" "/media/sf_sdn_transfer/ubuntu/README.md" && echo "README is up to date"
+```
+
+ظهور الرسالة يؤكد تطابق محتوى README. تغيير الملفات على Windows وحده لا يؤكد وصولها إلى Ubuntu. أمر التحديث السابق يحتاج نسخة المستودع الكاملة في الشير، ويُنفّذ من الشير، وليس من داخل نسخة الوجهة.
+
+## لأول مرة: نقل المشروع من Windows أو GitHub إلى Ubuntu
+
+لو مشروعك يعمل بالفعل من ~/sdn-project، تجاوز هذا الجزء إلى الخطوة 1. لا تُعد إنشاء البيئة الحالية. الجزء التالي لشخص سيجرّب المشروع على Ubuntu جديد، والأوامر فيه في ترمينال Ubuntu عادي، وليست عند mininet>.
+
+بيئة التجارب المسجلة Ubuntu 22.04 و Python 3.10. يمكن استخدام Ubuntu داخل VirtualBox أو على جهاز Linux مستقل. الشبكة تحتاج Mininet و Open vSwitch داخل Ubuntu. التثبيت من الصفر على جهاز آخر لم يُجرّب هنا، وملف الاعتماديات ليس نسخة مقفولة من كل إصدارات البيئة الحالية.
+
+### أ. تثبيت الأدوات على Ubuntu الجديد
+
+```bash
+sudo apt update
+sudo apt install git mininet openvswitch-switch iperf iperf3 python3-venv curl
+sudo systemctl start openvswitch-switch
+```
+
+Mininet يبني الشبكة، و Open vSwitch يشغّل السويتشات. نحتاج iperf لديمو Grid، و iperf3 للمعايرة. الإنترنت مطلوب لتنزيل الملفات والحزم أثناء الإعداد. لفتح التقاط C1 يمكنك تثبيت Wireshark أيضًا:
+
+```bash
+sudo apt install wireshark
+```
+
+### ب. اختار طريقة واحدة لجلب الملفات
+
+الأسهل: نزّل المستودع مباشرة داخل Ubuntu، فلا تحتاج نقل ملفات من Windows:
+
+```bash
+git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-project"
+```
+
+البديل: من GitHub على Windows اختار Code ثم Download ZIP، وفك الملف. شارك المجلد المستخرج مع VirtualBox. المثال التالي يفترض أن vm-source و ubuntu وباقي المجلدات موجودة مباشرة داخل /media/sf_sdn_transfer. لو فيه مجلد إضافي باسم sdn-load-balancer-master، استخدمه كمجلد المصدر بدلًا من جذر الشير.
+
+| المجلد أو الملف | دوره |
+| --- | --- |
+| vm-source | الكنترولر الحالي والتوبولوجي |
+| experiments بالكامل مع fixtures | الديموهات والتجارب واختبارات المنطق؛ results فيه النتائج المسجلة ونتائج التشغيل الجديد |
+| dashboard | صفحة الداشبورد والخادم المحلي وملفات الواجهة |
+| ubuntu | ملف التشغيل والدليل وأدوات النقل |
+| requirements.txt | اعتماديات Python الخاصة بالكنترولر |
+| c1 | learning switch والتقاط OpenFlow لجزء Wireshark |
+| README.md | تعليمات المستودع |
+| output و media و report_builder و video | اختيارية للتشغيل، وتحتاجها لو عايز التقارير والفيديو ومصادر التأليف |
+| AGENTS.md و HANDOFF.md و PLAN.md و ISSUES_AND_RISKS.md و WORK_LOG.md | سياق المشروع وتاريخه عند تسليمه لشخص أو AI آخر |
+
+لا تنقل بيئة Python الخاصة بـWindows. لا تستخدم الأرشيف القديم أو ملفات success أو before بدل vm-source الحالية.
+
+لإنشاء نسخة تشغيل جديدة من الشير، نفّذ المجموعة التالية كما هي. تتوقف لو مجلد الوجهة موجود بالفعل، وتحافظ على ملكية النسخة الجديدة لحساب Ubuntu:
+
+```bash
+mkdir -- "$HOME/sdn-project" &&
+sudo cp -R -- \
+    "/media/sf_sdn_transfer/vm-source" \
+    "/media/sf_sdn_transfer/experiments" \
+    "/media/sf_sdn_transfer/dashboard" \
+    "/media/sf_sdn_transfer/ubuntu" \
+    "/media/sf_sdn_transfer/c1" \
+    "/media/sf_sdn_transfer/requirements.txt" \
+    "/media/sf_sdn_transfer/README.md" \
+    "$HOME/sdn-project/" &&
+sudo chown -R -- "$(id -u):$(id -g)" "$HOME/sdn-project"
+```
+
+غيّر مسار الشير لو اسمه عندك مختلف أو تستخدم USB. نشغّل من مجلد Ubuntu المحلي، فيستمر العمل حتى لو الشير غير متاح.
+
+### ج. تجهيز بيئة الكنترولر وملف التشغيل
+
+على الجهاز الجديد فقط، أنشئ البيئة بالأوامر التالية بدون sudo. المسار مقصود لأن ملف التشغيل والتجارب الدُفعية يستخدمانه:
+
+```bash
+mkdir -p -- "$HOME/sdn-lab"
+python3 -m venv "$HOME/sdn-lab/.venv"
+"$HOME/sdn-lab/.venv/bin/python" -m pip install -r "$HOME/sdn-project/requirements.txt"
+```
+
+ملف الاعتماديات يختار OS-Ken من سلسلة 3.x لأن المشروع يحتاج osken-manager. قيد التوافق لا يغيّر بيئتك الحالية، ولا يعني أننا قسنا النتائج على كل إصدارات الاعتماديات الجديدة. مراجع التثبيت: [Mininet](https://mininet.org/download/)، وملفات إعداد OS-Ken الرسمية [3.1.1](https://github.com/openstack/os-ken/blob/3.1.1/setup.cfg) و [4.0.0](https://github.com/openstack/os-ken/blob/4.0.0/setup.cfg).
+
+بعد أي طريقة تنزيل، انسخ ملف التشغيل إلى جذر المشروع. لا تشغّل ubuntu/run.sh مباشرة لأنه سيبحث عن ملفات الشبكة داخل مجلد ubuntu:
+
+```bash
+cp -- "$HOME/sdn-project/ubuntu/run.sh" "$HOME/sdn-project/run.sh"
+```
+
+المسارات الأساسية بعد الإعداد:
+
+```text
+~/sdn-project/run.sh
+~/sdn-project/vm-source/rest_api_controller.py
+~/sdn-project/vm-source/custom_topology.py
+~/sdn-project/experiments/
+~/sdn-project/dashboard/
+~/sdn-project/ubuntu/README.md
+~/sdn-lab/.venv/bin/osken-manager
+```
+
+ابدأ الآن بالخطوة 1 التالية. ستفتح ثلاثة ترمينالات، وأول فحص للشبكة هو pingall على Grid.
 
 ## 1. شغّل الـ Grid
 

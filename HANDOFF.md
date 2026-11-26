@@ -2,6 +2,7 @@
 
 ## Now | 2026-11-26
 
+- أضيف دليل أول تشغيل علىUbuntu فيREADMEالعام والعربي: cloneمباشر أو نقل ملفاتWindows، المتطلبات، ونسخubuntu/run.shإلىجذرالمشروع. قُيّدتrequirementsإلىos-ken>=3.1.1,<4لأن4+لاتوفرosken-manager؛ لا تغييرلبيئةUbuntuالحالية. علامةالدليلlinux-setup-20261126، معcmpلتأكيدREADMEبعدالتحديث. نجحت16اختبارمنطق و4نقل محليًا؛ التثبيت الجديد ووصولالتحديثللـVMغيرمؤكدين.
 - طلب فؤاد تحديث التقارير وREADME ونسخة Ubuntu وتجهيز GitHub محليًا. استُلمت أسماء الفريق الستة وIDs وأُضيفت كما أرسلها فؤاد إلى غلاف التقرير وREADME. توزيع المساهمات لم يصل بعد. فؤاد أذن الآن بإنشاء ورفع المستودع Public على GitHub، الحساب maboora7a652-arch والاسم sdn-load-balancer. لا Computer Use. فؤاد يشغّل Ubuntu يدويًا.
 - مصادر Windows الحالية في vm-source وexperiments وdashboard. نسخة التشغيل ~/sdn-project، وبيئة OS-Ken في ~/sdn-lab/.venv. تغيير Windows لا يصل إلى Ubuntu تلقائيًا.
 - إصلاح LLDP في commit 70fcaa2 يحد انتظار loop عند وجود بورتات، ويستخدم monotonic. نُقل إلى Ubuntu؛ فؤاد أكد 16/16 اختبارات منطق وFat-tree 240/240 ثم خمس جولات معايرة كاملة.

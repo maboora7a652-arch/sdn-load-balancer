@@ -21,6 +21,122 @@ The required grid scenario sends 85 Mbps from H1 to H6 and 30 Mbps from H3 to H5
 
 A flow is one **directed IPv4 MAC-address pair**, not a separate TCP/UDP five-tuple. The default link capacity is 100 Mbps, inter-switch delay is 2 ms, and HTB burst/cburst is 64k. OS-Ken is the Ryu fork expressly permitted by the course assignment.
 
+## First-time Ubuntu setup
+
+**Start here on a new Linux machine.** If you already use Fouad's configured VM, skip to [updating the existing Ubuntu copy](#update-fouads-existing-ubuntu-copy). All commands below run in an **Ubuntu terminal**, not PowerShell or the `mininet>` prompt.
+
+The recorded lab uses **Ubuntu 22.04 and Python 3.10**, with Mininet and Open vSwitch installed inside Ubuntu. Use an Ubuntu VM or an Ubuntu computer; the network does not run directly on Windows. A fresh installation on a different machine has not been tested. Internet is needed for downloading the repository and installing dependencies; the dashboard and controller API listen locally after setup.
+
+### 1. Install Ubuntu packages
+
+On the new Ubuntu installation:
+
+```bash
+sudo apt update
+sudo apt install git mininet openvswitch-switch iperf iperf3 python3-venv curl
+sudo systemctl start openvswitch-switch
+```
+
+Mininet builds the virtual network, Open vSwitch supplies the switches, `iperf` runs the grid traffic demo, and `iperf3` runs the accuracy experiment. Both traffic tools are needed. Wireshark is optional for inspecting the saved C1 capture:
+
+```bash
+sudo apt install wireshark
+```
+
+### 2. Get the project, choose one method
+
+**Recommended: clone directly inside Ubuntu.** No transfer from Windows is needed:
+
+```bash
+git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-project"
+```
+
+Use a new destination. If `~/sdn-project` already holds your working project or results, follow the existing-copy update instructions instead.
+
+**Alternative: copy from Windows through a shared folder or USB.** Download the repository using GitHub's **Code → Download ZIP**, extract it on Windows, and share the extracted repository folder with VirtualBox. The example below assumes its contents, including `vm-source/` and `ubuntu/`, are directly under `/media/sf_sdn_transfer`. If the ZIP created an extra `sdn-load-balancer-master/` directory, use that directory as the source instead.
+
+| Copy into `~/sdn-project/` | Purpose |
+| --- | --- |
+| `vm-source/` | Current controller and both topologies |
+| `experiments/`, including `fixtures/` | Demos, batch tests and offline logic checks; keep the folder structure |
+| `dashboard/` | Dashboard page, assets and local server |
+| `ubuntu/` | Launcher, Arabic guide and existing-copy tools |
+| `requirements.txt` | Python dependencies for the controller |
+| `c1/` | Learning-switch code and saved OpenFlow capture for the C1 demonstration |
+| `README.md` | Repository instructions |
+| Optional: `output/`, `media/`, `report_builder/`, `video/` | Reports, figures, explainer and authoring sources; not required to forward traffic |
+| Optional: `AGENTS.md`, `HANDOFF.md`, `PLAN.md`, `ISSUES_AND_RISKS.md`, `WORK_LOG.md` | Project context and history for a new contributor or AI |
+
+The recorded results inside `experiments/results/` are reference data; new runs save new timestamped files there. Do not transfer a Windows virtual environment. Do not replace `vm-source/` with dated archives or `*_success.py` / `*_before_*.py` checkpoints.
+
+For a **new** Ubuntu project folder, this copies the runtime, experiments, C1 and instructions from the shared folder. `sudo` reads the shared files; the final command makes the new local copy belong to your Ubuntu account. The chain stops if the destination already exists:
+
+```bash
+mkdir -- "$HOME/sdn-project" &&
+sudo cp -R -- \
+    "/media/sf_sdn_transfer/vm-source" \
+    "/media/sf_sdn_transfer/experiments" \
+    "/media/sf_sdn_transfer/dashboard" \
+    "/media/sf_sdn_transfer/ubuntu" \
+    "/media/sf_sdn_transfer/c1" \
+    "/media/sf_sdn_transfer/requirements.txt" \
+    "/media/sf_sdn_transfer/README.md" \
+    "$HOME/sdn-project/" &&
+sudo chown -R -- "$(id -u):$(id -g)" "$HOME/sdn-project"
+```
+
+Change `/media/sf_sdn_transfer` if your share or USB is mounted elsewhere. Run the project from your local home directory, so it keeps working when the shared folder is unavailable.
+
+### 3. Create the controller environment and launcher
+
+For a **new environment only**, run these without `sudo`. Existing working VM users should not recreate or upgrade their environment:
+
+```bash
+mkdir -p -- "$HOME/sdn-lab"
+python3 -m venv "$HOME/sdn-lab/.venv"
+"$HOME/sdn-lab/.venv/bin/python" -m pip install -r "$HOME/sdn-project/requirements.txt"
+```
+
+`requirements.txt` restricts OS-Ken to the 3.x application-runner series because this project launches `osken-manager`. It is not an exact lock of Fouad's installed environment or proof of a fresh installation. See the official [OS-Ken 3.1.1 entry points](https://github.com/openstack/os-ken/blob/3.1.1/setup.cfg) and [4.0.0 configuration](https://github.com/openstack/os-ken/blob/4.0.0/setup.cfg). System package installation follows the [Mininet installation guide](https://mininet.org/download/).
+
+For **either download method**, place the supplied launcher in the project root. This step is required: running `ubuntu/run.sh` directly would look for the project files in the wrong directory.
+
+```bash
+cp -- "$HOME/sdn-project/ubuntu/run.sh" "$HOME/sdn-project/run.sh"
+```
+
+Expected layout:
+
+```text
+~/sdn-project/run.sh
+~/sdn-project/vm-source/rest_api_controller.py
+~/sdn-project/vm-source/custom_topology.py
+~/sdn-project/experiments/
+~/sdn-project/dashboard/
+~/sdn-project/ubuntu/README.md
+~/sdn-lab/.venv/bin/osken-manager
+```
+
+The separate environment path is intentional: both the launcher and batch experiments use `~/sdn-lab/.venv`. Now follow [the three-terminal run instructions](#run-on-the-configured-ubuntu-vm) below. The first network check is `pingall` on the grid. Use the same topology for the controller and Mininet.
+
+## Update Fouad's existing Ubuntu copy
+
+Windows/shared-folder changes do **not** update `~/sdn-project` automatically. Stop Mininet (`exit`), the controller and the dashboard (Ctrl+C), then run the updater from the current **complete shared repository** in a normal Ubuntu terminal:
+
+```bash
+sudo python3 "/media/sf_sdn_transfer/ubuntu/update_local.py"
+```
+
+It copies `ubuntu/README.md` to `~/sdn-project/README.md` and `ubuntu/run.sh` to `~/sdn-project/run.sh`, along with current source, tests, reports and media. It saves a differing active controller, preserves differing local raw-result files and retains the existing environment. Do not run it from the destination itself. The minimal runtime-only transfer above does not include the optional report folders.
+
+Check the README content once after updating:
+
+```bash
+cmp -s "$HOME/sdn-project/README.md" "/media/sf_sdn_transfer/ubuntu/README.md" && echo "README is up to date"
+```
+
+The updater does not restart processes or install packages. Restart the three launchers to use changed Python code. Actual Ubuntu synchronization remains unconfirmed until the updater and this check have been run there.
+
 ## Run on the configured Ubuntu VM
 
 The independent project is `~/sdn-project`; the existing controller environment is `~/sdn-lab/.venv`. Open three terminals, starting the controller first:
@@ -55,32 +171,6 @@ py __import__('runpy').run_path('experiments/link_failure_demo.py', init_globals
 It sends roughly 60 seconds of ping, takes S5-S6 down for at least 15 seconds, and restores it. It stops before cutting if the initial route does not match its scenario. The Arabic run guide includes the independent H2-H6 alternative.
 
 To stop, enter `exit` in Mininet and use Ctrl+C in the controller and dashboard terminals. For the fat-tree, restart the first two launchers with `fattree` instead of `grid`, wait for 20 switches and 32 links, and run `pingall 2`.
-
-## Set up another Ubuntu installation
-
-Clone the repository into a new project directory:
-
-```bash
-git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-project"
-```
-
-The runtime is intended for Ubuntu with Python 3.10, Mininet and Open vSwitch. The existing VM has been tested; a fresh installation on another machine has not been verified. Install system packages and create the controller environment when network access is available:
-
-```bash
-sudo apt install mininet openvswitch-switch iperf iperf3 python3-venv wireshark
-python3 -m venv "$HOME/sdn-lab/.venv"
-"$HOME/sdn-lab/.venv/bin/python" -m pip install -r "$HOME/sdn-project/requirements.txt"
-```
-
-Place this repository at `~/sdn-project`. `requirements.txt` lists controller dependencies; it is not a fully pinned environment lock. No virtual environment, credentials or machine-specific binaries are included.
-
-For Fouad's existing independent copy, the shared release can be merged locally without removing VM results:
-
-```bash
-sudo python3 /media/sf_sdn_transfer/ubuntu/update_local.py
-```
-
-The updater saves a differing active controller, preserves existing raw-result conflicts, retains the existing virtual environment, and copies the current guide, source, reports and media. Restart network processes before using changed controller code.
 
 ## Parameters and observation
 
