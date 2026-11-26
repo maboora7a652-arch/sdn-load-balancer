@@ -117,7 +117,7 @@ The plot is generated from raw experiment data. In the separate 90 Mbps before/a
 
 [Open the motion graphics explainer](media/sdn-load-balancer-explainer.mp4) · [Current numbers and source references for the revised video](media/video-data.json)
 
-The supplied clip is a **96-second silent historical explainer**. Its displayed measurements and validation counts predate the latest runs. A revised video is being prepared from the linked current numbers. It is an explanation asset, separate from the course's 5-8 minute live demonstration recording.
+The revised clip is a **96-second silent motion graphics explainer**. Its main calibration and benchmark cards use the current recorded results, including the separate November 26 calibration. The grid telemetry trace and 79/80 H1-H6 failure illustration are explicitly historical examples. Diagrams animate the control logic; they are not a recording of a live lab run. A few presentation corrections remain before final publication. This asset is separate from the course's 5-8 minute live demonstration recording.
 
 ## Experiments and tests
 
@@ -157,6 +157,8 @@ The 16 logic tests cover actual method bodies and an exported OS-Ken source fixt
 - The six-member roster is confirmed below. Individual contribution attribution and original weekly submissions remain to be completed. Report and presentation submission status should be checked against the course requirements.
 
 ## Team
+
+Course coordinator: **Prof. Ahmed M. Abdelhaleem**, as stated in the original course assignment.
 
 | الاسم | Student ID |
 | --- | --- |

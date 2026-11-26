@@ -13,8 +13,9 @@ import tempfile
 from pathlib import Path
 
 from docx import Document
-from docx.shared import Pt
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Pt, Inches, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
+from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 import pypdfium2 as pdfium
@@ -35,31 +36,119 @@ TEAM = [
 ]
 
 
-def update_team(doc):
-    """Use the supplied Arabic names verbatim, with native Word RTL semantics."""
-    paragraph = doc.paragraphs[5]
-    paragraph.clear()
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    paragraph.paragraph_format.space_after = Pt(12)
-    properties = paragraph._p.get_or_add_pPr()
-    bidi = properties.find(qn('w:bidi'))
-    if bidi is None:
-        bidi = OxmlElement('w:bidi')
-        properties.append(bidi)
-    bidi.set(qn('w:val'), '1')
-    for i, (name, student_id) in enumerate(TEAM):
-        if i:
-            paragraph.add_run().add_break()
-        for text, rtl in ((name, True), (f' ({student_id})', False)):
-            run = paragraph.add_run(text)
-            run.font.name = 'Arial'
-            run.font.size = Pt(11)
-            run.font.rtl = rtl
-            fonts = run._r.get_or_add_rPr().rFonts
-            fonts.set(qn('w:cs'), 'Arial')
-            language = OxmlElement('w:lang')
-            language.set(qn('w:val'), 'ar-EG' if rtl else 'en-US')
-            run._r.rPr.append(language)
+def update_cover(doc):
+    """Build an editable cover; abstract and contents each start on their own page."""
+    abstract_index = next(i for i, p in enumerate(doc.paragraphs) if p.text == 'Abstract')
+    abstract = doc.paragraphs[abstract_index + 1].text
+    contents = next(p for p in doc.paragraphs if p.text == 'Contents')._p
+    body = doc._element.body
+    while body[0] != contents:
+        body.remove(body[0])
+
+    navy, muted = '173B61', '566575'
+
+    def paragraph(text='', size=12, bold=False, color='000000', before=0, after=0):
+        p = doc.add_paragraph()
+        contents.addprevious(p._p)
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(before)
+        p.paragraph_format.space_after = Pt(after)
+        p.paragraph_format.line_spacing = 1.1
+        run = p.add_run(text)
+        run.font.name = 'Arial'
+        run.font.size = Pt(size)
+        run.font.bold = bold
+        run.font.color.rgb = RGBColor.from_string(color)
+        return p
+
+    paragraph('Helwan National University', 21, True, navy, after=4)
+    paragraph('Faculty of Engineering', 12, after=3)
+    paragraph('Intelligent Systems Engineering', 11, color=muted, after=10)
+    logo = paragraph(after=9)
+    logo.add_run().add_picture(str(ROOT / 'media/hnu-logo.png'), width=Inches(1.25))
+    paragraph('Computer Networks', 15, True, navy, after=3)
+    paragraph('ECE2606  /  Course Project  /  Track 1', 10, color=muted, after=12)
+    title = paragraph('Intelligent Load Balancer\nwith Fault Tolerance', 23, True, navy, before=8, after=12)
+    borders = OxmlElement('w:pBdr')
+    for side in ('top', 'bottom'):
+        border = OxmlElement('w:' + side)
+        for key, value in (('val', 'single'), ('sz', '6'), ('space', '10'), ('color', 'B7C9DB')):
+            border.set(qn('w:' + key), value)
+        borders.append(border)
+    title._p.get_or_add_pPr().append(borders)
+    paragraph('Submitted by', 10, color=muted, before=4, after=6)
+
+    table = doc.add_table(rows=1, cols=2)
+    contents.addprevious(table._tbl)
+    table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    table.autofit = False
+    table.columns[0].width = Inches(1.7)
+    table.columns[1].width = Inches(3.6)
+    table.rows[0].cells[0].text = 'Student ID'
+    table.rows[0].cells[1].text = 'الاسم'
+    for name, student_id in TEAM:
+        row = table.add_row()
+        row.cells[0].text = student_id
+        row.cells[1].text = name
+    for i, row in enumerate(table.rows):
+        for j, cell in enumerate(row.cells):
+            cell.width = Inches(1.7 if j == 0 else 3.6)
+            cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+            pr = cell._tc.get_or_add_tcPr()
+            margins = OxmlElement('w:tcMar')
+            for side, value in (('top', '65'), ('bottom', '65'), ('left', '120'), ('right', '120')):
+                edge = OxmlElement('w:' + side)
+                edge.set(qn('w:w'), value)
+                edge.set(qn('w:type'), 'dxa')
+                margins.append(edge)
+            pr.append(margins)
+            edges = OxmlElement('w:tcBorders')
+            for side in ('top', 'left', 'bottom', 'right'):
+                edge = OxmlElement('w:' + side)
+                for key, value in (('val', 'single'), ('sz', '4'), ('color', 'D9D9D9')):
+                    edge.set(qn('w:' + key), value)
+                edges.append(edge)
+            pr.append(edges)
+            if i == 0:
+                shade = OxmlElement('w:shd')
+                shade.set(qn('w:fill'), 'EDF2F7')
+                pr.append(shade)
+            p = cell.paragraphs[0]
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER if j == 0 else WD_ALIGN_PARAGRAPH.RIGHT
+            p.paragraph_format.space_after = Pt(0)
+            p.paragraph_format.line_spacing = 1.1
+            if j == 1:
+                bidi = OxmlElement('w:bidi')
+                bidi.set(qn('w:val'), '1')
+                p._p.get_or_add_pPr().append(bidi)
+            for run in p.runs:
+                run.font.name = 'Arial'
+                run.font.size = Pt(12 if j == 1 and i > 0 else 11)
+                run.font.bold = i == 0
+                run.font.color.rgb = RGBColor(0, 0, 0)
+                run.font.rtl = j == 1
+                run._r.get_or_add_rPr().rFonts.set(qn('w:cs'), 'Arial')
+                complex_size = OxmlElement('w:szCs')
+                complex_size.set(qn('w:val'), '24' if j == 1 and i > 0 else '22')
+                run._r.rPr.append(complex_size)
+                language = OxmlElement('w:lang')
+                language.set(qn('w:val'), 'ar-EG' if j == 1 else 'en-US')
+                language.set(qn('w:bidi'), 'ar-EG')
+                run._r.rPr.append(language)
+    paragraph('Submitted to', 10, color=muted, before=12, after=3)
+    paragraph('Prof. Ahmed M. Abdelhaleem', 13, True, navy, after=3)
+    paragraph('Course Coordinator', 9, color=muted, after=11)
+    paragraph('November 2026  /  Fall 2026–2027', 10, color=muted)
+    paragraph().add_run().add_break(WD_BREAK.PAGE)
+    p = paragraph('Abstract', 17, True, before=0, after=12)
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    p = paragraph(abstract, 12)
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    p.runs[0].font.name = 'Times New Roman'
+    paragraph().add_run().add_break(WD_BREAK.PAGE)
+    toc = next(t for t in doc.tables if t.cell(0, 0).text == 'Section')
+    for row, page in zip(toc.rows[1:], (4, 6, 16, 20, 24, 30, 31, 32, 33)):
+        row.cells[1].text = str(page)
 
 
 def metric(values):
@@ -311,14 +400,12 @@ def update_reports(data, plots):
             p.runs[0].text = text
             for run in p.runs[1:]:
                 run.text = ''
-    combined.paragraphs[7].text = (
+    abstract_index = next(i for i, p in enumerate(combined.paragraphs) if p.text == 'Abstract')
+    combined.paragraphs[abstract_index + 1].text = (
         f'This project implements an OpenFlow 1.3 controller that monitors directional links, detects sustained large flows and changes paths under congestion or failure. '
         f'A six-switch grid supports repeated comparisons and a 20-switch, 16-host fat-tree tests larger-scale connectivity. '
         f'Five complete iperf3 trials gave mean monitoring error {accuracy["mean"]:.3f}%. Balanced routing improved receiver throughput in the 115 Mbps competing workload, while ECMP had the lowest mean sampled peak with ten flows. '
         'The results distinguish receiver delivery from switch counters and retain limitations in discovery stability and isolated hold-down validation.')
-    for table, values in zip(combined.tables[4:10], tables):
-        set_table(table, values)
-    update_chart_images(combined, plots)
     for number, end in ((3, 'Chapter 4'), (4, 'Chapter 5'), (5, 'Chapter 6'), (6, 'References')):
         name = next(name for name in paragraphs if name.startswith(f'chapter-{number}-'))
         replace_chapter(combined, Document(REPORT / name), f'Chapter {number}', end)
@@ -340,13 +427,15 @@ def update_reports(data, plots):
             p.text = 'The six-member team and student IDs are listed on the cover as supplied by the team. The local Git count is a dated snapshot of version history. A shared commit identity cannot establish the division of work among students. Per-member contribution allocation remains to be supplied before submission.'
     count = subprocess.run(['git', 'rev-list', '--count', 'HEAD'], cwd=ROOT,
                            capture_output=True, text=True, check=False).stdout.strip()
-    combined.tables[10].cell(2, 1).text = 'Controller, topology, dashboard, experiments and updated report sources. Snapshot on 26 November 2026; not individual attribution.'
-    combined.tables[10].cell(2, 2).text = (count + ' local commits at this snapshot') if count else 'See Git history'
-    combined.tables[11].cell(2, 0).text = '18-19 November'
-    combined.tables[11].cell(2, 1).text = 'Fat-tree, dashboard, original C1 capture and earlier evaluation batches. Raw outputs remain distinct from later repetitions.'
-    combined.tables[11].cell(3, 0).text = '25-26 November'
-    combined.tables[11].cell(3, 1).text = '64k shaping comparisons, current recovery/detection/threshold/window measurements, LLDP source review, 16 logic regressions and a complete new iperf3 calibration.'
-    update_team(combined)
+    contributions = next(t for t in combined.tables if t.cell(0, 0).text == 'Record')
+    progress = next(t for t in combined.tables if t.cell(0, 0).text == 'Date (2026)')
+    contributions.cell(2, 1).text = 'Controller, topology, dashboard, experiments and updated report sources. Snapshot on 26 November 2026; not individual attribution.'
+    contributions.cell(2, 2).text = (count + ' local commits at this snapshot') if count else 'See Git history'
+    progress.cell(2, 0).text = '18-19 November'
+    progress.cell(2, 1).text = 'Fat-tree, dashboard, original C1 capture and earlier evaluation batches. Raw outputs remain distinct from later repetitions.'
+    progress.cell(3, 0).text = '25-26 November'
+    progress.cell(3, 1).text = '64k shaping comparisons, current recovery/detection/threshold/window measurements, LLDP source review, 16 logic regressions and a complete new iperf3 calibration.'
+    update_cover(combined)
     combined.save(REPORT / 'sdn-track-1-report.docx')
 
 

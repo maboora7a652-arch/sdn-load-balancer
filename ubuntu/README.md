@@ -175,10 +175,12 @@ python3 ~/sdn-project/experiments/check_sync.py
 wireshark ~/sdn-project/c1/c1-linear-rerun.pcapng
 ```
 
-استخدم الفلتر tcp.port == 6653 && tcp.len > 0، وافتح حقول HELLO و FEATURES و FLOW_MOD و PACKET_IN و PACKET_OUT. لإغلاق الديمو، exit في Mininet ثم Ctrl+C في الكنترولر والداشبورد. فيديو media التعريفي يستخدم نتائج تاريخية حتى استبداله بالنسخة الجديدة؛ جدول الأرقام الحالي منفصل عنه.
+استخدم الفلتر tcp.port == 6653 && tcp.len > 0، وافتح حقول HELLO و FEATURES و FLOW_MOD و PACKET_IN و PACKET_OUT. لإغلاق الديمو، exit في Mininet ثم Ctrl+C في الكنترولر والداشبورد. فيديو media التعريفي المحدّث يعرض الأرقام الحالية مع فصل بعض الأمثلة التاريخية. مدته96ثانية وصامت، وليس تسجيل ديمو الشبكة. تبقى3رتوش عرض مسجلة فيHANDOFF قبل اعتماده للنشر.
 
 
 ## فريق المشروع
+
+منسق المادة حسب التكليف الأصلي: Prof. Ahmed M. Abdelhaleem.
 
 | الاسم | Student ID |
 | --- | --- |
