@@ -1133,12 +1133,13 @@ APP_B = [
     ),
     h2("B.2 Repository History"),
     p(
-        "The local Git repository records the development history on the `master` branch from 17 to 26 "
-        "November 2026 under a single commit author identity, so it documents what changed and when but "
-        "cannot attribute work to individual members. Individual role assignments and per-member commit "
-        "attribution remain unverified in the supplied repository. Original weekly progress reports for "
-        "Weeks 3 to 14 were not found among the supplied files. Table B.2 groups the implemented work "
-        "packages and names where the corresponding technical evidence sits in the repository."
+        "Contribution allocation: INCOMPLETE; awaiting team confirmation. Individual roles, actual tasks "
+        "and per-member commit attribution remain unverified. Local Git tracking begins with the lab "
+        "source snapshot received on 17 November 2026 and records later integration, experiments and "
+        "documentation. These dates do not establish the original start date or a complete 12-week "
+        "project timeline. The commits use one author identity. Original weekly progress reports for "
+        "Weeks 3 to 14 are not supplied. Table B.2 maps work packages to repository evidence, not to "
+        "individual students."
     ),
     table(
         "Table B.2",
