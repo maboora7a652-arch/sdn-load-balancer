@@ -16,18 +16,13 @@ def main():
     with tempfile.TemporaryDirectory(dir=home) as temp:
         folder = Path(temp) / target.name
         folder.mkdir()
-        for name in ("vm-source", "experiments", "dashboard"):
+        for name in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu"):
             shutil.copytree(source / name, folder / name,
                             ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         for name in ("run.sh", "README.md"):
             shutil.copyfile(source / "ubuntu" / name, folder / name)
-        c1 = folder / "c1"
-        c1.mkdir()
-        controller = home / "sdn-lab/first_controller.py"
-        if not controller.is_file():
-            controller = source / "sdn-python-source-20261117-190113/first_controller.py"
-        shutil.copyfile(controller, c1 / "first_controller.py")
-        shutil.copyfile(source / "c1-linear-rerun.pcapng", c1 / "c1-linear-rerun.pcapng")
+        for name in ("requirements.txt", "AGENTS.md", "HANDOFF.md", "PLAN.md", "ISSUES_AND_RISKS.md", "WORK_LOG.md"):
+            shutil.copyfile(source / name, folder / name)
         folder.rename(target)
     print(f"Ready: {target}")
 

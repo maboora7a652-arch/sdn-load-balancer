@@ -11,13 +11,13 @@ from reportlab.pdfgen.canvas import Canvas
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "results"
 OUTPUT = ROOT.parent / "output/pdf/sdn-experiment-results.pdf"
-ACCURACY = "accuracy-20261118T162628Z.json"
-GRID = "compare-grid-20261118T163914Z"
-TEN = "ten-flows-20261118T170441Z"
-RECOVERY = "recovery-20261118T173006Z"
-DETECTION = "shared-detection-20261118T180711Z"
-THRESHOLD = "threshold-20261118T182438Z"
-PHASES = "route-phases-20261118T185932Z"
+ACCURACY = "accuracy-20261126T124854Z.json"
+GRID = "compare-grid-20261125T194357Z"
+TEN = "ten-flows-20261125T200721Z"
+RECOVERY = "recovery-20261125T202848Z"
+DETECTION = "shared-detection-20261125T203550Z"
+THRESHOLD = "threshold-20261125T205244Z"
+PHASES = "route-phases-20261125T210721Z"
 W, H = landscape(A4)
 
 
@@ -106,13 +106,13 @@ def main():
     doc = Results()
     a = read(ACCURACY)["trials"]
     doc.page("Bandwidth monitoring accuracy", "Fat-tree · H1 to H16 · 5 Mbps offered UDP · first inter-switch TX port", ACCURACY)
-    doc.chart("Absolute relative error per run", [("iperf2 comparison",[r["error_percent"] for r in a])], 10, "Error (%)")
+    doc.chart("Absolute relative error per run", [("iperf3 comparison",[r["error_percent"] for r in a])], 10, "Error (%)")
     doc.table(["Measured quantity","Runs","Mean ± sample SD"], [
         [label,len(a),stats([r[key] for r in a],3)] for label,key in
         [("Sender payload rate (Mbps)","sender_mbps"),("Controller port TX (Mbps)","controller_tx_mbps"),
          ("Absolute relative error (%)","error_percent")]], [330,100,335])
     doc.end("Sender payload and port TX were sampled during steady traffic. Port TX includes framing and background traffic.",
-            "This preliminary comparison used iperf2. The coursework specifies a separate iperf3 calibration.")
+            "Five complete runs after the bounded LLDP-wait change; kept separate from earlier and resumed calibrations.")
 
     grid = records(GRID)
     modes = ["shortest","balanced"]
@@ -124,10 +124,10 @@ def main():
             label=host+" / "+mode
             groups.append((label,[x["mbps"] for x in v]))
             table.append([label,len(v),*[stats([x[k] for x in v]) for k in ("mbps","loss_percent","jitter_ms")]])
-    doc.chart("Received throughput",groups,60,"Receiver throughput (Mbps)")
+    doc.chart("Received throughput",groups,100,"Receiver throughput (Mbps)")
     doc.table(["Receiver / policy","Runs","Mbps","Loss (%)","Jitter (ms)"],table,[180,75,170,170,170])
-    doc.end("Table entries give mean ± sample SD across completed runs. H1 to H6 changed path in one of five balanced runs.",
-            "One additional balanced attempt ended with an incomplete forwarding path; its raw file is retained separately.")
+    doc.end("Table entries give mean ± sample SD. Every balanced run ended on P3 at priority 21; shortest stayed on P1.",
+            "These repeated comparisons used 64k HTB burst/cburst and precede the November 26 discovery-wait correction.")
 
     ten=records(TEN)
     groups=[]; table=[]
@@ -146,12 +146,12 @@ def main():
     rec=records(RECOVERY)
     v=[r["first_post_cut_reply_ms"] for r in rec]; lost=[r["lost"] for r in rec]
     doc.page("Connectivity after a link failure","Grid · H2 to H6 · S5-S6 temporarily down · ICMP probes every 50 ms",RECOVERY)
-    doc.chart("Time from cut request to first qualifying reply",[("Recovery",v)],100,"Observed time (ms)")
+    doc.chart("Time from cut request to first qualifying reply",[("Recovery",v)],120,"Observed time (ms)")
     doc.table(["Measurement","Runs","Mean ± sample SD","Range"],[
         ["First qualifying reply (ms)",len(v),stats(v),f"{min(v):.2f} to {max(v):.2f}"],
         ["Lost probes per run",len(lost),stats(lost),f"{min(lost)} to {max(lost)}"]],[290,85,220,170])
     doc.end("Only replies from probes estimated to have been sent after completion of the link-down command qualify.",
-            "All five trials used S4-S1-S2-S3-S6 during the cut. Six of 1,300 probes were lost across the full trials.")
+            "All five trials used S4-S1-S2-S3-S6 during the cut. Seven of 1,300 probes were lost across the full trials.")
 
     det=records(DETECTION); thresholds=records(THRESHOLD)
     groups=[]; table=[]
@@ -160,18 +160,18 @@ def main():
         times=[x["first_detection_seconds"] for x in r if x["status"]=="detected"]
         groups.append((label,times));table.append([label,f"{len(times)} / {len(r)}",stats(times)])
     doc.page("Congestion detection on S2 to S3","Four shared-link flows · 90 Mbps offered · two consecutive EWMA samples above threshold",DETECTION+"; "+THRESHOLD)
-    doc.chart("Elapsed time from traffic launch to first declaration",groups,50,"Detection time (s), observed detections only")
+    doc.chart("Elapsed time from traffic launch to first declaration",groups,25,"Detection time (s), observed detections only")
     doc.table(["Poll interval / threshold","Detected within 60 s","Time (s), mean ± sample SD"],table,[245,210,310])
     doc.end("The 70% reference for the threshold comparison comes from the earlier matched-workload polling batch.",
-            "At 80%, four trials had no declaration within 60 s. The single observed time cannot support a sample SD.",
-            "On the original two-flow workload neither interval triggered at 70% (five runs each; detection-20261118T173741Z).")
+            "All five runs declared congestion for every setting shown, including the 80% threshold.",
+            "Faster declarations concern this offered workload; they are not a bound on recovery after a physical cut.")
 
     phase=[]
     for row in records(PHASES):
         data=read(PHASES+"/"+row["file"])
         phase.extend(x for x in data["phase_comparisons"] if set(x["phases"])=={"before","after"})
-    for key,unit,title,axis in [("mbps","Mbps","Receiver throughput",35),("loss_percent","%","Receiver packet loss",30),
-                              ("mean_ping_rtt_ms","ms","Ping round-trip time",200),
+    for key,unit,title,axis in [("mbps","Mbps","Receiver throughput",35),("loss_percent","%","Receiver packet loss",1),
+                              ("mean_ping_rtt_ms","ms","Ping round-trip time",50),
                               ("mean_interval_jitter_ms","ms","UDP receiver jitter",1)]:
         groups=[];table=[]
         for a,b in [("h1","h6"),("h3","h5"),("h3","h6"),("h4","h5")]:

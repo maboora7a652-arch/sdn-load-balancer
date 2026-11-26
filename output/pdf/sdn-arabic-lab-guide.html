@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ar-EG" dir="rtl"><head><meta charset="utf-8"><title>دليل فهم وتشغيل مشروع SDN</title>
+<style>
+@page{size:A4;margin:17mm 18mm}*{box-sizing:border-box}body{margin:0;font:12pt/1.5 Arial,sans-serif;color:#152c2a}
+.page{break-after:page}.page:last-child{break-after:auto}.eyebrow,footer{font-size:9pt;color:#526b65}h1{font-size:23pt;line-height:1.25;margin:9pt 0 14pt;color:#102e29}h2{font-size:15pt;line-height:1.35;margin:16pt 0 6pt}p{margin:6pt 0 9pt}ul,ol{padding-right:21pt;margin:6pt 0 12pt}li{margin:4pt 0}pre{direction:ltr;text-align:left;unicode-bidi:plaintext;white-space:pre-wrap;overflow-wrap:anywhere;font:9.5pt/1.4 Consolas,monospace;background:#f0f5f2;padding:9pt;border-radius:4pt;break-inside:avoid}code{font-family:Consolas,monospace;font-size:10pt}table{border-collapse:collapse;width:100%;font-size:10.5pt;margin:9pt 0 12pt}th,td{padding:6pt 7pt;border-bottom:1px solid #d1ded6;vertical-align:top;text-align:right}th{background:#edf3ef}tr{break-inside:avoid}footer{margin-top:16pt;padding-top:6pt;border-top:1px solid #d1ded6}.ltr{direction:ltr;text-align:left;unicode-bidi:isolate}.small{font-size:10.5pt}.diagram{font-size:11pt;line-height:1.55}strong{color:#103f33}
+</style></head><body>
+<section class="page"><div class="eyebrow">شبكات الحاسب · دليل التشغيل والمناقشة · 26 نوفمبر 2026</div>
+<h1>افهم وشغّل مشروع SDN Load Balancer</h1>
+<p>الدليل ده علشان تعرف تشرح القرار، وتشغّل المشروع، وتقرأ نتيجة الاختبار. الأوامر تخص نسخة Ubuntu المستقلة. التقرير الإنجليزي والنتائج الخام هما مرجع الأرقام، و README هو مرجع نسخ الأوامر الطويلة.</p>
+<h2>فكرة المشروع في دقيقة</h2><p>فيه أكثر من طريق بين جهازين. اختيار أقل عدد قفزات لوحده مش بيقول الطريق مزدحم ولا فاضي. الكنترولر بيكتشف الشبكة، ويقيس الحمل، ولو تدفق كبير بيمر على وصلة مزدحمة ولقي طريقًا أحسن بالشروط المطلوبة، بينقل التدفق. السويتشات بتنّفذ القواعد وتعدّ الباكتات.</p>
+<p>في الديمو، H1 يرسل إلى H6 بمعدل مطلوب 85 Mbps، و H3 يرسل إلى H5 بمعدل 30 Mbps. الاتنين يشاركوا S2–S3 بسعة 100 Mbps. الكنترولر يقدر ينقل H1 إلى الطريق السفلي، وبعدها نجرب التعافي بقطع S5–S6 مؤقتًا.</p>
+<h2>احفظ الأربع أفكار دول</h2><ul><li><strong>الرؤية:</strong> LLDP و Host discovery يبنوا خريطة الشبكة.</li><li><strong>القياس:</strong> فروق العدادات والزمن تنتج معدلًا، وبعده نسبة استخدام.</li><li><strong>القرار:</strong> شروط مستمرة، وثلاثة مسارات مرشحة، وتحسن كافٍ قبل النقل.</li><li><strong>التنفيذ:</strong> قواعد جديدة بأولوية أعلى من نهاية الطريق لبدايته، ثم حذف القديم بعد التأكيد.</li></ul>
+<p>ده توزيع حمل بين <strong>مسارات الشبكة</strong>. تعريف التدفق في الكود زوج MAC موجه لـ IPv4؛ اتصالان TCP بين نفس الجهازين بيتجمعوا في نفس القياس.</p>
+<footer><bdi dir="ltr">1 / 17</bdi> · اقرأ الفكرة ثم نفّذ؛ نجاح تجربة واحدة لا يضمن كل ظروف التشغيل.</footer></section>
+
+<section class="page"><div class="eyebrow">المصطلحات الأساسية</div><h1>مين يقرر ومين ينفّذ؟</h1>
+<table><tr><th>المصطلح</th><th>معناه داخل المشروع</th></tr><tr><td><bdi dir="ltr">SDN</bdi></td><td>فصل منطق التحكم عن تنفيذ تمرير الباكتات، مع واجهة برمجية بينهم.</td></tr><tr><td><bdi dir="ltr">Control plane</bdi></td><td>الكنترولر OS-Ken: خريطة الشبكة، القياسات، اختيار الطريق وإرسال القواعد.</td></tr><tr><td><bdi dir="ltr">Data plane</bdi></td><td>سويتشات Open vSwitch بتنّفذ القواعد المثبتة وتحدّث العدادات.</td></tr><tr><td><bdi dir="ltr">Mininet</bdi></td><td>محاكي يبني أجهزة ومساحات شبكة منفصلة ووصلات افتراضية داخل Linux.</td></tr><tr><td><bdi dir="ltr">OpenFlow 1.3</bdi></td><td>بروتوكول التحكم بين الكنترولر والسويتشات على TCP 6653.</td></tr><tr><td><bdi dir="ltr">Northbound API</bdi></td><td>واجهة التطبيقات والمراقبة، عندنا REST ثم Dashboard.</td></tr><tr><td><bdi dir="ltr">Southbound API</bdi></td><td>واجهة الكنترولر مع السويتش، عندنا OpenFlow.</td></tr><tr><td><bdi dir="ltr">NetworkX</bdi></td><td>مكتبة الجراف وخوارزميات اختيار المسارات في Python.</td></tr><tr><td><bdi dir="ltr">TCLink / HTB / netem</bdi></td><td>تشكيل السعة وتأخير الوصلة داخل Linux.</td></tr><tr><td><bdi dir="ltr">LLDP</bdi></td><td>رسائل اكتشاف الجيران التي تربط رقم بورت السويتش بالجار الصحيح.</td></tr><tr><td><bdi dir="ltr">Proxy ARP</bdi></td><td>الكنترولر يحل عنوان الهدف ويرد على ARP بعد تجهيز الطريق.</td></tr></table>
+<h2>ليه OS-Ken؟</h2><p>هو fork من Ryu، والتكليف يسمح باستخدامه. اخترناه لأنه شغّال في بيئة Ubuntu الحالية ويدعم OpenFlow 1.3 وأحداث التوبولوجي. تغيير إطار العمل أو تحديث كل المكتبات مش جزء من الديمو.</p>
+<p>الكنترولر والداشبورد محليان. البورت 8080 للـ API، و 8081 للواجهة. الجهاز H1 مختلف عن ترمينال Ubuntu الرئيسي؛ أمر الشبكة لازم يتنفذ في السياق الصحيح.</p><footer><bdi dir="ltr">2 / 17</bdi> · اشرح العلاقة بين الطبقات بدل حفظ الأسماء منفصلة.</footer></section>
+
+<section class="page"><div class="eyebrow">التوبولوجي والمنافذ</div><h1>ارسم الشبكة قبل ما تغيّرها</h1>
+<pre class="diagram"> H1          H3          H5
+  |           |           |
+ S1 -------- S2 -------- S3
+  |           |           |
+ S4 -------- S5 -------- S6
+  |           |           |
+ H2          H4          H6</pre>
+<p>ستة سويتشات، ستة أجهزة وسبع وصلات بين السويتشات. كل وصلة بين سويتشين 100 Mbps وتأخير 2 ms، مع HTB burst/cburst مضبوطين على 64k. مفيش وصلة مباشرة بين S4 و S6.</p>
+<table><tr><th>الوصلة</th><th>بورت الطرف الأول</th><th>بورت الطرف الثاني</th></tr><tr><td><bdi dir="ltr">S1–S2</bdi></td><td><bdi dir="ltr">S1:1</bdi></td><td><bdi dir="ltr">S2:1</bdi></td></tr><tr><td><bdi dir="ltr">S1–S4</bdi></td><td><bdi dir="ltr">S1:2</bdi></td><td><bdi dir="ltr">S4:2</bdi></td></tr><tr><td><bdi dir="ltr">S2–S3</bdi></td><td><bdi dir="ltr">S2:2</bdi></td><td><bdi dir="ltr">S3:1</bdi></td></tr><tr><td><bdi dir="ltr">S2–S5</bdi></td><td><bdi dir="ltr">S2:3</bdi></td><td><bdi dir="ltr">S5:2</bdi></td></tr><tr><td><bdi dir="ltr">S3–S6</bdi></td><td><bdi dir="ltr">S3:2</bdi></td><td><bdi dir="ltr">S6:1</bdi></td></tr><tr><td><bdi dir="ltr">S5–S6</bdi></td><td><bdi dir="ltr">S5:1</bdi></td><td><bdi dir="ltr">S6:2</bdi></td></tr><tr><td><bdi dir="ltr">S4–S5</bdi></td><td><bdi dir="ltr">S4:1</bdi></td><td><bdi dir="ltr">S5:3</bdi></td></tr></table>
+<p class="ltr">P1: S1 → S2 → S3 → S6<br>P2: S1 → S2 → S5 → S6<br>P3: S1 → S4 → S5 → S6</p>
+<p>Fat-tree عند k=4 فيها 4 pods و 20 سويتش و 16 جهازًا و 32 وصلة بين السويتشات. عندنا 8 edge و 8 aggregation و 4 core. لا تخلط ترقيم ومنافذ Grid مع Fat-tree.</p><footer><bdi dir="ltr">3 / 17</bdi> · ترتيب addLink في الكود يحدد المنافذ، فلا تغيّره بلا مراجعة.</footer></section>
+
+<section class="page"><div class="eyebrow">التشغيل على Ubuntu</div><h1>ابدأ من النسخة المستقلة</h1>
+<p>المشروع في المسار الأول، وبيئة OS-Ken الموجودة في المسار الثاني:</p><pre>~/sdn-project
+~/sdn-lab/.venv</pre>
+<p>افتح 3 ترمينالات. شغّل الكنترولر أولًا، ثم الشبكة، ثم الداشبورد. كل أمر في ترمينال منفصلة:</p>
+<pre>bash ~/sdn-project/run.sh controller grid</pre><pre>bash ~/sdn-project/run.sh network grid</pre><pre>bash ~/sdn-project/run.sh dashboard</pre>
+<p>انتظر 6 switches و 7 links. افتح Firefox داخل Ubuntu على العنوان التالي واختار H1 إلى H6:</p><pre>http://127.0.0.1:8081</pre>
+<p>داخل Mininet اكتب:</p><pre>pingall</pre><p>النتيجة المنتظرة في تشغيل سليم هي 30/30. أول باكت ممكن يتأخر لحد ARP واكتشاف الأجهزة وتثبيت القواعد؛ افصل بين اختبار البدء واختبار الشبكة الدافئة في وصفك.</p>
+<p>لتحديث نسخة Ubuntu من المجلد المشترك بعد إيقاف الديمو، استخدم المُحدّث المجهّز:</p><pre>sudo python3 /media/sf_sdn_transfer/ubuntu/update_local.py</pre>
+<p class="small">المُحدّث يحافظ على النتائج المحلية وبيئة التشغيل، ويحفظ الكنترولر السابق لو اختلف. تغيير Windows لا يحدّث Ubuntu تلقائيًا. لا تكرر مُثبت النسخة الأولى فوق المشروع الموجود.</p><footer><bdi dir="ltr">4 / 17</bdi> · أمر sh داخل Mininet ينفّذ على الـ VM، و h1 ينفّذ داخل الجهاز الافتراضي.</footer></section>
+
+<section class="page"><div class="eyebrow">قراءة التوقف والتحذيرات</div><h1>احفظ أول خطأ قبل الإعادة</h1>
+<p>لو ping فشل أو المعايرة توقفت، احتفظ بالتشغيل الحالي والنتيجة والسجل قبل إعادة كل شيء. حالة الكنترولر وحدها لا تضمن أن قواعد المسار مكتملة.</p>
+<pre>sh curl -sS --max-time 3 http://127.0.0.1:8080/sdn/status
+h1 ping -c 3 -W 2 h6
+sh ovs-ofctl -O OpenFlow13 dump-flows s1</pre>
+<p>على Fat-tree استخدم H16 بدل H6. الحالة السليمة المتوقعة للشبكة الأكبر: 20 سويتش و 32 وصلة و 16 جهازًا متعلمًا. لو العدد ناقص، المشكلة في الاكتشاف أو التشغيل، مش في تنسيق الداشبورد وحده.</p>
+<h2>إيه اللي حصل مع LLDP؟</h2><p>المصدر المثبّت ممكن يدخل انتظارًا مفتوحًا لما كل البورتات تبقى محتاجة إرسال في نفس الدورة. الإصلاح المحلي يضع حدًا للانتظار عند وجود بورتات. مهلة اكتشاف فقد الوصلة تظل 10 ثوانٍ. على Fat-tree انتظار الإرسال بين البورتات أقصاه 0.01 ثانية.</p>
+<pre>LLDP wait is bounded while ports are present</pre>
+<p>ظهور السطر يثبت تشغيل نسخة التعديل. اكتمال خمس جولات معايرة يثبت نوافذ القياس دي؛ السجل الكامل ما زال يحتوي على دورات حذف وإعادة اكتشاف، فلا تقل إن الاستقرار مضمون أو إن كل الأسباب اتحلت.</p>
+<h2>سجل مقروء ومحفوظ</h2><p>أمر الكنترولر في README يستخدم tee قبل grep: يحفظ السجل كاملًا ويخفي C4 BANDWIDTH من الشاشة فقط. تحذير Eventlet مش قياسًا لفشل الاتصال؛ دوّر على الاستثناء الفعلي وحالة العملية. تحذير HTB quantum يحتاج تمييزه عن فشل تطبيق السعة؛ افحص tc بدل التخمين.</p><footer><bdi dir="ltr">5 / 17</bdi> · py_compile يفحص الصياغة فقط، ولا يثبت صحة imports أو الشبكة الحية.</footer></section>
+
+<section class="page"><div class="eyebrow">OpenFlow و Wireshark</div><h1>اتبع الباكت من أول اتصال</h1>
+<table><tr><th>الرسالة</th><th>دورها</th></tr><tr><td><bdi dir="ltr">HELLO</bdi></td><td>بدء التفاوض على نسخة OpenFlow بين الطرفين.</td></tr><tr><td><bdi dir="ltr">FEATURES_REQUEST / REPLY</bdi></td><td>الكنترولر يسأل عن السويتش، والسويتش يرد بالـ datapath ID والقدرات.</td></tr><tr><td><bdi dir="ltr">FLOW_MOD</bdi></td><td>إضافة أو تعديل أو حذف قاعدة. أولوية صفر و match فارغ يمثلان table-miss في الالتقاط.</td></tr><tr><td><bdi dir="ltr">PACKET_IN</bdi></td><td>السويتش يرسل باكت أو إشعارًا للكنترولر حسب القاعدة.</td></tr><tr><td><bdi dir="ltr">PACKET_OUT</bdi></td><td>الكنترولر يطلب إخراج باكت من بورت معين.</td></tr><tr><td><bdi dir="ltr">MULTIPART_REQUEST / REPLY</bdi></td><td>طلب ورد العدادات أو وصف البورتات، بحسب النوع الفرعي.</td></tr><tr><td><bdi dir="ltr">PORT_STATUS</bdi></td><td>تغيير في حالة بورت، وقد يؤدي لتحديث التوبولوجي.</td></tr><tr><td><bdi dir="ltr">BARRIER_REQUEST / REPLY</bdi></td><td>تأكيد معالجة الرسائل السابقة على اتصال السويتش، مش إثبات تسليم الباكت للمستقبل.</td></tr></table>
+<p>ملف C1 الأصلي موجود في مجلد c1 داخل نسخة Ubuntu. افتحه من ترمينال Ubuntu عادي بعد انتهاء الديمو:</p><pre>wireshark ~/sdn-project/c1/c1-linear-rerun.pcapng</pre>
+<p>استخدم الفلتر المعروف، ثم افتح طبقة OpenFlow وتابع match و priority و instructions و output port:</p><pre>tcp.port == 6653 &amp;&amp; tcp.len &gt; 0</pre>
+<p>في C1، أول مرور بيانات يُعالج بأسلوب learning switch. في المشروع الأساسي، حل ARP وتجهيز الطريق يتيح تثبيت قواعد المسار قبل الرد. قواعد IPv4 الخاصة بالموازنة تبدأ من أولوية 20؛ لا تخلطها مع قاعدة C1 أو table-miss.</p><footer><bdi dir="ltr">6 / 17</bdi> · صور Wireshark في التسليم لازم تكون من الالتقاط الحقيقي.</footer></section>
+
+<section class="page"><div class="eyebrow">حساب المعدل واكتشاف التدفق الكبير</div><h1>من عداد تراكمي إلى Mbps</h1>
+<p>الكنترولر يطلب عدادات دورية. قيمة tx_bytes نفسها مش سرعة؛ لازم فرق عدادين وفرق الزمن بينهما:</p><pre>tx_mbps = (new_tx_bytes - old_tx_bytes) * 8 / (elapsed_seconds * 1000000)
+utilization = tx_mbps / capacity_mbps</pre>
+<p>مثال: زيادة 25 مليون بايت خلال 5 ثوانٍ تعني 40 Mbps، وعلى وصلة 100 Mbps تعني 40%. أول قراءة baseline فقط. لو العداد اتصفّر أو الزمن غير صالح، ما نحسبش معدلًا سالبًا.</p>
+<h2>ليه القياس عند ingress؟</h2><p>نفس الباكت تعدّي على عدة سويتشات. جمع عداداتها كلها يضاعف حساب التدفق. الكود يختار قاعدة الزوج عند بورت دخول جهاز المصدر فقط، ويحسب المعدل من فرق byte_count ومدة القاعدة.</p>
+<p>عندنا التدفق الكبير Elephant هو زوج موجه يتخطى 10 Mbps لفترتين متتاليتين على روابط 100 Mbps. اتصال جديد أو تبديل قاعدة يحتاج baseline، فممكن تشوف Sampling أو elephant=false مؤقتًا بعد النقل.</p>
+<h2>فرّق بين المقاييس</h2><ul><li>sender payload معدل بيانات التطبيق المرسلة.</li><li>port TX يشمل إطارات وخلفية وتحكم على البورت.</li><li>receiver rate يصف اللي وصل فعلًا للمستقبل.</li><li>utilization المقاسة غير تكلفة offered load المتوقعة بعد النقل.</li></ul>
+<p>عشان كده قراءة الكنترولر قرب 5.15 Mbps مع payload قرب 5 Mbps مش معناها تلقائيًا خطأ كبير؛ المعايرة تحسب الفرق النسبي وتوثّقه.</p><footer><bdi dir="ltr">7 / 17</bdi> · تعريف التدفق MAC-pair IPv4، وليس كل TCP/UDP connection على حدة.</footer></section>
+
+<section class="page"><div class="eyebrow">قرار الموازنة</div><h1>EWMA وثلاثة مسارات</h1>
+<pre>ewma = 0.5 * current_utilization + 0.5 * previous_ewma</pre>
+<p>التنعيم يخفف تأثير قفزة واحدة. لو التقدير السابق 60% والقراءة 90% يبقى EWMA 75%، ولو القراءة التالية 90% يبقى 82.5%. الاتنين فوق 70%، فتتحقق فترة الزحمة المتتالية. القراءة عند 70% بالضبط لا تحقق شرط «فوق 70%».</p>
+<h2>اختيار الطريق</h2><ol><li>كوّن حتى 3 أقصر simple paths بين طرفي التدفق.</li><li>لكل اتجاه خذ الأكبر بين port TX والطلب المقدر من التدفقات عند ingress.</li><li>اطرح التدفق المتحرك من وصلاته القديمة، مع عدم النزول تحت الصفر.</li><li>أضفه لوصلات كل مسار مرشح. أعلى استخدام متوقع هو تكلفة المسار.</li><li>اختار الأقل تكلفة، ثم الأقل قفزات، ثم الأقل مشاركة لوصلات الطريق القديم.</li></ol>
+<p>في المثال المطلوب، الطلب المشترك 85+30=115 Mbps، يعني 115% طلب مقدّر على سعة 100 Mbps. ده مش قياسًا فعليًا بأن البورت أرسل 115 Mbps. المسار P3 يقدر يتجنب S2–S3، بينما مشاركة وصلات قديمة تدخل في كسر التعادل.</p>
+<h2>ليه ميتنقلش كل شوية؟</h2><p>يلزم تحسن لا يقل عن 15 نقطة مئوية ومرور 30 ثانية على آخر نقل لنفس الاتجاه. النزول من 82% إلى 69% يوفر 13 نقطة فقط، فلا يكفي. وجود best مختلف عن current لا يعني أن كل شروط النقل اتحققت.</p><footer><bdi dir="ltr">8 / 17</bdi> · ترتيب القرار: القياس، الشروط، التقدير، التحسن، مهلة التثبيت، ثم التنفيذ.</footer></section>
+
+<section class="page"><div class="eyebrow">الديمو المطلوب</div><h1>اعرض النقل تحت الضغط</h1>
+<p>بعد نجاح pingall على Grid، اختار H1 إلى H6 في الداشبورد، ونفّذ في Mininet:</p>
+<pre>py __import__('runpy').run_path('experiments/grid_demo.py', init_globals=dict(h1=h1,h3=h3,h5=h5,h6=h6)) and None</pre>
+<p>التجربة ترسل 85 و 30 Mbps لمدة 60 ثانية. راقب سطر البداية P1 ثم EWMA و congested و elephant و current و priority. عند نجاح النقل، Final يظهر المسار التالي وأولوية 21 أو أعلى على كل سويتشاته:</p><pre>[1, 4, 5, 6]</pre>
+<h2>Make-before-break</h2><p>لإدخال المرور في P3، تثبيت القواعد يكون من egress إلى ingress:</p><pre>S6 → S5 → S4 → S1
+new priority 21 → matching barrier reply → next switch
+all acknowledgements → strict delete of old priority 20</pre>
+<p>لو نقلنا ingress أولًا، الباكت ممكن تدخل طريقًا لسه مش جاهز في السويتشات التالية. الأولوية الأعلى تخلّي الجديد يكسب وقت وجود القاعدتين. الحذف strict يطابق أولوية وحقول القاعدة القديمة بدل مسح أي قاعدة قريبة منها.</p>
+<p>لو فيه رفض أو barrier timeout، العملية تُلغى وتحاول إزالة القواعد الجديدة التي أرسلتها. لا توعد بفقد صفري؛ القياس الفعلي هو اللي يحدد الفقد.</p>
+<p>في بروفة 26 نوفمبر ظهر P3/21 عند عينة 30 ثانية. استقبال <bdi dir="ltr">H1 → H6</bdi> بلغ 80 Mbps وفقد 5.9%، و <bdi dir="ltr">H3 → H5</bdi> بلغ 27.2 Mbps وفقد 9.3%. دي جولة ديمو واحدة، وليست متوسط خمس تشغيلات.</p><footer><bdi dir="ltr">9 / 17</bdi> · خليك على نفس الشبكة بعد نجاح النقل علشان تجرب التعافي من P3.</footer></section>
+
+<section class="page"><div class="eyebrow">التعافي من العطل</div><h1>اقطع الوصلة وراقب الطريق</h1>
+<p>لما <bdi dir="ltr">H1 → H6</bdi> يكون على P3 بأولوية أعلى من 20، شغّل:</p><pre>py __import__('runpy').run_path('experiments/link_failure_demo.py', init_globals=dict(net=net)) and None</pre>
+<p>الديمو يرسل 300 ping كل 0.2 ثانية تقريبًا. ينتظر 8 ثوانٍ، ويفصل S5–S6 لمدة 15 ثانية على الأقل، ثم يرجّعها. توقع تغيير الطريق إلى P1 أثناء القطع. بعد رجوع الوصلة، البقاء على P1 ممكن وطبيعي.</p>
+<p>لو ظهر unexpected initial forwarding path فالسكربت توقف قبل القطع لأن طريق البداية غير المطلوب. لا تكرر النقل لمجرد إجبار الشرط. لاختبار التعافي وحده من H2، استخدم:</p><pre>py __import__('runpy').run_path('experiments/link_failure_demo.py')['run_link_failure_demo'](net, source_name='h2', presentation=True)</pre>
+<p>الفصل اليدوي ثم الإرجاع من Mininet:</p><pre>link s5 s6 down
+link s5 s6 up</pre>
+<h2>إيه هو زمن التعافي؟</h2><p>أول رد مستوفٍ للشروط يُحسب من طلب القطع لرد على probe مقدّر أنه اتبعت بعد اكتمال أمر القطع. أكبر فجوة بين ردين مقياس تاني، ومش بديل مباشر عن الزمن ده.</p>
+<p>بروفة 26 نوفمبر وصلت 299/300 بفقد 0.333333%. الجولات الإحصائية القصيرة منفصلة: خمس تشغيلات، متوسط أول رد 73.139 ms و SD 21.631 ms، وفقد 7/1300 إجمالًا. متخلطش الديمو الطويل بالجولات القصيرة.</p><footer><bdi dir="ltr">10 / 17</bdi> · السكربت يرجّع الوصلة في finally؛ لا تفصل وصلات تانية أثناء تشغيله.</footer></section>
+
+<section class="page"><div class="eyebrow">المراقبة و REST</div><h1>كل رقم له مصدر</h1>
+<table><tr><th>المسار</th><th>اللي بيرجعه</th></tr><tr><td><bdi dir="ltr">/sdn/status</bdi></td><td>حالة التشغيل، اسم التوبولوجي والسياسة، العتبة وأعداد الشبكة.</td></tr><tr><td><bdi dir="ltr">/topology</bdi></td><td>السويتشات والوصلات وأرقام البورتات في الطرفين.</td></tr><tr><td><bdi dir="ltr">/links</bdi></td><td>عدد الوصلات بين السويتشات وقائمتها.</td></tr><tr><td><bdi dir="ltr">/flows</bdi></td><td>إجماليات محلية للسويتشات وتفاصيل أزواج الأجهزة عند ingress.</td></tr><tr><td><bdi dir="ltr">/sdn/bandwidth</bdi></td><td>RX و TX وسعة الوصلات و utilization و EWMA وحالة الزحمة.</td></tr><tr><td><bdi dir="ltr">/sdn/hosts</bdi></td><td>الأجهزة المتعلمة ومواقعها وعناوينها.</td></tr></table>
+<pre>sh curl -fsS --max-time 3 http://127.0.0.1:8080/topology
+sh curl -fsS --max-time 3 http://127.0.0.1:8080/sdn/bandwidth</pre>
+<p>الداشبورد تقرأ snapshot تقريبًا كل ثانية بعد اكتمال الطلب السابق. الكنترولر يجدد الإحصاءات كل 5 ثوانٍ افتراضيًا. زيادة سرعة الواجهة مش معناها قراءة عداد جديد كل ثانية.</p>
+<p>لو الشبكة فاضية، الأرقام الصغيرة أو الصفر متوقعة. المسار ممكن يفضل مثبتًا بعد توقف الترافيك. «Controller connected» يعني نجاح القراءة، ولا يثبت أن كل وصلة مستقرة.</p>
+<p>الرسم يوضح الطريق المثبت للزوج المختار. اختار <bdi dir="ltr">H1 → H6</bdi> على Grid و <bdi dir="ltr">H1 → H16</bdi> على Fat-tree. اختفاء وصلة من API وتغير الطريق المفروض يظهروا مع القراءة التالية، بدون refresh يدوي. قراءات snapshot متتابعة، فممكن تقع على جانبي تحديث واحد.</p><footer><bdi dir="ltr">11 / 17</bdi> · اللون وحده مش دليل أداء؛ اقرأ المعدل والفقد والمسار من مصادرهم.</footer></section>
+
+<section class="page"><div class="eyebrow">Fat-tree ومعايرة القياس</div><h1>بدّل الشبكة ثم قارن القياس</h1>
+<p>اكتب exit في Mininet وأوقف الكنترولر بـ Ctrl+C. شغّل كل أمر في ترمينال منفصلة:</p><pre>bash ~/sdn-project/run.sh controller fattree
+bash ~/sdn-project/run.sh network fattree</pre>
+<p>انتظر 20 سويتش و 32 وصلة، ثم:</p><pre>pingall 2</pre><p>المتوقع في تشغيل سليم 240/240: عندنا 16 جهازًا، وكل واحد يختبر 15 وجهة.</p>
+<pre>py __import__('runpy').run_path('experiments/bandwidth_accuracy.py', init_globals=dict(net=net)) and None</pre>
+<p>خمس جولات iperf3، كل واحدة 30 ثانية عند 5 Mbps من H1 إلى H16. مقارنة معدل المرسل تكون مع TX لأول وصلة بين السويتشات أثناء نافذة مستقرة. لكل جولة 3 عينات تقريبًا عند 12 و 17 و 22 ثانية، ويُشترط ثبات الوصلة المقاسة.</p><pre>error_percent = 100 * abs(controller_mbps - sender_mbps) / sender_mbps</pre>
+<p>الدفعة الكاملة الجديدة هي الملف التالي، ومتوسطها 3.116% و sample SD 0.181 نقطة مئوية. الخمس كلها تحت 10%:</p><pre>accuracy-20261126T124854Z.json</pre>
+<p>الجولات المتوقفة محفوظة. resume يحتفظ بالمكتمل، لكن تغيير الكود بين الجولات لازم يُذكر. الدفعة 221916Z تجمع إعدادين للاكتشاف؛ لا تستخدمها كأنها خمس جولات متجانسة.</p><footer><bdi dir="ltr">12 / 17</bdi> · لو ظهر Stopped، احفظ JSON والسجل قبل الإعادة؛ لا تخفِ فشل المسار.</footer></section>
+
+<section class="page"><div class="eyebrow">الأرقام الحالية</div><h1>اربط النتيجة بالتجربة</h1>
+<table><tr><th>السؤال</th><th>النتيجة الحالية</th></tr>
+<tr><td>دقة المراقبة، خمس جولات</td><td>متوسط الخطأ <bdi dir="ltr">3.116%</bdi> والانحراف المعياري <bdi dir="ltr">0.181 pp</bdi>، بعد تعديل انتظار LLDP.</td></tr>
+<tr><td>H6 تحت حمل <bdi dir="ltr">85+30 Mbps</bdi></td><td><bdi dir="ltr">shortest: 68.90 Mbps; balanced: 79.60 Mbps</bdi><br>الفقد: <bdi dir="ltr">18.74% → 6.22%</bdi></td></tr>
+<tr><td>H5 تحت نفس الحمل</td><td><bdi dir="ltr">19.30 → 27.42 Mbps</bdi><br>الفقد: <bdi dir="ltr">35.49% → 8.61%</bdi></td></tr>
+<tr><td>أقصى استخدام مع 10 تدفقات</td><td><bdi dir="ltr">ECMP: 47.96%; shortest: 56.20%; balanced: 56.50%</bdi><br>متوسط قمم التشغيلات، وليس متوسط حمل كل الوصلات.</td></tr>
+<tr><td>فترة القياس، عتبة 70%</td><td><bdi dir="ltr">T2: 6.952 s; T5: 18.932 s</bdi><br>إعلان في خمس جولات من خمس لكل إعداد.</td></tr>
+<tr><td>عتبة 60% و80% عند T2</td><td><bdi dir="ltr">60%: 6.815 s; 80%: 8.927 s</bdi><br>إعلان في خمس جولات من خمس لكل عتبة.</td></tr>
+<tr><td>تعافي خمس جولات قصيرة</td><td>أول رد: <bdi dir="ltr">73.139 ± 21.631 ms</bdi><br>فقد سبع باكتات من 1300 خلال التشغيلات كاملة.</td></tr></table>
+<h2>هل كل الأرقام بتتحسن بعد النقل؟</h2><p>لا. في دفعة 90 Mbps، الزوج <bdi dir="ltr">H1 → H6</bdi> كان أصلًا قريبًا من المطلوب. الاستقبال قبل وبعد النقل: <bdi dir="ltr">27.956 → 27.996 Mbps</bdi>، والفقد صفر في النافذتين. متوسط RTT قل من <bdi dir="ltr">18.82 ms</bdi> إلى <bdi dir="ltr">15.44 ms</bdi>، لكن jitter زاد من <bdi dir="ltr">0.303 ms</bdi> إلى <bdi dir="ltr">0.381 ms</bdi>.</p>
+<p>عند <bdi dir="ltr">H3 → H5</bdi>، متوسط RTT زاد من <bdi dir="ltr">7.92 ms</bdi> إلى <bdi dir="ltr">10.40 ms</bdi>. قياسات قبل/بعد فيها 14 مقارنة في خمس تشغيلات، ومش كل زوج له خمس عينات. الزوج <bdi dir="ltr">H3 → H6</bdi> له عينة واحدة، فمينفعش نحسب له sample SD.</p>
+<p class="small">المقارنات المتكررة من 25 نوفمبر بإعداد 64k وقبل إصلاح انتظار LLDP الأخير. المعايرة الأحدث من 26 نوفمبر. كل دفعة لها اسمها وملفاتها في experiments/results؛ لا نخلطها مع تاريخ 18–19 نوفمبر.</p><footer><bdi dir="ltr">13 / 17</bdi> · النتيجة تخص الحمل والنافذة والسياسة والتاريخ اللي اتقاست فيهم.</footer></section>
+
+<section class="page"><div class="eyebrow">من الملفات للسلوك</div><h1>دور في المكان الصحيح</h1>
+<table><tr><th>الملف أو الدالة</th><th>المسؤولية</th></tr><tr><td><bdi dir="ltr">custom_topology.py</bdi></td><td>MyNetwork و FatTree4 و LabTCLink، وترتيب الوصلات ومنافذها.</td></tr><tr><td><bdi dir="ltr">rest_api_controller.py</bdi></td><td>الأحداث، الجراف،ARP، العدادات والقرار وتثبيت القواعد.</td></tr><tr><td><bdi dir="ltr">port_stats_reply</bdi></td><td>فروق بايتات البورت والزمن و EWMA.</td></tr><tr><td><bdi dir="ltr">update_flow_details</bdi></td><td>معدل زوج الأجهزة عند ingress وعدّاد الفترات.</td></tr><tr><td><bdi dir="ltr">evaluate_paths</bdi></td><td>تكلفة المسارات المرشحة بعد نقل التدفق.</td></tr><tr><td><bdi dir="ltr">maybe_reroute</bdi></td><td>شروط الزحمة والتحسن و hold-down.</td></tr><tr><td><bdi dir="ltr">send_reroute_hop</bdi></td><td>تثبيت egress إلى ingress وانتظار barriers.</td></tr><tr><td><bdi dir="ltr">rebuild_routes</bdi></td><td>إعادة بناء القواعد بعد تغير التوبولوجي؛ تصفير baseline يفسر Sampling المؤقت.</td></tr><tr><td><bdi dir="ltr">dashboard/serve.py</bdi></td><td>خادم الواجهة وتجميع snapshot من API.</td></tr><tr><td><bdi dir="ltr">experiments/</bdi></td><td>الديمو والمعايرة والمقارنات والتحليل.</td></tr></table>
+<p>اختبارات المنطق تفحص الدوال الفعلية و fixture المصدر، لكن ببدائل للأجزاء المرتبطة بالشبكة. نجحت 16/16 على Ubuntu:</p><pre>python3 ~/sdn-project/experiments/check_logic.py</pre>
+<p>واختبارات نقل الملفات تفحص حفظ النتائج وحدود المسارات والنسخ السابقة:</p><pre>python3 ~/sdn-project/experiments/check_sync.py</pre><p>نجاح الاختبارات دي لا يغني عن تشغيل OS-Ken و Mininet الحقيقيين.</p><footer><bdi dir="ltr">14 / 17</bdi> · لا تعدّل ملفات success أو before أو الأرشيفات المؤرخة.</footer></section>
+
+<section class="page"><div class="eyebrow">أوامر المناقشة</div><h1>اعرض، افحص، وعدّل داخل المختبر</h1>
+<pre>nodes
+net
+links
+h1 ip addr show
+h1 ip route show
+sh ovs-vsctl list-br
+sh ovs-ofctl -O OpenFlow13 dump-flows s1
+sh tc class show dev s1-eth1
+sh tc qdisc show dev s1-eth1
+sh tc -s qdisc show dev s2-eth2</pre>
+<p>nodes يعرض أسماء الأجهزة، و net يعرض التوصيل والمنافذ، و dump-flows يعرض match و priority و actions والعدادات. tc class يفحص السعة و burst، و qdisc يعرض netem والتأخير، و-s يضيف عدادات.</p>
+<p>عداد dropped في HTB و netem ممكن يشير لنفس إسقاطات الحزمة؛ لا تجمع الرقمين تلقائيًا. overlimits عدد مرات تطبيق قيد التشكيل، ومش عدّاد فقد مستقل.</p>
+<h2>لو الدكتور طلب تغييرًا</h2><ul><li>قطع وصلة: استخدم link down/up، واختار وصلة على الطريق الفعلي، ثم رجّعها.</li><li>سعة أو تأخير دائم: عدّل bw أو delay في نسخة تدريبية من التوبولوجي ثم أعد بناء Mininet. تحديث كود من غير إعادة البناء لا يغير الوصلات القائمة.</li><li>لو غيرت السعة، لازم تراجع capacity في الكنترولر وتعريف عتبة 10%، عشان النسب تفضل صحيحة.</li><li>متغيرات SDN_POLL_INTERVAL و SDN_CONGESTION_PERCENT يقرأها الكنترولر عند بدء عملية جديدة؛ لا تتغير بمجرد كتابة متغير في ترمينال تانية.</li></ul>
+<footer><bdi dir="ltr">15 / 17</bdi> · أوامر التغيير داخل شبكة المختبر فقط؛ النتائج القديمة تظل بإعداداتها الأصلية.</footer></section>
+
+<section class="page"><div class="eyebrow">التجارب والاختيارات</div><h1>اختار الاختبار حسب السؤال</h1>
+<p>التجارب الدُفعية تبني شبكاتها بنفسها. اخرج من Mininet وأوقف الكنترولر الحالي قبل تشغيل تجربة فعلية. لعرض الاختيارات:</p><pre>sudo python3 ~/sdn-project/experiments/compare_grid.py --help</pre>
+<table><tr><th>الاختيار</th><th>بيجاوب عن إيه؟</th></tr><tr><td>بدون flag</td><td>خمس مقارنات بين shortest و balanced تحت 85+30Mbps.</td></tr><tr><td>--ten-flows</td><td>حمل 10 أزواج متطابقة بين shortest و ECMP و balanced.</td></tr><tr><td>--recovery</td><td>خمس تجارب تعافٍ قصيرة على <bdi dir="ltr">H2 → H6</bdi>.</td></tr><tr><td>--compare-shared-link</td><td>مقارنة T2 و T5 بعتبة 70% على حمل 90Mbps.</td></tr><tr><td>--compare-thresholds</td><td>مقارنة 60% و 80% عند T2.</td></tr><tr><td>--route-phases</td><td>نوافذ receiver قبل وبعد أول نقل مستوفٍ للشروط.</td></tr></table>
+<p>مش مطلوب تشغيل كل الدفعات أثناء العرض؛ نتائجها الخام متاحة. لو الإعداد اتغير، سجل دفعة جديدة ولا تستبدل القديمة.</p>
+<h2>درّب نفسك على C1 منفصلًا</h2><p>بعد إغلاق المختبر الحالي، استخدم ترمينالين. ده يبني شبكة linear بثلاثة سويتشات للتدريب، وبيشغّل كنترولر التعلم المحفوظ:</p><pre>~/sdn-lab/.venv/bin/osken-manager --ofp-tcp-listen-port 6653 ~/sdn-project/c1/first_controller.py</pre><pre>sudo mn --topo linear,3 --mac --switch ovs,protocols=OpenFlow13 --controller=remote,ip=127.0.0.1,port=6653</pre>
+<footer><bdi dir="ltr">16 / 17</bdi> · تشغيل C1 والكنترولر الأساسي على نفس البورت في نفس الوقت يسبب تعارضًا.</footer></section>
+
+<section class="page"><div class="eyebrow">الأسئلة الأخيرة وإغلاق الديمو</div><h1>جاوب بالدليل وحدود القياس</h1>
+<h2>ليه الـ ping شغال والمعدل صفر؟</h2><p>الـ ping صغير وممكن يقع بين عينات القياس، أو يكون التدفق خلص وبقيت القواعد مثبتة. شوف مصدر الرقم وتوقيت آخر قراءة.</p>
+<h2>ليه best اتغيّر و current فضل زي ما هو؟</h2><p>اختيار مرشح لا يكفي للنقل. لازم تدفق كبير وزحمة مستمرة وتحسن 15 نقطة مئوية وانتهاء hold-down، مع قياسات صالحة وحديثة.</p>
+<h2>هل خمس جولات تثبت إن المشروع خالي من الأخطاء؟</h2><p>لأ. تثبت نتيجة الحمل والإعداد والنوافذ دي. سجلات الاكتشاف المضطربة وفقد الحمل العالي وحدود اختبار hold-down لازم يفضلوا واضحين.</p>
+<h2>مثال iperf3 يدوي محدود</h2><p>على شبكة تدريب متصلة، من Mininet شغّل مستقبلًا على H2 ثم مرسلًا على H1. النتيجة دي تدريب، ومش دفعة المعايرة الرسمية:</p><pre>py h2.cmd("timeout -k 2s 25s iperf3 -s -1 -p 5799 &gt; /tmp/iperf-training.log 2&gt;&amp;1 &amp;")
+py print(h1.cmd("timeout -k 2s 20s iperf3 -c 10.0.0.2 -p 5799 -u -b 5M -l 1400 -t 5"))</pre>
+<h2>ترتيب العرض</h2><p>اشرح الجراف والشروط، واعرض Grid والنقل، ثم قطع الوصلة والتعافي. اعرض Fat-tree والاتصال، واستخدم جدول النتائج والالتقاط الحقيقي لشرح الأداء والبروتوكول. فيديو الشرح التعريفي لا يُعد قياسًا حيًا.</p>
+<h2>الإيقاف</h2><pre>exit</pre><p>الأمر في Mininet، ثم Ctrl+C في ترمينال الكنترولر والداشبورد. احتفظ بالنتائج والسجلات قبل إعادة التشغيل لو فيه فشل. ملفات المشروع وتقاريره موجودة محليًا، والرفع إلى GitHub خطوة منفصلة تحتاج إذنًا.</p><footer><bdi dir="ltr">17 / 17</bdi> · افهم كل أمر ومصدر قياسه، ومتقولش نتيجة لم تشوف دليلها.</footer></section>
+</body></html>
