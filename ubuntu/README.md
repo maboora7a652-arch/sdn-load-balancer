@@ -1,122 +1,90 @@
-# تشغيل وديمو مشروع SDN على Ubuntu
+# مجلد تشغيل SDN المستقل على Ubuntu
 
-آخر تحديث 2026-11-26. نسخة الدليل: linux-setup-20261126. الأوامر التالية تُنفّذ داخل Ubuntu.
+انسخ **هذا المجلد ubuntu بالكامل** إلى جهاز Ubuntu، وسمِّ النسخة هناك sdn-project. كل ملفات تشغيل الشبكة والتجارب موجودة هنا؛ لا تحتاج جمع ملفات من باقي مجلدات المستودع.
 
-الكنترولر يستخدم monotonic لحساب مدد LLDP، ويحتفظ بمهلة الفشل الأصلية 10 ثوانٍ ومعالجة PortStatus للفصل الحقيقي. الإصلاح المحلي يمنع انتظار LLDP المفتوح عند وجود بورتات، ويظهر سطر LLDP wait is bounded while ports are present عند التشغيل. على Fat-tree انتظار الإرسال بين البورتات أقصاه 0.01 ثانية، مع إتاحة وقت للاكتشاف أثناء إعادة بناء المسارات. المعايرة الجديدة اكتملت خمس جولات، لكن السجلات الكاملة ما زالت تحتوي على دورات حذف وإعادة اكتشاف؛ لا نعتبر كل أسباب التقطّع محلولة.
+## ابدأ هنا، أول مرة فقط
 
-## مكان الملفات والتحديث
-
-المشروع المحلي في ~/sdn-project. الكنترولر والتوبولوجي في vm-source، والتجارب ونتائجها في experiments، والداشبورد في dashboard. بيئة OS-Ken المستخدمة موجودة في ~/sdn-lab/.venv.
-
-التعديل على نسخة Windows داخل /media/sf_sdn_transfer يحتاج نقله إلى نسخة Ubuntu. بعد إيقاف الديمو، حدّث النسخة المستقلة كلها من ترمينال Ubuntu عادي:
+1. من GitHub اختار Code ثم Download ZIP، وفك الملف على Windows.
+2. ادخل المجلد المستخرج وخد مجلد ubuntu كله. انقله إلى مجلد Home في Ubuntu باستخدام Shared Folder أو USB. سمِّ النسخة المنقولة sdn-project.
+3. لو مجلد sdn-project كان موجودًا قبل النقل، لا تدمج فوقه يدويًا. استخدم قسم تحديث النسخة الموجودة أدناه.
+4. افتح Terminal داخل Ubuntu ونفّذ بدون sudo:
 
 ```bash
-sudo python3 /media/sf_sdn_transfer/ubuntu/update_local.py
+bash "$HOME/sdn-project/setup.sh"
 ```
 
-المُحدّث ينقل الكود و README والاختبارات والتقارير والوسائط، ويحافظ على البيئة الموجودة والنتائج المحلية. لو الكنترولر الحالي مختلف، يحفظه في sdn-backups قبل استبداله. أي نتيجة محلية بنفس الاسم ومحتوى مختلف تظل كما هي ويذكرها في الخرج. لا يشغّل أو يوقف عمليات الشبكة تلقائيًا.
+setup.sh يثبّت Mininet و Open vSwitch و iperf و iperf3 وباقي المتطلبات، ويجهّز OS-Ken. هيطلب باسورد Ubuntu عند تثبيت حزم النظام. لو بيئة OS-Ken القديمة موجودة، يستخدمها كما هي دون pip upgrade. الإنترنت مطلوب لأول تثبيت للحزم.
 
-المُحدّث ينسخ هذا الدليل إلى README في جذر نسخة Ubuntu. للتأكد من تطابقه مع النسخة الحالية في الشير، نفّذ مرة واحدة بعد التحديث:
+بيئة التشغيل التي استُخدمت في التجارب Ubuntu 22.04 و Python 3.10. التثبيت الجديد على جهاز آخر لم يُشغّل هنا؛ لا تعتبر فحوص الملفات بديلًا لتجربة الشبكة على جهازك.
+
+بعد ظهور Ready، شغّل أوامر ترمينالات الكنترولر والشبكة والداشبورد في الخطوة 1 أدناه. **في المرات التالية تبدأ من الخطوة 1 مباشرة، ولا تعيد setup.sh.**
+
+## الملفات التي يجب أن تكون عندك
+
+```text
+sdn-project/
+    README.md
+    setup.sh
+    run.sh
+    requirements.txt
+    install_local.py
+    update_local.py
+    vm-source/
+        rest_api_controller.py
+        custom_topology.py
+    dashboard/
+    experiments/
+        fixtures/
+        results/
+    c1/
+```
+
+| الملف أو المجلد | تستخدمه في إيه؟ |
+| --- | --- |
+| setup.sh | البداية على Ubuntu جديد، يجهّز البرامج والبيئة |
+| run.sh | التشغيل اليومي: controller أو network أو dashboard |
+| vm-source | كود الكنترولر والتوبولوجي الحالي |
+| dashboard | صفحة الداشبورد وخادمها |
+| experiments | الديموهات والاختبارات ونتائج التشغيل |
+| c1 | كود learning switch والتقاط Wireshark الأصلي |
+| requirements.txt | اعتماديات Python؛ يقرأها setup تلقائيًا |
+| install_local.py | أداة نسخ داخلية يستدعيها setup لو شغّلته من Downloads أو الشير |
+| update_local.py | تحديث نسخة تشغيل موجودة مع الحفاظ على نتائجها |
+
+التقارير والفيديو ومصادر تأليفها موجودة في المستودع خارج هذا المجلد. لا تحتاجها لتشغيل الشبكة أو الديموهات أو اختبارات المنطق. ملفات Windows القديمة وبيئته الافتراضية لا تُنقل مع التشغيل.
+
+<details>
+<summary>لو هتنقل من الشير الحالي باستخدام أمر بدل File Manager</summary>
+
+المثال يفترض أن مجلد ubuntu داخل الشير التالي. يُنشئ نسخة جديدة فقط؛ يتوقف لو مجلد الوجهة موجود أو symlink:
+
+```bash
+test ! -e "$HOME/sdn-project" && test ! -L "$HOME/sdn-project" &&
+sudo cp -R -- "/media/sf_sdn_transfer/ubuntu" "$HOME/sdn-project" &&
+sudo chown -R -- "$(id -u):$(id -g)" "$HOME/sdn-project"
+```
+
+بعدها شغّل setup.sh بالأمر الموجود أول الدليل. غيّر مسار المصدر لو اسم الشير عندك مختلف. لا تشغّل المشروع من مجلد الشير مباشرة.
+
+</details>
+
+## تحديث نسخة Ubuntu الموجودة، لفؤاد
+
+نسخة التشغيل الموجودة تظل في ~/sdn-project، وبيئة OS-Ken في ~/sdn-lab/.venv. **لا تحتاج إعادة تثبيت المشروع بسبب ترتيب المجلدات الجديد.** بعد إيقاف Mininet والكنترولر والداشبورد، نفّذ من ترمينال Ubuntu عادي:
+
+```bash
+sudo python3 "/media/sf_sdn_transfer/ubuntu/update_local.py"
+```
+
+الأداة تنقل ملفات هذا المجلد مباشرة إلى نسخة التشغيل، وتحافظ على النتائج المحلية المختلفة والبيئة الموجودة، وتحفظ الكنترولر المختلف قبل استبداله. لو باقي المستودع موجود بجانب ubuntu، تنقل التقارير والوسائط وملفات تسليم AI أيضًا، بصورة اختيارية. المجلد المستقل يعمل بدونها.
+
+للتأكد من وصول README بعد التحديث:
 
 ```bash
 cmp -s "$HOME/sdn-project/README.md" "/media/sf_sdn_transfer/ubuntu/README.md" && echo "README is up to date"
 ```
 
-ظهور الرسالة يؤكد تطابق محتوى README. تغيير الملفات على Windows وحده لا يؤكد وصولها إلى Ubuntu. أمر التحديث السابق يحتاج نسخة المستودع الكاملة في الشير، ويُنفّذ من الشير، وليس من داخل نسخة الوجهة.
-
-## لأول مرة: نقل المشروع من Windows أو GitHub إلى Ubuntu
-
-لو مشروعك يعمل بالفعل من ~/sdn-project، تجاوز هذا الجزء إلى الخطوة 1. لا تُعد إنشاء البيئة الحالية. الجزء التالي لشخص سيجرّب المشروع على Ubuntu جديد، والأوامر فيه في ترمينال Ubuntu عادي، وليست عند mininet>.
-
-بيئة التجارب المسجلة Ubuntu 22.04 و Python 3.10. يمكن استخدام Ubuntu داخل VirtualBox أو على جهاز Linux مستقل. الشبكة تحتاج Mininet و Open vSwitch داخل Ubuntu. التثبيت من الصفر على جهاز آخر لم يُجرّب هنا، وملف الاعتماديات ليس نسخة مقفولة من كل إصدارات البيئة الحالية.
-
-### أ. تثبيت الأدوات على Ubuntu الجديد
-
-```bash
-sudo apt update
-sudo apt install git mininet openvswitch-switch iperf iperf3 python3-venv curl
-sudo systemctl start openvswitch-switch
-```
-
-Mininet يبني الشبكة، و Open vSwitch يشغّل السويتشات. نحتاج iperf لديمو Grid، و iperf3 للمعايرة. الإنترنت مطلوب لتنزيل الملفات والحزم أثناء الإعداد. لفتح التقاط C1 يمكنك تثبيت Wireshark أيضًا:
-
-```bash
-sudo apt install wireshark
-```
-
-### ب. اختار طريقة واحدة لجلب الملفات
-
-الأسهل: نزّل المستودع مباشرة داخل Ubuntu، فلا تحتاج نقل ملفات من Windows:
-
-```bash
-git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-project"
-```
-
-البديل: من GitHub على Windows اختار Code ثم Download ZIP، وفك الملف. شارك المجلد المستخرج مع VirtualBox. المثال التالي يفترض أن vm-source و ubuntu وباقي المجلدات موجودة مباشرة داخل /media/sf_sdn_transfer. لو فيه مجلد إضافي باسم sdn-load-balancer-master، استخدمه كمجلد المصدر بدلًا من جذر الشير.
-
-| المجلد أو الملف | دوره |
-| --- | --- |
-| vm-source | الكنترولر الحالي والتوبولوجي |
-| experiments بالكامل مع fixtures | الديموهات والتجارب واختبارات المنطق؛ results فيه النتائج المسجلة ونتائج التشغيل الجديد |
-| dashboard | صفحة الداشبورد والخادم المحلي وملفات الواجهة |
-| ubuntu | ملف التشغيل والدليل وأدوات النقل |
-| requirements.txt | اعتماديات Python الخاصة بالكنترولر |
-| c1 | learning switch والتقاط OpenFlow لجزء Wireshark |
-| README.md | تعليمات المستودع |
-| output و media و report_builder و video | اختيارية للتشغيل، وتحتاجها لو عايز التقارير والفيديو ومصادر التأليف |
-| AGENTS.md و HANDOFF.md و PLAN.md و ISSUES_AND_RISKS.md و WORK_LOG.md | سياق المشروع وتاريخه عند تسليمه لشخص أو AI آخر |
-
-لا تنقل بيئة Python الخاصة بـWindows. لا تستخدم الأرشيف القديم أو ملفات success أو before بدل vm-source الحالية.
-
-لإنشاء نسخة تشغيل جديدة من الشير، نفّذ المجموعة التالية كما هي. تتوقف لو مجلد الوجهة موجود بالفعل، وتحافظ على ملكية النسخة الجديدة لحساب Ubuntu:
-
-```bash
-mkdir -- "$HOME/sdn-project" &&
-sudo cp -R -- \
-    "/media/sf_sdn_transfer/vm-source" \
-    "/media/sf_sdn_transfer/experiments" \
-    "/media/sf_sdn_transfer/dashboard" \
-    "/media/sf_sdn_transfer/ubuntu" \
-    "/media/sf_sdn_transfer/c1" \
-    "/media/sf_sdn_transfer/requirements.txt" \
-    "/media/sf_sdn_transfer/README.md" \
-    "$HOME/sdn-project/" &&
-sudo chown -R -- "$(id -u):$(id -g)" "$HOME/sdn-project"
-```
-
-غيّر مسار الشير لو اسمه عندك مختلف أو تستخدم USB. نشغّل من مجلد Ubuntu المحلي، فيستمر العمل حتى لو الشير غير متاح.
-
-### ج. تجهيز بيئة الكنترولر وملف التشغيل
-
-على الجهاز الجديد فقط، أنشئ البيئة بالأوامر التالية بدون sudo. المسار مقصود لأن ملف التشغيل والتجارب الدُفعية يستخدمانه:
-
-```bash
-mkdir -p -- "$HOME/sdn-lab"
-python3 -m venv "$HOME/sdn-lab/.venv"
-"$HOME/sdn-lab/.venv/bin/python" -m pip install -r "$HOME/sdn-project/requirements.txt"
-```
-
-ملف الاعتماديات يختار OS-Ken من سلسلة 3.x لأن المشروع يحتاج osken-manager. قيد التوافق لا يغيّر بيئتك الحالية، ولا يعني أننا قسنا النتائج على كل إصدارات الاعتماديات الجديدة. مراجع التثبيت: [Mininet](https://mininet.org/download/)، وملفات إعداد OS-Ken الرسمية [3.1.1](https://github.com/openstack/os-ken/blob/3.1.1/setup.cfg) و [4.0.0](https://github.com/openstack/os-ken/blob/4.0.0/setup.cfg).
-
-بعد أي طريقة تنزيل، انسخ ملف التشغيل إلى جذر المشروع. لا تشغّل ubuntu/run.sh مباشرة لأنه سيبحث عن ملفات الشبكة داخل مجلد ubuntu:
-
-```bash
-cp -- "$HOME/sdn-project/ubuntu/run.sh" "$HOME/sdn-project/run.sh"
-```
-
-المسارات الأساسية بعد الإعداد:
-
-```text
-~/sdn-project/run.sh
-~/sdn-project/vm-source/rest_api_controller.py
-~/sdn-project/vm-source/custom_topology.py
-~/sdn-project/experiments/
-~/sdn-project/dashboard/
-~/sdn-project/ubuntu/README.md
-~/sdn-lab/.venv/bin/osken-manager
-```
-
-ابدأ الآن بالخطوة 1 التالية. ستفتح ثلاثة ترمينالات، وأول فحص للشبكة هو pingall على Grid.
+تغيير Windows لا يصل إلى Ubuntu تلقائيًا. لا تستخدم setup لإعادة النسخ فوق مشروع موجود؛ استخدم المُحدّث السابق من الشير. لو توقف تثبيت جديد بعد نسخ المشروع، أكمل من setup.sh الموجود داخل ~/sdn-project؛ لا تعيد النسخ فوقه.
 
 ## 1. شغّل الـ Grid
 
@@ -272,6 +240,14 @@ python3 ~/sdn-project/experiments/check_sync.py
 ```
 
 دي اختبارات نقل منفصلة عن اختبارات الشبكة. c1 يحتوي كود learning switch والتقاط Wireshark الأصلي. لفتحه:
+
+لو Wireshark غير مثبت على الجهاز الجديد، ثبّته مرة واحدة من ترمينال Ubuntu عادي:
+
+```bash
+sudo apt install wireshark
+```
+
+ثم افتح الالتقاط:
 
 ```bash
 wireshark ~/sdn-project/c1/c1-linear-rerun.pcapng

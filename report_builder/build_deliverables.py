@@ -25,7 +25,7 @@ import results_figures as figures
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "output/report"
-DATA = ROOT / "experiments/results"
+DATA = ROOT / "ubuntu/experiments/results"
 TEAM = [
     ("عبدالحميد أحمد", "921230064"),
     ("عبدالرحمن أحمد محمد محمد", "921230066"),

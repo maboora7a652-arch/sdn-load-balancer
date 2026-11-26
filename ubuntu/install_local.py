@@ -1,30 +1,32 @@
-"""Copy the presentation and experiment files into a new, user-owned Ubuntu directory."""
+"""Install this standalone folder into a new, user-owned Ubuntu project directory."""
 from pathlib import Path
 import shutil
 import tempfile
 
 
-def main():
-    source = Path(__file__).resolve().parents[1]
-    home = Path.home()
-    target = home / "sdn-project"
+def install_project(source, target):
+    source, target = Path(source), Path(target)
     if target.exists() or target.is_symlink():
         raise SystemExit(f"Already exists: {target}. Existing files were preserved.")
-    manager = home / "sdn-lab/.venv/bin/osken-manager"
-    if not manager.is_file():
-        raise SystemExit(f"Existing OS-Ken installation missing: {manager}")
-    with tempfile.TemporaryDirectory(dir=home) as temp:
+    required = ("run.sh", "setup.sh", "requirements.txt", "README.md", "install_local.py", "update_local.py",
+                "vm-source/rest_api_controller.py", "vm-source/custom_topology.py",
+                "experiments/grid_demo.py", "dashboard/serve.py")
+    if not all((source / name).is_file() for name in required):
+        raise SystemExit("Copy the complete ubuntu folder, not just the setup script.")
+    with tempfile.TemporaryDirectory(dir=target.parent) as temp:
         folder = Path(temp) / target.name
         folder.mkdir()
-        for name in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu", "report_builder", "video"):
+        for name in ("vm-source", "experiments", "dashboard", "c1"):
             shutil.copytree(source / name, folder / name,
-                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-        for name in ("run.sh", "README.md"):
-            shutil.copyfile(source / "ubuntu" / name, folder / name)
-        for name in ("requirements.txt", "AGENTS.md", "HANDOFF.md", "PLAN.md", "ISSUES_AND_RISKS.md", "WORK_LOG.md"):
+                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".venv", ".git"))
+        for name in ("run.sh", "setup.sh", "requirements.txt", "README.md", "install_local.py", "update_local.py"):
             shutil.copyfile(source / name, folder / name)
         folder.rename(target)
     print(f"Ready: {target}")
+
+
+def main():
+    install_project(Path(__file__).resolve().parent, Path.home() / "sdn-project")
 
 
 if __name__ == "__main__":

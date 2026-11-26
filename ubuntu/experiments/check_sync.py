@@ -5,10 +5,32 @@ import unittest
 from pathlib import Path
 
 
-helpers = runpy.run_path(str(Path(__file__).resolve().parents[1] / "ubuntu/update_local.py"))
+ROOT = Path(__file__).resolve().parents[1]
+helpers = runpy.run_path(str(ROOT / "update_local.py"))
+installer = runpy.run_path(str(ROOT / "install_local.py"))["install_project"]
 
 
 class SyncChecks(unittest.TestCase):
+    def test_standalone_install_uses_only_the_ubuntu_folder(self):
+        with tempfile.TemporaryDirectory() as folder:
+            target = Path(folder) / "sdn-project"
+            installer(ROOT, target)
+            for name in ("run.sh", "setup.sh", "requirements.txt", "README.md",
+                         "vm-source/rest_api_controller.py", "vm-source/custom_topology.py",
+                         "dashboard/serve.py", "experiments/grid_demo.py", "c1/first_controller.py"):
+                self.assertEqual((target / name).read_bytes(), (ROOT / name).read_bytes())
+            self.assertFalse((target / "ubuntu").exists())
+
+    def test_install_refuses_to_replace_an_existing_project(self):
+        with tempfile.TemporaryDirectory() as folder:
+            target = Path(folder) / "sdn-project"
+            target.mkdir()
+            result = target / "local-result.json"
+            result.write_bytes(b"student result")
+            with self.assertRaisesRegex(SystemExit, "Existing files were preserved"):
+                installer(ROOT, target)
+            self.assertEqual(result.read_bytes(), b"student result")
+
     def test_different_existing_result_is_kept(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

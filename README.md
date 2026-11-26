@@ -39,119 +39,68 @@ A flow is one **directed IPv4 MAC-address pair**, not a separate TCP/UDP five-tu
 
 ## First-time Ubuntu setup
 
-**Start here on a new Linux machine.** If you already use Fouad's configured VM, skip to [updating the existing Ubuntu copy](#update-fouads-existing-ubuntu-copy). All commands below run in an **Ubuntu terminal**, not PowerShell or the `mininet>` prompt.
+**The `ubuntu/` directory is now the complete standalone network project. Copy that one folder, including all its contents.** It contains the controller, topologies, dashboard, experiments, saved results, C1 capture, dependencies and launch scripts. No runtime source files need to be collected from other repository folders.
 
-The recorded lab uses **Ubuntu 22.04 and Python 3.10**, with Mininet and Open vSwitch installed inside Ubuntu. Use an Ubuntu VM or an Ubuntu computer; the network does not run directly on Windows. A fresh installation on a different machine has not been tested. Internet is needed for downloading the repository and installing dependencies; the dashboard and controller API listen locally after setup.
+### Transfer from Windows
 
-### 1. Install Ubuntu packages
+1. On GitHub, choose **Code → Download ZIP** and extract the repository.
+2. Copy the extracted **ubuntu** folder to your Ubuntu **Home** directory using a VirtualBox shared folder or USB.
+3. Rename that copied folder to **sdn-project**. Do not overwrite an existing project; use the updater below for that case.
+4. In a normal Ubuntu terminal, without `sudo`, run:
 
-On the new Ubuntu installation:
+```bash
+bash "$HOME/sdn-project/setup.sh"
+```
+
+The setup script installs Ubuntu system packages, including both iperf and iperf3, and creates `~/sdn-lab/.venv` if needed. An existing working controller environment is reused without a pip upgrade. Network access is required to install packages. The recorded lab uses Ubuntu 22.04 / Python 3.10; a complete fresh installation on another machine has not been tested.
+
+The resulting layout is:
+
+```text
+~/sdn-project/
+    README.md
+    setup.sh
+    run.sh
+    requirements.txt
+    vm-source/
+    dashboard/
+    experiments/          # fixtures and raw results included
+    c1/
+    install_local.py
+    update_local.py
+~/sdn-lab/.venv/          # OS-Ken environment
+```
+
+After setup, follow [the three-terminal run commands](#run-on-the-configured-ubuntu-vm). The [Arabic guide inside the folder](ubuntu/README.md) explains each file and step. In later sessions, use `run.sh` directly; installation is not a daily step.
+
+### Download directly on Ubuntu instead
+
+You can also clone the repository to a download directory and let setup copy its standalone Ubuntu folder into a new `~/sdn-project`:
 
 ```bash
 sudo apt update
-sudo apt install git mininet openvswitch-switch iperf iperf3 python3-venv curl
-sudo systemctl start openvswitch-switch
+sudo apt install git
+git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-download"
+bash "$HOME/sdn-download/ubuntu/setup.sh"
 ```
 
-Mininet builds the virtual network, Open vSwitch supplies the switches, `iperf` runs the grid traffic demo, and `iperf3` runs the accuracy experiment. Both traffic tools are needed. Wireshark is optional for inspecting the saved C1 capture:
-
-```bash
-sudo apt install wireshark
-```
-
-### 2. Get the project, choose one method
-
-**Recommended: clone directly inside Ubuntu.** No transfer from Windows is needed:
-
-```bash
-git clone https://github.com/maboora7a652-arch/sdn-load-balancer.git "$HOME/sdn-project"
-```
-
-Use a new destination. If `~/sdn-project` already holds your working project or results, follow the existing-copy update instructions instead.
-
-**Alternative: copy from Windows through a shared folder or USB.** Download the repository using GitHub's **Code → Download ZIP**, extract it on Windows, and share the extracted repository folder with VirtualBox. The example below assumes its contents, including `vm-source/` and `ubuntu/`, are directly under `/media/sf_sdn_transfer`. If the ZIP created an extra `sdn-load-balancer-master/` directory, use that directory as the source instead.
-
-| Copy into `~/sdn-project/` | Purpose |
-| --- | --- |
-| `vm-source/` | Current controller and both topologies |
-| `experiments/`, including `fixtures/` | Demos, batch tests and offline logic checks; keep the folder structure |
-| `dashboard/` | Dashboard page, assets and local server |
-| `ubuntu/` | Launcher, Arabic guide and existing-copy tools |
-| `requirements.txt` | Python dependencies for the controller |
-| `c1/` | Learning-switch code and saved OpenFlow capture for the C1 demonstration |
-| `README.md` | Repository instructions |
-| Optional: `output/`, `media/`, `report_builder/`, `video/` | Reports, figures, explainer and authoring sources; not required to forward traffic |
-| Optional: `AGENTS.md`, `HANDOFF.md`, `PLAN.md`, `ISSUES_AND_RISKS.md`, `WORK_LOG.md` | Project context and history for a new contributor or AI |
-
-The recorded results inside `experiments/results/` are reference data; new runs save new timestamped files there. Do not transfer a Windows virtual environment. Do not replace `vm-source/` with dated archives or `*_success.py` / `*_before_*.py` checkpoints.
-
-For a **new** Ubuntu project folder, this copies the runtime, experiments, C1 and instructions from the shared folder. `sudo` reads the shared files; the final command makes the new local copy belong to your Ubuntu account. The chain stops if the destination already exists:
-
-```bash
-mkdir -- "$HOME/sdn-project" &&
-sudo cp -R -- \
-    "/media/sf_sdn_transfer/vm-source" \
-    "/media/sf_sdn_transfer/experiments" \
-    "/media/sf_sdn_transfer/dashboard" \
-    "/media/sf_sdn_transfer/ubuntu" \
-    "/media/sf_sdn_transfer/c1" \
-    "/media/sf_sdn_transfer/requirements.txt" \
-    "/media/sf_sdn_transfer/README.md" \
-    "$HOME/sdn-project/" &&
-sudo chown -R -- "$(id -u):$(id -g)" "$HOME/sdn-project"
-```
-
-Change `/media/sf_sdn_transfer` if your share or USB is mounted elsewhere. Run the project from your local home directory, so it keeps working when the shared folder is unavailable.
-
-### 3. Create the controller environment and launcher
-
-For a **new environment only**, run these without `sudo`. Existing working VM users should not recreate or upgrade their environment:
-
-```bash
-mkdir -p -- "$HOME/sdn-lab"
-python3 -m venv "$HOME/sdn-lab/.venv"
-"$HOME/sdn-lab/.venv/bin/python" -m pip install -r "$HOME/sdn-project/requirements.txt"
-```
-
-`requirements.txt` restricts OS-Ken to the 3.x application-runner series because this project launches `osken-manager`. It is not an exact lock of Fouad's installed environment or proof of a fresh installation. See the official [OS-Ken 3.1.1 entry points](https://github.com/openstack/os-ken/blob/3.1.1/setup.cfg) and [4.0.0 configuration](https://github.com/openstack/os-ken/blob/4.0.0/setup.cfg). System package installation follows the [Mininet installation guide](https://mininet.org/download/).
-
-For **either download method**, place the supplied launcher in the project root. This step is required: running `ubuntu/run.sh` directly would look for the project files in the wrong directory.
-
-```bash
-cp -- "$HOME/sdn-project/ubuntu/run.sh" "$HOME/sdn-project/run.sh"
-```
-
-Expected layout:
-
-```text
-~/sdn-project/run.sh
-~/sdn-project/vm-source/rest_api_controller.py
-~/sdn-project/vm-source/custom_topology.py
-~/sdn-project/experiments/
-~/sdn-project/dashboard/
-~/sdn-project/ubuntu/README.md
-~/sdn-lab/.venv/bin/osken-manager
-```
-
-The separate environment path is intentional: both the launcher and batch experiments use `~/sdn-lab/.venv`. Now follow [the three-terminal run instructions](#run-on-the-configured-ubuntu-vm) below. The first network check is `pingall` on the grid. Use the same topology for the controller and Mininet.
+The copy step refuses an existing destination. Reports, video and report/video authoring sources remain in the full repository and are optional for the network runtime. Do not copy Windows virtual environments or dated source checkpoints as active code.
 
 ## Update Fouad's existing Ubuntu copy
 
-Windows/shared-folder changes do **not** update `~/sdn-project` automatically. Stop Mininet (`exit`), the controller and the dashboard (Ctrl+C), then run the updater from the current **complete shared repository** in a normal Ubuntu terminal:
+The working installation remains `~/sdn-project`, with the same launch commands. Moving repository source files into `ubuntu/` does not require reinstalling Fouad's environment. Stop Mininet, the controller and the dashboard, then run from the shared source:
 
 ```bash
 sudo python3 "/media/sf_sdn_transfer/ubuntu/update_local.py"
 ```
 
-It copies `ubuntu/README.md` to `~/sdn-project/README.md` and `ubuntu/run.sh` to `~/sdn-project/run.sh`, along with current source, tests, reports and media. It saves a differing active controller, preserves differing local raw-result files and retains the existing environment. Do not run it from the destination itself. The minimal runtime-only transfer above does not include the optional report folders.
-
-Check the README content once after updating:
+The updater now reads the standalone Ubuntu folder itself. It saves a differing active controller, keeps differing local raw-result files and retains the existing environment. Reports/media and AI handoff files are also copied when the full repository is present beside this folder; they are not required by the standalone runtime.
 
 ```bash
 cmp -s "$HOME/sdn-project/README.md" "/media/sf_sdn_transfer/ubuntu/README.md" && echo "README is up to date"
 ```
 
-The updater does not restart processes or install packages. Restart the three launchers to use changed Python code. Actual Ubuntu synchronization remains unconfirmed until the updater and this check have been run there.
+Windows edits do not update the VM automatically. The updater does not restart processes or install packages. Actual Ubuntu synchronization remains unconfirmed until it is run there.
 
 ## Run on the configured Ubuntu VM
 
@@ -208,7 +157,7 @@ The controller supplies `/topology`, `/links`, `/flows`, `/sdn/status`, `/sdn/ho
 
 These are measurements of the saved workloads, not guarantees for every VM or traffic matrix. The repeated November 25 comparisons used 64k HTB shaping before the final November 26 LLDP wait correction. The November 26 calibration is a separate homogeneous five-run batch.
 
-| Experiment | Recorded result | Raw source under `experiments/results/` |
+| Experiment | Recorded result | Raw source under `ubuntu/experiments/results/` in this repository |
 | --- | --- | --- |
 | Latest iperf3 accuracy, n=5 | Mean error **3.116%**, sample SD **0.181 pp** | `accuracy-20261126T124854Z.json` |
 | H6 receiver, 85+30 Mbps workload | Shortest **68.90**, balanced **79.60 Mbps** | `compare-grid-20261125T194357Z/` |
@@ -250,7 +199,7 @@ The 16 logic tests cover actual method bodies and an exported OS-Ken source fixt
 
 ## C1 OpenFlow capture
 
-`c1/` contains the learning-switch source and the original student capture. Open `c1/c1-linear-rerun.pcapng` in Wireshark and use `tcp.port == 6653 && tcp.len > 0`. The capture includes HELLO, FEATURES, table-miss FLOW_MOD, PACKET_IN, forwarding FLOW_MOD and PACKET_OUT. The report explains this sequence using the real capture.
+`ubuntu/c1/` contains the learning-switch source and the original student capture. Open `c1/c1-linear-rerun.pcapng` in Wireshark and use `tcp.port == 6653 && tcp.len > 0`. The capture includes HELLO, FEATURES, table-miss FLOW_MOD, PACKET_IN, forwarding FLOW_MOD and PACKET_OUT. The report explains this sequence using the real capture.
 
 ## Limits and remaining course material
 
@@ -276,20 +225,23 @@ Course coordinator: **Prof. Ahmed M. Abdelhaleem**, as stated in the original co
 ## Repository layout
 
 ```text
-vm-source/          Controller and topology source
-experiments/        Demos, comparisons, logic tests and raw results
-experiments/fixtures/ Exported discovery source used by regression tests
-ubuntu/             Independent VM launch, installation and update tools
-dashboard/          Local HTML/CSS/JavaScript dashboard and proxy
-c1/                 Learning switch and original Wireshark capture
-output/report/      Editable English report and PDF chapters
+ubuntu/             Standalone folder to copy to Linux as ~/sdn-project
+ubuntu/setup.sh     First-time dependency setup
+ubuntu/run.sh       Controller, network and dashboard launcher
+ubuntu/vm-source/   Current controller and topology source
+ubuntu/experiments/ Demos, comparisons, fixtures, tests and raw results
+ubuntu/dashboard/   Local dashboard and API proxy
+ubuntu/c1/          Learning switch and original Wireshark capture
+output/report/      Editable combined report and PDF chapters
 output/pdf/         Experiment figures and Arabic lab guide
-output/video/       Approved explainer, animated preview and stills
-media/              Repository artwork, explainer and current video numbers
+output/video/       Approved explainer, preview and stills
+media/              Repository artwork and current video numbers
+report_builder/     Current report generator and older authoring helpers
+video/              Motion graphics authoring sources
 ```
 
-`PLAN.md` is the single project plan. `HANDOFF.md` is the short current state for another AI/account. `WORK_LOG.md`, raw results and local Git preserve the history. Dated source archives and checkpoints are historical baselines and must not replace the current `vm-source/` files.
+`PLAN.md` is the single project plan. `HANDOFF.md` is the short current state for another AI/account. `WORK_LOG.md`, raw results and local Git preserve the history. Dated source archives and checkpoints are historical baselines and must not replace the current `ubuntu/vm-source/` files.
 
 The current combined report is the revised 33-page PDF / 34-page Word edition (`output/report/sdn-track-1-report.pdf` and `.docx`), with a standalone cover and its reconciled offline generator under `report_builder/`. The individual chapter files in `output/report/` are earlier drafts.
 
-Report authoring is separate from the network runtime. Use `report_builder/build_report.py` and `report_builder/export_pdf.ps1` to regenerate the combined Word/PDF report; `experiments/build_deliverables.py` is the older chapter assembler and is not compatible with this edition's heading structure. Team names and the explainer revision are approved; individual contribution attribution and original weekly submissions remain pending.
+Report authoring is separate from the network runtime. Use `report_builder/build_report.py` and `report_builder/export_pdf.ps1` to regenerate the combined Word/PDF report; `report_builder/build_deliverables.py` is the older chapter assembler and is not compatible with this edition's heading structure. Team names and the explainer revision are approved; individual contribution attribution and original weekly submissions remain pending.

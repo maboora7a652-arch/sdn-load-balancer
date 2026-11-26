@@ -22,7 +22,7 @@ from PIL import Image
 # ── Paths ────────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).resolve().parent / "assets"
-DATA = ROOT / "experiments" / "results"
+DATA = ROOT / "ubuntu" / "experiments" / "results"
 AUDIT_IMGS = Path(
     r"C:\Users\Fouad\.gemini\antigravity\brain"
     r"\96b7c01b-bdf4-47a3-9f39-d8af196634d9\scratch\audit_imgs"

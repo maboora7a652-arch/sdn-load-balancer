@@ -2,6 +2,8 @@
 
 ## Current triage | 2026-11-26
 
+- The standalone network runtime now lives entirely in ubuntu/. Copy that folder alone to ~/sdn-project. The new setup.sh installs dependencies on a fresh Ubuntu system and reuses an existing OS-Ken environment. A copied folder passed 16 logic and 6 install/preservation checks on Windows; no fresh Ubuntu dependency installation or new live network was tested. Historical source archives remain untouched. Report authoring stays outside the runtime folder.
+
 - The combined report has been corrected via the reconciled `report_builder/` workflow while preserving Fouad's design, real screenshots, tables, and Nov 25–26 data: PDF is 33 pages (Ch.1=2, Ch.2=10, Ch.3=4, Ch.4=5, Ch.5=5, Ch.6=1) and DOCX is 34 pages (Ch.2=11, all chapters within rubric, OOXML XSD PASS, refreshed 1-page live Word TOC). Section B.2 now states accurately that individual roles/commit attribution remain unverified and Weeks 3–14 reports were not found. Sections 5.1/5.3/5.7/5.8 and Table 5.1 now restrict the post-`70fcaa2` bounded-wait attribution to `accuracy-20261126T124854Z.json`, noting that `120202Z` and `120735Z` preceded `70fcaa2` and do not log a commit hash in JSON. Note Word COM `ExportAsFixedFormat` hangs on this host, so Word (34 pp) and Chrome print PDF (33 pp) differ by 1 page in Ch. 2 while carrying identical content and synced TOCs. Do not run `experiments/build_deliverables.py` on this edition.
 
 - Latest supplied grid rehearsal: connectivity30/30, P1/20→P3/21, H6 receiver80Mbps/loss5.9% and H5 receiver27.2Mbps/loss9.3%. The long failure trial received299/300 and forwarded over P1 during the S5-S6 cut. Raw120202Z/120735Z files are preserved.

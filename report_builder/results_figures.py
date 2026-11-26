@@ -9,7 +9,7 @@ from reportlab.pdfgen.canvas import Canvas
 
 
 ROOT = Path(__file__).resolve().parent
-DATA = ROOT / "results"
+DATA = ROOT.parent / "ubuntu/experiments/results"
 OUTPUT = ROOT.parent / "output/pdf/sdn-experiment-results.pdf"
 ACCURACY = "accuracy-20261126T124854Z.json"
 GRID = "compare-grid-20261125T194357Z"

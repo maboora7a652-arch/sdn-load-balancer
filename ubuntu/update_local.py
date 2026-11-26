@@ -69,24 +69,24 @@ def main():
     project = home / "sdn-project"
     if project.is_symlink() or not project.is_dir():
         raise SystemExit("Expected an existing regular directory: " + str(project))
-    source = Path(__file__).resolve().parents[1]
+    source = Path(__file__).resolve().parent
     if source == project.resolve():
         raise SystemExit("Run the updater from the shared release, not the destination.")
     owner = (account.pw_uid, account.pw_gid) if os.geteuid() == 0 else None
     required = [source / "vm-source/rest_api_controller.py", source / "vm-source/custom_topology.py",
-                source / "ubuntu/README.md", source / "ubuntu/run.sh"]
+                source / "README.md", source / "run.sh"]
     if not all(p.is_file() for p in required):
         raise SystemExit("The shared release is missing a required source file.")
     backup = backup_controller(required[0], project / "vm-source/rest_api_controller.py", home / "sdn-backups", owner)
     if backup:
         print("Previous controller saved:", backup)
     counts = {"updated": 0, "unchanged": 0, "preserved": 0}
-    mapping = [(source / "ubuntu/README.md", project / "README.md", False),
-               (source / "ubuntu/run.sh", project / "run.sh", False)]
-    for name in ("requirements.txt", "AGENTS.md", "HANDOFF.md", "PLAN.md", "ISSUES_AND_RISKS.md", "WORK_LOG.md"):
+    mapping = [(source / "README.md", project / "README.md", False),
+               (source / "run.sh", project / "run.sh", False)]
+    for name in ("requirements.txt", "setup.sh", "install_local.py", "update_local.py"):
         if (source / name).is_file():
             mapping.append((source / name, project / name, False))
-    for folder in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu", "report_builder", "video"):
+    for folder in ("vm-source", "experiments", "dashboard", "c1"):
         root = source / folder
         if not root.is_dir():
             continue
@@ -99,6 +99,16 @@ def main():
             if "_success.py" in item.name or "_before_" in item.name:
                 continue
             mapping.append((item, project / relative, relative.parts[:2] == ("experiments", "results")))
+    # The network folder works alone; report/authoring extras are optional in a full checkout.
+    repository = source.parent
+    if source.name == "ubuntu" and (repository / "AGENTS.md").is_file() and (repository / "Computer_Networks_Project_2026_v3.pdf").is_file():
+        for name in ("AGENTS.md", "HANDOFF.md", "PLAN.md", "ISSUES_AND_RISKS.md", "WORK_LOG.md"):
+            if (repository / name).is_file():
+                mapping.append((repository / name, project / name, False))
+        for folder in ("output", "media", "report_builder", "video"):
+            for item in (repository / folder).rglob("*"):
+                if item.is_file() and not item.is_symlink() and "__pycache__" not in item.parts and item.suffix != ".pyc":
+                    mapping.append((item, project / item.relative_to(repository), False))
     for original, destination, preserve in mapping:
         outcome = copy_file(original, destination, project, owner, preserve)
         counts[outcome] += 1
