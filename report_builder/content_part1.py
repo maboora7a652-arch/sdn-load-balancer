@@ -178,43 +178,52 @@ CH1_BLOCKS = [
         "event handlers, REST endpoints, web dashboard, and unit-test suite. Chapter 5 presents the repeated "
         "experimental benchmarks, quantitative comparisons, and consolidated engineering limitations. Chapter 6 "
         "summarizes the findings and outlines concrete future work, followed by IEEE references and two "
-        "appendices covering deployment commands and team contributions."
+        "appendices covering deployment commands, the team roster, and repository records."
     ),
 ]
 
 
 # ---------------------------------------------------------------------------
-# Chapter 2: Software-Defined Networking Background (~10-11 pages)
+# Chapter 2: Software-Defined Networking Background (10-12 pages)
 # Covers all 8 mandatory subtopics 11.1-11.8 across 2.1-2.8 with 5 figures,
-# 3 tables, and all 18 canonical IEEE citations [1]-[18].
+# 4 tables, and all 18 canonical IEEE citations [1]-[18].
 # ---------------------------------------------------------------------------
 CH2_BLOCKS = [
-    # ---- 2.1 (~330 words + Fig 2.1) ----
+    # ---- 2.1 Traditional Networks vs SDN & Historical Evolution ----
     _h2("2.1 Traditional Networks versus SDN and Historical Evolution"),
     _p(
-        "In a conventional IP router or Ethernet switch, packet forwarding and routing logic live inside the "
-        "same chassis. Three planes are coupled in vendor firmware: the data plane parses headers and forwards "
-        "frames at line rate, the control plane runs distributed routing protocols to populate local tables, "
-        "and the management plane handles device configuration via vendor-specific CLIs or SNMP. Implementing "
-        "a network-wide traffic policy means translating one operational goal into dozens of box-level "
-        "configurations across different operating systems."
+        "In a conventional IP router or Ethernet switch, packet forwarding and routing intelligence reside "
+        "inside the same physical chassis. Three functional planes are tightly coupled inside proprietary "
+        "firmware: the data plane parses headers and forwards frames at line rate across switch silicon, the "
+        "control plane executes distributed routing and spanning-tree protocols to compute local forwarding "
+        "tables, and the management plane exposes vendor-specific command-line interfaces (CLIs) or SNMP MIBs "
+        "for operator configuration. Translating a single network-wide traffic policy into production state "
+        "requires pushing low-level, device-specific syntax to dozens of heterogeneous boxes, a manual workflow "
+        "that makes configuration drift and human error routine."
     ),
     _p(
-        "Distributed protocols provide reachability and loop prevention, yet they underutilize parallel paths. "
-        "Under Open Shortest Path First (OSPF), routers flood link-state updates and run Dijkstra's algorithm "
-        "independently; static weights push traffic down one lowest-cost route regardless of live queue load, "
-        "and link failures require flooding before tables reconverge. At Layer 2, the Spanning Tree Protocol "
-        "(STP) avoids broadcast loops by blocking redundant links outright until a failure forces tree "
-        "recalculation. Changing these algorithms in commercial switches is rarely feasible because control "
-        "software is closed."
+        "Distributed control protocols provide reliable reachability and loop avoidance, yet they systematically "
+        "underuse redundant physical links. Under Open Shortest Path First (OSPF), every router floods link-state "
+        "advertisements across an area and executes Dijkstra's shortest-path-first algorithm independently on a "
+        "shared metric graph. Because administrative link weights are static unless an operator re-tunes them "
+        "manually, OSPF pins all traffic for a destination onto one lowest-cost route regardless of instantaneous "
+        "queue occupancy; when a link fails, neighbors must detect the timeout, flood new link-state advertisements, "
+        "and recompute shortest-path trees independently before forwarding stabilizes. At Layer 2, the Spanning "
+        "Tree Protocol (STP) eliminates broadcast storms by logically blocking redundant switch ports until a "
+        "primary path fails. On our six-switch lab grid, STP would block links on the lower row (`S1-S4-S5-S6`) "
+        "outright, cutting bisection capacity in half even when both paths are healthy. Modifying these embedded "
+        "protocols inside commercial switches is rarely possible because control software is closed and tied to "
+        "vendor release cycles, creating long-term vendor lock-in and slow innovation."
     ),
     _p(
-        "Software-Defined Networking separates the control plane from the switching hardware and places "
-        "routing logic in a logically centralized software controller. Switches retain fast match-action "
-        "forwarding pipelines and expose a standard interface for rule programming. As shown in Figure 2.1, "
-        "an operator can switch between shortest-path and congestion-aware policies in one Python module "
-        "without reconfiguring individual devices. Once the controller installs rules, switches forward "
-        "subsequent matching packets locally in the data plane."
+        "Software-Defined Networking (SDN) breaks this vertical integration by decoupling the control plane from "
+        "the switching hardware and migrating routing decisions into a logically centralized software controller "
+        "[5]. Data-plane devices retain high-speed match-action forwarding pipelines and expose a standardized, "
+        "open programming interface. As illustrated in Figure 2.1, an operator can switch an entire network from "
+        "static shortest-path forwarding to congestion-aware elephant rerouting by updating one Python module "
+        "rather than touching individual switch operating systems. Critically, decoupling does not force every "
+        "packet through the controller: once rules are installed in switch flow tables, matching packets continue "
+        "flowing directly through the data plane at switch forwarding speed."
     ),
     {
         "type": "figure",
@@ -229,26 +238,41 @@ CH2_BLOCKS = [
         "border": False,
     },
     _p(
-        "This separation grew out of three research milestones before industry standardization. The 4D "
-        "architecture [2] divided network control into Decision, Dissemination, Discovery, and Data planes, "
-        "matching the exact pipeline in our controller where LLDP discovery feeds centralized path selection "
-        "and rule dissemination. Ethane [1] then proved centralized flow-level access policy on a live "
-        "enterprise network using simple flow switches. To bring programmable flow tables to commercial ASICs "
-        "without exposing proprietary internals, Stanford researchers introduced OpenFlow [3], and the Open "
-        "Networking Foundation (ONF) later standardized the protocol, producing the OpenFlow 1.3.5 "
-        "specification [4] used in this project."
+        "Modern SDN emerged through a clear sequence of academic and standardization milestones. First, the 4D "
+        "architecture [2] argued that legacy routing complexity stemmed from burying network-wide objectives inside "
+        "distributed per-router protocols, and proposed refactoring network control into four clean planes: a "
+        "Decision plane computing global paths, a Dissemination plane carrying rules to switches, a Discovery plane "
+        "tracking physical topology, and a Data plane forwarding packets. That four-part split maps directly onto "
+        "our Track 1 controller, where LLDP discovery feeds centralized path ranking and barrier-gated rule "
+        "dissemination. Second, Ethane [1] validated centralized flow-level control on a live university enterprise "
+        "network of several hundred hosts, proving that a central controller could enforce explicit per-flow access "
+        "and routing policy over simple flow-table switches with modest setup overhead."
+    ),
+    _p(
+        "Deploying programmable flow tables on commercial switches still required a common abstraction that switch "
+        "vendors could implement without exposing proprietary ASIC internals. Stanford researchers addressed that "
+        "gap with OpenFlow [3], recognizing that Ethernet switches, IP routers, and firewalls from different "
+        "vendors already shared an internal TCAM-based flow table capable of matching packet headers and applying "
+        "actions. OpenFlow exported a standard wire protocol to program those tables remotely while keeping packet "
+        "forwarding in silicon. Industry adoption accelerated once the Open Networking Foundation (ONF) took over "
+        "stewardship of the specification, evolving it from academic version 1.0 to the OpenFlow 1.3.5 baseline "
+        "[4] deployed across our Mininet and Open vSwitch testbed."
     ),
 
-    # ---- 2.2 (~300 words + Fig 2.2) ----
+    # ---- 2.2 Three-Layer SDN Architecture & Control Interfaces ----
     _h2("2.2 Three-Layer SDN Architecture and Control Interfaces"),
     _p(
-        "SDN organizes network control into three horizontal layers joined by explicit interfaces [5], as "
-        "depicted in Figure 2.2. The infrastructure (data) layer contains physical or virtual switches that "
-        "hold flow entries, forward or rewrite packets, and increment byte and packet counters. The control "
-        "layer acts as the network operating system: it maintains the live graph of switches, links, and "
-        "hosts, gathers statistics, and translates routing decisions into switch rules. The application layer "
-        "sits above the controller, hosting load balancers, firewalls, and monitoring dashboards that consume "
-        "abstract network state."
+        "SDN organizes network functionality into three horizontal planes separated by well-defined interfaces "
+        "[5], as shown in Figure 2.2. At the bottom, the infrastructure (data) layer consists of physical ASIC "
+        "switches or virtual switches such as Open vSwitch. Switches hold flow, group, and meter entries, match "
+        "arriving headers, execute forwarding or rewrite actions, maintain exact byte and packet counters, and "
+        "report link or packet exceptions upward. In the middle, the control layer functions as a network "
+        "operating system (NOS): it maintains the authoritative graph of switches, directed links, and host "
+        "attachments, collects periodic telemetry, resolves ARP or reachability queries, and translates abstract "
+        "forwarding intent into low-level switch rules. At the top, the application layer hosts modular network "
+        "services, including congestion-aware load balancers, access-control filters, traffic-engineering "
+        "planners, and monitoring dashboards that read and manipulate network state without parsing raw wire "
+        "protocols."
     ),
     {
         "type": "figure",
@@ -263,47 +287,69 @@ CH2_BLOCKS = [
         "border": False,
     },
     _p(
-        "Southbound interfaces connect the control layer to switches. Our system uses OpenFlow 1.3 over TCP "
-        "port 6653 to push flow modifications, issue barrier checks, poll counters, and receive asynchronous "
-        "switch events; protocols such as OVSDB, NETCONF, and P4Runtime cover bridge configuration or custom "
-        "pipelines. Northbound interfaces expose controller abstractions to applications and operators, most "
-        "commonly through RESTful HTTP/JSON APIs. Our controller embeds an Eventlet WSGI server on "
-        "`127.0.0.1:8080` serving `/topology`, `/links`, `/flows`, `/sdn/status`, `/sdn/hosts`, and "
-        "`/sdn/bandwidth` for experiment scripts and the local web dashboard. East-west interfaces link peer "
-        "controller nodes in multi-instance clusters to synchronize topology and switch ownership; our "
-        "single-process lab controller has no east-west replication."
+        "Three interface families govern communication across and within these layers [5]. Southbound interfaces "
+        "(SBIs) bridge the control layer and infrastructure switches. Our controller uses OpenFlow 1.3 over TCP "
+        "port 6653 to install and delete flow rules, synchronize rule installation with barrier messages, poll "
+        "multipart port and flow statistics, and receive asynchronous packet and topology notifications. Alongside "
+        "OpenFlow, production environments pair complementary management SBIs such as OVSDB for creating virtual "
+        "bridges and shaping queues, NETCONF/YANG for device configuration, and P4Runtime for switches with "
+        "custom programmable pipelines [10]."
     ),
     _p(
-        "Logical centralization differs from physical centralization [5]. Applications write against a single "
-        "coherent network graph, yet production networks distribute the controller across a replicated server "
-        "cluster so one machine failure does not stall flow setup. Even on one host, the controller's view "
-        "trails live wire traffic by one polling period and TCP queue delay. Our load balancer accounts for "
-        "that lag by checking sample freshness, smoothing utilization across ticks, and waiting for barrier "
-        "replies before cutting traffic over."
+        "Northbound interfaces (NBIs) expose the controller's global view to applications and external tooling. "
+        "Unlike the southbound layer, no single NBI standard dominates; controllers combine in-process Python or "
+        "Java event APIs for low-latency control loops with HTTP/JSON REST APIs for external dashboards and "
+        "orchestration scripts. In our system, the load-balancing engine runs in-process inside the OS-Ken "
+        "controller to react directly to statistics replies and link-delete events, while an embedded Eventlet "
+        "WSGI server on `127.0.0.1:8080` serves read-only JSON endpoints (`/topology`, `/links`, `/flows`, "
+        "`/sdn/status`, `/sdn/hosts`, and `/sdn/bandwidth`) consumed by both our experiment scripts and the local "
+        "web dashboard on port 8081. East-west interfaces connect peer controller instances in clustered "
+        "deployments so separate servers share topology graphs, host tables, and switch ownership using either "
+        "strong consensus protocols such as Raft [7] or eventual gossip synchronization. Because our coursework "
+        "runs inside a single virtual machine, our implementation operates as a single OS-Ken process without "
+        "east-west replication."
+    ),
+    _p(
+        "A core SDN principle is that logical centralization is distinct from physical centralization [5]. "
+        "Applications always reason over one consistent network graph rather than exchanging distributed routing "
+        "messages, yet carrier networks deploy multiple controller servers physically to avoid single-node "
+        "bottlenecks and machine failures. Three further principles follow from this separation: direct "
+        "programmability of forwarding state, vendor-neutral hardware abstraction, and closed-loop automated "
+        "control driven by switch telemetry. Even on one physical host, however, the controller's view trails "
+        "wire reality by one polling interval plus OpenFlow TCP serialization and greenlet scheduling latency. "
+        "Our controller explicitly accounts for this visibility lag through monotonic timestamps, sample-freshness "
+        "checks, two-period persistence filters, and barrier-confirmed updates before cutting traffic over."
     ),
 
-    # ---- 2.3 (~680 words + Fig 2.3, Fig 2.4, Fig 2.5, Table 2.1) ----
+    # ---- 2.3 OpenFlow Protocol Deep-Dive & C1 Wireshark Verification ----
     _h2("2.3 OpenFlow Protocol Architecture and Captured Lab Behavior"),
     _p(
-        "OpenFlow defines a switch pipeline model and a binary wire protocol [3], [4]. OpenFlow 1.0 offered a "
-        "single flow table with 12 fixed IPv4/Ethernet match fields, which simplified early prototypes but "
-        "caused rule explosion when combining routing and ACLs. OpenFlow 1.3 [4] established the production "
-        "baseline with multi-table pipelines, extensible OXM match fields (adding IPv6 and MPLS), group "
-        "tables (Select, All, Fast-Failover), meter tables for rate limiting, auxiliary connections, and "
-        "multipart statistics (`OFPMP_*`). OpenFlow 1.5 later added egress tables and scheduled bundles. "
-        "Every Open vSwitch bridge in this project explicitly negotiates `OpenFlow13`."
+        "OpenFlow defines both an abstract switch forwarding model and a binary TCP/TLS control protocol [3], "
+        "[4]. Its specification matured significantly across major releases. OpenFlow 1.0 (2009) exposed a single "
+        "flat flow table with 12 fixed Ethernet, VLAN, IPv4, and TCP/UDP match fields; while straightforward for "
+        "early campus prototypes, placing Layer 2 switching, Layer 3 routing, and security filters in one table "
+        "triggered cross-product rule explosion. OpenFlow 1.3 [4] became the dominant production baseline by "
+        "introducing multi-table pipelines, extensible OpenFlow Extensible Match (OXM) TLV fields supporting IPv6 "
+        "and MPLS, group tables for multi-path and failover actions, per-flow meter tables for QoS rate limiting, "
+        "auxiliary UDP/TCP control channels, and multipart statistics messages (`OFPMP_*`). OpenFlow 1.5 later "
+        "extended the model with egress processing tables, packet-type-aware pipelines, and scheduled atomic "
+        "bundles. Every Open vSwitch bridge in our Mininet topologies explicitly negotiates `OpenFlow13`."
     ),
-    _h3("Switch Pipeline and Flow-Entry Anatomy"),
+    _h3("Switch Components, Pipeline Processing, and Flow-Entry Anatomy"),
     _p(
-        "An OpenFlow 1.3 switch maintains a TCP/TLS channel to the controller, numbered flow tables, and "
-        "optional group and meter tables [4]. Figure 2.3 shows the pipeline and flow-entry fields. Each entry "
-        "stores OXM match fields, a 16-bit priority, packet and byte counters, instructions, idle and hard "
-        "timeouts, and a 64-bit controller cookie. Incoming packets enter Table 0, match the highest-priority "
-        "qualifying entry, update counters, and execute instructions (`OFPIT_APPLY_ACTIONS`, "
-        "`OFPIT_WRITE_ACTIONS`, `OFPIT_METER`, or `OFPIT_GOTO_TABLE`). Unlike OpenFlow 1.0, OpenFlow 1.3 "
-        "drops unmatched packets by default unless the controller installs a priority-0 wildcard table-miss "
-        "entry forwarding to `OFPP_CONTROLLER`. Our controller installs that table-miss rule at handshake and "
-        "places managed IPv4 host-pair rules in Table 0 at priority 20 and above."
+        "An OpenFlow 1.3 switch contains four architectural subsystems: an OpenFlow channel connecting over TCP "
+        "or TLS to one or more controllers, one or more numbered flow tables (`Table 0` through `Table N`), a "
+        "group table for shared action buckets, and a meter table for rate-based packet policing or DSCP "
+        "remarking [4]. Figure 2.3 depicts the resulting multi-table match-action pipeline and the structure of a "
+        "single flow entry. When a packet arrives on an ingress port, lookup always starts at Table 0. The switch "
+        "compares extracted header fields and metadata against all flow entries in the table and selects the "
+        "highest-priority matching rule. Upon a match, the switch increments the entry's packet and byte counters "
+        "and executes its instructions, which may apply actions immediately (`OFPIT_APPLY_ACTIONS`), append "
+        "deferred actions to the packet's action set (`OFPIT_WRITE_ACTIONS`), clear pending actions "
+        "(`OFPIT_CLEAR_ACTIONS`), attach a rate meter (`OFPIT_METER`), or forward the packet to a higher-numbered "
+        "table (`OFPIT_GOTO_TABLE`). Once pipeline traversal ends, the switch executes the accumulated action set "
+        "in specification order (copy/set header fields, push/pop tags, apply QoS queue, and finally output to a "
+        "physical port, logical port, or group)."
     ),
     {
         "type": "figure",
@@ -317,40 +363,101 @@ CH2_BLOCKS = [
         "width_in": 6.1,
         "border": False,
     },
-    _h3("Message Classes and Reactive versus Proactive Forwarding"),
     _p(
-        "OpenFlow 1.3 messages fall into three classes [4]. Symmetric messages (`OFPT_HELLO`, "
-        "`OFPT_ECHO_REQUEST/REPLY`) originate from either side for version negotiation and keepalives. "
-        "Controller-to-switch messages inspect or change state: `OFPT_FEATURES_REQUEST`, `OFPT_FLOW_MOD`, "
-        "`OFPT_PACKET_OUT`, `OFPT_MULTIPART_REQUEST` (`OFPMP_PORT_DESC`, `OFPMP_PORT_STATS`, `OFPMP_FLOW`, "
-        "replacing OpenFlow 1.0 `OFPST_*` names), and `OFPT_BARRIER_REQUEST`, which forces a switch to finish "
-        "all earlier commands before returning `OFPT_BARRIER_REPLY`. Asynchronous messages (`OFPT_PACKET_IN`, "
-        "`OFPT_PORT_STATUS`, `OFPT_FLOW_REMOVED`, `OFPT_ERROR`) report switch events upward."
+        "Table 2.1 summarizes the exact OpenFlow 1.3 flow-entry fields, action categories, and group types "
+        "defined in [4], together with how our Track 1 controller uses or omits each feature. A critical semantic "
+        "change introduced in OpenFlow 1.3 concerns unmatched packets: whereas OpenFlow 1.0 automatically punted "
+        "table misses to the controller, OpenFlow 1.3 drops unmatched packets by default unless the controller "
+        "explicitly installs a priority-0 wildcard table-miss entry directing traffic to `OFPP_CONTROLLER`. Our "
+        "controller installs that table-miss entry during `EventOFPSwitchFeatures` and reserves priorities 20 and "
+        "above in Table 0 for managed IPv4 host-pair forwarding rules, allowing higher-priority reroute entries "
+        "(priority 21, 22, ...) to shadow older entries cleanly during make-before-break transitions."
+    ),
+    {
+        "type": "table",
+        "id": "Table 2.1",
+        "caption": "Table 2.1: OpenFlow 1.3 Switch Entry Components, Actions, and Usage in the Track 1 Controller [4].",
+        "headers": ["Component", "Specification Role (OpenFlow 1.3.5)", "Usage in Track 1 Controller"],
+        "rows": [
+            [
+                "Match fields (OXM)",
+                "Extensible TLV tuples matching ingress port, Ethernet, VLAN, IPv4/IPv6, TCP/UDP, and metadata.",
+                "Matches `in_port`, `eth_type=0x0800`, `eth_src`, and `eth_dst` for directed IPv4 host pairs.",
+            ],
+            [
+                "Priority (16-bit)",
+                "Resolves overlapping matches (0 to 65,535); highest numeric priority wins in a table.",
+                "Priority 0 for table-miss; priority 20 for initial Dijkstra/ECMP paths; 21+ for managed reroutes.",
+            ],
+            [
+                "Counters",
+                "Per-table, per-flow, per-port, and per-group packet, byte, and duration counters.",
+                "Polled via `OFPMP_PORT_STATS` (utilization) and `OFPMP_FLOW` (ingress elephant detection).",
+            ],
+            [
+                "Instructions & Actions",
+                "`APPLY_ACTIONS`, `WRITE_ACTIONS`, `GOTO_TABLE`, `METER`; actions include Output, Set-Field, Drop.",
+                "Uses `OFPIT_APPLY_ACTIONS` with `OFPActionOutput` to a specific switch port or `OFPP_CONTROLLER`.",
+            ],
+            [
+                "Timeouts & Cookie",
+                "`idle_timeout`, `hard_timeout` for automatic eviction; 64-bit `cookie` for controller tagging.",
+                "Managed host-pair rules stay persistent (`timeout=0`) until replaced by `OFPFC_DELETE_STRICT` or rebuild.",
+            ],
+            [
+                "Group & Meter Tables",
+                "`ALL`, `SELECT`, `INDIRECT`, `FAST_FAILOVER` (`OFPGT_FF`) groups; rate-limiting meters.",
+                "Not used in current controller; `OFPGT_FF` switch-local protection is documented as future work.",
+            ],
+        ],
+        "col_widths_mm": [32, 68, 66],
+    },
+    _h3("Message Classes and Reactive versus Proactive Rule Installation"),
+    _p(
+        "The OpenFlow 1.3 wire protocol partitions messages into three classes [4]. Symmetric messages can be "
+        "initiated by either endpoint without solicitation: `OFPT_HELLO` negotiates the highest shared protocol "
+        "version (`0x04` for 1.3), `OFPT_ECHO_REQUEST` and `OFPT_ECHO_REPLY` verify channel liveness and bound "
+        "control round-trip delay, and `OFPT_EXPERIMENTER` supports vendor extensions. Controller-to-switch "
+        "messages query or mutate switch state: `OFPT_FEATURES_REQUEST` discovers the datapath identifier (`dpid`) "
+        "and buffer limits, `OFPT_FLOW_MOD` adds, modifies, or strictly deletes entries (`OFPFC_ADD`, "
+        "`OFPFC_MODIFY`, `OFPFC_DELETE`, `OFPFC_DELETE_STRICT`), `OFPT_PACKET_OUT` injects controller-generated "
+        "frames such as LLDP probes and proxy ARP replies, `OFPT_MULTIPART_REQUEST` retrieves large replies "
+        "(`OFPMP_PORT_DESC`, `OFPMP_PORT_STATS`, `OFPMP_FLOW`), and `OFPT_BARRIER_REQUEST` enforces strict "
+        "execution ordering by requiring the switch to complete all preceding commands before returning "
+        "`OFPT_BARRIER_REPLY`. Asynchronous messages (`OFPT_PACKET_IN`, `OFPT_PORT_STATUS`, `OFPT_FLOW_REMOVED`, "
+        "`OFPT_ERROR`) notify the controller of data-plane arrivals, physical port link changes, expired entries, "
+        "or failed modifications."
     ),
     _p(
-        "Reactive control installs rules only when an unmatched packet triggers `OFPT_PACKET_IN`, saving table "
-        "space at the cost of first-packet latency and control-channel load. Proactive control pre-installs "
-        "rules before packets arrive, avoiding setup delay while occupying more entries. Our controller uses "
-        "reactive handling for ARP and host discovery, paired with proactive multi-hop rule installation for "
-        "discovered IPv4 host pairs and congestion reroutes."
+        "SDN controllers balance two rule-installation strategies. Under purely reactive installation, switches "
+        "forward every unknown first packet to the controller via `OFPT_PACKET_IN`, and the controller installs "
+        "rules on demand. Reactive control minimizes flow-table occupancy when only a small fraction of host pairs "
+        "communicate, yet it adds first-packet setup latency and exposes the control channel to burst traffic. "
+        "Under purely proactive installation, the controller pushes rules across all switches before packets "
+        "arrive, eliminating first-packet punt delay at the cost of pre-populating entries for idle pairs. Our "
+        "Track 1 controller adopts a hybrid pattern: ARP discovery and unknown host learning operate reactively "
+        "through `OFPT_PACKET_IN`, whereas once a host pair is resolved, the controller installs bidirectional "
+        "multi-hop IPv4 rules proactively across the entire path and executes congestion reroutes and link-failure "
+        "rebuilds proactively across every affected switch."
     ),
     _h3("Wireshark Verification of OpenFlow 1.3 Control Traffic (C1)"),
     _p(
-        "For Common Core C1, we captured loopback traffic on TCP port 6653 (`c1-linear-rerun.pcapng`) over a "
-        "two-switch linear topology (`S1-S2`, hosts `H1` and `H2`) controlled by OS-Ken. Figure 2.4 shows the "
-        "filtered trace (`tcp.port == 6653 && tcp.len > 0`). Because both switches connect to `127.0.0.1:6653` "
-        "from separate ephemeral ports, frames interleave: Frame 34 sends `OFPT_HELLO` (`OpenFlow 1.3`, 8-byte "
-        "payload), frames 48 and 50 return `OFPT_FEATURES_REPLY` for datapaths 1 and 2, frames 51 to 56 "
-        "exchange `OFPMP_PORT_DESC` port lists, frames 52 and 54 install the priority-0 table-miss "
-        "`OFPT_FLOW_MOD` rules, and frames 79, 81, and 123 show initial `OFPT_PACKET_IN` and `OFPT_PACKET_OUT` "
-        "exchanges."
+        "To verify Common Core C1 on real control traffic, we captured the loopback interface (`lo`) on TCP port "
+        "6653 (`c1/c1-linear-rerun.pcapng`) using a two-switch linear Mininet topology (`S1-S2`, hosts `H1` and "
+        "`H2`) controlled by an OS-Ken learning switch. Figure 2.4 presents the filtered Wireshark view "
+        "(`tcp.port == 6653 && tcp.len > 0`). Because both switches open independent TCP connections from separate "
+        "ephemeral ports to `127.0.0.1:6653`, startup messages interleave naturally: Frame 34 initiates "
+        "`OFPT_HELLO` (`OpenFlow 1.3`, 8-byte payload), frames 48 and 50 return `OFPT_FEATURES_REPLY` carrying "
+        "datapath IDs 1 and 2, frames 51 through 56 exchange `OFPMP_PORT_DESC` port inventories, frames 52 and 54 "
+        "push the mandatory priority-0 table-miss `OFPT_FLOW_MOD` entries, and frames 79, 81, and 123 record the "
+        "first `OFPT_PACKET_IN` and `OFPT_PACKET_OUT` exchanges."
     ),
     {
         "type": "figure",
         "id": "Figure 2.4",
         "file": "shot_c1_wireshark_overview.png",
         "caption": (
-            "Figure 2.4: Authentic Wireshark capture (`c1-linear-rerun.pcapng`, filter `tcp.port == 6653 && "
+            "Figure 2.4: Authentic Wireshark capture (`c1/c1-linear-rerun.pcapng`, filter `tcp.port == 6653 && "
             "tcp.len > 0` on `lo`) showing OpenFlow 1.3 handshake (`OFPT_HELLO`, `OFPT_FEATURES_REQUEST/REPLY`), "
             "`OFPMP_PORT_DESC` multipart queries, initial table-miss `OFPT_FLOW_MOD`, and `OFPT_PACKET_IN/OUT`."
         ),
@@ -358,15 +465,18 @@ CH2_BLOCKS = [
         "border": True,
     },
     _p(
-        "Table 2.1 lists the startup handshake and the reactive ICMP Echo Request sequence later in the same "
-        "capture. On S1, frame 448 punts H1's first Echo Request via `OFPT_PACKET_IN`, frame 449 installs the "
-        "matching `OFPT_FLOW_MOD`, and frame 450 releases the packet via `OFPT_PACKET_OUT`; S2 repeats those "
-        "three steps in frames 452 to 454, after which all three pings succeed directly in the data plane."
+        "Table 2.2 documents both the startup connection sequence and the reactive ICMP Echo Request flow setup "
+        "observed later in the same capture. When H1 pings H2 for the first time, S1 punts the unmatched Echo "
+        "Request in frame 448 (`OFPT_PACKET_IN`), the controller installs a Table 0 forwarding rule on S1 in "
+        "frame 449 (`OFPT_FLOW_MOD`), and frame 450 releases the original buffered frame via `OFPT_PACKET_OUT`. "
+        "Switch S2 repeats the identical three-message sequence in frames 452 to 454; once both directions are "
+        "programmed, subsequent ICMP requests and replies traverse S1 and S2 purely in the data plane with 3/3 "
+        "ping success and zero further `PACKET_IN` escalations."
     ),
     {
         "type": "table",
-        "id": "Table 2.1",
-        "caption": "Table 2.1: Observed OpenFlow 1.3 Control-Plane Sequence in C1 Capture (`c1-linear-rerun.pcapng`).",
+        "id": "Table 2.2",
+        "caption": "Table 2.2: Observed OpenFlow 1.3 Control-Plane Sequence in C1 Capture (`c1/c1-linear-rerun.pcapng`).",
         "headers": ["Frame(s)", "Switch", "OpenFlow 1.3 Message", "Observed Role in Capture"],
         "rows": [
             ["34, 39, 41, 44", "S1, S2", "`OFPT_HELLO`", "Negotiates OpenFlow 1.3 (`0x04`) over TCP port 6653 on `lo`."],
@@ -381,9 +491,11 @@ CH2_BLOCKS = [
         "col_widths_mm": [24, 18, 48, 76],
     },
     _p(
-        "Figure 2.5 dissects Frame 466 (`OFPT_FLOW_MOD`, 96-byte OpenFlow payload), confirming version "
-        "`1.3 (0x04)`, type `14`, `Table ID: 0`, command `OFPFC_ADD (0)`, `Priority: 1`, `OFP_NO_BUFFER`, zero "
-        "timeouts, and the OXM `Match` and `Instruction` fields on the wire."
+        "Figure 2.5 zooms into the protocol dissection pane for an individual `OFPT_FLOW_MOD` frame (96-byte "
+        "OpenFlow payload), confirming wire-level conformance with OpenFlow 1.3.5: version byte `0x04`, message "
+        "type `14` (`OFPT_FLOW_MOD`), `Table ID: 0`, command `OFPFC_ADD (0)`, explicit `Priority: 1`, "
+        "`OFP_NO_BUFFER (0xffffffff)`, zero idle and hard timeouts, followed by the OXM `Match` TLVs and "
+        "`OFPIT_APPLY_ACTIONS` instruction block."
     ),
     {
         "type": "figure",
@@ -398,19 +510,31 @@ CH2_BLOCKS = [
         "border": True,
     },
 
-    # ---- 2.4 (~240 words + Table 2.2) ----
+    # ---- 2.4 SDN Controllers & Platform Selection ----
     _h2("2.4 SDN Controllers and Platform Selection"),
     _p(
-        "An SDN controller combines TCP/TLS session handling, binary protocol codecs, an event dispatcher "
-        "(`EventOFPPacketIn`, `EventOFPPortStatsReply`, `EventOFPBarrierReply`), a topology store, and "
-        "application APIs. Because handlers share an event loop, periodic polling runs in a separate greenlet, "
-        "and datapath IDs paired with transaction IDs (`xid`) match incoming replies and barriers to their "
-        "originating requests. Table 2.2 compares five open-source controllers against the Track 1 lab needs."
+        "Internally, every OpenFlow controller layers five core subsystems [5]: a southbound transport manager "
+        "accepting switch TCP/TLS sockets, a binary OpenFlow encoder/decoder, an asynchronous event dispatcher "
+        "routing incoming messages (`EventOFPPacketIn`, `EventOFPPortStatsReply`, `EventOFPFlowStatsReply`, "
+        "`EventOFPBarrierReply`) to registered handlers, a network state store holding the switch-link graph and "
+        "host table, and a northbound API layer. Concurrency design strongly affects both developer ergonomics "
+        "and runtime behavior. Python controllers such as Ryu and OS-Ken [6] use cooperative Eventlet greenlets "
+        "inside one process, eliminating explicit lock contention across shared graph structures while requiring "
+        "handlers to yield during long loops so LLDP keepalives and OpenFlow heartbeats are not starved. "
+        "Java-based platforms such as ONOS [7] and OpenDaylight [8] run multi-threaded JVM containers with OSGi "
+        "module lifecycles and distributed data stores designed for carrier-scale clusters."
+    ),
+    _p(
+        "Transaction correlation is equally central inside the controller core. Every request sent over OpenFlow "
+        "carries a 32-bit transaction ID (`xid`). When our controller executes make-before-break rerouting, it "
+        "records the `(datapath_id, xid)` pair of each outgoing `OFPT_BARRIER_REQUEST` and advances to the next "
+        "upstream switch only after receiving the exact matching `OFPT_BARRIER_REPLY`. Table 2.3 compares five "
+        "widely used open-source controllers against the functional and single-VM resource constraints of Track 1."
     ),
     {
         "type": "table",
-        "id": "Table 2.2",
-        "caption": "Table 2.2: Comparison of Open-Source SDN Controllers and Selection Rationale for Track 1.",
+        "id": "Table 2.3",
+        "caption": "Table 2.3: Comparison of Open-Source SDN Controllers and Selection Rationale for Track 1.",
         "headers": ["Controller", "Language", "OpenFlow", "Architecture & Concurrency", "Suitability for Track 1 Lab"],
         "rows": [
             [
@@ -432,7 +556,7 @@ CH2_BLOCKS = [
                 "Java",
                 "1.0, 1.3",
                 "Distributed OSGi cluster with Raft consensus, intent framework, and carrier-grade scale.",
-                "Heavy JVM/cluster footprint exceeds single-VM scope; good reference for clustered failover.",
+                "Heavy JVM/cluster footprint exceeds single-VM scope; strong reference for clustered failover.",
             ],
             [
                 "OpenDaylight [8]",
@@ -452,134 +576,201 @@ CH2_BLOCKS = [
         "col_widths_mm": [26, 18, 20, 48, 54],
     },
     _p(
-        "Table 2.2 rules out POX immediately because it supports only OpenFlow 1.0 and cannot issue OpenFlow "
-        "1.3 multipart queries or strict priority deletes. ONOS [7] and OpenDaylight [8] target carrier "
-        "clusters and multi-protocol YANG orchestration, imposing JVM memory overhead that competes with "
-        "Mininet inside a single VM. Upstream Ryu suffers from stale packaging on Python 3.10+, so we chose "
-        "**OS-Ken 3.1.1** [6], the maintained OpenStack fork of Ryu permitted by the course specification. "
-        "OS-Ken provides native `ofproto_v1_3` message objects, built-in LLDP discovery, and direct "
-        "integration with `NetworkX` for Yen k = 3 path ranking. Because `os_ken.app.wsgi` is absent in "
-        "OS-Ken, we run `eventlet.listen` and `eventlet.wsgi` directly inside the controller hub to serve "
-        "read-only JSON endpoints without inter-process locking."
+        "Table 2.3 narrows the choice rapidly. POX cannot execute OpenFlow 1.3 multipart statistics or strict "
+        "priority deletions. ONOS [7] and OpenDaylight [8] excel in multi-server production deployments, yet their "
+        "JVM heap requirements and build toolchains compete directly with Mininet and Open vSwitch inside a single "
+        "Ubuntu VM. Floodlight offers clean Java OpenFlow 1.3 bindings, but lacks the direct Python scientific "
+        "ecosystem (`NetworkX` for Yen k = 3 simple-path enumeration and rapid experiment integration). Upstream "
+        "Ryu has aging packaging dependencies on Python 3.10+, so we selected **OS-Ken 3.1.1** [6], the actively "
+        "maintained OpenStack fork of Ryu explicitly permitted by the project specification. OS-Ken preserves the "
+        "exact Ryu `ofproto_v1_3` API and built-in LLDP topology module (`os_ken.topology.switches`) while running "
+        "cleanly on Ubuntu Python 3.10. Because OS-Ken omits the legacy `os_ken.app.wsgi` wrapper, our controller "
+        "spawns `eventlet.listen` and `eventlet.wsgi.server` directly inside its hub, serving `/topology`, "
+        "`/links`, `/flows`, and `/sdn/*` JSON snapshots from in-memory dictionaries without inter-process IPC."
     ),
 
-    # ---- 2.5 (~340 words) ----
+    # ---- 2.5 Data-Plane Platforms & Emulation Testbeds ----
     _h2("2.5 Data-Plane Platforms and Emulation Testbeds"),
     _p(
-        "Our data plane runs on **Open vSwitch (OVS)** [9], a multilayer virtual switch split between "
-        "`ovs-vswitchd` in user space (handling OpenFlow 1.3 tables and `ovsdb-server` state) and a Linux "
-        "kernel megaflow cache that forwards established flows at high speed without user-space copies. OVS "
-        "updates exact port and flow counters in kernel space, which our C4 poller reads. Because OVS port TX "
-        "counters count full Layer 2 Ethernet frames (headers plus periodic LLDP traffic) while `iperf3` "
-        "reports UDP payload rate, port counters naturally sit a few percent above the application sender "
-        "rate, explaining the 3.116% calibration offset in Chapter 5."
+        "Our data plane is powered by **Open vSwitch (OVS)** [9], an open-source multilayer virtual switch widely "
+        "deployed in cloud hypervisors and research testbeds. OVS splits packet processing into two cooperating "
+        "layers: `ovs-vswitchd` runs in Linux user space, maintaining the full OpenFlow 1.3 flow tables and "
+        "communicating with `ovsdb-server` for persistent bridge/port configuration, while an in-kernel datapath "
+        "module caches flattened wildcard *megaflows* for fast-path forwarding. The first packet of a flow misses "
+        "the kernel cache and triggers an upcall to `ovs-vswitchd`, which evaluates Table 0 rules and installs a "
+        "matching kernel megaflow; subsequent packets forward entirely in kernel space without user-space copies. "
+        "OVS updates exact per-port and per-flow packet and byte counters inside the kernel datapath. Because OVS "
+        "port TX counters tally complete Layer 2 Ethernet frames (14-byte Ethernet, 20-byte IPv4, and 8-byte UDP "
+        "headers plus periodic LLDP probes), whereas `iperf3` reports application UDP payload bits (1,400 bytes "
+        "per datagram), port TX naturally reads roughly 3.0% above sender payload rate, closely matching our "
+        "3.116% calibration measurement in Section 5.2."
     ),
     _p(
-        "Hardware switches instead run OpenFlow pipelines on merchant silicon ASICs, pairing SRAM hash tables "
-        "for exact matches with TCAM arrays for parallel single-cycle wildcard lookups. TCAM delivers "
-        "sub-microsecond forwarding at multi-terabit scale, yet its cost, power draw, and finite rule "
-        "capacity (often a few thousand wildcard entries) constrain per-flow rule count and update rates. "
-        "Software OVS on one VM cannot replicate hardware TCAM limits, so our controller aggregates rules at "
-        "the host-pair level and qualifies all benchmarks as emulated VM measurements."
+        "Hardware OpenFlow switches implement the same match-action abstraction on merchant-silicon ASICs rather "
+        "than general-purpose CPUs. Exact-match lookups (such as Layer 2 MAC forwarding) map onto dense, "
+        "low-power SRAM hash tables, whereas arbitrary wildcard matches (combining ingress port, IP prefixes, "
+        "and transport fields) rely on Ternary Content-Addressable Memory (TCAM) capable of parallel single-cycle "
+        "priority resolution. While hardware TCAM forwards at multi-terabit line rates with sub-microsecond "
+        "latency, TCAM silicon is expensive, power-hungry, and capacity-bounded (often holding only a few "
+        "thousand wildcard rules) with finite control-plane rule-insertion rates (hundreds to a few thousand "
+        "`FLOW_MOD` updates per second). Software OVS on a single VM does not emulate TCAM table exhaustion or "
+        "ASIC update latency directly; aggregating our managed rules at the directed IPv4 host-pair level keeps "
+        "table size bounded at O(H\u00b2) regardless of concurrent socket count, and Chapter 5 qualifies every "
+        "benchmark explicitly as software emulation."
     ),
     _p(
-        "Where OpenFlow controls a fixed header set, **P4** [10] makes the switch parser and match-action "
-        "tables programmable in software targeting PISA ASICs or BMv2, allowing operators to add custom "
-        "telemetry headers without changing protocol specifications. Our project stays within standard OVS "
-        "OpenFlow 1.3 tables for full compatibility with the course testbed."
+        "Even with OpenFlow 1.3's OXM extensions, the set of matchable packet headers remains tied to fixed "
+        "specification versions. **P4** (Programming Protocol-Independent Packet Processors) [10] removes that "
+        "constraint by defining a domain-specific language targeting Protocol-Independent Switch Architectures "
+        "(PISA) and the software BMv2 switch. In P4, network operators program the packet parser state machine, "
+        "custom match-action table layouts, and deparser directly, enabling capabilities such as In-Band Network "
+        "Telemetry (INT) that stamp per-hop queue depths into live packets without waiting for a new OpenFlow "
+        "standard. Our coursework stays within standard OpenFlow 1.3 on OVS to maintain full compatibility with "
+        "the course rubric and Wireshark dissectors."
     ),
     _p(
-        "We assemble topologies in **Mininet** [11], which places each host in an isolated Linux network "
-        "namespace wired to OVS bridges through `veth` links running real Linux TCP/IP stacks and `iperf3`. "
-        "Unshaped `veth` links push software TCP bursts to 32-34 Gbps on a shared CPU, starving OS-Ken's "
-        "LLDP keepalives and causing spurious link drops. Wrapping inter-switch links in Mininet `TCLink` "
-        "(Linux `tc` HTB queues and `netem` delay) enforces 100 Mbps capacity and 2 ms delay per link with "
-        "controlled `64k` HTB burst sizing, giving well-defined utilization denominators and repeatable queues."
+        "We construct and automate both network topologies using **Mininet** [11]. Mininet isolates each virtual "
+        "host inside its own Linux network namespace with a dedicated virtual Ethernet (`veth`) interface attached "
+        "to an OVS switch port, allowing real unmodified Linux TCP/IP stacks, `ping`, `iperf`, and `iperf3` "
+        "binaries to execute across arbitrary graphs on one virtual machine. However, because every host, OVS "
+        "bridge, and OS-Ken greenlet shares the same VM CPU cores, emulation fidelity requires disciplined link "
+        "shaping. Unshaped `veth` links (`qdisc noqueue`) allow software TCP transfers to burst to 32-34 Gbps "
+        "in memory, monopolizing the CPU and starving OS-Ken's LLDP topology keepalives until links falsely time "
+        "out (documented empirically in Section 5.8). Wrapping every inter-switch link in Mininet `TCLink` "
+        "(Linux `tc` Hierarchical Token Bucket rate shaping paired with `netem` propagation delay) enforces "
+        "100 Mbps bandwidth, 2 ms one-way delay, and a 64k HTB burst/cburst ceiling, giving repeatable queue "
+        "dynamics and exact utilization denominators."
     ),
 
-    # ---- 2.6 (~610 words, citing [12]-[18]) ----
+    # ---- 2.6 Related Work on SDN Load Balancing & Fault Tolerance ----
     _h2("2.6 Related Work on SDN Load Balancing and Fault Tolerance"),
     _p(
-        "Seven seminal systems [12]-[18] define the design space for multi-path load balancing, consistent "
-        "rule updates, and link-failure recovery, and directly frame our Track 1 choices."
+        "Seven foundational papers [12]-[18] anchor the traffic-engineering, consistent-update, and fault-recovery "
+        "techniques in SDN and directly inform the architectural choices in Track 1."
     ),
-    _h3("Data-Center Multi-Path Fabrics and Flow Scheduling"),
+    _h3("Multi-Path Data-Center Topologies and Dynamic Flow Scheduling"),
     _p(
-        "Al-Fares, Loukissas, and Vahdat [12] demonstrated that commodity k-port switches wired into a "
-        "three-tier fat-tree deliver full bisection bandwidth across (k/2)\u00b2 equal-cost core paths, matching "
-        "our 20-switch, 16-host k = 4 test topology. Standard Equal-Cost Multi-Path (ECMP) hashes flows "
-        "statically across parallel links with zero controller overhead, but hash collisions frequently place "
-        "two large transfers on the same upstream link while parallel links sit underutilized."
-    ),
-    _p(
-        "Hedera [13] resolved ECMP collisions centrally by targeting only *elephant flows* exceeding 10% of "
-        "host NIC rate, leaving short *mice* flows on default ECMP paths while computing global placements "
-        "(Global First Fit or Simulated Annealing) from periodic switch counter polls. Our controller adopts "
-        "Hedera's elephant-only trigger directly (host pairs above 10% link capacity for two consecutive "
-        "polls), while replacing global matrix optimization with deterministic Yen k = 3 candidate path "
-        "ranking suited to our grid scale."
+        "Al-Fares, Loukissas, and Vahdat [12] showed that interconnecting commodity k-port switches into a "
+        "three-tier Clos *fat-tree* provides full bisection bandwidth across (k/2)\u00b2 equal-cost paths between "
+        "any two pods without requiring expensive core routers. Our scaled k = 4 evaluation topology implements "
+        "this exact design: 4 core switches, 8 aggregation switches, 8 edge switches, 32 inter-switch links, and "
+        "16 hosts. Conventional Equal-Cost Multi-Path (ECMP) routing distributes flows across those equal-hop "
+        "paths by hashing packet headers statically at each switch. While ECMP adds zero controller latency and "
+        "performs well under uniform traffic matrices, hash collisions inevitably map multiple long-lived large "
+        "flows onto the same uplink while parallel uplinks carry little load."
     ),
     _p(
-        "MicroTE [14] showed from data-center traces that traffic matrices stay predictable only over short "
-        "windows of a few seconds, meaning slow polling leads to stale reroutes. MicroTE applies fine-grained "
-        "TE only to predictable pairs and uses weighted ECMP elsewhere. Our Chapter 5 sensitivity trials show "
-        "this exact trade-off: reducing T from 5 s to 2 s cuts detection time from 18.93 s to 6.95 s, while "
-        "EWMA smoothing (\u03b1 = 0.5) and two-period persistence reject transient bursts at the price of a "
+        "Hedera [13] attacked ECMP hash collisions with a centralized SDN flow scheduler built around a key "
+        "empirical observation: most data-center flows are short *mice* that finish before a controller can "
+        "measure them, while a small minority of long-lived *elephant flows* consume the bulk of total bytes. "
+        "Hedera leaves mice on default ECMP paths, polls edge switch counters periodically to flag any flow "
+        "exceeding 10% of host NIC capacity, estimates traffic demand across hosts, and computes non-colliding "
+        "core placements using Global First Fit or Simulated Annealing. Our Track 1 controller adopts Hedera's "
+        "elephant-only paradigm directly, flagging directed host pairs above 10% of link capacity (10 Mbps on "
+        "100 Mbps links) for two consecutive polling intervals before considering a move, while replacing global "
+        "demand-matrix optimization with deterministic Yen k = 3 simple-path scoring suited to our grid and "
+        "single-controller scale."
+    ),
+    _p(
+        "MicroTE [14] examined production data-center traffic traces and demonstrated that demand matrices remain "
+        "predictable only over short windows of a few seconds, warning that overly slow statistics polling "
+        "triggers stale reroutes after a burst has already subsided. MicroTE therefore applies fine-grained "
+        "centralized traffic engineering only to predictable top-of-rack pairs while falling back to weighted "
+        "ECMP for volatile traffic. Our polling-interval experiments in Section 5.5 confirm this exact control "
+        "trade-off: shortening the OpenFlow polling period T from 5 s to 2 s cuts congestion declaration latency "
+        "from 18.932 s down to 6.952 s at the cost of 2.5 times more multipart counter queries per switch, while "
+        "EWMA smoothing (\u03b1 = 0.5) and two-period persistence filter transient spikes at the expense of "
         "bounded detection lag."
     ),
     _p(
-        "CONGA [15] pushed congestion-aware load balancing into leaf-spine ASICs, steering TCP *flowlets* "
-        "using VXLAN feedback within one RTT. Contrasting CONGA with centralized OpenFlow 1.3 explains our "
-        "Chapter 5 benchmarks: multi-second host-pair rerouting relieves sustained asymmetric bottlenecks "
-        "(85 + 30 Mbps grid trials) yet cannot beat proactive hash spreading on ten balanced flows."
+        "CONGA [15] moved congestion-aware balancing down into leaf-spine switching silicon, splitting TCP flows "
+        "into sub-RTT *flowlets* and piggybacking per-path congestion metrics inside VXLAN encapsulation headers "
+        "so leaf switches react within a single round-trip time without involving a software controller. Comparing "
+        "CONGA's sub-millisecond hardware reaction against centralized OpenFlow 1.3 polling directly clarifies our "
+        "Chapter 5 evaluation: multi-second software rerouting delivers clear throughput and loss gains on "
+        "sustained asymmetric bottlenecks (our 85 + 30 Mbps grid trials), yet on ten balanced 144 Mbps flows, "
+        "proactive static ECMP achieves lower peak utilization than reactive balancing because peaks form during "
+        "the multi-second detection window before any rule change fires."
     ),
-    _h3("Consistent Updates, Wide-Area Engineering, and Failure Recovery"),
+    _h3("Consistent Network Updates, WAN Engineering, and Failure Recovery"),
     _p(
-        "Reitblatt et al. [16] formalized *per-packet consistency* via version-tagged two-phase commits so "
-        "packets in flight never traverse mixed old/new rules. Our controller applies a single-flow "
-        "make-before-break variant using OpenFlow 1.3 priorities and barriers: rules install from egress back "
-        "to ingress at priority 21 with `OFPT_BARRIER_REQUEST/REPLY` confirmation per switch before ingress "
-        "switches over and old priority-20 rules are deleted via `OFPFC_DELETE_STRICT`. This avoids blackhole "
-        "windows on sequential moves without claiming full concurrent multi-flow two-phase versioning."
+        "Changing forwarding rules across multiple switches asynchronously creates transient forwarding loops "
+        "and blackholes if an ingress switch shifts traffic before downstream switches install the new path. "
+        "Reitblatt et al. [16] formalized *per-packet consistency*, ensuring every packet traverses either the "
+        "entire old configuration or the entire new configuration through a two-phase commit: the controller "
+        "first installs version-tagged rules on interior switches, waits for acknowledgements, updates ingress "
+        "switches to stamp the new version tag, and deletes old-version entries only after in-flight packets "
+        "drain. Our Track 1 controller adapts this principle into a single-flow make-before-break update using "
+        "OpenFlow 1.3 priorities and barriers: replacement rules install in strict egress-to-ingress order "
+        "(for example `S6`, then `S5`, then `S4`, and finally `S1`) at incremented priority 21, each confirmed "
+        "by a matching `OFPT_BARRIER_REPLY` before the next hop proceeds. Only after ingress switches over does "
+        "the controller issue `OFPFC_DELETE_STRICT` for the old priority-20 entries; if any switch reports an "
+        "`OFPT_ERROR` or misses its 10 s barrier deadline, already-installed priority-21 rules roll back while "
+        "the old path stays intact. We state this scope precisely: it prevents blackholes during sequential "
+        "single-flow moves without claiming generalized multi-flow two-phase packet tagging."
     ),
     _p(
-        "Google B4 [17] proved centralized OpenFlow traffic engineering across inter-datacenter WANs, "
-        "allocating link shares centrally to drive long-haul links near saturation while protecting priority "
-        "traffic during outages. Though far larger in scale, B4 rests on the same premise as our controller: "
-        "global link and flow visibility unlocks parallel bandwidth that static shortest-path routing wastes."
+        "At wide-area scale, Google B4 [17] deployed OpenFlow controllers across inter-datacenter WAN backbones, "
+        "combining centralized multipath tunnel allocation with application-level bandwidth arbitration to drive "
+        "expensive long-haul links close to full utilization while shifting bulk transfers gracefully during "
+        "fiber cuts. Although B4 operates across continents with hierarchical controllers and Paxos replication, "
+        "its core premise mirrors our lab system: global visibility of link utilization and active flows unlocks "
+        "parallel path capacity that shortest-path routing leaves stranded."
     ),
     _p(
-        "Sharma et al. [18] contrasted reactive OpenFlow *restoration* (controller detects link loss via "
-        "`OFPT_PORT_STATUS` or LLDP, recomputes paths, and pushes `FLOW_MOD` rules in tens to hundreds of "
-        "milliseconds) with proactive *protection* using OpenFlow 1.3 `OFPGT_FF` fast-failover groups and "
-        "local BFD for sub-50 ms switchover. Our controller implements reactive restoration via "
-        "`EventLinkDelete` and `EventSwitchLeave`, achieving 73.14 \u00b1 21.63 ms host-visible recovery "
-        "across five runs; fast-failover group tables remain future work in Chapter 6."
+        "Finally, Sharma et al. [18] evaluated OpenFlow failure recovery against carrier-grade 50 ms benchmarks, "
+        "contrasting reactive *restoration* against proactive *protection*. Under reactive restoration, the "
+        "controller learns of a link cut via `OFPT_PORT_STATUS` or LLDP expiry, recomputes alternate paths, and "
+        "pushes updated `OFPT_FLOW_MOD` rules across affected switches, yielding recovery latencies in the tens "
+        "to hundreds of milliseconds depending on topology size and control-channel load. Under proactive "
+        "protection, the controller pre-installs backup paths in OpenFlow 1.3 `OFPGT_FF` fast-failover group "
+        "tables monitored locally by Bidirectional Forwarding Detection (BFD), allowing switches to fail over "
+        "in under 50 ms without waiting for a controller round trip. Our controller implements reactive "
+        "restoration triggered by `EventLinkDelete` and `EventSwitchLeave`, achieving 73.139 \u00b1 21.631 ms "
+        "host-visible recovery across five controlled grid link cuts (Section 5.7), while switch-local fast-"
+        "failover groups remain a natural future extension in Chapter 6."
     ),
 
-    # ---- 2.7 (~270 words + Table 2.3) ----
+    # ---- 2.7 Reliability, Scalability, and Security ----
     _h2("2.7 Reliability, Scalability, and Security"),
     _p(
-        "Centralizing control in software creates failure modes and attack surfaces absent in autonomous "
-        "routers [5]. A single controller instance is a single point of failure (SPOF): if it disconnects, "
-        "switches in `fail-secure` mode keep existing rules but drop unmatched traffic, whereas "
-        "`fail-standalone` reverts to basic MAC learning. Production deployments run multi-node clusters "
-        "(such as ONOS [7]) with Raft replication and OpenFlow 1.3 `OFPT_ROLE_REQUEST` master/slave roles "
-        "[4], placing nodes close to switches to bound control latency [18]. Polling scalability adds "
-        "O(N/T) multipart exchanges across N switches, which can compete with `PACKET_IN` and LLDP "
-        "handling when T is too small."
+        "Moving control logic out of distributed switches introduces operational failure modes and security "
+        "exposures that do not exist in autonomous routers [5]. Foremost is the controller single point of "
+        "failure (SPOF): if a standalone controller process crashes or loses network reachability, switches "
+        "configured in `fail-secure` mode retain existing Table 0 entries yet silently drop all unmatched flows "
+        "and cannot react to congestion or link cuts, whereas `fail-standalone` mode reverts to legacy L2 MAC "
+        "learning and breaks SDN traffic engineering. Production deployments eliminate the SPOF through "
+        "distributed controller clusters such as ONOS [7], synchronizing topology and flow state via Raft "
+        "consensus and assigning switch ownership through OpenFlow 1.3 `OFPT_ROLE_REQUEST` (`OFPCR_ROLE_MASTER`, "
+        "`OFPCR_ROLE_EQUAL`, and `OFPCR_ROLE_SLAVE`) messages [4]."
     ),
     _p(
-        "Three security threats specifically target SDN [5]: control-plane DoS (`PACKET_IN` floods exhausting "
-        "controller CPU), flow-table or TCAM exhaustion from micro-flow storms, and topology poisoning via "
-        "forged or relayed LLDP frames on host ports. Unencrypted OpenFlow TCP sessions and unauthenticated "
-        "REST endpoints further risk rule tampering. Table 2.3 maps each threat to its production defense and "
-        "states honestly what our lab controller enforces."
+        "Controller placement and control-plane scaling impose tight architectural bounds [5], [18]. Placing "
+        "controllers too far from edge switches inflates both reactive flow-setup latency and link-failure "
+        "restoration times; conversely, assigning too many switches to one instance creates CPU and socket "
+        "contention. Periodic monitoring generates O(N/T) OpenFlow multipart requests and replies across N "
+        "switches every T seconds. As N grows from our 6-switch grid to the 20-switch fat-tree (80 switch ports), "
+        "multipart parsing, bulk route rebuilds, and LLDP probe sweeps share the same cooperative Eventlet loop, "
+        "which is why our implementation enforces a bounded LLDP wait wrapper and cooperative `hub.sleep(0)` "
+        "yields during large rebuilds (Section 4.3)."
+    ),
+    _p(
+        "From a security perspective, centralization concentrates high-value targets on the control plane [5]. "
+        "First, a compromised host can launch a control-plane denial-of-service (DoS) attack by transmitting "
+        "spoofed packets with randomized headers that miss Table 0 and trigger a flood of `OFPT_PACKET_IN` "
+        "messages, saturating the controller CPU and southbound TCP buffers. Second, the same micro-flow storm "
+        "can exhaust finite hardware TCAM flow tables, preventing legitimate `OFPT_FLOW_MOD` installations. "
+        "Third, because SDN controllers rely on LLDP frames to infer physical switch adjacencies, an attacker "
+        "on a host access port can inject forged LLDP frames or relay genuine LLDP frames between two switches "
+        "(topology poisoning), creating phantom links that attract or blackhole traffic. Fourth, cleartext "
+        "OpenFlow TCP connections and unauthenticated northbound REST APIs expose switch rules to interception "
+        "and unauthorized modification. Table 2.4 maps each risk to standard production countermeasures and "
+        "documents honestly what our lab prototype implements."
     ),
     {
         "type": "table",
-        "id": "Table 2.3",
-        "caption": "Table 2.3: SDN Reliability, Scalability, and Security Risks with Countermeasures and Lab Scope.",
+        "id": "Table 2.4",
+        "caption": "Table 2.4: SDN Reliability, Scalability, and Security Risks with Countermeasures and Lab Scope.",
         "headers": ["Threat / Risk", "Failure or Attack Mechanism", "Production Countermeasure", "Status in Lab Controller"],
         "rows": [
             [
@@ -616,39 +807,47 @@ CH2_BLOCKS = [
                 "Polling & LLDP churn under load",
                 "Excessive stats polling or unshaped host bursts starve LLDP keepalives on shared CPU.",
                 "Dedicated control network, bounded polling cadence T, and hardware-assisted BFD/FF groups.",
-                "Bounded `TCLink` shaping (100 Mbps) and configurable T = 2 s polling; fat-tree LLDP churn noted in Ch. 5.",
+                "Bounded `TCLink` shaping (100 Mbps), bounded LLDP wait wrapper; fat-tree LLDP churn noted in Ch. 5.",
             ],
         ],
         "col_widths_mm": [28, 44, 50, 44],
     },
 
-    # ---- 2.8 (~260 words) ----
-    _h2("2.8 Practical SDN Applications"),
+    # ---- 2.8 SDN Applications and Emerging Trends ----
+    _h2("2.8 Practical SDN Applications and Emerging Trends"),
     _p(
-        "Production networks deploy SDN across six major domains where centralized visibility solves "
-        "concrete traffic-management problems. In cloud data centers, controllers pair virtual overlays "
-        "(VXLAN or Geneve) with underlay congestion monitoring to steer elephant flows off saturated spines "
-        "[13] or coordinate hardware load balancing [15] across isolated tenants. In Software-Defined WANs "
-        "(SD-WAN), controllers continuously probe MPLS, fiber, and broadband circuits, assigning interactive "
-        "traffic to low-jitter links while bulk transfers fill residual capacity, as shown globally by Google "
-        "B4 [17]."
+        "Outside academic testbeds, SDN principles operate across six major production domains where centralized "
+        "visibility resolves concrete operational limits [5]. In multi-tenant cloud data centers, virtualized "
+        "overlay networks (VXLAN or Geneve) decouple tenant addressing from physical Clos fabrics [12], while "
+        "centralized or leaf-level congestion telemetry steers large elephant transfers away from hot spine "
+        "links [13], [15]. In enterprise and hyperscale Software-Defined WANs (SD-WAN), controllers continuously "
+        "probe latency, loss, and utilization across parallel MPLS, private fiber, and broadband circuits, "
+        "assigning interactive voice and control flows to low-jitter links while filling residual WAN capacity "
+        "with background replication, following the traffic-engineering model pioneered by Google B4 [17]."
     ),
     _p(
-        "SDN also anchors Network Functions Virtualization (NFV) and 5G transport slicing. When firewalls, "
-        "NAT gateways, and intrusion sensors run as virtualized software instances, OpenFlow or P4 rules "
-        "steer traffic through ordered service chains and bypass failed instances automatically. In 5G "
-        "backhaul, transport slicing isolates high-throughput broadband (eMBB), ultra-reliable low-latency "
-        "links (URLLC), and massive IoT (mMTC) with separate queues, meters, and disjoint paths coordinated "
-        "with radio and core orchestrators."
+        "SDN also pairs closely with Network Functions Virtualization (NFV) and 5G transport networks. Under "
+        "NFV, dedicated hardware middleboxes (firewalls, load balancers, NAT gateways, intrusion-detection "
+        "sensors) are replaced by virtualized software instances running on commodity servers; an SDN controller "
+        "programs OpenFlow or P4 [10] rules to steer each traffic class through an ordered *service function "
+        "chain* and dynamically bypass failed virtual appliances. In 5G mobile backhaul and core transport, "
+        "network slicing partitions shared physical fiber into isolated logical slices matching distinct SLA "
+        "profiles: high-bandwidth Enhanced Mobile Broadband (eMBB), latency-critical Ultra-Reliable Low-Latency "
+        "Communications (URLLC), and high-density Massive Machine-Type Communications (mMTC), coordinating queues, "
+        "meters, and disjoint backup paths from a central orchestrator."
     ),
     _p(
-        "Two newer paradigms extend SDN automation further. Intent-Based Networking (IBN) compiles declarative "
-        "policies (reachability, isolation, or utilization bounds) into verified switch states with closed-loop "
-        "telemetry checks. Machine-learning-assisted traffic engineering applies flow classifiers and demand "
-        "forecasters to anticipate congestion early, though closed-loop distribution shift makes opaque models "
-        "harder to debug when routing changes alter future traffic. Our project uses deterministic EWMA "
-        "thresholds, Yen path ranking, and barrier-ordered updates so every decision is auditable from counter "
-        "logs. Chapter 3 details that design."
+        "Two active research trends push network automation beyond explicit rule programming. Intent-Based "
+        "Networking (IBN) elevates the northbound interface from low-level flow rules to declarative operational "
+        "goals (for instance, keeping core utilization under 70% or isolating tenant subnets), automatically "
+        "compiling policies into verified switch states and closing the loop with continuous telemetry checks. "
+        "Machine-learning-assisted traffic engineering trains classifiers and demand forecasters on switch "
+        "counter histories to identify elephants early or predict link saturation before queues build. While "
+        "promising, learned policies face closed-loop distribution shift because every rerouting action alters "
+        "the subsequent traffic matrix, making failures harder to diagnose. For this Track 1 implementation, we "
+        "deliberately use deterministic EWMA thresholds, Yen k = 3 path ranking, explicit hysteresis gates, and "
+        "barrier-confirmed updates so every routing transition can be audited directly from raw port and flow "
+        "logs. Chapter 3 specifies that architecture in detail."
     ),
 ]
 

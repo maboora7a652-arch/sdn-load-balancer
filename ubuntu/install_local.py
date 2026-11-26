@@ -16,7 +16,7 @@ def main():
     with tempfile.TemporaryDirectory(dir=home) as temp:
         folder = Path(temp) / target.name
         folder.mkdir()
-        for name in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu"):
+        for name in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu", "report_builder", "video"):
             shutil.copytree(source / name, folder / name,
                             ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         for name in ("run.sh", "README.md"):

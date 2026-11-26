@@ -50,6 +50,18 @@ try {
 
     $doc = $word.Documents.Open($docxAbs, $false, $false)
 
+    # Enforce compact 1-page TOC styling so Word TOC never spills onto page 4
+    try {
+        $st1 = $doc.Styles.Item("TOC 1")
+        $st1.Font.Name = "Segoe UI"; $st1.Font.Size = 8.5; $st1.Font.Bold = 1
+        $st1.ParagraphFormat.SpaceBefore = 2.0; $st1.ParagraphFormat.SpaceAfter = 0.5
+        $st1.ParagraphFormat.LineSpacingRule = 4; $st1.ParagraphFormat.LineSpacing = 10.5
+        $st2 = $doc.Styles.Item("TOC 2")
+        $st2.Font.Name = "Segoe UI"; $st2.Font.Size = 7.8; $st2.Font.Bold = 0
+        $st2.ParagraphFormat.SpaceBefore = 0.0; $st2.ParagraphFormat.SpaceAfter = 0.0
+        $st2.ParagraphFormat.LineSpacingRule = 4; $st2.ParagraphFormat.LineSpacing = 9.4
+    } catch {}
+
     $doc.Repaginate()
     foreach ($toc in $doc.TablesOfContents) {
         $toc.Update()
@@ -81,6 +93,15 @@ try {
     if (-not $wordPages -or $wordPages -le 1) {
         $wordPages = $doc.ComputeStatistics(2)
     }
+    Write-Host "--- WORD HEADING PAGES ---"
+    foreach ($p in $doc.Paragraphs) {
+        $s = $p.Style.NameLocal
+        if ($s -eq "Heading 1" -or $s -eq "Front Heading") {
+            $pg = $p.Range.Information(3)
+            $txt = ($p.Range.Text -replace "[\r\n]","").Trim()
+            Write-Host ("  WORD p.{0:D2} | {1}" -f $pg, $txt)
+        }
+    }
     $doc.Save()
 
     if ($UseWordPdf) {
@@ -91,11 +112,11 @@ try {
 }
 finally {
     if ($null -ne $doc) {
-        try { $doc.Close(0) } catch {}
+        try { $doc.Close([ref]0) } catch {}
         [void][Runtime.InteropServices.Marshal]::ReleaseComObject($doc)
     }
     if ($null -ne $word) {
-        try { $word.Quit(0) } catch {}
+        try { $word.Quit([ref]0) } catch { try { $word.Quit() } catch {} }
         [void][Runtime.InteropServices.Marshal]::ReleaseComObject($word)
     }
     [GC]::Collect()

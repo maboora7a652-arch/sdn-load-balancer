@@ -599,62 +599,66 @@ def link_removed(self, ev):
 CH5 = [
     h2("5.1 Experimental Testbed and Batch Provenance"),
     p(
-        "All experiments ran on the virtual machine of Table 4.1, with the controller and the Mininet "
-        "network in separate processes. The standalone batches in experiments/compare_grid.py build a fresh "
-        "grid and controller for every trial, pass SDN_ROUTING_MODE, SDN_POLL_INTERVAL and "
-        "SDN_CONGESTION_PERCENT through the environment, and tear both down afterwards. Every setting was "
-        "run n = 5 times. Tables report the mean and the sample standard deviation (n - 1). Throughput is "
-        "in decimal Mbps, loss and jitter are the iperf UDP receiver values, delay is ping round-trip time, "
-        "and a flow is one directed IPv4 MAC pair."
+        "All experiments ran on the virtual machine of Table 4.1 with the controller and Mininet in separate "
+        "processes. Each standalone batch in `experiments/compare_grid.py` builds a fresh grid and controller "
+        "per trial, sets `SDN_ROUTING_MODE`, `SDN_POLL_INTERVAL`, and `SDN_CONGESTION_PERCENT`, and tears "
+        "both down afterward. Every repeated setting ran n = 5 times; tables report mean and sample standard "
+        "deviation (n - 1). Throughput is in decimal Mbps, loss and jitter are iperf UDP receiver metrics, "
+        "delay is ping RTT, and each flow is a directed IPv4 MAC pair."
     ),
     p(
-        "Table 5.1 lists the raw result sets behind this chapter. The repeated 25 November batches ran with "
-        "64k HTB burst and cburst before the bounded LLDP wait of Listing 4.3 was added. The accuracy "
-        "calibration and the two live demonstrations of 26 November ran after it. The two groups are "
-        "reported next to each other and are never pooled. Connectivity checks passed on both topologies: "
-        "pingall received 30 of 30 replies on the grid (6 hosts) and 240 of 240 on the fat-tree (16 "
-        "hosts), and the 16 offline tests of check_logic.py pass in 0.3 s."
+        "Table 5.1 documents the raw result sets and their exact controller provenance. The repeated 25 "
+        "November batches ran with 64k HTB burst/cburst before the bounded LLDP wait patch (Listing 4.3, "
+        "commit `70fcaa2`) was added. The homogeneous five-run calibration on 26 November "
+        "(`accuracy-20261126T124854Z.json`) ran on Ubuntu after `70fcaa2` was deployed. By contrast, the two "
+        "standalone 26 November live rehearsals (`grid-demo-20261126T120202Z.json` at 12:02 UTC and "
+        "`link-failure-20261126T120735Z.json` at 12:07 UTC) do not record a controller commit hash in their "
+        "JSON files, and their timestamps precede commit `70fcaa2` (14:27 local time, 12:27 UTC) during the "
+        "earlier 0.01 s LLDP-guard rehearsal; they are therefore not attributed to the post-patch revision. "
+        "Batches from different configurations are never pooled. Connectivity checks passed at 30/30 on the "
+        "grid and 240/240 on the fat-tree, alongside 16/16 passing tests in `check_logic.py`."
     ),
     table(
         "Table 5.1",
-        "Table 5.1: Raw result sets, workloads and controller state. Files are in experiments/results/.",
-        ["Result set", "Date (2026)", "Workload", "n", "Controller state"],
+        "Table 5.1: Raw result sets, workloads, and verified controller provenance (`experiments/results/`).",
+        ["Result set", "Date (2026)", "Workload", "n", "Controller provenance"],
         [
-            ["accuracy-20261126T124854Z.json", "26 Nov",
-             "Fat-tree, H1 to H16, UDP 5 Mbps via iperf3, 30 s, 3 samples per trial", "5",
-             "After the LLDP wait patch"],
-            ["compare-grid-20261125T194357Z", "25 Nov",
-             "Grid, 85 Mbps H1 to H6 plus 30 Mbps H3 to H5, 60 s, shortest vs balanced", "5 per mode",
-             "64k HTB, before the patch"],
-            ["ten-flows-20261125T200721Z", "25 Nov",
-             "Ten UDP pairs, 144 Mbps in total, shortest vs ECMP vs balanced", "5 per mode",
-             "64k HTB, before the patch"],
-            ["shared-detection-20261125T203550Z, threshold-20261125T205244Z", "25 Nov",
-             "Four pairs sharing S2 to S3, 90 Mbps in total; T = 2 s and 5 s, θ = 60%, 70%, 80%",
-             "5 per setting", "64k HTB, before the patch"],
-            ["route-phases-20261125T210721Z", "25 Nov",
-             "Four pairs, T = 2 s, receiver intervals before and after each move", "5 runs, 14 paired moves",
-             "64k HTB, before the patch"],
-            ["recovery-20261125T202848Z", "25 Nov",
-             "H2 to H6, S5-S6 cut, 260 pings at 50 ms", "5", "64k HTB, before the patch"],
-            ["grid-demo-20261126T120202Z, link-failure-20261126T120735Z", "26 Nov",
-             "Live checks: 85 + 30 Mbps move, and S5-S6 cut with 300 pings at 0.2 s", "1 each",
-             "After the LLDP wait patch"],
+            ["`accuracy-20261126T124854Z.json`", "26 Nov",
+             "Fat-tree H1 to H16, 5 Mbps UDP iperf3, 30 s, 3 samples/trial", "5",
+             "After bounded LLDP wait (`70fcaa2`)"],
+            ["`compare-grid-20261125T194357Z`", "25 Nov",
+             "Grid 85 Mbps H1-H6 + 30 Mbps H3-H5, 60 s, shortest vs balanced", "5 / mode",
+             "64k HTB, before `70fcaa2`"],
+            ["`ten-flows-20261125T200721Z`", "25 Nov",
+             "Ten UDP pairs, 144 Mbps total, shortest vs ECMP vs balanced", "5 / mode",
+             "64k HTB, before `70fcaa2`"],
+            ["`shared-detection-20261125T203550Z`, `threshold-20261125T205244Z`", "25 Nov",
+             "Four pairs on S2-S3, 90 Mbps; T = 2/5 s, θ = 60/70/80%",
+             "5 / setting", "64k HTB, before `70fcaa2`"],
+            ["`route-phases-20261125T210721Z`", "25 Nov",
+             "Four pairs, T = 2 s, 5 s receiver windows before/after moves", "5 runs, 14 moves",
+             "64k HTB, before `70fcaa2`"],
+            ["`recovery-20261125T202848Z`", "25 Nov",
+             "H2 to H6, S5-S6 cut, 260 pings at 50 ms", "5", "64k HTB, before `70fcaa2`"],
+            ["`grid-demo-20261126T120202Z`, `link-failure-20261126T120735Z`", "26 Nov",
+             "Live rehearsals: 85 + 30 Mbps move; S5-S6 cut (300 pings at 0.2 s)", "1 each",
+             "Earlier 26 Nov rehearsal (before `70fcaa2`; revision unlogged in JSON)"],
         ],
-        [44, 17, 56, 20, 29],
+        [44, 15, 53, 19, 35],
     ),
     h2("5.2 C4 Monitoring Accuracy Calibration"),
     p(
-        "The calibration compares the controller's port TX rate with the rate that iperf3 reports at the "
-        "sender. Each trial sends 5 Mbps of UDP from H1 to H16 on the fat-tree for 30 s over S1-S9-S17-S15-S8. "
-        "After a 12 s settling period the script reads /sdn/bandwidth three times, about 5 s apart, and "
-        "averages the TX rate of the first inter-switch port on the route. The error is the absolute "
-        "difference to the iperf3 sender rate divided by the sender rate. The assignment sets the target at "
-        "less than 10%."
+        "Each trial sends 5 Mbps UDP via `iperf3` (1,400-byte datagrams) from H1 to H16 on the fat-tree for "
+        "30 s over `S1-S9-S17-S15-S8`. After 12 s settling, the script polls `/sdn/bandwidth` three times "
+        "(5 s apart), averages the first inter-switch port TX rate, and computes absolute relative error "
+        "against the `iperf3` sender rate (target < 10%). Table 5.2 and Figure 5.1 report a mean error of "
+        "3.116 ± 0.181 percentage points (range 2.938% to 3.397%). The positive bias comes from layer "
+        "framing: OVS port counters include 14-byte Ethernet, 20-byte IP, and 8-byte UDP headers "
+        "(42 / 1,400 = 3.0%), leaving ~0.1 pp for control frames such as LLDP and ARP."
     ),
     table(
         "Table 5.2",
-        "Table 5.2: Monitoring accuracy, 5 Mbps UDP, fat-tree, n = 5 trials (accuracy-20261126T124854Z.json).",
+        "Table 5.2: Monitoring accuracy, 5 Mbps UDP, fat-tree, n = 5 trials (`accuracy-20261126T124854Z.json`).",
         ["Quantity", "Mean ± sample SD", "Observed range"],
         [
             ["Sender payload rate (Mbps)", "5.0004 ± 0.0004", "5.0002 to 5.0011"],
@@ -663,32 +667,33 @@ CH5 = [
         ],
         [70, 48, 48],
     ),
-    p(
-        "Table 5.2 and Figure 5.1 show a mean error of 3.116 ± 0.181%, and every one of the five trials "
-        "falls between 2.938% and 3.397%, well under the 10% limit. The error is positive in every trial "
-        "because the two instruments measure different layers. iperf3 counts UDP payload bits, 1400 bytes "
-        "per datagram in these runs. The switch port counter counts Ethernet frames, which add 14 bytes of "
-        "Ethernet, 20 of IP and 8 of UDP header: 42 / 1400 is 3.0%. Header overhead alone therefore "
-        "predicts 3.0% of the 3.1% observed, and the remaining 0.1 percentage point is small enough to be "
-        "control traffic such as LLDP and ARP on the same port. The monitoring error is a property of "
-        "the measurement layer, so it will not shrink if the controller polls faster."
-    ),
-    figure(
-        "Figure 5.1", "fig_5_1_c4_accuracy.png",
-        "Figure 5.1: Sender rate against controller port TX for the five calibration trials, and the "
-        "relative error with the 10% limit (mean 3.116%, SD 0.181 percentage points).",
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.1",
+        "file": "fig_5_1_c4_accuracy.png",
+        "caption": (
+            "Figure 5.1: Sender rate against controller port TX across five calibration trials, and relative "
+            "error against the 10% limit (mean 3.116%, sample SD 0.181 pp)."
+        ),
+        "width_in": 5.3,
+        "max_h_in": 1.88,
+        "border": False,
+    },
     h2("5.3 Congestion Rerouting: Shortest-Path vs Balanced Routing"),
     p(
-        "The main scenario sends 85 Mbps from H1 to H6 and 30 Mbps from H3 to H5 for 60 s. Under shortest "
-        "path both flows cross the S2-S3 link and offer 115 Mbps to a 100 Mbps link. Under balanced routing "
-        "the controller may move H1 to H6 to P3. Table 5.3 and Figure 5.2 give the receiver measurements "
-        "over the whole run, which include the time before the controller reacts."
+        "The baseline grid scenario offers 85 Mbps from H1 to H6 and 30 Mbps from H3 to H5 for 60 s across "
+        "shared 100 Mbps link S2-S3 (115 Mbps offered). Table 5.3 and Figure 5.2 report whole-run receiver "
+        "metrics, which include the initial congested window before rerouting triggers. Balanced routing "
+        "raised H6 throughput from 68.90 to 79.60 Mbps and H5 from 19.30 to 27.42 Mbps (combined 88.20 to "
+        "107.02 Mbps), cutting packet loss from 18.74% to 6.22% at H6 and from 35.49% to 8.61% at H5. Every "
+        "balanced run moved H1-H6 to `S1-S4-S5-S6` at priority 21, while shortest-path runs stayed on "
+        "`S1-S2-S3-S6` at priority 20. H6 shortest-path jitter SD (1.51 ms) reflects one outlier run at "
+        "3.612 ms alongside four runs between 0.206 and 0.295 ms."
     ),
     table(
         "Table 5.3",
         "Table 5.3: Receiver metrics under shortest-path and balanced routing, 60 s runs, mean ± sample SD, "
-        "n = 5 per policy (compare-grid-20261125T194357Z).",
+        "n = 5 per policy (`compare-grid-20261125T194357Z`).",
         ["Receiver and policy", "Throughput (Mbps)", "Loss (%)", "Jitter (ms)"],
         [
             ["H6, shortest", "68.90 ± 2.32", "18.74 ± 2.70", "0.92 ± 1.51"],
@@ -698,46 +703,42 @@ CH5 = [
         ],
         [46, 40, 40, 40],
     ),
-    figure(
-        "Figure 5.2", "fig_5_2_grid_comparison.png",
-        "Figure 5.2: Receiver throughput, packet loss and jitter for H6 and H5 under shortest-path and "
-        "balanced routing (bars show mean ± SD, dots show the five runs).",
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.2",
+        "file": "fig_5_2_grid_comparison.png",
+        "caption": (
+            "Figure 5.2: Receiver throughput, packet loss, and jitter for H6 and H5 under shortest-path and "
+            "balanced routing (bars show mean ± SD, dots show the five runs)."
+        ),
+        "width_in": 5.35,
+        "max_h_in": 1.88,
+        "border": False,
+    },
     p(
-        "Balanced routing raised H6 from 68.90 to 79.60 Mbps and H5 from 19.30 to 27.42 Mbps. Together the "
-        "two receivers went from 88.20 to 107.02 Mbps of the 115 Mbps offered. Loss fell from 18.74% to "
-        "6.22% for H6 and from 35.49% to 8.61% for H5. All five balanced runs ended with H1 to H6 on "
-        "S1-S4-S5-S6 at priority 21, and all five shortest runs stayed on S1-S2-S3-S6 at priority 20. H5 "
-        "gains most in relative terms because its 30 Mbps flow no longer competes on S2-S3 once the 85 "
-        "Mbps flow leaves. Jitter fell as well, but the shortest-path H6 value is dominated by one run: "
-        "four of its five runs measured between 0.206 and 0.295 ms and one measured 3.612 ms, which is why "
-        "the SD of 1.51 ms exceeds the mean."
-    ),
-    p(
-        "Balanced routing does not remove loss entirely. The 26 November live check shows why. In "
-        "grid-demo-20261126T120202Z the S2 to S3 port transmitted at 86% of capacity in the 5 s sample and "
-        "at 99.9% in the 15 s sample. The smoothed value stood at 69.1% at 10 s, passed 70% before 15 s "
-        "and reached a streak of 2 at 20 s. At 25 s the pair was still on S1-S2-S3-S6. At 30 s it was on "
-        "S1-S4-S5-S6 at priority 21, and the S2 to S3 port had dropped to 33.7%, then held near 31% for "
-        "the remaining 25 s. The receivers reported 80.0 Mbps with 5.9% loss and 0.195 ms jitter at H6, "
-        "and 27.2 Mbps with 9.3% loss and 0.178 ms jitter at H5. The move is bracketed between the 25 s "
-        "and 30 s samples, so the 5 s sampling cannot give a more precise latency. A move at that point "
-        "means that about half of the 60 s run was spent on the congested link, and the residual losses "
-        "of Table 5.3 are consistent with packets dropped in that window. This single run came from the "
-        "patched controller and is not pooled with the five-run batch."
+        "Residual loss occurs while traffic shares S2-S3 prior to rerouting. In the standalone 26 November "
+        "rehearsal `grid-demo-20261126T120202Z` (recorded prior to commit `70fcaa2`; exact controller commit "
+        "not logged in JSON, and kept separate from Table 5.3), S2-S3 TX hit 86% at 5 s and 99.9% at 15 s; "
+        "EWMA passed 70% before 15 s, reached streak 2 at 20 s, and shifted H1-H6 to `S1-S4-S5-S6` (priority "
+        "21) between the 25 s and 30 s samples, dropping S2-S3 TX to 33.7% and then ~31%. Receivers measured "
+        "80.0 Mbps (5.9% loss, 0.195 ms jitter) at H6 and 27.2 Mbps (9.3% loss, 0.178 ms jitter) at H5."
     ),
     h2("5.4 Ten-Flow Policy Comparison: Shortest, ECMP, and Balanced"),
     p(
-        "The ten-flow workload sends UDP from ten randomly drawn directed host pairs at 8, 8, 8, 8, 12, 12, "
-        "16, 20, 24 and 28 Mbps, 144 Mbps in total, for 60 s. Each of the five rounds uses its own seeded "
-        "draw of pairs, and all three policies see the same draw within a round. The metric is the peak TX "
-        "utilization of any directed inter-switch port among ten samples taken every 5 s from 10 s to 55 s. "
-        "Table 5.4 and Figure 5.3 summarize the result."
+        "Each of five seeded rounds draws ten directed UDP pairs totaling 144 Mbps (rates 8 to 28 Mbps) for "
+        "60 s across all three policies, recording peak TX utilization over any inter-switch port across ten "
+        "5 s samples (Table 5.4, Figure 5.3). All three policies delivered 144.00 Mbps. Static ECMP achieved "
+        "the lowest mean peak (47.96 ± 4.74%) because hashing spreads pairs at install time before traffic "
+        "starts, cutting the two heaviest shortest-path rounds (70.18% and 74.24%) down to 53.80% and 49.62%. "
+        "Reactive balanced routing tracked shortest path closely (56.50% vs 56.20%, largest round gap 1.07 pp) "
+        "because early samples capture peaks before EWMA crosses 70% for two periods, and occupied links "
+        "rarely satisfy the 15 pp improvement gate. The 18 lost datagrams (0.0005%) occurred only under "
+        "balanced runs; under uniform multi-flow demand, proactive ECMP is the stronger baseline."
     ),
     table(
         "Table 5.4",
         "Table 5.4: Ten-flow comparison, 144 Mbps offered, n = 5 rounds per policy "
-        "(ten-flows-20261125T200721Z).",
+        "(`ten-flows-20261125T200721Z`).",
         ["Routing policy", "Peak TX (%)", "Received (Mbps)", "Lost / total datagrams"],
         [
             ["Shortest", "56.20 ± 14.99", "144.00 ± 0.00", "0 / 3,673,623"],
@@ -746,47 +747,31 @@ CH5 = [
         ],
         [44, 38, 42, 42],
     ),
-    figure(
-        "Figure 5.3", "fig_5_3_ten_flows.png",
-        "Figure 5.3: Peak port TX utilization for the three routing policies over five rounds (bars show "
-        "mean ± SD, dots show the rounds, dashed line marks the 70% congestion threshold).",
-    ),
-    p(
-        "ECMP gave the lowest mean peak, 47.96%, and the smallest spread. Shortest path reached 56.20% and "
-        "balanced 56.50%, each with an SD above 14 percentage points. All three delivered 144.00 Mbps at "
-        "iperf precision, so the links were never short of capacity, and the difference is headroom on the "
-        "busiest link. ECMP wins because it decides before any traffic exists. Its hash spreads pairs over "
-        "equal-length paths at installation time, so a random draw rarely stacks several large flows on one "
-        "link. Shortest path always uses the same canonical path for a pair, and its peak therefore depends "
-        "on how the draw happens to overlap. In the two rounds where shortest path peaked at 70.18% and "
-        "74.24%, ECMP held 53.80% and 49.62%, which is 16.4 and 24.6 points lower. In the other three "
-        "rounds the two policies stayed within 4.5 points of each other."
-    ),
-    p(
-        "Balanced routing tracked shortest path almost round for round: 49.82 against 49.87, 71.25 against "
-        "70.18, 41.76 against 41.31, 45.44 against 45.40 and 74.22 against 74.24, a largest gap of 1.07 "
-        "points. The reactive controller could not lower these peaks for two reasons. The peak is the "
-        "maximum over all samples, and the first samples fall before any reaction is possible: with "
-        "α = 0.5 the smoothed utilization needs several periods to cross 70% and then must stay above "
-        "it for two (Section 5.5). A move also needs a candidate path that ends at least 15 points below "
-        "the current bottleneck after receiving the moved flow, which is rare when flows of 8 to 28 Mbps "
-        "already occupy most links. The 18 lost datagrams, 0.0005% of the traffic, appear only in the "
-        "balanced runs, the policy that rewrites rules during traffic. The raw data does not tie them to a "
-        "specific update. In this workload reactive rebalancing adds control traffic and some risk without "
-        "a measurable peak benefit over shortest path, and static ECMP is the better baseline."
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.3",
+        "file": "fig_5_3_ten_flows.png",
+        "caption": (
+            "Figure 5.3: Peak port TX utilization for shortest, ECMP, and balanced routing over five rounds "
+            "(mean ± SD, round dots, dashed 70% threshold)."
+        ),
+        "width_in": 5.25,
+        "max_h_in": 1.85,
+        "border": False,
+    },
     h2("5.5 Polling Interval (T) and Congestion Threshold (θ) Sensitivity"),
     p(
-        "The detection workload uses four pairs that share the S2 to S3 link: H3 to H6 at 16 Mbps, H4 to H5 "
-        "at 18 Mbps, H1 to H6 at 28 Mbps and H3 to H5 at 28 Mbps, 90 Mbps in total. Detection time runs "
-        "from the launch of the first sender to the first sample in which the congestion streak on S2 to S3 "
-        "reaches 2. Table 5.5 and Figure 5.4 give five runs for each of four settings. Every run detected "
-        "congestion."
+        "Four flows sharing S2-S3 (H3-H6 16 Mbps, H4-H5 18 Mbps, H1-H6 28 Mbps, H3-H5 28 Mbps; 90 Mbps total) "
+        "tested detection latency from first sender launch until S2-S3 reached congestion streak 2 across 20 "
+        "runs (Table 5.5, Figure 5.4). All 20 runs detected congestion. Cutting T from 5 s to 2 s at θ = 70% "
+        "reduced declaration time from 18.932 s to 6.952 s (11.98 s faster, factor 2.72x, trading 2.5x higher "
+        "stats-polling load). Raising θ from 70% to 80% added 1.975 s (roughly one 2 s tick), while lowering "
+        "θ to 60% saved only 0.137 s (within run SD), supporting 70% as the default threshold."
     ),
     table(
         "Table 5.5",
-        "Table 5.5: Time to declare congestion on S2 to S3, n = 5 per setting "
-        "(shared-detection-20261125T203550Z and threshold-20261125T205244Z).",
+        "Table 5.5: Time to declare congestion on S2-S3, n = 5 per setting "
+        "(`shared-detection-20261125T203550Z`, `threshold-20261125T205244Z`).",
         ["Poll period T", "Threshold θ", "Detected", "First declaration (s)"],
         [
             ["2 s", "60%", "5 / 5", "6.815 ± 0.129"],
@@ -796,36 +781,33 @@ CH5 = [
         ],
         [38, 38, 32, 58],
     ),
-    figure(
-        "Figure 5.4", "fig_5_4_detection_threshold.png",
-        "Figure 5.4: Time to declare congestion for T = 2 s and T = 5 s at θ = 70% (left) and for "
-        "θ = 60%, 70% and 80% at T = 2 s (right). All 20 runs detected congestion.",
-    ),
-    p(
-        "Moving from T = 5 s to T = 2 s at θ = 70% cut the detection time from 18.932 s to 6.952 s, a "
-        "difference of 11.98 s and a factor of 2.72. The factor exceeds the 2.5 ratio of the two periods "
-        "because detection needs about 3.8 polling periods at T = 5 s and about 3.5 at T = 2 s: the "
-        "smoothed value has to climb past the threshold and then stay there for a second period. A shorter "
-        "period costs 2.5 times as many statistics requests to every switch, which is the price of the "
-        "faster reaction. The threshold matters less. Raising θ from 70% to 80% delays detection by "
-        "1.975 s, about one extra 2 s period, because the smoothed value needs one more step to reach the "
-        "higher level. Lowering θ to 60% saves only 0.137 s, less than the 0.13 to 0.18 s run-to-run SD, so "
-        "these data do not separate 60% from 70%. The 70% default stays, since a lower value would also "
-        "react to bursts that the two-period rule is meant to ignore."
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.4",
+        "file": "fig_5_4_detection_threshold.png",
+        "caption": (
+            "Figure 5.4: Congestion declaration time for T = 2 s vs T = 5 s at θ = 70% (left) and θ = 60%, "
+            "70%, and 80% at T = 2 s (right); all 20 runs detected."
+        ),
+        "width_in": 5.3,
+        "max_h_in": 1.85,
+        "border": False,
+    },
     h2("5.6 Before-and-After Reroute Window Metrics"),
     p(
-        "A whole-run average hides what a single move does to a flow. In five route-phase runs with T = 2 s "
-        "the receiver logged one-second intervals, and for every managed move the script compared five "
-        "intervals before the first confirmed change with five intervals after it, leaving a guard of at "
-        "least one second. The runs produced 14 paired comparisons: H1 to H6 and H3 to H5 five times each, "
-        "H4 to H5 three times and H3 to H6 once. Table 5.6 and Figure 5.5 list the results. Observed loss "
-        "was 0.00% in all 28 windows."
+        "Across five T = 2 s runs, comparing five 1 s receiver intervals before and after each confirmed move "
+        "(>= 1 s guard) yielded 14 paired comparisons with 0.00% loss in all 28 windows (Table 5.6, Figure 5.5). "
+        "Throughput stayed near offered rates because total demand was 90 Mbps. Delay shifted by topology: "
+        "H1-H6 kept three hops while leaving the congested queue, cutting RTT from 18.82 to 15.44 ms; H3-H5 "
+        "detoured forward from 1-hop S2-S3 onto 3-hop S2-S5-S6-S3 (+4 ms propagation), raising RTT from 7.92 "
+        "to 10.40 ms; H4-H5 swapped equal two-hop paths (9.59 vs 9.53 ms); and H3-H6 fell from 22.68 to "
+        "10.12 ms (n = 1). Jitter rose slightly for H1-H6 and H3-H5 within one post-move SD, showing that "
+        "rerouting benefits are pair- and metric-specific."
     ),
     table(
         "Table 5.6",
         "Table 5.6: Receiver windows before and after the first managed move, mean ± sample SD, entries are "
-        "(before, after) (route-phases-20261125T210721Z).",
+        "(before, after) (`route-phases-20261125T210721Z`).",
         ["Pair (n)", "Throughput (Mbps)", "Ping RTT (ms)", "UDP jitter (ms)"],
         [
             ["H1 to H6 (5)", "27.956 ± 0.098, 27.996 ± 0.009", "18.82 ± 9.16, 15.44 ± 1.08",
@@ -838,39 +820,35 @@ CH5 = [
         ],
         [30, 46, 45, 45],
     ),
-    figure(
-        "Figure 5.5", "fig_5_5_route_phases.png",
-        "Figure 5.5: Ping RTT and UDP jitter before and after the first managed move for the four pairs. "
-        "Loss was 0.00% in every window.",
-    ),
-    p(
-        "Throughput did not change. Each flow already received nearly its offered rate before the move, "
-        "which means this workload leaves no throughput gain to find, in contrast to Section 5.3, where "
-        "the offered load exceeded the link. Delay behaves differently from pair to pair, and the topology "
-        "explains the pattern. Each link adds 2 ms per direction. H1 to H6 moves between two three-hop "
-        "paths, so its propagation delay stays the same, and the RTT fell from 18.82 to 15.44 ms because "
-        "the queue on the saturated S2-S3 link drained. H3 to H5 starts on the single link S2-S3 and has "
-        "to detour over S2-S5-S6-S3 in the forward direction, while its replies keep the direct link. Its "
-        "propagation RTT therefore grows from 4 ms to 8 ms, and the measured increase from 7.92 to "
-        "10.40 ms is smaller than 4 ms because the shorter queue offsets part of it. H4 to H5 swaps "
-        "between two equal two-hop paths and shows no change, 9.59 against 9.53 ms. H3 to H6 improved from "
-        "22.68 to 10.12 ms, but that is a single comparison. Jitter rose slightly for the first two pairs, "
-        "from 0.303 to 0.381 ms and from 0.181 to 0.323 ms. Both increases are inside one SD of the "
-        "after-move values. A move fixes congestion, yet it can lengthen a path, so each improvement has to "
-        "be stated for a pair and a metric."
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.5",
+        "file": "fig_5_5_route_phases.png",
+        "caption": (
+            "Figure 5.5: Ping RTT and UDP jitter before and after the first managed move across all four "
+            "pairs (14 paired comparisons; 0.00% loss in every window)."
+        ),
+        "width_in": 5.3,
+        "max_h_in": 1.88,
+        "border": False,
+    },
     h2("5.7 Automatic Link-Failure Recovery"),
     p(
-        "The recovery batch sends 260 pings at 50 ms intervals from H2 to H6 and cuts the S5-S6 link during "
-        "the stream. Before the cut H2 to H6 uses S4-S5-S6. During the cut the surviving route is "
-        "S4-S1-S2-S3-S6. The measurement is the first reply whose probe was sent after the link-down "
-        "command returned, estimated from the reply timestamp and its RTT. Table 5.7 and Figure 5.6 "
-        "summarize the five runs."
+        "Five recovery runs sent 260 pings at 50 ms spacing from H2 to H6 (`S4-S5-S6`) and cut S5-S6 mid-run, "
+        "forcing failover onto `S4-S1-S2-S3-S6` via `EventLinkDelete` and `rebuild_routes` (Table 5.7, Figure "
+        "5.6). The first qualifying post-cut reply arrived in 73.139 ± 21.631 ms (range 45.937 to 95.540 ms), "
+        "with 7 of 1,300 probes lost (99.46% delivered; 50 ms probe spacing bounds resolution and measures "
+        "host-visible outage rather than internal switch completion). In the separate 26 November live "
+        "rehearsal `link-failure-20261126T120735Z` (recorded before commit `70fcaa2`; exact controller commit "
+        "not logged in JSON), H1-H6 shifted from P3 (priority 21) onto `S1-S2-S3-S6` (priority 20) on the "
+        "S5-S6 cut and remained there after restoration, receiving 299 of 300 pings at 0.2 s spacing (0.333% "
+        "loss, coarse first reply 227.238 ms, largest inter-reply gap 0.724913 s, neither an exact convergence "
+        "latency)."
     ),
     table(
         "Table 5.7",
         "Table 5.7: Recovery after an S5-S6 cut, H2 to H6, 260 probes per run, n = 5 "
-        "(recovery-20261125T202848Z).",
+        "(`recovery-20261125T202848Z`).",
         ["Metric", "Mean ± sample SD", "Observed range"],
         [
             ["First qualifying reply after the cut (ms)", "73.139 ± 21.631", "45.937 to 95.540"],
@@ -879,78 +857,59 @@ CH5 = [
         ],
         [70, 48, 48],
     ),
-    figure(
-        "Figure 5.6", "fig_5_6_failover_recovery.png",
-        "Figure 5.6: First post-cut reply time (mean 73.139 ± 21.631 ms) and lost probes per run "
-        "(2, 2, 1, 0, 2) for the five recovery runs.",
-    ),
-    p(
-        "The first usable reply arrived 73.139 ± 21.631 ms after the cut, between 45.937 and 95.540 ms "
-        "over five runs, and 7 of 1,300 probes were lost in total. The probe spacing of 50 ms limits the "
-        "resolution: a run that loses 2 probes had an outage of roughly 100 ms or less, and a run that "
-        "loses none had one shorter than the spacing. Recovery is quick because the cut is reported as a "
-        "link-delete event, and the controller then rebuilds every route in one pass without waiting for "
-        "the 10 s LLDP timeout that applies to silent failures. The number measures the host-visible "
-        "outage. It does not say when each switch finished updating."
-    ),
-    p(
-        "The 26 November live check on the patched controller shows the same behavior on the demo flow. "
-        "In link-failure-20261126T120735Z the pair H1 to H6 started on P3 at priority 21, so the S5-S6 cut "
-        "removed its path. While the link was down the pair used S1-S2-S3-S6 at priority 20, and it stayed "
-        "there after the link returned, because the rebuild installs shortest-path rules and does not "
-        "restore the earlier move. The ping run of 300 probes at 0.2 s received 299, a loss of 0.333%. The "
-        "first reply after the cut came 227.238 ms after the request, which is coarse because the probe "
-        "interval is four times longer than in the recovery batch, and the largest gap between replies was "
-        "0.724913 s. Neither figure is a convergence time."
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.6",
+        "file": "fig_5_6_failover_recovery.png",
+        "caption": (
+            "Figure 5.6: First post-cut reply time (mean 73.139 ± 21.631 ms) and lost probes per run "
+            "(2, 2, 1, 0, 2; 7/1,300 total) across five recovery runs."
+        ),
+        "width_in": 5.3,
+        "max_h_in": 1.85,
+        "border": False,
+    },
     h2("5.8 Engineering Limitations and Threats to Validity"),
     p(
-        "Every result comes from emulation on one virtual machine whose CPU is shared by the controller, the "
-        "switches, the hosts and the traffic generators, so millisecond-scale timings depend on machine "
-        "load. Five further limitations apply to the numbers in this chapter."
+        "All timings reflect single-VM emulation where controller, OVS, and generators share CPU cores. Five "
+        "concrete limitations qualify the results above:"
     ),
     numbered([
-        "The repeated performance batches of 25 November (grid comparison, ten flows, recovery, detection, "
-        "threshold and route phases) ran before the LLDP wait patch, with 64k HTB burst and cburst. The "
-        "accuracy calibration and the two live demonstrations of 26 November ran after it. The batches "
-        "were not repeated on the patched controller, so no conclusion rests on comparing the two groups.",
-        "The 26 November calibration is a separate batch of five trials on the fat-tree at 5 Mbps. Earlier "
-        "calibration attempts that were stopped or resumed with different settings stay in the raw folder "
-        "and are excluded. The calibration validates port TX at one low rate on one path. It does not "
-        "validate readings at saturation.",
-        "The controller log sdn-controller-fattree-20261126-144135.log, recorded after the patch, still "
-        "contains 32 link-deletion events and 64 route rebuilds, with no tracebacks. The calibration "
-        "completed in spite of them. Their cause is unknown, and the report does not claim that discovery "
-        "is stable under load.",
-        "The 30 s per-flow hold-down is implemented and covered by the offline test of the gate in "
-        "check_logic.py. No live experiment isolates it, because a live move also depends on the "
-        "congestion streak and on the 15-point gate. Residual loss under high offered load, 6.22% at H6 and "
-        "8.61% at H5 in Table 5.3, remains, and no run claims zero loss.",
-        "A managed flow is a directed IPv4 MAC pair, so parallel TCP or UDP connections between two hosts "
-        "share one rule and one rate estimate. Port TX includes Ethernet, IP and UDP headers and "
-        "background frames, so it is about 3% above the receiver payload rate (Section 5.2). Receiver "
-        "throughput, ping RTT (a round trip, not a one-way delay) and iperf jitter are separate metrics. "
-        "Pairs with small samples, n = 3 for H4 to H5 and n = 1 for H3 to H6, support no statistical "
-        "statement.",
+        "**Batch and revision boundary:** Repeated 25 November batches used 64k HTB burst/cburst before the "
+        "bounded LLDP wait patch (commit `70fcaa2`). Only the 26 November calibration (`124854Z`) is verified "
+        "to have run after `70fcaa2` was deployed; the two 26 November live rehearsals (`120202Z` and "
+        "`120735Z`) preceded `70fcaa2` and do not log a controller hash in JSON. Groups are never pooled.",
+        "**Calibration scope:** `accuracy-20261126T124854Z.json` validates port TX at 5 Mbps on one fat-tree "
+        "path (`n = 5`); earlier stopped or mixed-setting runs stay excluded, and saturation accuracy is not "
+        "separately calibrated.",
+        "**Residual LLDP churn:** Post-patch log `sdn-controller-fattree-20261126-144135.log` still records "
+        "32 link deletions and 64 route rebuilds without tracebacks. Calibration succeeded despite them, yet "
+        "their root cause remains open and universal discovery stability is not claimed.",
+        "**Hold-down isolation and residual loss:** The 30 s per-flow hold-down passes offline unit tests "
+        "(`check_logic.py`) but has not been isolated in a live Mininet run; high-load residual loss (6.22% "
+        "H6, 8.61% H5 in Table 5.3) remains and zero loss is never claimed.",
+        "**Flow and metric definitions:** Rules match directed IPv4 MAC pairs rather than 5-tuples; port TX "
+        "includes framing and background traffic (~3% above UDP payload); receiver rate, ping RTT, and UDP "
+        "jitter are distinct metrics; small samples (`n = 3` H4-H5, `n = 1` H3-H6) carry no statistical claim.",
     ]),
     p(
-        "One older observation explains why every experiment above uses shaped links. During C4 "
-        "development, an unshaped TCP iperf from H2 to H1 ran at 32.3 to 34.0 Gbit/s on a link whose "
-        "qdisc was noqueue, and the controller's port counters read above 31,000 Mbps. Figure 5.7 shows "
-        "the result. The controller logged Link removed: S5 - S2 and then No path available, and a "
-        "following pingall returned 0 of 30 until Mininet was cleaned up and restarted. An unshaped "
-        "software link runs as fast as the host CPU allows, a single TCP stream can then occupy the "
-        "virtual machine, and the LLDP probes that must arrive within the 10 s link timeout are delayed "
-        "or lost. The failure was not diagnosed further and the stress run was not repeated. Shaping every "
-        "inter-switch link to 100 Mbps with a 64k burst bounds the load a sender can place on the machine, "
-        "and all measurements in this chapter used it."
+        "During C4 development, an unshaped TCP `iperf` (`qdisc noqueue`) reached 32.3 to 34.0 Gbit/s, "
+        "starving LLDP keepalives and triggering `Link removed: S5 - S2`, `No path available`, and `0/30` "
+        "pingall until restart (Figure 5.7). Every benchmark in this chapter therefore enforces 100 Mbps "
+        "shaped links with 64k HTB burst."
     ),
-    figure(
-        "Figure 5.7", "shot_unshaped_lldp_stress.png",
-        "Figure 5.7: Unshaped TCP iperf at 32.3 to 34.0 Gbit/s on a link with qdisc noqueue, followed by "
-        "Link removed: S5 - S2 and No path available in the controller log.",
-        6.1, True,
-    ),
+    {
+        "type": "figure",
+        "id": "Figure 5.7",
+        "file": "shot_unshaped_lldp_stress.png",
+        "caption": (
+            "Figure 5.7: Unshaped TCP iperf at 32.3 to 34.0 Gbit/s on `qdisc noqueue`, followed by "
+            "`Link removed: S5 - S2` and `No path available` in the controller log."
+        ),
+        "width_in": 5.45,
+        "max_h_in": 1.98,
+        "border": True,
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -1174,11 +1133,12 @@ APP_B = [
     ),
     h2("B.2 Repository History"),
     p(
-        "The local Git repository holds 108 commits on the master branch, dated 17 to 26 November 2026. All "
-        "of them carry the same author identity, so the history records what changed and when but cannot "
-        "attribute work to individual members. Individual roles, each member's share of the commits and the "
-        "weekly progress reports for Weeks 3 to 14 are finalized and attached with the submission package. "
-        "Table B.2 groups the work by package and names where the evidence sits in the repository."
+        "The local Git repository records the development history on the `master` branch from 17 to 26 "
+        "November 2026 under a single commit author identity, so it documents what changed and when but "
+        "cannot attribute work to individual members. Individual role assignments and per-member commit "
+        "attribution remain unverified in the supplied repository. Original weekly progress reports for "
+        "Weeks 3 to 14 were not found among the supplied files. Table B.2 groups the implemented work "
+        "packages and names where the corresponding technical evidence sits in the repository."
     ),
     table(
         "Table B.2",
@@ -1206,7 +1166,7 @@ APP_B = [
         ["Checkpoint", "Handout deliverable", "Evidence"],
         [
             ["CP1", "SDN background draft, setup screenshots, approved proposal",
-             "Chapter 2; Wireshark capture of the OpenFlow 1.3 handshake (Figures 2.4 and 2.5)"],
+             "Chapter 2; Wireshark capture of the OpenFlow 1.3 handshake (Figures 2.4 and 2.5); separate Week 4 proposal file not stored in repository"],
             ["CP2", "Discovery, routing, live utilization",
              "LLDP graph, Dijkstra routing, proxy ARP, port statistics; pingall 30/30 (Figure 4.1)"],
             ["CP3", "Track topology and first feature",

@@ -86,7 +86,7 @@ def main():
     for name in ("requirements.txt", "AGENTS.md", "HANDOFF.md", "PLAN.md", "ISSUES_AND_RISKS.md", "WORK_LOG.md"):
         if (source / name).is_file():
             mapping.append((source / name, project / name, False))
-    for folder in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu"):
+    for folder in ("vm-source", "experiments", "dashboard", "c1", "output", "media", "ubuntu", "report_builder", "video"):
         root = source / folder
         if not root.is_dir():
             continue

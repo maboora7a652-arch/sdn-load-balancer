@@ -94,7 +94,7 @@ RPR_ORDER = ["rStyle", "rFonts", "b", "bCs", "i", "iCs", "caps", "smallCaps", "s
 ARABIC = r"[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]+"
 ARABIC_RUN_RE = re.compile(f"({ARABIC}(?:[ \\t]+{ARABIC})*)")
 INLINE_RE = re.compile(
-    r"\*\*(?=\S)(.+?)(?<=\S)\*\*|`([^`]+)`|(?<![\w/\\])\*(?=[^\s*/\\])([^*/\\]+?)(?<=[^\s*/\\])\*(?![\w*.])"
+    r"\*\*(?=\S)(.+?)(?<=\S)\*\*|`([^`]+)`|(?<![\w/\\])\*(?=[^\s*/\\])([^*/\\]+?)(?<=[^\s*/\\])\*(?![\w*])"
 )
 SCRIPT_RE = re.compile(r"([_^])(\{[^}]*\}|[A-Za-z0-9\u03b1-\u03c9\u0391-\u03a9](?![A-Za-z0-9]))")
 NUM_RE = re.compile(r"^[\s+\-\u2212~<>\u2264\u2265\u2248]*\d[\d,.\s]*(?:\u00b1\s*[\d,.]+)?\s*"
@@ -337,37 +337,37 @@ def setup_styles(doc):
             for a in ("ascii", "hAnsi", "eastAsia", "cs"):
                 rf.set(qn("w:" + a), BODY_FONT)
     # Strictly 12 pt Times New Roman body per assignment Section 11 rubric
-    mk_style(doc, "Normal", base=None, font=BODY_FONT, size=12, color=INK, align=J, before=0, after=3.0,
-             line=1.05, widow=True)
+    mk_style(doc, "Normal", base=None, font=BODY_FONT, size=12, color=INK, align=J, before=0, after=2.2,
+             line=1.01, widow=True)
     mk_style(doc, "Heading 1", font=HEAD_FONT, size=16.5, bold=True, italic=False, color=NAVY, align=L, before=0,
-             after=5.5, line=1.0, keep_next=True, keep_lines=True, page_break=True, rule_bottom=(12, NAVY, 3))
-    mk_style(doc, "Heading 2", font=HEAD_FONT, size=12.5, bold=True, italic=False, color=TEAL, align=L, before=7,
-             after=2.5, line=1.0, keep_next=True, keep_lines=True, page_break=False)
-    mk_style(doc, "Heading 3", font=HEAD_FONT, size=11, bold=True, italic=False, color=NAVY, align=L, before=5,
-             after=2, line=1.0, keep_next=True, keep_lines=True, page_break=False)
-    mk_style(doc, "Front Heading", font=HEAD_FONT, size=16.5, bold=True, color=NAVY, align=L, before=0, after=7,
+             after=4.5, line=1.0, keep_next=True, keep_lines=True, page_break=True, rule_bottom=(12, NAVY, 3))
+    mk_style(doc, "Heading 2", font=HEAD_FONT, size=12.5, bold=True, italic=False, color=TEAL, align=L, before=5.5,
+             after=1.8, line=1.0, keep_next=True, keep_lines=True, page_break=False)
+    mk_style(doc, "Heading 3", font=HEAD_FONT, size=11, bold=True, italic=False, color=NAVY, align=L, before=4.0,
+             after=1.5, line=1.0, keep_next=True, keep_lines=True, page_break=False)
+    mk_style(doc, "Front Heading", font=HEAD_FONT, size=16.5, bold=True, color=NAVY, align=L, before=0, after=5,
              line=1.0, keep_next=True, keep_lines=True, rule_bottom=(12, NAVY, 3))
-    mk_style(doc, "Table Caption", font=HEAD_FONT, size=9.5, bold=True, color=NAVY, align=L, before=6, after=2.5,
+    mk_style(doc, "Table Caption", font=HEAD_FONT, size=9.5, bold=True, color=NAVY, align=L, before=4.5, after=1.8,
              line=1.0, keep_next=True, keep_lines=True)
-    mk_style(doc, "Figure Image", align=C, before=4, after=2, line=1.0, keep_next=True, keep_lines=True)
-    mk_style(doc, "Figure Caption", font=HEAD_FONT, size=9, italic=True, color=SLATE, align=C, before=1,
-             after=6, line=1.0, keep_lines=True)
-    mk_style(doc, "Table Text", font=HEAD_FONT, size=8.5, color=INK, align=L, before=0, after=0, line=1.04)
-    mk_style(doc, "Table Header", font=HEAD_FONT, size=9, bold=True, color=WHITE, align=L, before=0, after=0,
-             line=1.04)
+    mk_style(doc, "Figure Image", align=C, before=2.5, after=1.2, line=1.0, keep_next=True, keep_lines=True)
+    mk_style(doc, "Figure Caption", font=HEAD_FONT, size=9, italic=True, color=SLATE, align=C, before=0.8,
+             after=3.5, line=1.0, keep_lines=True)
+    mk_style(doc, "Table Text", font=HEAD_FONT, size=8.3, color=INK, align=L, before=0, after=0, line=1.02)
+    mk_style(doc, "Table Header", font=HEAD_FONT, size=8.5, bold=True, color=WHITE, align=L, before=0, after=0,
+             line=1.02)
     mk_style(doc, "Callout Title", font=HEAD_FONT, size=10, bold=True, color=TEAL, align=L, before=0, after=2,
              line=1.0, keep_next=True)
-    mk_style(doc, "Callout Text", size=10.5, align=J, before=0, after=2, line=1.06)
-    mk_style(doc, "Code Title", font=HEAD_FONT, size=8.5, bold=True, color=NAVY, align=L, before=0, after=0,
+    mk_style(doc, "Callout Text", size=10.5, align=J, before=0, after=2, line=1.05)
+    mk_style(doc, "Code Title", font=HEAD_FONT, size=8.3, bold=True, color=NAVY, align=L, before=0, after=0,
              line=1.0, keep_next=True)
-    mk_style(doc, "Code Line", font=CODE_FONT, size=8, color=CODE_INK, align=L, before=0, after=0, line=1.0)
+    mk_style(doc, "Code Line", font=CODE_FONT, size=7.4, color=CODE_INK, align=L, before=0, after=0, exact=8.2)
     mk_style(doc, "Equation Formula", font=MATH_FONT, size=11.5, italic=True, color=INK, align=C, before=0,
              after=0, line=1.05)
     mk_style(doc, "Equation Number", font=HEAD_FONT, size=9.5, bold=True, color=NAVY, align=WD_ALIGN_PARAGRAPH.RIGHT,
              before=0, after=0, line=1.0)
-    mk_style(doc, "Equation Note", size=9.5, color=SLATE, align=L, before=2, after=4, line=1.05)
-    mk_style(doc, "Reference", size=9.5, align=L, before=0, after=2.2, line=1.05, left=460, hanging=460)
-    mk_style(doc, "Spacer", size=2, align=L, before=0, after=0, exact=4)
+    mk_style(doc, "Equation Note", size=9.5, color=SLATE, align=L, before=2, after=3.5, line=1.04)
+    mk_style(doc, "Reference", size=9.5, align=L, before=0, after=2.0, line=1.04, left=460, hanging=460)
+    mk_style(doc, "Spacer", size=2, align=L, before=0, after=0, exact=2)
     mk_style(doc, "Cover University", font=HEAD_FONT, size=22, bold=True, color=NAVY, align=C, before=8, after=2,
              line=1.0)
     mk_style(doc, "Cover Line", font=HEAD_FONT, size=12.5, color=INK, align=C, before=0, after=1, line=1.0)
@@ -384,14 +384,14 @@ def setup_styles(doc):
         for t in ppr.findall(qn("w:tabs")):
             ppr.remove(t)
     for name, hang in (("List Bullet", 260), ("List Number", 320)):
-        st = mk_style(doc, name, size=12, align=J, before=0, after=1.5, line=1.08, left=520, hanging=hang)
+        st = mk_style(doc, name, size=12, align=J, before=0, after=1.5, line=1.04, left=520, hanging=hang)
         ppr = st.element.get_or_add_pPr()
         for n in ("numPr", "contextualSpacing"):
             for e in ppr.findall(qn("w:" + n)):
                 ppr.remove(e)
-    toc1 = mk_style(doc, "toc 1", font=HEAD_FONT, size=8.5, bold=True, color=NAVY, align=L, before=1.0, after=0,
-                    line=0.95, left=0)
-    toc2 = mk_style(doc, "toc 2", font=HEAD_FONT, size=7.8, color=INK, align=L, before=0, after=0, line=0.94,
+    toc1 = mk_style(doc, "toc 1", font=HEAD_FONT, size=8.4, bold=True, color=NAVY, align=L, before=1.5, after=0,
+                    exact=10.4, left=0)
+    toc2 = mk_style(doc, "toc 2", font=HEAD_FONT, size=7.6, color=INK, align=L, before=0, after=0, exact=9.2,
                     left=260)
     for st in (toc1, toc2):
         st.paragraph_format.tab_stops.add_tab_stop(Twips(TEXT_W), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
@@ -450,7 +450,7 @@ def new_number_list(state) -> int:
 def setup_page(doc):
     sec = doc.sections[0]
     sec.page_width, sec.page_height = Twips(PAGE_W), Twips(PAGE_H)
-    sec.top_margin = sec.bottom_margin = Twips(MARGIN_TB)
+    sec.top_margin = sec.bottom_margin = Twips(907)  # 16 mm in Word to match Chrome print flow 1:1
     sec.left_margin = sec.right_margin = Twips(MARGIN_LR)
     sec.header_distance = sec.footer_distance = Twips(510)
     sec.gutter = Twips(0)
@@ -588,7 +588,7 @@ def render_table(doc, blk, ctx):
                   for j in range(n)]
     tbl = doc.add_table(rows=1 + len(rows) if headers else len(rows), cols=n)
     set_table(tbl, widths)
-    mar = {"top": 36, "bottom": 36, "left": 75, "right": 75}
+    mar = {"top": 28, "bottom": 28, "left": 70, "right": 70}
     base_rule = ("single", 4, RULE)
     for ri, row in enumerate(tbl.rows):
         is_head = bool(headers) and ri == 0
@@ -717,7 +717,7 @@ def resolve_asset(name):
     raise FileNotFoundError(f"asset not found: {name}")
 
 
-def figure_dimensions(path: Path, req_w: float, bordered: bool):
+def figure_dimensions(path: Path, req_w: float, bordered: bool, max_h_in: float | None = None):
     w = min(float(req_w or 5.6), MAX_FIG_W_IN)
     with Image.open(path) as im:
         pw, ph = im.size
@@ -726,6 +726,8 @@ def figure_dimensions(path: Path, req_w: float, bordered: bool):
         cap_h = MAX_FIG_H_TALL_SHOT_IN
     else:
         cap_h = MAX_FIG_H_SHOT_IN if bordered else MAX_FIG_H_DIAGRAM_IN
+    if max_h_in is not None:
+        cap_h = min(cap_h, float(max_h_in))
     if h > cap_h:
         w, h = w * cap_h / h, cap_h
     return w, h
@@ -734,7 +736,8 @@ def figure_dimensions(path: Path, req_w: float, bordered: bool):
 def render_figure(doc, blk, ctx):
     path = resolve_asset(blk.get("file") or blk.get("path"))
     bordered = bool(blk.get("border"))
-    w, _ = figure_dimensions(path, blk.get("width_in", 5.6), bordered)
+    w, _ = figure_dimensions(path, blk.get("width_in", 5.6), bordered, blk.get("max_h_in"))
+    w *= 0.94  # Calibrate Word picture height to match Chrome PDF pagination 1:1
     prefix, rest = split_caption(blk.get("caption"), blk.get("id") or blk.get("number"), "Figure")
     p = doc.add_paragraph(style="Figure Image")
     shape = p.add_run().add_picture(str(path), width=Inches(w))
@@ -1422,7 +1425,7 @@ table.data-tbl code {{ font-size: 7.7pt; }}
             elif kind == "figure":
                 path = resolve_asset(blk.get("file") or blk.get("path"))
                 bordered = bool(blk.get("border"))
-                w, _ = figure_dimensions(path, blk.get("width_in", 5.6), bordered)
+                w, _ = figure_dimensions(path, blk.get("width_in", 5.6), bordered, blk.get("max_h_in"))
                 prefix, rest = split_caption(blk.get("caption"), blk.get("id") or blk.get("number"), "Figure")
                 cls = ' class="bordered"' if bordered else ""
                 cap_html = (f'<strong>{html_mod.escape(prefix)}:</strong> <em>{html_inline(rest)}</em>'
